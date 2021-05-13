@@ -10,6 +10,7 @@ const Home: React.FC = () => (
     <ul>
       <li>package.json</li>
       <li>pages/app.js</li>
+      <li>now.json (Vercel)</li>
     </ul>
   </div>
 );
