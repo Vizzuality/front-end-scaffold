@@ -9,9 +9,13 @@
     "lint": "eslint -c .eslintrc.js --ext .js,.jsx,.ts,.tsx --fix --ignore-path .gitignore ."
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.3.2",
+    "autoprefixer": "^10.2.5",
     "next": "10.2.0",
+    "postcss": "^8.2.15",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "tailwindcss": "^2.1.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.5",
