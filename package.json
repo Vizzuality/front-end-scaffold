@@ -57,6 +57,7 @@
     "typescript": "^4.2.4"
   },
   "husky": {
+    "pre-commit": "yarn lint",
     "pre-push": "yarn lint"
   }
 }
