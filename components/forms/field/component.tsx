@@ -1,4 +1,6 @@
-import React from 'react';
+import {
+  Children, cloneElement, FC, isValidElement,
+} from 'react';
 import cx from 'classnames';
 
 export interface FieldProps {
@@ -10,7 +12,7 @@ export interface FieldProps {
   className?: string;
 }
 
-export const Field: React.FC<FieldProps> = ({
+export const Field: FC<FieldProps> = ({
   id,
   children,
   input,
@@ -24,12 +26,12 @@ export const Field: React.FC<FieldProps> = ({
     return 'none';
   };
 
-  const childrenWithProps = React.Children.map(children, (child) => {
+  const childrenWithProps = Children.map(children, (child) => {
     // checking isValidElement is the safe way and avoids a typescript error too
-    if (React.isValidElement(child)) {
+    if (isValidElement(child)) {
       const status = getState(meta);
 
-      return React.cloneElement(child, {
+      return cloneElement(child, {
         ...input,
         ...child.props,
         id,

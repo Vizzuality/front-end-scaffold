@@ -30,7 +30,7 @@ export interface TextareaProps
   status?: 'none' | 'valid' | 'error' | 'disabled';
 }
 
-export const Textarea: React.FC<TextareaProps> = ({
+export const Textarea: FC<TextareaProps> = ({
   theme = 'dark',
   status = 'none',
   disabled = false,

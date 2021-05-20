@@ -9,7 +9,7 @@ export interface LegendTypeBasicProps {
   }>;
 }
 
-export const LegendTypeBasic: React.FC<LegendTypeBasicProps> = ({
+export const LegendTypeBasic: FC<LegendTypeBasicProps> = ({
   className = '',
   items,
 }: LegendTypeBasicProps) => {

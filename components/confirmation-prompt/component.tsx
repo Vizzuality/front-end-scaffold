@@ -5,7 +5,7 @@ import Button from 'components/button';
 import Icon from 'components/icon';
 import { ConfirmationPromptProps } from './types';
 
-export const ConfirmationPrompt: React.FC<ConfirmationPromptProps> = ({
+export const ConfirmationPrompt: FC<ConfirmationPromptProps> = ({
   title,
   description,
   open,

@@ -9,7 +9,7 @@ export interface SortableItemProps {
   children: ReactNode
 }
 
-export const SortableItem: React.FC<SortableItemProps> = ({
+export const SortableItem: FC<SortableItemProps> = ({
   id,
   children,
 }: SortableItemProps) => {

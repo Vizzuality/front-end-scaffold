@@ -1,4 +1,3 @@
-import React from 'react';
 import { Story } from '@storybook/react/types-6-0';
 import DOWNLOAD_SVG from 'svgs/ui/download.svg';
 import Icon, { IconProps } from './component';

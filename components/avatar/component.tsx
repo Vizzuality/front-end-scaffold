@@ -7,7 +7,7 @@ export interface AvatarProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   bgImage?: string;
 }
 
-export const Avatar: React.FC<AvatarProps> = ({
+export const Avatar: FC<AvatarProps> = ({
   children,
   className,
   bgImage,

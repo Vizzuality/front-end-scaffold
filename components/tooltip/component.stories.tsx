@@ -1,4 +1,3 @@
-import React from 'react';
 import { Story } from '@storybook/react/types-6-0';
 import Tooltip from './component';
 import { TooltipProps } from './types';
@@ -22,7 +21,7 @@ const Template: Story<TooltipProps> = (args: TooltipProps) => (
         </div>
       )}
     >
-      <span className="underline text-blue-500">HOVER ME!</span>
+      <span className="text-blue-500 underline">HOVER ME!</span>
     </Tooltip>
     {' '}
     quisquam explicabo iure nihil, eveniet dolorum at hic voluptatem in maxime enim a aspernatur?
@@ -39,7 +38,7 @@ const Template: Story<TooltipProps> = (args: TooltipProps) => (
         </div>
       )}
     >
-      <span className="underline text-blue-500">CLICK ME!</span>
+      <span className="text-blue-500 underline">CLICK ME!</span>
     </Tooltip>
     {' '}
     doloremque iusto! Sunt, dignissimos sint.

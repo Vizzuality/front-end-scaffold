@@ -1,4 +1,5 @@
-import React, {
+import {
+  FC,
   useCallback, useEffect, useRef,
 } from 'react';
 import cx from 'classnames';
@@ -39,7 +40,7 @@ const THEME: ToastTheme = {
   },
 };
 
-export const Toast: React.FC<ToastProps> = ({
+export const Toast: FC<ToastProps> = ({
   id,
   content,
   level,

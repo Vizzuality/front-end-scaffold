@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import cx from 'classnames';
 
 export interface ErrorProps {
@@ -7,7 +7,7 @@ export interface ErrorProps {
   className?: string;
 }
 
-export const Error: React.FC<ErrorProps> = ({
+export const Error: FC<ErrorProps> = ({
   children,
   visible,
   className,

@@ -9,7 +9,7 @@ export interface LegendTypeGradientProps {
   }>;
 }
 
-export const LegendTypeGradient: React.FC<LegendTypeGradientProps> = ({
+export const LegendTypeGradient: FC<LegendTypeGradientProps> = ({
   className = '',
   items,
 }: LegendTypeGradientProps) => {

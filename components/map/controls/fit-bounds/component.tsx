@@ -29,7 +29,7 @@ export const FitBoundsControl = ({
   return (
     <button
       className={cx({
-        'mb-0.5 px-0.5 py-1 rounded-4xl text-white bg-black focus:outline-none': true,
+        'mb-0.5 px-0.5 py-1 rounded-3xl text-white bg-black focus:outline-none': true,
         'hover:bg-gray-700 active:bg-gray-600': !!bounds,
         'opacity-50 cursor-default': !bounds,
         [className]: !!className,

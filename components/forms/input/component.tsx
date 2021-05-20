@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react';
+import { FC, InputHTMLAttributes } from 'react';
 import Icon from 'components/icon';
 import cx from 'classnames';
 
@@ -45,7 +45,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   };
 }
 
-export const Input: React.FC<InputProps> = ({
+export const Input: FC<InputProps> = ({
   theme = 'dark',
   status = 'none',
   mode = 'normal',

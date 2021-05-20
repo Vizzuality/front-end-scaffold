@@ -4,7 +4,7 @@ import cx from 'classnames';
 import THEME from 'components/forms/select/constants/theme';
 import { SelectMenuProps } from 'components/forms/select/types';
 
-export const SelectMenu: React.FC<SelectMenuProps> = ({
+export const SelectMenu: FC<SelectMenuProps> = ({
   theme,
   opened,
   attributes,

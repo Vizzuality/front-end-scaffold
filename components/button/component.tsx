@@ -57,7 +57,7 @@ function buildClassName({
   theme,
 }) {
   return cx({
-    'flex items-center justify-center rounded-4xl focus:outline-none': true,
+    'flex items-center justify-center rounded-3xl focus:outline-none': true,
     [THEME[theme]]: true,
     [SIZE[size]]: true,
     [className]: !!className,
@@ -65,7 +65,7 @@ function buildClassName({
   });
 }
 
-export const LinkAnchor: React.FC<AnchorProps> = ({
+export const LinkAnchor: FC<AnchorProps> = ({
   children,
   theme = 'primary',
   size = 'base',
@@ -86,7 +86,7 @@ export const LinkAnchor: React.FC<AnchorProps> = ({
   </Link>
 );
 
-export const Anchor: React.FC<AnchorProps> = ({
+export const Anchor: FC<AnchorProps> = ({
   children,
   theme = 'primary',
   size = 'base',
@@ -115,7 +115,7 @@ export const Anchor: React.FC<AnchorProps> = ({
   );
 };
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   children,
   theme = 'primary',
   size = 'base',

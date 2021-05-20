@@ -1,5 +1,5 @@
-import React from 'react';
 import cx from 'classnames';
+import { FC } from 'react';
 
 export interface IconProps {
   icon: {
@@ -10,23 +10,21 @@ export interface IconProps {
   style?: any;
 }
 
-export const Icon: React.FC<IconProps> = ({
+export const Icon: FC<IconProps> = ({
   icon,
   className = 'w-5 h-5',
   style,
-}: IconProps) => {
-  return (
-    <svg
-      className={cx({
-        'fill-current': true,
-        [className]: className,
-      })}
-      viewBox={icon?.viewBox || '0 0 32 32'}
-      style={style}
-    >
-      <use xlinkHref={`#${icon?.id || icon}`} />
-    </svg>
-  );
-};
+}: IconProps) => (
+  <svg
+    className={cx({
+      'fill-current': true,
+      [className]: className,
+    })}
+    viewBox={icon?.viewBox || '0 0 32 32'}
+    style={style}
+  >
+    <use xlinkHref={`#${icon?.id || icon}`} />
+  </svg>
+);
 
 export default Icon;

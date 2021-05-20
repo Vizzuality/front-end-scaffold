@@ -1,5 +1,5 @@
-import React from 'react';
 import cx from 'classnames';
+import { forwardRef } from 'react';
 
 const THEME = {
   dark: 'block font-heading font-medium text-xs text-white',
@@ -18,22 +18,20 @@ const LabelComponent = (
     id, theme = 'dark', children, className,
   }: LabelProps,
   ref,
-) => {
-  return (
-    <label
-      className={cx({
-        [THEME[theme]]: true,
-        [className]: !!className,
-      })}
-      htmlFor={id}
-      ref={ref}
-    >
-      {children}
-    </label>
-  );
-};
+) => (
+  <label
+    className={cx({
+      [THEME[theme]]: true,
+      [className]: !!className,
+    })}
+    htmlFor={id}
+    ref={ref}
+  >
+    {children}
+  </label>
+);
 
-export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
+export const Label = forwardRef<HTMLLabelElement, LabelProps>(
   LabelComponent,
 );
 

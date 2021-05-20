@@ -1,5 +1,4 @@
-import React from 'react';
-
+import { FC } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import { useSpring, motion } from 'framer-motion';
 import { SpringOptions } from 'popmotion';
@@ -7,7 +6,7 @@ import { SpringOptions } from 'popmotion';
 import Arrow from './arrow';
 import { TooltipProps } from './types';
 
-export const Tooltip: React.FC<TooltipProps> = ({
+export const Tooltip: FC<TooltipProps> = ({
   children, content, arrow, maxWidth, ...props
 }: TooltipProps) => {
   const springConfig: SpringOptions = { damping: 15, stiffness: 300 };

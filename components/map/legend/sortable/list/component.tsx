@@ -33,7 +33,7 @@ export interface SortableListProps {
   onChangeOrder: (id: string[]) => void;
 }
 
-export const SortableList: React.FC<SortableListProps> = ({
+export const SortableList: FC<SortableListProps> = ({
   children,
   onChangeOrder,
 }: SortableListProps) => {

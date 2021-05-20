@@ -16,7 +16,7 @@ import THEME from 'components/forms/select/constants/theme';
 
 import { SelectProps, SelectOptionProps } from 'components/forms/select/types';
 
-export const SingleSelect: React.FC<SelectProps> = ({
+export const SingleSelect: FC<SelectProps> = ({
   theme = 'dark',
   size = 'base',
   maxHeight = 300,

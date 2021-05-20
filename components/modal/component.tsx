@@ -1,4 +1,6 @@
-import React, { Children, cloneElement, isValidElement } from 'react';
+import {
+  Children, FC, cloneElement, isValidElement, useRef,
+} from 'react';
 import cx from 'classnames';
 
 import { AnimatePresence, motion } from 'framer-motion';
@@ -27,7 +29,7 @@ const CONTENT_CLASSES = {
 
 const OVERLAY_CLASSES = 'z-50 fixed inset-0 bg-black bg-blur';
 
-export const Modal: React.FC<ModalProps> = ({
+export const Modal: FC<ModalProps> = ({
   title,
   open,
   dismissable = true,
@@ -36,7 +38,7 @@ export const Modal: React.FC<ModalProps> = ({
   className,
   onDismiss,
 }: ModalProps) => {
-  const containerRef = React.useRef();
+  const containerRef = useRef();
   const { overlayProps } = useOverlay({
     isKeyboardDismissDisabled: !dismissable,
     isDismissable: dismissable,

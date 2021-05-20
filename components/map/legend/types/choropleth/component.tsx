@@ -9,7 +9,7 @@ export interface LegendTypeChoroplethProps {
   }>;
 }
 
-export const LegendTypeChoropleth: React.FC<LegendTypeChoroplethProps> = ({
+export const LegendTypeChoropleth: FC<LegendTypeChoroplethProps> = ({
   className = '',
   items,
 }: LegendTypeChoroplethProps) => {

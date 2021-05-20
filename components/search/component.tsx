@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { FC, useRef } from 'react';
 import cx from 'classnames';
 
 // react aria
@@ -28,7 +28,7 @@ export interface SearchProps extends AriaSearchFieldProps {
   size: 'sm' | 'base';
 }
 
-export const Search: React.FC<SearchProps> = ({
+export const Search: FC<SearchProps> = ({
   theme = 'dark',
   size = 'base',
   ...rest

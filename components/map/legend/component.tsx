@@ -14,7 +14,7 @@ export interface LegendProps {
   onChangeOrder: (id: string[]) => void;
 }
 
-export const Legend: React.FC<LegendProps> = ({
+export const Legend: FC<LegendProps> = ({
   children,
   className = '',
   maxHeight,

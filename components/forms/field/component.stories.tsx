@@ -1,4 +1,3 @@
-import React from 'react';
 import { Story } from '@storybook/react/types-6-0';
 import Label from 'components/forms/label';
 import Input from 'components/forms/input';

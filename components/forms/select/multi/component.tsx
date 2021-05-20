@@ -17,7 +17,7 @@ import THEME from 'components/forms/select/constants/theme';
 
 import { SelectProps, SelectOptionProps } from 'components/forms/select/types';
 
-export const MultiSelect: React.FC<SelectProps> = ({
+export const MultiSelect: FC<SelectProps> = ({
   theme = 'dark',
   size = 'base',
   maxHeight = 300,

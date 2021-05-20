@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import cx from 'classnames';
 
 import Icon from 'components/icon';
@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { LoadingProps } from './types';
 
-export const Loading: React.FC<LoadingProps> = ({
+export const Loading: FC<LoadingProps> = ({
   visible = false,
   className = 'absolute',
   iconClassName = 'w-5 h-5',

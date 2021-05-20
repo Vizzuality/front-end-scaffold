@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef, ReactNode } from 'react';
 import { Form as FormRFF, Field as FieldRFF } from 'react-final-form';
 import Field from 'components/forms/field';
 import Label from 'components/forms/label';
@@ -20,8 +20,8 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } },
 };
 
-export const Form = (): React.ReactNode => {
-  const sliderLabelRef = React.useRef(null);
+export const Form = (): ReactNode => {
+  const sliderLabelRef = useRef(null);
 
   return (
     <FormRFF
@@ -40,16 +40,16 @@ export const Form = (): React.ReactNode => {
       //   'radio-group': 'option-1',
       // }}
     >
-      {(props) => (
-        <form onSubmit={props.handleSubmit} autoComplete="off">
+      {(fprops) => (
+        <form onSubmit={fprops.handleSubmit} autoComplete="off">
           {/* NAME */}
           <div>
             <FieldRFF
               name="name"
               validate={composeValidators([{ presence: true }])}
             >
-              {(fprops) => (
-                <Field id="form-name" {...fprops}>
+              {(flprops) => (
+                <Field id="form-name" {...flprops}>
                   <Label className="mb-3 uppercase">Name</Label>
                   <Input />
                 </Field>
@@ -63,8 +63,8 @@ export const Form = (): React.ReactNode => {
               name="email"
               validate={composeValidators([{ presence: true, email: true }])}
             >
-              {(fprops) => (
-                <Field id="form-email" {...fprops}>
+              {(flprops) => (
+                <Field id="form-email" {...flprops}>
                   <Label className="mb-3 uppercase">Email</Label>
                   <Input type="email" />
                 </Field>
@@ -80,8 +80,8 @@ export const Form = (): React.ReactNode => {
                 { presence: true, length: { minimum: 20 } },
               ])}
             >
-              {(fprops) => (
-                <Field id="form-description" {...fprops}>
+              {(flprops) => (
+                <Field id="form-description" {...flprops}>
                   <Label className="mb-3 uppercase">Description</Label>
                   <Textarea rows={4} />
                 </Field>
@@ -95,8 +95,8 @@ export const Form = (): React.ReactNode => {
               name="category"
               validate={composeValidators([{ presence: true }])}
             >
-              {(fprops) => (
-                <Field id="form-select" {...fprops}>
+              {(flprops) => (
+                <Field id="form-select" {...flprops}>
                   <Label className="mb-3 uppercase">Category</Label>
                   <Select
                     theme="dark"
@@ -122,8 +122,8 @@ export const Form = (): React.ReactNode => {
               type="checkbox"
               validate={composeValidators([booleanValidator])}
             >
-              {(fprops) => (
-                <Field className="flex mt-2" id="form-checkbox" {...fprops}>
+              {(flprops) => (
+                <Field className="flex mt-2" id="form-checkbox" {...flprops}>
                   <Checkbox />
                   <Label className="ml-2">This is a standalone checkbox</Label>
                 </Field>
@@ -140,11 +140,11 @@ export const Form = (): React.ReactNode => {
               value="option-1"
               validate={composeValidators([arrayValidator])}
             >
-              {(fprops) => (
+              {(flprops) => (
                 <Field
                   className="flex mt-2"
                   id="form-checkbox-group-1"
-                  {...fprops}
+                  {...flprops}
                 >
                   <Checkbox />
                   <Label className="ml-2">Option 1</Label>
@@ -158,11 +158,11 @@ export const Form = (): React.ReactNode => {
               value="option-2"
               validate={composeValidators([arrayValidator])}
             >
-              {(fprops) => (
+              {(flprops) => (
                 <Field
                   className="flex mt-2"
                   id="form-checkbox-group-2"
-                  {...fprops}
+                  {...flprops}
                 >
                   <Checkbox />
                   <Label className="ml-2">Option 2</Label>
@@ -180,11 +180,11 @@ export const Form = (): React.ReactNode => {
               value="option-1"
               validate={composeValidators([{ presence: true }])}
             >
-              {(fprops) => (
+              {(flprops) => (
                 <Field
                   className="flex mt-2"
                   id="radio-group-option-1"
-                  {...fprops}
+                  {...flprops}
                 >
                   <Radio />
                   <Label className="ml-2">Option 1</Label>
@@ -198,11 +198,11 @@ export const Form = (): React.ReactNode => {
               value="option-2"
               validate={composeValidators([{ presence: true }])}
             >
-              {(fprops) => (
+              {(flprops) => (
                 <Field
                   className="flex mt-2"
                   id="radio-group-option-2"
-                  {...fprops}
+                  {...flprops}
                 >
                   <Radio />
                   <Label className="ml-2">Option 2</Label>
@@ -216,8 +216,8 @@ export const Form = (): React.ReactNode => {
               name="slider"
               validate={composeValidators([{ presence: true }])}
             >
-              {(fprops) => (
-                <Field id="form-slider" {...fprops}>
+              {(flprops) => (
+                <Field id="form-slider" {...flprops}>
                   <Label ref={sliderLabelRef} className="mb-1 uppercase">
                     Slider
                   </Label>

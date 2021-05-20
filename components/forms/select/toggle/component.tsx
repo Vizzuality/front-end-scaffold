@@ -8,7 +8,7 @@ import THEME from 'components/forms/select/constants/theme';
 
 import { SelectToggleProps } from 'components/forms/select/types';
 
-export const SelectToggle: React.FC<SelectToggleProps> = ({
+export const SelectToggle: FC<SelectToggleProps> = ({
   options,
   theme,
   size,

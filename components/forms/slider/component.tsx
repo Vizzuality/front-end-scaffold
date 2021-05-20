@@ -84,7 +84,7 @@ export interface SliderProps {
   onBlur?: React.FocusEventHandler;
 }
 
-export const Slider: React.FC<SliderProps> = ({
+export const Slider: FC<SliderProps> = ({
   theme = 'dark',
   status: rawState = 'none',
   disabled = false,

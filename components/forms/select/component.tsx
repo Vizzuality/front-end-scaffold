@@ -5,7 +5,7 @@ import MultipleSelect from 'components/forms/select/multi';
 
 import { SelectProps } from './types';
 
-export const Select: React.FC<SelectProps> = (props: SelectProps) => {
+export const Select: FC<SelectProps> = (props: SelectProps) => {
   const {
     theme = 'dark',
     size = 'base',

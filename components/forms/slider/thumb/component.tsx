@@ -42,7 +42,7 @@ export interface ThumbProps {
   id?: string;
 }
 
-export const Thumb: React.FC<ThumbProps> = ({
+export const Thumb: FC<ThumbProps> = ({
   theme,
   status: rawState,
   sliderState,

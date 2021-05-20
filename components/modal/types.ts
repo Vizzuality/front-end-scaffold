@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface ModalProps {
   /**
    * Title used by screen readers
@@ -16,7 +18,7 @@ export interface ModalProps {
    * Size (width) of the modal
    */
   size?: 'narrow' | 'default' | 'wide';
-  children?: React.ReactNode;
+  children?: ReactNode;
   /**
    * Class name to assign to the modal
    */

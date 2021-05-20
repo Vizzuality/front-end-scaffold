@@ -1,4 +1,4 @@
-import React, {
+import {
   useEffect, useState, useRef, useCallback,
 } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
@@ -33,7 +33,7 @@ export interface MapProps extends InteractiveMapProps {
   /** An object that defines the bounds */
   bounds?: {
     bbox: number[];
-    options?: {};
+    options?: Record<string, unknown>;
     viewportOptions?: Partial<ViewportProps>;
   };
 

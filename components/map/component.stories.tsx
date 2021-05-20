@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Story } from '@storybook/react/types-6-0';
 
 // Layer manager
@@ -50,11 +50,12 @@ export default {
   },
 };
 
-const Template: Story<MapProps> = ({ children, ...args }: MapProps) => {
+const Template: Story<MapProps> = (args: MapProps) => {
+  const { bounds: aBounds } = args;
   const minZoom = 2;
   const maxZoom = 10;
   const [viewport, setViewport] = useState({});
-  const [bounds, setBounds] = useState(args.bounds);
+  const [bounds, setBounds] = useState(aBounds);
 
   const handleViewportChange = useCallback((vw) => {
     setViewport(vw);
@@ -87,15 +88,13 @@ const Template: Story<MapProps> = ({ children, ...args }: MapProps) => {
         mapStyle="mapbox://styles/marxan/ckn4fr7d71qg817kgd9vuom4s"
         onMapViewportChange={handleViewportChange}
       >
-        {(map) => {
-          return (
-            <LayerManager map={map} plugin={PluginMapboxGl}>
-              {LAYERS.map((l) => (
-                <Layer key={l.id} {...l} />
-              ))}
-            </LayerManager>
-          );
-        }}
+        {(map) => (
+          <LayerManager map={map} plugin={PluginMapboxGl}>
+            {LAYERS.map((l) => (
+              <Layer key={l.id} {...l} />
+            ))}
+          </LayerManager>
+        )}
       </Map>
 
       <Controls>
