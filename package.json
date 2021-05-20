@@ -13,7 +13,8 @@
     "storybook:dev": "yarn storybook:styles:dev && start-storybook -p 6006 -s ./public -c .storybook",
     "storybook:build": "yarn storybook:styles:prod && build-storybook -s ./public -c .storybook",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@react-aria/overlays": "^3.6.3",
