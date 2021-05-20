@@ -15,6 +15,9 @@
 # production
 /build
 
+# tailwind styles
+/public/styles/
+
 # misc
 .DS_Store
 *.pem
