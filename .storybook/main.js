@@ -2,8 +2,9 @@ const path = require("path");
 
 module.exports = {
   stories: [
-    "../components/**/*.stories.@(js|jsx|ts|tsx)",
-    "../containers/**/*.stories.@(js|jsx|ts|tsx)",
+    "../docs/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+    "../components/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+    "../containers/**/*.stories.@(js|jsx|ts|tsx|mdx)",
   ],
   addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
   /* nextjs -> no need to import React and can use alias modules */
