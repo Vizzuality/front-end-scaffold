@@ -26,5 +26,5 @@ Yellow.args = {
 export const Blue = Template.bind({});
 Blue.args = {
   children: 'Bioregional',
-  className: 'text-black bg-primary-500',
+  className: 'text-black bg-blue-500',
 };

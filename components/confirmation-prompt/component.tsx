@@ -1,4 +1,3 @@
-import React from 'react';
 import classnames from 'classnames';
 
 import Modal from 'components/modal';
@@ -53,6 +52,7 @@ export const ConfirmationPrompt: React.FC<ConfirmationPromptProps> = ({
         >
           Yes
         </Button>
+
         {icon && (
           <Icon icon={icon} className="hidden ml-auto sm:block flex-shrink-1 flex-grow-1 w-36" />
         )}

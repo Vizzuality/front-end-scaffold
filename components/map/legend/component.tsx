@@ -44,7 +44,7 @@ export const Legend: React.FC<LegendProps> = ({
         <Icon
           icon={ARROW_DOWN_SVG}
           className={cx({
-            'absolute w-3 h-3 transition-transform transform -translate-y-1/2 text-primary-500 top-1/2 right-5': true,
+            'absolute w-3 h-3 transition-transform transform -translate-y-1/2 text-blue-500 top-1/2 right-5': true,
             'rotate-180': active,
           })}
         />

@@ -22,7 +22,7 @@ const Template: Story<TooltipProps> = (args: TooltipProps) => (
         </div>
       )}
     >
-      <span className="underline text-primary-500">HOVER ME!</span>
+      <span className="underline text-blue-500">HOVER ME!</span>
     </Tooltip>
     {' '}
     quisquam explicabo iure nihil, eveniet dolorum at hic voluptatem in maxime enim a aspernatur?
@@ -34,12 +34,12 @@ const Template: Story<TooltipProps> = (args: TooltipProps) => (
       placement="bottom-end"
       content={(
         <div className="p-5 text-gray-500 bg-white rounded">
-          <h2 className="text-lg text-primary-500">Title</h2>
+          <h2 className="text-lg text-blue-500">Title</h2>
           <p>This is a content. We could have whateveryouwant</p>
         </div>
       )}
     >
-      <span className="underline text-primary-500">CLICK ME!</span>
+      <span className="underline text-blue-500">CLICK ME!</span>
     </Tooltip>
     {' '}
     doloremque iusto! Sunt, dignissimos sint.
@@ -51,11 +51,11 @@ export const Default = Template.bind({});
 
 Default.args = {
   children: (
-    <span className="text-primary-500">Source name</span>
+    <span className="text-blue-500">Source name</span>
   ),
   content: (
     <div className="p-5">
-      <h2 className="text-lg text-primary-500">Title</h2>
+      <h2 className="text-lg text-blue-500">Title</h2>
       <p>This is a content. We could have whateveryouwant</p>
     </div>
   ),

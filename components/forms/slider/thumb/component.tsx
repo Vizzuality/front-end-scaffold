@@ -13,7 +13,7 @@ const THEME = {
     status: {
       default: 'border-white',
       dragging: 'border-white opacity-80',
-      focused: 'border-white ring-2 ring-primary-500',
+      focused: 'border-white ring-2 ring-blue-500',
       valid: 'border-green-500',
       error: 'border-red-500',
       disabled: 'border-white',
@@ -25,7 +25,7 @@ const THEME = {
     status: {
       default: 'border-white',
       dragging: 'border-white opacity-80',
-      focused: 'border-white ring-2 ring-primary-500',
+      focused: 'border-white ring-2 ring-blue-500',
       valid: 'border-green-500',
       error: 'border-red-500',
       disabled: 'border-white',

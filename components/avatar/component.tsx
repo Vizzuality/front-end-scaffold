@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import cx from 'classnames';
 
 export interface AvatarProps extends ButtonHTMLAttributes<HTMLButtonElement> {

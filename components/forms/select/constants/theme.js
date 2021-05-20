@@ -1,14 +1,14 @@
 export default {
   dark: {
     container: 'text-white bg-gray-700 ring-1 ring-gray-400 rounded-3xl',
-    open: 'ring-2 ring-primary-400 bg-gray-700 text-white rounded-2xl',
+    open: 'ring-2 ring-blue-400 bg-gray-700 text-white rounded-2xl',
     closed: 'border-gray-400 text-gray-400',
     prefix: {
       base: 'text-white',
     },
     icon: {
       closed: 'text-white',
-      open: 'text-primary-500 transform rotate-180',
+      open: 'text-blue-500 transform rotate-180',
       disabled: 'text-gray-400',
     },
     item: {
@@ -19,14 +19,14 @@ export default {
   },
   light: {
     container: 'text-gray-600 bg-white ring-1 ring-gray-400 rounded-3xl',
-    open: 'ring-2 ring-primary-400 bg-white text-gray-600 rounded-2xl',
+    open: 'ring-2 ring-blue-400 bg-white text-gray-600 rounded-2xl',
     closed: 'text-gray-400',
     prefix: {
       base: 'text-gray-800',
     },
     icon: {
       closed: 'text-gray-600',
-      open: 'text-primary-500 transform rotate-180',
+      open: 'text-blue-500 transform rotate-180',
       disabled: 'text-gray-400',
     },
     item: {
