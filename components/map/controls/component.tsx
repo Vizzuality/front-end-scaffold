@@ -1,4 +1,4 @@
-import { Children } from 'react';
+import { Children, FC } from 'react';
 import cx from 'classnames';
 
 export interface ControlsProps {

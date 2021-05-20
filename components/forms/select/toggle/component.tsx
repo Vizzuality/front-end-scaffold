@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import cx from 'classnames';
 
 import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
@@ -22,7 +22,8 @@ export const SelectToggle: FC<SelectToggleProps> = ({
   getDropdownProps,
 }: SelectToggleProps) => {
   const getEnabledOptions = useMemo(() => {
-    return options.filter((o) => !o.disabled && o.enabled);
+    const opts = options.filter((o) => !o.disabled && o.enabled);
+    return opts;
   }, [options]);
 
   const labelDefaultFormatter:() => string = useCallback(() => {

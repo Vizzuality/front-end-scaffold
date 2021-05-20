@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import cx from 'classnames';
 
 export interface LegendItemProps {
@@ -41,9 +41,9 @@ export const LegendItem: FC<LegendItemProps> = ({
     </div>
 
     {children && (
-    <div className="mt-2.5">
-      {children}
-    </div>
+      <div className="mt-2.5">
+        {children}
+      </div>
     )}
   </div>
 );

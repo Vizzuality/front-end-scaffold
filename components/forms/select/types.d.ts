@@ -13,6 +13,13 @@ interface SelectStatusProps {
   multiple?: boolean;
 }
 
+export interface SelectOptionProps {
+  label: string;
+  value: string | number;
+  disabled?: boolean;
+  enabled?: boolean;
+  checkbox?: boolean;
+}
 interface SelectDataProps {
   options?: SelectOptionProps[];
   placeholder?: string;
@@ -37,14 +44,6 @@ export interface SelectProps extends
   onBlur?: FocusEventHandler;
 }
 
-export interface SelectOptionProps {
-  label: string;
-  value: string | number;
-  disabled?: boolean;
-  enabled?: boolean;
-  checkbox?: boolean;
-}
-
 export interface SelectMenuProps extends
   SelectStatusProps,
   SelectThemeProps {
@@ -59,6 +58,6 @@ export interface SelectToggleProps extends
   SelectThemeProps {
   opened: boolean;
   selectedItems: SelectOptionProps[];
-  getToggleButtonProps: (e?: any) => void;
-  getDropdownProps?: (e?: any) => void;
+  getToggleButtonProps: (e?: unknown) => void;
+  getDropdownProps?: (e?: unknown) => void;
 }

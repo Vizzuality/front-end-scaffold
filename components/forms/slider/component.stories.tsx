@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef } from 'react';
 import { Story } from '@storybook/react/types-6-0';
 
 import Slider, { SliderProps } from './component';
@@ -35,7 +35,7 @@ export default {
 };
 
 const Template: Story<SliderProps> = (args: SliderProps) => {
-  const labelRef = React.useRef(null);
+  const labelRef = useRef(null);
   return (
     <>
       <Label ref={labelRef} id="slider-component" className="uppercase">

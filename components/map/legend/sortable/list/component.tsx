@@ -1,5 +1,5 @@
-import React, {
-  Children, cloneElement, isValidElement, useCallback, useMemo, useState,
+import {
+  Children, cloneElement, FC, isValidElement, useCallback, useMemo, useState,
 } from 'react';
 import cx from 'classnames';
 
@@ -56,17 +56,15 @@ export const SortableList: FC<SortableListProps> = ({
     return activeChildArray[0] || null;
   }, [children, activeId]);
 
-  const itemsIds = useMemo(() => {
-    return Children.map(children, (Child) => {
-      if (isValidElement(Child)) {
-        const { props } = Child;
-        const { id } = props;
-        return id;
-      }
+  const itemsIds = useMemo(() => Children.map(children, (Child) => {
+    if (isValidElement(Child)) {
+      const { props } = Child;
+      const { id } = props;
+      return id;
+    }
 
-      return null;
-    });
-  }, [children]);
+    return null;
+  }), [children]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),

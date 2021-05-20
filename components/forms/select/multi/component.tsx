@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import {
+  useEffect, useRef, useMemo, FC,
+} from 'react';
 import { createPortal } from 'react-dom';
 import cx from 'classnames';
 
@@ -40,23 +42,21 @@ export const MultiSelect: FC<SelectProps> = ({
   const triggerRef = useRef();
   const menuRef = useRef();
 
-  const getOptions: SelectOptionProps[] = useMemo(() => {
-    return [
-      ...clearSelectionActive ? [{
-        value: 'batch-clear-selection',
-        label: clearSelectionLabel,
-        enabled: false,
-        checkbox: false,
-      }] : [],
-      ...batchSelectionActive ? [{
-        value: 'batch-selection',
-        label: batchSelectionLabel,
-        enabled: false,
-        checkbox: false,
-      }] : [],
-      ...options.map((o) => ({ ...o, checkbox: true, enabled: true })),
-    ];
-  }, [
+  const getOptions: SelectOptionProps[] = useMemo(() => [
+    ...clearSelectionActive ? [{
+      value: 'batch-clear-selection',
+      label: clearSelectionLabel,
+      enabled: false,
+      checkbox: false,
+    }] : [],
+    ...batchSelectionActive ? [{
+      value: 'batch-selection',
+      label: batchSelectionLabel,
+      enabled: false,
+      checkbox: false,
+    }] : [],
+    ...options.map((o) => ({ ...o, checkbox: true, enabled: true })),
+  ], [
     options,
     clearSelectionActive,
     clearSelectionLabel,
@@ -65,7 +65,8 @@ export const MultiSelect: FC<SelectProps> = ({
   ]);
 
   const getOptionsEnabled = useMemo(() => {
-    return getOptions.filter((op) => !op.disabled && op.enabled);
+    const opts = getOptions.filter((op) => !op.disabled && op.enabled);
+    return opts;
   }, [getOptions]);
 
   const getInitialSelected = getOptions.filter((o) => initialValues.includes(`${o.value}`));
@@ -299,7 +300,6 @@ export const MultiSelect: FC<SelectProps> = ({
                       className="absolute bg-opacity-0 left-4 top-1.5"
                       checked={isSelected(option, selectedItems)}
                       disabled={option.disabled}
-                      onChange={() => {}}
                     />
                   )}
                 </li>

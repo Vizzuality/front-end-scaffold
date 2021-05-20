@@ -1,5 +1,5 @@
 import {
-  useEffect, useState, useRef, useCallback,
+  useEffect, useState, useRef, useCallback, FC,
 } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -55,7 +55,7 @@ const DEFAULT_VIEWPORT = {
   longitude: 0,
 };
 
-export const Map = ({
+export const Map: FC<MapProps> = ({
   mapboxApiAccessToken,
   children,
   className,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Story } from '@storybook/react/types-6-0';
 
 import ZoomControl from 'components/map/controls/zoom';

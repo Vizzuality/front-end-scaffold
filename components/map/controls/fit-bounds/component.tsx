@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import cx from 'classnames';
 
 import Icon from 'components/icon';
@@ -10,14 +10,14 @@ import FIT_BOUNDS_SVG from 'svgs/map/fit-bounds.svg?sprite';
 export interface FitBoundsControlProps {
   bounds?: {
     bbox?: number[];
-    options?: {};
+    options?: Record<string, unknown>;
     viewportOptions?: Partial<ViewportProps>;
   };
   className?: string;
   onFitBoundsChange: (bounds) => void;
 }
 
-export const FitBoundsControl = ({
+export const FitBoundsControl: FC<FitBoundsControlProps> = ({
   bounds,
   className,
   onFitBoundsChange,

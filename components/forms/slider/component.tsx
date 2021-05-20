@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, useEffect, useRef } from 'react';
 import cx from 'classnames';
 import { useSliderState } from '@react-stately/slider';
 import { useSlider } from '@react-aria/slider';
@@ -108,7 +108,7 @@ export const Slider: FC<SliderProps> = ({
     label: 'workaround-label',
   };
 
-  const trackRef = React.useRef(null);
+  const trackRef = useRef(null);
   const sliderState = useSliderState({
     ...rest,
     ...propsOverride,
@@ -133,7 +133,7 @@ export const Slider: FC<SliderProps> = ({
   // When the user clicks the external `<label />`, the hidden range input is focused but the
   // component's status isn't updated
   // Calling `setInteractionModality` make sure the component is in the focus status
-  React.useEffect(() => {
+  useEffect(() => {
     const label = labelRef.current;
     // Why `'keyboard'`? This is based on React Aria's on code:
     // https://github.com/adobe/react-spectrum/blob/main/packages/%40react-aria/slider/src/useSlider.ts#L178-L181

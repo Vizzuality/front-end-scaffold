@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 
 import SingleSelect from 'components/forms/select/single';
 import MultipleSelect from 'components/forms/select/multi';

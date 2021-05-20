@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import cx from 'classnames';
 
 import Icon from 'components/icon';

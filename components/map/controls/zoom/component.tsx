@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import cx from 'classnames';
 
 import Icon from 'components/icon';
@@ -14,7 +14,7 @@ export interface ZoomControlProps {
   onZoomChange: (zoom: number) => void;
 }
 
-export const ZoomControl = ({
+export const ZoomControl: FC<ZoomControlProps> = ({
   className,
   viewport,
   onZoomChange,

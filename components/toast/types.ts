@@ -1,6 +1,24 @@
-import { ToastItemProps } from 'hooks/toast/types';
+import { ReactNode } from 'react';
 
-export interface ToastProps extends ToastItemProps {
+export type Level =
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'error';
+
+export interface ToastThemeOption {
+  icon: unknown;
+  bg: string;
+  hoverBg: string;
+}
+
+export type ToastContent = ReactNode | string;
+export interface ToastProps {
+  id: string;
+  content: ToastContent;
+  level: Level;
+  autoDismiss?: boolean;
+  onDismiss?: (id: string) => void;
 }
 
 export interface ToastTheme {
@@ -8,10 +26,4 @@ export interface ToastTheme {
   success: ToastThemeOption;
   warning: ToastThemeOption;
   error: ToastThemeOption;
-}
-
-export interface ToastThemeOption {
-  icon: any;
-  bg: string;
-  hoverBg: string;
 }

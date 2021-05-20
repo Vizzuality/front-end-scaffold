@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import cx from 'classnames';
 
 import THEME from 'components/forms/select/constants/theme';
@@ -9,18 +9,16 @@ export const SelectMenu: FC<SelectMenuProps> = ({
   opened,
   attributes,
   children,
-}: SelectMenuProps) => {
-  return (
-    <div
-      className={cx({
-        'focus:outline-none overflow-hidden': true,
-        'invisible pointer-events-none': attributes?.popper?.['data-popper-reference-hidden'],
-        [THEME[theme].open]: opened,
-      })}
-    >
-      {children}
-    </div>
-  );
-};
+}: SelectMenuProps) => (
+  <div
+    className={cx({
+      'focus:outline-none overflow-hidden': true,
+      'invisible pointer-events-none': attributes?.popper?.['data-popper-reference-hidden'],
+      [THEME[theme].open]: opened,
+    })}
+  >
+    {children}
+  </div>
+);
 
 export default SelectMenu;

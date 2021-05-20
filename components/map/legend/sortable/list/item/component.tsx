@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import cx from 'classnames';
 
 import { useSortable } from '@dnd-kit/sortable';

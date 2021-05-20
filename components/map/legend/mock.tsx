@@ -1,4 +1,3 @@
-import React from 'react';
 import Icon from 'components/icon';
 import HEXAGON_SVG from 'svgs/map/hexagon.svg';
 

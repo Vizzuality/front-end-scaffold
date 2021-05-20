@@ -51,6 +51,8 @@ export const Toast: FC<ToastProps> = ({
   const controls = useAnimation();
   const progress = useRef(0);
 
+  const ICON = THEME[level]?.icon;
+
   useEffect(() => {
     if (autoDismiss) {
       controls.start({
@@ -119,7 +121,7 @@ export const Toast: FC<ToastProps> = ({
                 onAnimationComplete={handleDismiss}
               />
 
-              <Icon icon={THEME[level]?.icon} className="relative z-20 self-center w-5 h-5" />
+              <Icon icon={ICON} className="relative z-20 self-center w-5 h-5" />
             </div>
 
             <div className="flex-grow ml-2.5">

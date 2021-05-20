@@ -1,5 +1,5 @@
 import {
-  ButtonHTMLAttributes, AnchorHTMLAttributes,
+  ButtonHTMLAttributes, AnchorHTMLAttributes, FC,
 } from 'react';
 import Link from 'next/link';
 import cx from 'classnames';

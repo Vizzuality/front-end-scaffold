@@ -1,7 +1,7 @@
 import type { FieldValidator, FieldState } from 'final-form';
 import validate from 'validate.js';
 
-export const composeValidators = (validations: any[]) => (
+export const composeValidators = (validations: unknown[]) => (
   value: unknown,
   allValues: Record<string, unknown>,
   meta?: FieldState<unknown>,
@@ -27,13 +27,13 @@ export const composeValidators = (validations: any[]) => (
   return undefined;
 };
 
-export const booleanValidator = (value) => {
+export const booleanValidator = (value: boolean): string | unknown => {
   if (!value) return 'Error';
 
   return undefined;
 };
 
-export const arrayValidator = (value) => {
+export const arrayValidator = (value: unknown[]): string | unknown => {
   if (!value || !value.length) return 'Error';
 
   return undefined;

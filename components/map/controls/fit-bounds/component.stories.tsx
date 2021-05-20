@@ -1,4 +1,3 @@
-import React from 'react';
 import { Story } from '@storybook/react/types-6-0';
 import FitBoundsControl, { FitBoundsControlProps } from './component';
 
@@ -7,16 +6,14 @@ export default {
   component: FitBoundsControl,
 };
 
-const Template: Story<FitBoundsControlProps> = (args) => {
-  return (
-    <FitBoundsControl
-      {...args}
-      onFitBoundsChange={(bounds) => {
-        console.info('onFitBoundsChange: ', bounds);
-      }}
-    />
-  );
-};
+const Template: Story<FitBoundsControlProps> = (args) => (
+  <FitBoundsControl
+    {...args}
+    onFitBoundsChange={(bounds) => {
+      console.info('onFitBoundsChange: ', bounds);
+    }}
+  />
+);
 
 export const Default = Template.bind({});
 Default.args = {

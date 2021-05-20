@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Story } from '@storybook/react/types-6-0';
 import ZoomControl, { ZoomControlProps } from './component';
 
@@ -13,8 +13,6 @@ const Template: Story<ZoomControlProps> = (args) => {
     minZoom: 2,
     maxZoom: 10,
   });
-
-  console.info(viewport);
 
   return (
     <ZoomControl

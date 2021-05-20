@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import {
+  useEffect, useRef, useMemo, FC,
+} from 'react';
 import { createPortal } from 'react-dom';
 import cx from 'classnames';
 
@@ -36,28 +38,28 @@ export const SingleSelect: FC<SelectProps> = ({
   const triggerRef = useRef();
   const menuRef = useRef();
 
-  const getOptions = useMemo(() => {
-    return [
-      ...clearSelectionActive ? [
-        {
-          value: null,
-          label: clearSelectionLabel,
-        },
-      ] : [],
-      ...options,
-    ];
-  }, [
+  const getOptions = useMemo(() => [
+    ...clearSelectionActive ? [
+      {
+        value: null,
+        label: clearSelectionLabel,
+      },
+    ] : [],
+    ...options,
+  ], [
     options,
     clearSelectionActive,
     clearSelectionLabel,
   ]);
 
   const getInitialSelected = useMemo(() => {
-    return getOptions.find((o) => o.value === initialValues && o.value !== null);
+    const opts = getOptions.find((o) => o.value === initialValues && o.value !== null);
+    return opts;
   }, [getOptions, initialValues]);
 
   const getSelected = useMemo(() => {
-    return getOptions.find((o) => o.value === values && o.value !== null) || null;
+    const opts = getOptions.find((o) => o.value === values && o.value !== null) || null;
+    return opts;
   }, [getOptions, values]);
 
   // Events

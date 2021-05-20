@@ -7,7 +7,7 @@ export interface IconProps {
     viewBox: string;
   };
   className?: string;
-  style?: any;
+  style?: unknown;
 }
 
 export const Icon: FC<IconProps> = ({
