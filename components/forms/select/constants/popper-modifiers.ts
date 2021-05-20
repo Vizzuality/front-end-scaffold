@@ -1,3 +1,10 @@
+import { Placement } from '@popperjs/core/lib';
+
+export interface OffsetModifierOptionsProps {
+  placement: Placement;
+  reference: ClientRect;
+}
+
 export const flipModifier = {
   name: 'flip',
   enabled: true,
@@ -12,7 +19,7 @@ export const offsetModifier = {
   name: 'offset',
   enabled: true,
   options: {
-    offset: ({ placement, reference }) => {
+    offset: ({ placement, reference }: OffsetModifierOptionsProps): number[] => {
       if (placement === 'top') {
         return [0, -reference.height];
       }
@@ -29,11 +36,11 @@ export const sameWidthModifier = {
   enabled: true,
   phase: 'beforeWrite',
   requires: ['computeStyles'],
-  fn: ({ state: s }) => {
+  fn: ({ state: s }): void => {
     // eslint-disable-next-line
       s.styles.popper.minWidth = `${s.rects.reference.width}px`;
   },
-  effect: ({ state: s }) => {
+  effect: ({ state: s }): void => {
     // eslint-disable-next-line
       s.elements.popper.style.minWidth = `${s.elements.reference.offsetWidth}px`;
   },

@@ -1,6 +1,6 @@
 export default {
   dark: {
-    container: 'text-white bg-gray-700 ring-1 ring-gray-400 rounded-3xl',
+    container: 'text-white bg-transparent ring-1 ring-gray-400 rounded-3xl',
     open: 'ring-2 ring-blue-400 bg-gray-700 text-white rounded-2xl',
     closed: 'border-gray-400 text-gray-400',
     prefix: {
@@ -18,7 +18,7 @@ export default {
     },
   },
   light: {
-    container: 'text-gray-600 bg-white ring-1 ring-gray-400 rounded-3xl',
+    container: 'text-gray-600 bg-transparent ring-1 ring-gray-400 rounded-3xl',
     open: 'ring-2 ring-blue-400 bg-white text-gray-600 rounded-2xl',
     closed: 'text-gray-400',
     prefix: {

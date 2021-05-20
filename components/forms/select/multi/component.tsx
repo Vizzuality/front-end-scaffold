@@ -300,6 +300,7 @@ export const MultiSelect: FC<SelectProps> = ({
                       className="absolute bg-opacity-0 left-4 top-1.5"
                       checked={isSelected(option, selectedItems)}
                       disabled={option.disabled}
+                      onChange={() => null}
                     />
                   )}
                 </li>

@@ -7,7 +7,10 @@ export type Level =
   | 'error';
 
 export interface ToastThemeOption {
-  icon: unknown;
+  icon: {
+    id: string;
+    viewBox: string;
+  };
   bg: string;
   hoverBg: string;
 }
