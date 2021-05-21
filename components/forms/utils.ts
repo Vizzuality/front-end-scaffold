@@ -6,7 +6,9 @@ interface UseStatusProps {
   disabled: boolean;
 }
 
-const useStatus = ({ active = true, meta, disabled }: UseStatusProps): 'none' | 'error' | 'valid' | 'disabled' => {
+const useStatus = ({
+  active = true, meta, disabled,
+}: UseStatusProps): 'none' | 'error' | 'valid' | 'disabled' => {
   const status = useMemo(() => {
     if (disabled) return 'disabled';
     if (meta.touched && meta.error) return 'error';
