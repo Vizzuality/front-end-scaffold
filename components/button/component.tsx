@@ -13,20 +13,20 @@ const THEME = {
 
   white: 'text-gray-700 bg-white hover:text-white hover:bg-transparent active:bg-transparent border border-gray-400 hover:border-gray-300 active:border-gray-200',
 
-  danger: 'text-red-700 bg-white hover:text-white hover:bg-red-700 active:bg-red-600 border border-red-700 hover:border-red-600 active:border-red-500',
+  danger: 'text-red-700 bg-transparent hover:text-white hover:bg-red-700 active:bg-red-600 border border-red-700 hover:border-red-600 active:border-red-500',
 };
 
 const SIZE = {
   xs: 'text-sm px-2 py-0.5',
   s: 'text-sm px-3 py-0.5',
   base: 'text-sm px-8 py-2',
-  lg: 'text-base px-8 py-3',
+  l: 'text-base px-8 py-3',
   xl: 'text-base px-14 py-3',
 };
 
 export interface AnchorButtonProps {
   theme: 'primary' | 'primary-alt' | 'white' | 'secondary' | 'secondary-alt' | 'danger';
-  size: 'xs' | 's' | 'base' | 'lg' | 'xl';
+  size: 'xs' | 's' | 'base' | 'l' | 'xl';
   className?: string;
 }
 
