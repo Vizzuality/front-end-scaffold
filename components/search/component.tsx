@@ -46,7 +46,7 @@ export const Search: FC<SearchProps> = ({
   return (
     <div
       className={cx(
-        'flex w-full relative border-b border-gray-400 px-4',
+        'flex w-full relative border-b border-gray-400',
         {
           [THEME[theme]]: true,
           [SIZES[size]]: true,
@@ -56,7 +56,7 @@ export const Search: FC<SearchProps> = ({
       <Icon
         icon={SEARCH_SVG}
         className={cx({
-          'absolute top-1/2 left-1 w-4.5 h-4.5 transform -translate-y-1/2': true,
+          'absolute top-1/2 left-1 w-5 h-5 transform -translate-y-1/2': true,
           [THEME[theme]]: true,
         })}
       />
@@ -67,7 +67,7 @@ export const Search: FC<SearchProps> = ({
         placeholder={placeholder}
         type="search"
         className={cx(
-          'w-full font-sans pl-5 bg-transparent truncate focus:outline-none leading-4 placeholder-gray-300 placeholder-opacity-50',
+          'w-full font-sans pl-10 bg-transparent truncate focus:outline-none leading-4 placeholder-gray-300 placeholder-opacity-50',
           {
             [THEME[theme]]: true,
             [SIZES[size]]: true,
