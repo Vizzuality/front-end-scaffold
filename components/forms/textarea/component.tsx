@@ -1,5 +1,6 @@
 import { FC, TextareaHTMLAttributes } from 'react';
 import cx from 'classnames';
+import useStatus from '../utils';
 
 const THEME = {
   dark: {
@@ -27,20 +28,23 @@ const THEME = {
 export interface TextareaProps
   extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   theme?: 'dark' | 'light';
-  status?: 'none' | 'valid' | 'error' | 'disabled';
+  input?: Record<string, unknown>;
+  meta?: Record<string, unknown>;
 }
 
 export const Textarea: FC<TextareaProps> = ({
   theme = 'dark',
-  status = 'none',
   disabled = false,
+  meta = {},
+  input,
   className,
   ...props
 }: TextareaProps) => {
-  const st = disabled ? 'disabled' : status;
+  const st = useStatus({ meta, disabled });
 
   return (
     <textarea
+      {...input}
       {...props}
       disabled={disabled}
       className={cx({

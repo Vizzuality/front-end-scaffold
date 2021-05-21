@@ -38,7 +38,7 @@ const Template: Story<SliderProps> = (args: SliderProps) => {
   const labelRef = useRef(null);
   return (
     <>
-      <Label ref={labelRef} id="slider-component" className="uppercase">
+      <Label ref={labelRef} htmlFor="slider-component" className="uppercase">
         Label
       </Label>
       <Slider id="slider-component" labelRef={labelRef} {...args} />

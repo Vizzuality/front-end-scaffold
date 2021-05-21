@@ -3,11 +3,12 @@ import { ReactNode, FocusEventHandler } from 'react';
 interface SelectThemeProps {
   theme: 'dark' | 'light';
   size: 'base' | 's';
-  status?: 'none' | 'error' | 'valid';
+  status?: 'none' | 'error' | 'valid' | 'disabled';
   maxHeight?: number | string;
 }
 
 interface SelectStatusProps {
+  meta?: Record<string, unknown>;
   disabled?: boolean;
   searchable?: boolean;
   multiple?: boolean;
@@ -38,6 +39,7 @@ export interface SelectProps extends
   SelectStatusProps,
   SelectDataProps,
   SelectThemeProps {
+  id: string | number;
   onChange?: (selection: string | string[]) => void;
   onSelect?: (option: SelectOptionProps | SelectOptionProps[]) => void;
   onFocus?: FocusEventHandler;

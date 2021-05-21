@@ -6,6 +6,7 @@ import { useNumberFormatter } from '@react-aria/i18n';
 import { setInteractionModality } from '@react-aria/interactions';
 
 import Thumb from './thumb';
+import useStatus from '../utils';
 
 const THEME = {
   dark: {
@@ -33,11 +34,8 @@ export interface SliderProps {
    * Theme of the component
    */
   theme?: 'dark' | 'light';
-  /**
-   * Validation status of the input. If the `disabled` prop is set to `true`, it is overwritten to
-   * `'disabled'`.
-   */
-  status?: 'none' | 'valid' | 'error' | 'disabled';
+
+  meta?: Record<string, unknown>;
   /**
    * Whether the input is disabled
    */
@@ -65,11 +63,11 @@ export interface SliderProps {
   /**
    * Value of the input (controlled mode)
    */
-  value?: number;
+  value?: number | unknown;
   /**
    * Default value of the input (uncontrolled mode)
    */
-  defaultValue?: number;
+  defaultValue?: number | unknown;
   /**
    * Callback executed when the input's value changes
    */
@@ -86,21 +84,23 @@ export interface SliderProps {
 
 export const Slider: FC<SliderProps> = ({
   theme = 'dark',
-  status: rawState = 'none',
+  meta = {},
   disabled = false,
   formatOptions = { style: 'percent' },
   labelRef,
   ...rest
 }: SliderProps) => {
-  const status = disabled ? 'disabled' : rawState;
+  const st = useStatus({ meta, disabled });
+
   const onChangeOverride = rest.onChange
     ? (values: number[]) => rest.onChange(values[0])
     : undefined;
+
   const propsOverride = {
     // `useSliderState` is expecting `value` and `defaultValue` to be arrays
-    value: rest.value !== undefined ? [rest.value] : undefined,
+    value: rest.value !== undefined ? [+rest.value] : undefined,
     defaultValue:
-      rest.defaultValue !== undefined ? [rest.defaultValue] : undefined,
+      rest.defaultValue !== undefined ? [+rest.defaultValue] : undefined,
     onChange: onChangeOverride,
     isDisabled: disabled,
     // `useSliderState` expects a `label` attribute for accessibility, but this is worked around in
@@ -114,6 +114,7 @@ export const Slider: FC<SliderProps> = ({
     ...propsOverride,
     numberFormatter: useNumberFormatter(formatOptions),
   });
+
   const { groupProps, trackProps, outputProps } = useSlider(
     {
       ...rest,
@@ -155,7 +156,7 @@ export const Slider: FC<SliderProps> = ({
       {...groupProps}
       className={cx({
         [THEME[theme].base]: true,
-        'opacity-30': status === 'disabled',
+        'opacity-30': st === 'disabled',
       })}
     >
       <div
@@ -182,7 +183,7 @@ export const Slider: FC<SliderProps> = ({
         <Thumb
           {...rest}
           theme={theme}
-          status={status}
+          status={st}
           sliderState={sliderState}
           trackRef={trackRef}
           isDisabled={disabled}

@@ -2,6 +2,8 @@ import { FC, InputHTMLAttributes } from 'react';
 import Icon from 'components/icon';
 import cx from 'classnames';
 
+import useStatus from '../utils';
+
 const THEME = {
   dark: {
     base:
@@ -39,6 +41,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   theme?: 'dark' | 'light';
   status?: 'none' | 'valid' | 'error' | 'disabled';
   mode?: 'dashed' | 'normal';
+  input?: Record<string, unknown>;
+  meta?: Record<string, unknown>;
   icon?: {
     id: string;
     viewBox: string;
@@ -47,14 +51,16 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input: FC<InputProps> = ({
   theme = 'dark',
-  status = 'none',
   mode = 'normal',
   disabled = false,
+  type = 'text',
+  input,
+  meta = {},
   icon,
   className,
   ...props
 }: InputProps) => {
-  const st = disabled ? 'disabled' : status;
+  const st = useStatus({ meta, disabled });
 
   return (
     <div className="relative">
@@ -69,7 +75,9 @@ export const Input: FC<InputProps> = ({
       )}
 
       <input
+        {...input}
         {...props}
+        type={type}
         disabled={disabled}
         className={cx({
           'form-input': true,

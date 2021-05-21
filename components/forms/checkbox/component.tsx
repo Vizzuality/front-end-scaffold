@@ -1,5 +1,6 @@
 import { FC, InputHTMLAttributes } from 'react';
 import cx from 'classnames';
+import useStatus from '../utils';
 
 const THEME = {
   dark: {
@@ -26,20 +27,23 @@ const THEME = {
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
   theme?: 'dark' | 'light';
-  status?: 'none' | 'valid' | 'error' | 'disabled';
+  input?: Record<string, unknown>;
+  meta?: Record<string, unknown>;
 }
 
 export const Checkbox: FC<CheckboxProps> = ({
   theme = 'dark',
-  status = 'none',
+  input,
+  meta = {},
   disabled = false,
   className,
   ...props
 }: CheckboxProps) => {
-  const st = disabled ? 'disabled' : status;
+  const st = useStatus({ meta, disabled });
 
   return (
     <input
+      {...input}
       {...props}
       type="checkbox"
       disabled={disabled}

@@ -19,9 +19,7 @@ module.exports = {
     extend: {},
   },
   plugins: [
-    forms({
-      strategy: 'class',
-    }),
+    forms,
     lineClamp,
   ],
 };

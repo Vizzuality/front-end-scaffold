@@ -4,6 +4,7 @@ import SingleSelect from 'components/forms/select/single';
 import MultipleSelect from 'components/forms/select/multi';
 
 import { SelectProps } from './types';
+import useStatus from '../utils';
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
   const {
@@ -13,8 +14,12 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
     multiple,
     selected,
     initialSelected,
+    meta = {},
+    disabled,
     onChange,
   } = props;
+
+  const status = useStatus({ meta, disabled });
 
   const initialValues = useMemo(() => {
     if (multiple) {
@@ -51,6 +56,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
     return (
       <MultipleSelect
         {...props}
+        status={status}
         theme={theme}
         size={size}
         placeholder={placeholder}
@@ -64,6 +70,7 @@ export const Select: FC<SelectProps> = (props: SelectProps) => {
   return (
     <SingleSelect
       {...props}
+      status={status}
       theme={theme}
       size={size}
       placeholder={placeholder}

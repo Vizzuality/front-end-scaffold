@@ -29,3 +29,10 @@ Default.args = {
   children: 'Button',
   disabled: false,
 };
+
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  children: 'Button',
+  disabled: false,
+  className: 'w-full',
+};

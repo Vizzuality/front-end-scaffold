@@ -7,7 +7,7 @@ const THEME = {
 };
 
 export interface LabelProps {
-  id?: string;
+  htmlFor?: string;
   theme?: 'dark' | 'light';
   children: React.ReactNode;
   className?: string;
@@ -15,7 +15,7 @@ export interface LabelProps {
 
 const LabelComponent = (
   {
-    id, theme = 'dark', children, className,
+    htmlFor, theme = 'dark', children, className,
   }: LabelProps,
   ref,
 ) => (
@@ -24,7 +24,7 @@ const LabelComponent = (
       [THEME[theme]]: true,
       [className]: !!className,
     })}
-    htmlFor={id}
+    htmlFor={htmlFor}
     ref={ref}
   >
     {children}

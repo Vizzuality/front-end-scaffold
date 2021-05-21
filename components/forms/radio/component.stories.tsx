@@ -11,12 +11,6 @@ export default {
         options: ['dark', 'light'],
       },
     },
-    status: {
-      control: {
-        type: 'select',
-        options: ['none', 'valid', 'error', 'disabled'],
-      },
-    },
     InputHTMLAttributes: {
       name: 'InputHTMLAttributes',
       description: 'https://www.w3schools.com/tags/tag_textarea.asp',

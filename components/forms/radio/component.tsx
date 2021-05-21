@@ -1,5 +1,6 @@
 import { FC, InputHTMLAttributes } from 'react';
 import cx from 'classnames';
+import useStatus from '../utils';
 
 const THEME = {
   dark: {
@@ -7,7 +8,7 @@ const THEME = {
       'bg-gray-800 border rounded-full text-blue-500 focus:border-blue-500 focus:outline-none',
     status: {
       none: 'border-gray-800',
-      valid: 'border-gray-800',
+      valid: 'border-green-800',
       error: 'border-red-500',
       disabled: 'border-gray-800 opacity-50',
     },
@@ -17,7 +18,7 @@ const THEME = {
       'bg-white border rounded-full text-blue-500 focus:border-blue-500 focus:outline-none',
     status: {
       none: 'border-gray-800',
-      valid: 'border-gray-800',
+      valid: 'border-green-800',
       error: 'border-red-500 focus:border-red-500',
       disabled: 'border-gray-800 opacity-50',
     },
@@ -26,20 +27,23 @@ const THEME = {
 
 export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   theme?: 'dark' | 'light';
-  status?: 'none' | 'valid' | 'error' | 'disabled';
+  input?: Record<string, unknown>;
+  meta?: Record<string, unknown>;
 }
 
 export const Radio: FC<RadioProps> = ({
   theme = 'dark',
-  status = 'none',
   disabled = false,
+  input,
+  meta = {},
   className,
   ...props
 }: RadioProps) => {
-  const st = disabled ? 'disabled' : status;
+  const st = useStatus({ active: !!input.checked, meta, disabled });
 
   return (
     <input
+      {...input}
       {...props}
       type="radio"
       disabled={disabled}
