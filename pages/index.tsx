@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Head from 'next/head'
 
 const Home: React.FC = () => (
   <div>
@@ -17,6 +17,6 @@ const Home: React.FC = () => (
       guidelines](https://vizzuality.github.io/devismos/docs/guidelines/standardization/).
     </p>
   </div>
-);
+)
 
-export default Home;
+export default Home
