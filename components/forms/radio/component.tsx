@@ -34,7 +34,7 @@ export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Radio: FC<RadioProps> = ({
   theme = 'dark',
   disabled = false,
-  input,
+  input = {},
   meta = {},
   className,
   ...props

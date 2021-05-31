@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC, useRef } from 'react';
 import cx from 'classnames';
 import { SliderState } from '@react-stately/slider';
 import { useSliderThumb } from '@react-aria/slider';
@@ -51,7 +51,7 @@ export const Thumb: FC<ThumbProps> = ({
   id = undefined,
   ...rest
 }: ThumbProps) => {
-  const inputRef = React.useRef(null);
+  const inputRef = useRef(null);
   const { thumbProps, inputProps } = useSliderThumb(
     {
       ...rest,
