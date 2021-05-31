@@ -36,9 +36,10 @@ export const SelectToggle: FC<SelectToggleProps> = ({
   return (
     <button
       type="button"
+      aria-label="Select..."
       disabled={disabled}
       className={cx({
-        'relative w-full flex items-center focus:outline-none tracking-wide': true,
+        'relative w-full flex items-center tracking-wide': true,
         [THEME.sizes[size]]: true,
       })}
       {...!multiple && getToggleButtonProps()}

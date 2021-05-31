@@ -5,6 +5,7 @@ import Icon from 'components/icon';
 import LEGEND_SVG from 'svgs/map/legend.svg?sprite';
 import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 
+import { useId } from '@react-aria/utils';
 import SortableList from './sortable/list';
 
 export interface LegendProps {
@@ -22,6 +23,8 @@ export const Legend: FC<LegendProps> = ({
 }: LegendProps) => {
   const [active, setActive] = useState(true);
 
+  const id = useId();
+
   const onToggleActive = useCallback(() => {
     setActive(!active);
   }, [active]);
@@ -29,13 +32,15 @@ export const Legend: FC<LegendProps> = ({
   return (
     <div
       className={cx({
-        'bg-black rounded-3xl flex flex-col flex-grow overflow-hidden': true,
+        'bg-black rounded-3xl flex flex-col flex-grow': true,
         [className]: !!className,
       })}
     >
       <button
         type="button"
-        className="relative flex items-center w-full px-5 py-3 space-x-2 text-xs text-white uppercase font-heading focus:outline-none"
+        aria-expanded={active}
+        aria-controls={id}
+        className="relative flex items-center w-full px-5 py-3 space-x-2 text-xs text-white uppercase font-heading"
         onClick={onToggleActive}
       >
         <Icon icon={LEGEND_SVG} className="w-4 h-4 text-gray-300" />
@@ -52,7 +57,7 @@ export const Legend: FC<LegendProps> = ({
 
       {active && (
         <div
-          className="relative flex flex-col flex-grow"
+          className="relative flex flex-col flex-grow overflow-hidden rounded-3xl"
           style={{
             maxHeight,
           }}

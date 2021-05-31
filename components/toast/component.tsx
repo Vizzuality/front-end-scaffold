@@ -83,6 +83,7 @@ export const Toast: FC<ToastProps> = ({
       }}
     >
       <div
+        role="alert"
         className={cx({
           'w-full pointer-events-auto mb-2': true,
         })}
@@ -101,7 +102,7 @@ export const Toast: FC<ToastProps> = ({
         >
           <div className="flex flex-grow">
             <div className={cx({
-              'relative w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center shadow-md overflow-hidden': true,
+              'relative w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center shadow-md overflow-hidden z-20': true,
             })}
             >
               <div

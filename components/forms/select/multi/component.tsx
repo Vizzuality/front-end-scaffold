@@ -267,7 +267,7 @@ export const MultiSelect: FC<SelectProps> = ({
             <ul
               {...getMenuProps({ onFocus, onBlur })}
               className={cx({
-                'py-1 focus:outline-none overflow-y-auto overflow-x-hidden': true,
+                'py-1 overflow-y-auto overflow-x-hidden': true,
               })}
               style={{
                 maxHeight,

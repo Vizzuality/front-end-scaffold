@@ -57,7 +57,7 @@ function buildClassName({
   theme,
 }) {
   return cx({
-    'flex items-center justify-center rounded-3xl focus:outline-none': true,
+    'flex items-center justify-center rounded-3xl': true,
     [THEME[theme]]: true,
     [SIZE[size]]: true,
     [className]: !!className,
@@ -138,7 +138,7 @@ export const Button: FC<ButtonProps> = ({
 export const LinkButton: Overload = (props: ButtonProps | AnchorProps) => {
   // We consider a link button when href attribute exits
   if (hasHref(props)) {
-    if (props.href.includes('http')) {
+    if (props.href.startsWith('http')) {
       return (
         <Anchor {...props} />
       );

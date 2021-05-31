@@ -20,7 +20,7 @@ export const LegendItem: FC<LegendItemProps> = ({
     key={id}
     className="py-2.5 px-5"
   >
-    <header className="flex">
+    <div className="flex">
       <div
         className={cx({
           relative: true,
@@ -34,7 +34,7 @@ export const LegendItem: FC<LegendItemProps> = ({
         )}
         <div className="text-sm text-white font-heading">{name}</div>
       </div>
-    </header>
+    </div>
 
     <div className="text-sm text-gray-300">
       {description}

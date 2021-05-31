@@ -12,7 +12,7 @@ export const SelectMenu: FC<SelectMenuProps> = ({
 }: SelectMenuProps) => (
   <div
     className={cx({
-      'focus:outline-none overflow-hidden': true,
+      'overflow-hidden': true,
       'invisible pointer-events-none': attributes?.popper?.['data-popper-reference-hidden'],
       [THEME[theme].open]: opened,
     })}
