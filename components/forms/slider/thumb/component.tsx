@@ -9,7 +9,7 @@ import { mergeProps } from '@react-aria/utils';
 const THEME = {
   dark: {
     thumb:
-      'absolute top-0 w-4 h-4 transform -translate-x-1/2 rounded-full bg-gray-700 border-2',
+      'absolute top-0 w-4 h-4 transform -translate-x-1/2 rounded-full bg-gray-700 border-2 z-10 cursor-move',
     status: {
       default: 'border-white',
       dragging: 'border-white opacity-80',
@@ -21,7 +21,7 @@ const THEME = {
   },
   light: {
     thumb:
-      'absolute top-0 w-4 h-4 transform -translate-x-1/2 rounded-full bg-gray-700 border-2',
+      'absolute top-0 w-4 h-4 transform -translate-x-1/2 rounded-full bg-gray-700 border-2 cursor-move',
     status: {
       default: 'border-white',
       dragging: 'border-white opacity-80',
