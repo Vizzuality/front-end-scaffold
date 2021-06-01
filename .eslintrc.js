@@ -27,6 +27,7 @@ module.exports = {
       custom: 'ignore',
       exceptions: [''],
     }],
+    'import/no-named-as-default': 0,
     'import/extensions': [
       'error',
       'ignorePackages',
