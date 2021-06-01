@@ -39,6 +39,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & AnchorButton
 export type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & AnchorButtonProps & {
   href?: string;
   disabled?: boolean;
+  anchorLinkProps?: Record<string, unknown>
 };
 
 // Input/output options
@@ -72,9 +73,10 @@ export const LinkAnchor: FC<AnchorProps> = ({
   className,
   disabled,
   href,
+  anchorLinkProps,
   ...restProps
 }: AnchorProps) => (
-  <Link href={href}>
+  <Link href={href} {...anchorLinkProps}>
     <a
       className={buildClassName({
         className, disabled, size, theme,
