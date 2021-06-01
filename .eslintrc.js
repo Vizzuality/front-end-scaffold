@@ -22,12 +22,20 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     // NextJs specific fix: allow jsx syntax in js and ts files
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-    'react/jsx-props-no-spreading': [
+    'react/jsx-props-no-spreading': ['error', {
+      html: 'ignore',
+      custom: 'ignore',
+      exceptions: [''],
+    }],
+    'import/no-named-as-default': 0,
+    'import/extensions': [
       'error',
+      'ignorePackages',
       {
-        html: 'ignore',
-        custom: 'ignore',
-        exceptions: [''],
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
       },
     ],
   },
