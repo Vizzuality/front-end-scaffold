@@ -134,6 +134,7 @@ export const Map: FC<MapProps> = ({
       mapContainerRef.current.offsetWidth <= 0
       || mapContainerRef.current.offsetHeight <= 0
     ) {
+      // eslint-disable-next-line no-console
       console.error("mapContainerRef doesn't have dimensions");
       return null;
     }

@@ -36,3 +36,10 @@ FullWidth.args = {
   disabled: false,
   className: 'w-full',
 };
+
+export const WithNextLinkProps = Template.bind({});
+WithNextLinkProps.args = {
+  anchorLinkProps: { shallow: true, as: 'next-link-anchor' },
+  children: 'Button',
+  href: '/',
+};
