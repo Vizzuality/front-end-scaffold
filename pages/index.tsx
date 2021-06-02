@@ -14,7 +14,7 @@ const Home: React.FC = () => (
     </ul>
     <p>
       Also, we strongly recommend to read and follow our [Standardization
-      guidelines](https://vizzuality.github.io/frontismos/docs/guidelines/standardization/).
+      guidelines](https://vizzuality.github.io/devismos/docs/guidelines/standardization/).
     </p>
   </div>
 );
