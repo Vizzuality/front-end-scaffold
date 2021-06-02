@@ -95,7 +95,7 @@ const Template: Story<MapProps> = (args: MapProps) => {
             map={map}
             plugin={PluginMapboxGl}
             providers={{
-              [cartoProvider.name]: cartoProvider.handleData
+              [cartoProvider.name]: cartoProvider.handleData,
             }}
           >
             {LAYERS.map((l) => (
