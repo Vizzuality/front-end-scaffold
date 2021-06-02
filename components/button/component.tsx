@@ -1,7 +1,7 @@
 import {
   ButtonHTMLAttributes, AnchorHTMLAttributes, FC,
 } from 'react';
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 import cx from 'classnames';
 
 const THEME = {
@@ -39,7 +39,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & AnchorButton
 export type AnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & AnchorButtonProps & {
   href?: string;
   disabled?: boolean;
-  anchorLinkProps?: Record<string, unknown>
+  anchorLinkProps?: LinkProps
 };
 
 // Input/output options
