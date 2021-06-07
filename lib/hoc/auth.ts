@@ -1,4 +1,4 @@
-import type { NextPageContext } from 'next';
+import type { GetServerSidePropsContext } from 'next';
 import { getSession } from 'next-auth/client';
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
@@ -14,17 +14,17 @@ type AuthProps = {
   props?: Record<string, unknown>
 };
 
-type AuthHOC = (context: NextPageContext, session?: unknown) => Promise<AuthProps>;
+type AuthHOC = (context: GetServerSidePropsContext, session?: unknown) => Promise<AuthProps>;
 
 export function withProtection(getServerSidePropsFunc?: AuthHOC) {
-  return async (context: NextPageContext): Promise<AuthProps> => {
+  return async (context: GetServerSidePropsContext): Promise<AuthProps> => {
     const session = await getSession(context);
-    const { req } = context;
+    const { resolvedUrl } = context;
 
     if (!session) {
       return {
         redirect: {
-          destination: `/auth/sign-in?callbackUrl=${req.url}`, // referer url, path from node
+          destination: `/auth/sign-in?callbackUrl=${resolvedUrl}`, // referer url, path from node
           permanent: false,
         },
       };
@@ -50,7 +50,7 @@ export function withProtection(getServerSidePropsFunc?: AuthHOC) {
 }
 
 export function withUser(getServerSidePropsFunc?: AuthHOC) {
-  return async (context: NextPageContext): Promise<AuthProps> => {
+  return async (context: GetServerSidePropsContext): Promise<AuthProps> => {
     const session = await getSession(context);
 
     if (!session) {
@@ -101,7 +101,7 @@ export function withUser(getServerSidePropsFunc?: AuthHOC) {
 }
 
 export function withoutProtection(getServerSidePropsFunc?: AuthHOC) {
-  return async (context: NextPageContext): Promise<AuthProps> => {
+  return async (context: GetServerSidePropsContext): Promise<AuthProps> => {
     const session = await getSession(context);
 
     if (session) {
