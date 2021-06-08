@@ -78,6 +78,7 @@
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@types/axios": "^0.14.0",
+    "@types/gtag.js": "^0.0.5",
     "@types/react": "^17.0.5",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.0.0",
