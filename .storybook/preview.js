@@ -9,8 +9,9 @@ export const parameters = {
     storySort: {
       order: [
         'Intro',
-        'Docs', ['Install', 'Deploy', 'Authentication', 'Fetching', 'Media', 'Tests'],
-        'Components'
+        'Docs',
+        ['Install', 'Deploy', 'Authentication', 'Fetching', 'Media', 'Tests'],
+        'Components',
       ],
     },
   },

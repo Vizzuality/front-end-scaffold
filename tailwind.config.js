@@ -18,8 +18,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [
-    forms,
-    lineClamp,
-  ],
+  plugins: [forms, lineClamp],
 };

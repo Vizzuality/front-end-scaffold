@@ -1,8 +1,6 @@
 /* eslint-disable react/no-danger */
 import type { DocumentContext, DocumentInitialProps } from 'next/document';
-import Document, {
-  Html, Head, Main, NextScript,
-} from 'next/document';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { GA_TRACKING_ID } from 'lib/analytics/ga';
 
 class MyDocument extends Document {

@@ -5,8 +5,8 @@ import AUTHENTICATION from 'services/authentication';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 type CustomCredentials = Credential & {
-  password: string
-  username: string
+  password: string;
+  username: string;
 };
 
 const MAX_AGE = 2 * 60 * 60; // 2 hours

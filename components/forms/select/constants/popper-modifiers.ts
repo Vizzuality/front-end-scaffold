@@ -38,10 +38,10 @@ export const sameWidthModifier = {
   requires: ['computeStyles'],
   fn: ({ state: s }): void => {
     // eslint-disable-next-line
-      s.styles.popper.minWidth = `${s.rects.reference.width}px`;
+    s.styles.popper.minWidth = `${s.rects.reference.width}px`;
   },
   effect: ({ state: s }): void => {
     // eslint-disable-next-line
-      s.elements.popper.style.minWidth = `${s.elements.reference.offsetWidth}px`;
+    s.elements.popper.style.minWidth = `${s.elements.reference.offsetWidth}px`;
   },
 };

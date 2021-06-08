@@ -2,16 +2,16 @@
 
 This is a project template which could be used to the creation of new projects. Some of the features included are:
 
-* Based on [Next.js](https://nextjs.org/)
-* [Tailwind](https://tailwindcss.com/) as CSS Framework
-* Reusable components such as forms, modals, icons, and other most use components
-* Authentication based on [Next-Auth](https://next-auth.js.org/) already implemented
-* [Redux](https://redux.js.org/) and [Redux-Toolkit](https://redux-toolkit.js.org/)
-* [Typescript](https://www.typescriptlang.org/) already configured
-* [Cypress](https://www.cypress.io/) as testing client
-* git workflow and hooks
-* editorconfig and code style based on [Airbnb](https://github.com/airbnb/javascript)
-* [Storybook](https://storybook.js.org/) also available and configured
+- Based on [Next.js](https://nextjs.org/)
+- [Tailwind](https://tailwindcss.com/) as CSS Framework
+- Reusable components such as forms, modals, icons, and other most use components
+- Authentication based on [Next-Auth](https://next-auth.js.org/) already implemented
+- [Redux](https://redux.js.org/) and [Redux-Toolkit](https://redux-toolkit.js.org/)
+- [Typescript](https://www.typescriptlang.org/) already configured
+- [Cypress](https://www.cypress.io/) as testing client
+- git workflow and hooks
+- editorconfig and code style based on [Airbnb](https://github.com/airbnb/javascript)
+- [Storybook](https://storybook.js.org/) also available and configured
 
 ## Getting Started
 
