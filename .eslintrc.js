@@ -16,15 +16,25 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
+    'prettier/prettier': [
+      'error',
+      {},
+      {
+        usePrettierrc: true,
+      },
+    ],
     // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
     'react/react-in-jsx-scope': 'off',
     // NextJs specific fix: allow jsx syntax in js and ts files
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-    'react/jsx-props-no-spreading': ['error', {
-      html: 'ignore',
-      custom: 'ignore',
-      exceptions: [''],
-    }],
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        html: 'ignore',
+        custom: 'ignore',
+        exceptions: [''],
+      },
+    ],
     'import/no-named-as-default': 0,
     'import/extensions': [
       'error',
@@ -48,4 +58,4 @@ module.exports = {
       typescript: {},
     },
   },
-}
+};

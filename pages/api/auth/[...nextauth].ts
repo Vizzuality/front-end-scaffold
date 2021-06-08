@@ -1,16 +1,16 @@
-import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
-import JWT from 'jsonwebtoken'
-import AUTHENTICATION from 'services/authentication'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import NextAuth from 'next-auth';
+import Providers from 'next-auth/providers';
+import JWT from 'jsonwebtoken';
+import AUTHENTICATION from 'services/authentication';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 type CustomCredentials = Credential & {
-  password: string
-  username: string
-}
+  password: string;
+  username: string;
+};
 
-const MAX_AGE = 2 * 60 * 60 // 2 hours
-const SESSION_BUFFER_TIME = 10 * 60 // 10 minutes
+const MAX_AGE = 2 * 60 * 60; // 2 hours
+const SESSION_BUFFER_TIME = 10 * 60; // 10 minutes
 
 /**
  * Takes a token, and returns a new token
@@ -24,23 +24,23 @@ async function refreshAccessToken(token) {
         Authorization: `Bearer ${token.accessToken}`,
         'Content-Type': 'application/json',
       },
-    })
+    });
 
-    const { data, status } = refreshTokenResponse
+    const { data, status } = refreshTokenResponse;
 
     if (status !== 201) {
-      throw new Error(data)
+      throw new Error(data);
     }
 
     return {
       ...token,
       accessToken: data.accessToken,
-    }
+    };
   } catch (error) {
     return {
       ...token,
       error: 'RefreshAccessTokenError',
-    }
+    };
   }
 }
 
@@ -69,7 +69,7 @@ const options = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const { username, password } = credentials as CustomCredentials
+        const { username, password } = credentials as CustomCredentials;
 
         // Request to sign in
         const signInRequest = await AUTHENTICATION.request({
@@ -77,15 +77,15 @@ const options = {
           method: 'POST',
           data: { username, password },
           headers: { 'Content-Type': 'application/json' },
-        })
+        });
 
-        const { data, status } = signInRequest
+        const { data, status } = signInRequest;
 
         if (status === 201) {
-          return data
+          return data;
         }
 
-        throw new Error(data)
+        throw new Error(data);
       },
     }),
   ],
@@ -93,41 +93,41 @@ const options = {
   callbacks: {
     // Assigning encoded token from API to token created in the session
     async jwt(token, user) {
-      const newToken = token
+      const newToken = token;
 
       if (user) {
-        const { accessToken } = user
-        newToken.accessToken = accessToken
+        const { accessToken } = user;
+        newToken.accessToken = accessToken;
       }
 
       // Use custom JWT decode, otherwise "exp date" will be increasing beyond the infinite
-      const { exp } = JWT.decode(newToken.accessToken)
+      const { exp } = JWT.decode(newToken.accessToken);
 
-      const expDate = new Date(exp * 1000)
+      const expDate = new Date(exp * 1000);
 
       // Return previous token if the access token has not expired yet
-      const remainingTime = expDate.getTime() - Date.now()
-      const shouldRefresh = remainingTime < SESSION_BUFFER_TIME * 1000 && remainingTime > 0
+      const remainingTime = expDate.getTime() - Date.now();
+      const shouldRefresh = remainingTime < SESSION_BUFFER_TIME * 1000 && remainingTime > 0;
 
       // Refresh token
-      if (shouldRefresh) return refreshAccessToken(newToken)
+      if (shouldRefresh) return refreshAccessToken(newToken);
 
-      return newToken
+      return newToken;
     },
 
     // Extending session object
     async session(session, token) {
-      const newSession = session
-      newSession.accessToken = token.accessToken
-      return newSession
+      const newSession = session;
+      newSession.accessToken = token.accessToken;
+      return newSession;
     },
 
     async redirect(callbackUrl) {
       // By default it should be redirect to /projects
       if (callbackUrl.includes('/sign-in') || callbackUrl.includes('/sign-up')) {
-        return '/projects'
+        return '/projects';
       }
-      return callbackUrl
+      return callbackUrl;
     },
   },
 
@@ -142,10 +142,10 @@ const options = {
             Authorization: `Bearer ${session.accessToken}`,
             'Content-Type': 'application/json',
           },
-        })
+        });
       }
     },
   },
-}
+};
 
-export default (req: NextApiRequest, res: NextApiResponse): unknown => NextAuth(req, res, options)
+export default (req: NextApiRequest, res: NextApiResponse): unknown => NextAuth(req, res, options);

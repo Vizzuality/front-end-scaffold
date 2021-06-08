@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const forms = require('@tailwindcss/forms')
-const lineClamp = require('./lib/tailwind/line-clamp')
+const forms = require('@tailwindcss/forms');
+const lineClamp = require('./lib/tailwind/line-clamp');
 
 module.exports = {
   purge: {
@@ -18,8 +18,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [
-    forms,
-    lineClamp,
-  ],
+  plugins: [forms, lineClamp],
 };

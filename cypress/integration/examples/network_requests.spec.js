@@ -9,25 +9,23 @@ context('Network Requests', () => {
 
   it('cy.request() - make an XHR request', () => {
     // https://on.cypress.io/request
-    cy.request('https://jsonplaceholder.cypress.io/comments')
-      .should((response) => {
-        expect(response.status).to.eq(200);
-        // the server sometimes gets an extra comment posted from another machine
-        // which gets returned as 1 extra object
-        expect(response.body).to.have.property('length').and.be.oneOf([500, 501]);
-        expect(response).to.have.property('headers');
-        expect(response).to.have.property('duration');
-      });
+    cy.request('https://jsonplaceholder.cypress.io/comments').should((response) => {
+      expect(response.status).to.eq(200);
+      // the server sometimes gets an extra comment posted from another machine
+      // which gets returned as 1 extra object
+      expect(response.body).to.have.property('length').and.be.oneOf([500, 501]);
+      expect(response).to.have.property('headers');
+      expect(response).to.have.property('duration');
+    });
   });
 
   it('cy.request() - verify response using BDD syntax', () => {
-    cy.request('https://jsonplaceholder.cypress.io/comments')
-      .then((response) => {
+    cy.request('https://jsonplaceholder.cypress.io/comments').then((response) => {
       // https://on.cypress.io/assertions
-        expect(response).property('status').to.equal(200);
-        expect(response).property('body').to.have.property('length').and.be.oneOf([500, 501]);
-        expect(response).to.include.keys('headers', 'duration');
-      });
+      expect(response).property('status').to.equal(200);
+      expect(response).property('body').to.have.property('length').and.be.oneOf([500, 501]);
+      expect(response).to.include.keys('headers', 'duration');
+    });
   });
 
   it('cy.request() with query parameters', () => {
@@ -77,8 +75,7 @@ context('Network Requests', () => {
 
         // we don't know the exact post id - only that it will be > 100
         // since JSONPlaceholder has built-in 100 posts
-        expect(response.body).property('id').to.be.a('number')
-          .and.to.be.gt(100);
+        expect(response.body).property('id').to.be.a('number').and.to.be.gt(100);
 
         // we don't know the user id here - since it was in above closure
         // so in this test just confirm that the property is there
@@ -89,7 +86,8 @@ context('Network Requests', () => {
   it('cy.request() - save response in the shared test context', () => {
     // https://on.cypress.io/variables-and-aliases
     cy.request('https://jsonplaceholder.cypress.io/users?_limit=1')
-      .its('body').its('0') // yields the first element of the returned list
+      .its('body')
+      .its('0') // yields the first element of the returned list
       .as('user') // saves the object in the test context
       .then(function () {
         // NOTE 👀
@@ -103,7 +101,8 @@ context('Network Requests', () => {
           title: 'Cypress Test Runner',
           body: 'Fast, easy and reliable testing for anything that runs in a browser.',
         })
-          .its('body').as('post'); // save the new post from the response
+          .its('body')
+          .as('post'); // save the new post from the response
       })
       .then(function () {
         // When this callback runs, both "cy.request" API commands have finished
@@ -141,15 +140,18 @@ context('Network Requests', () => {
     });
 
     // Stub a response to PUT comments/ ****
-    cy.intercept({
-      method: 'PUT',
-      url: '**/comments/*',
-    }, {
-      statusCode: 404,
-      body: { error: message },
-      headers: { 'access-control-allow-origin': '*' },
-      delayMs: 500,
-    }).as('putComment');
+    cy.intercept(
+      {
+        method: 'PUT',
+        url: '**/comments/*',
+      },
+      {
+        statusCode: 404,
+        body: { error: message },
+        headers: { 'access-control-allow-origin': '*' },
+        delayMs: 500,
+      }
+    ).as('putComment');
 
     // we have code that puts a comment when
     // the button is clicked in scripts.js

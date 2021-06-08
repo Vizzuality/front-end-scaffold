@@ -3,9 +3,10 @@
 @tailwind utilities;
 
 @-webkit-keyframes autofill {
-  0%,100% {
-      color: #666;
-      background: transparent;
+  0%,
+  100% {
+    color: #666;
+    background: transparent;
   }
 }
 

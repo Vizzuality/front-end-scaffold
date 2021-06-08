@@ -1,20 +1,20 @@
-import { useRef } from 'react'
-import type { AppProps } from 'next/app'
-import { Provider as ReduxProvider } from 'react-redux'
-import { QueryClient, QueryClientProvider } from 'react-query'
-import { OverlayProvider } from '@react-aria/overlays'
-import { Hydrate } from 'react-query/hydration'
-import { Provider as AuthenticationProvider } from 'next-auth/client'
+import { useRef } from 'react';
+import type { AppProps } from 'next/app';
+import { Provider as ReduxProvider } from 'react-redux';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { OverlayProvider } from '@react-aria/overlays';
+import { Hydrate } from 'react-query/hydration';
+import { Provider as AuthenticationProvider } from 'next-auth/client';
 
-import store from 'lib/store'
+import store from 'lib/store';
 
-import 'styles/globals.css'
+import 'styles/globals.css';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
-  const queryClientRef = useRef(null)
+  const queryClientRef = useRef(null);
 
   if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient()
+    queryClientRef.current = new QueryClient();
   }
 
   return (
@@ -35,7 +35,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
         </Hydrate>
       </QueryClientProvider>
     </ReduxProvider>
-  )
-}
+  );
+};
 
-export default MyApp
+export default MyApp;

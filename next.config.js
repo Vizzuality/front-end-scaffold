@@ -18,5 +18,5 @@ module.exports = withPlugins(
       optimizeImages: false,
     }),
   ],
-  nextConfig,
+  nextConfig
 );
