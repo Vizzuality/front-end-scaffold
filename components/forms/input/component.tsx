@@ -1,6 +1,7 @@
-import { FC, InputHTMLAttributes } from 'react';
-import Icon from 'components/icon';
+import { FC } from 'react';
 import cx from 'classnames';
+import Icon from 'components/icon';
+import { InputProps } from './types';
 
 import useStatus from '../utils';
 
@@ -34,18 +35,6 @@ const THEME = {
     },
   },
 };
-
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  theme?: 'dark' | 'light';
-  status?: 'none' | 'valid' | 'error' | 'disabled';
-  mode?: 'dashed' | 'normal';
-  input?: Record<string, unknown>;
-  meta?: Record<string, unknown>;
-  icon?: {
-    id: string;
-    viewBox: string;
-  };
-}
 
 export const Input: FC<InputProps> = ({
   theme = 'dark',

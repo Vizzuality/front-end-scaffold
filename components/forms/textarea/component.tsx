@@ -1,6 +1,7 @@
-import { FC, TextareaHTMLAttributes } from 'react';
+import { FC } from 'react';
 import cx from 'classnames';
 import useStatus from '../utils';
+import { TextareaProps } from './types';
 
 const THEME = {
   dark: {
@@ -22,12 +23,6 @@ const THEME = {
     },
   },
 };
-
-export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  theme?: 'dark' | 'light';
-  input?: Record<string, unknown>;
-  meta?: Record<string, unknown>;
-}
 
 export const Textarea: FC<TextareaProps> = ({
   theme = 'dark',

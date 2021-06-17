@@ -1,10 +1,11 @@
 import { FC, useRef } from 'react';
 import cx from 'classnames';
-import { SliderState } from '@react-stately/slider';
 import { useSliderThumb } from '@react-aria/slider';
 import { useFocusRing } from '@react-aria/focus';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { mergeProps } from '@react-aria/utils';
+
+import { ThumbProps } from './types';
 
 const THEME = {
   dark: {
@@ -32,15 +33,6 @@ const THEME = {
     },
   },
 };
-
-export interface ThumbProps {
-  theme: 'dark' | 'light';
-  status: 'none' | 'valid' | 'error' | 'disabled';
-  sliderState: SliderState;
-  trackRef: React.MutableRefObject<HTMLElement | null>;
-  isDisabled: boolean;
-  id?: string;
-}
 
 export const Thumb: FC<ThumbProps> = ({
   theme,

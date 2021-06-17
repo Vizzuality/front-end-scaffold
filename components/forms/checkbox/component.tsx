@@ -1,6 +1,8 @@
-import { FC, InputHTMLAttributes } from 'react';
+import { FC } from 'react';
 import cx from 'classnames';
 import useStatus from '../utils';
+
+import { CheckboxProps } from './types';
 
 const THEME = {
   dark: {
@@ -22,12 +24,6 @@ const THEME = {
     },
   },
 };
-
-export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
-  theme?: 'dark' | 'light';
-  input?: Record<string, unknown>;
-  meta?: Record<string, unknown>;
-}
 
 export const Checkbox: FC<CheckboxProps> = ({
   theme = 'dark',

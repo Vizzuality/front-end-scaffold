@@ -1,5 +1,6 @@
 import { Story } from '@storybook/react/types-6-0';
-import Input, { InputProps } from './component';
+import Input from './component';
+import { InputProps } from './types';
 
 export default {
   title: 'Components/Forms/Input',
