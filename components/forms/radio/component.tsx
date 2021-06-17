@@ -2,26 +2,8 @@ import { FC } from 'react';
 import cx from 'classnames';
 import useStatus from '../utils';
 
-const THEME = {
-  dark: {
-    base: 'bg-gray-800 border rounded-full text-blue-500',
-    status: {
-      none: 'border-gray-800',
-      valid: 'border-green-800',
-      error: 'border-red-500',
-      disabled: 'border-gray-800 opacity-50',
-    },
-  },
-  light: {
-    base: 'bg-white border rounded-full text-blue-500',
-    status: {
-      none: 'border-gray-800',
-      valid: 'border-green-800',
-      error: 'border-red-500 focus:border-red-500',
-      disabled: 'border-gray-800 opacity-50',
-    },
-  },
-};
+import { THEME } from './constants';
+import { RadioProps } from './types';
 
 export const Radio: FC<RadioProps> = ({
   theme = 'dark',

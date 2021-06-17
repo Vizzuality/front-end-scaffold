@@ -1,11 +1,8 @@
 import cx from 'classnames';
 import { forwardRef } from 'react';
-import { LabelProps } from './types';
 
-const THEME = {
-  dark: 'block font-heading font-medium text-xs text-white',
-  light: 'block font-heading font-medium text-xs text-gray-600',
-};
+import { LabelProps } from './types';
+import { THEME } from './constants';
 
 const LabelComponent = ({ htmlFor, theme = 'dark', children, className }: LabelProps, ref) => (
   <label
