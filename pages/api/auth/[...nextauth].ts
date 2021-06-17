@@ -3,6 +3,7 @@ import Providers from 'next-auth/providers';
 import JWT from 'jsonwebtoken';
 import AUTHENTICATION from 'services/authentication';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextAuthOptions } from 'next-auth';
 
 type CustomCredentials = Credential & {
   password: string;
@@ -44,11 +45,14 @@ async function refreshAccessToken(token) {
   }
 }
 
-const options = {
-  // Defining custom pages
+const options: NextAuthOptions = {
+  /**
+   * Defining custom pages
+   * By default Next-Auth provides /api/auth/signin
+   */
   pages: {
     signIn: '/auth/sign-in',
-    error: '/auth/sign-in',
+    // error: '/auth/sign-in',
   },
 
   session: {
@@ -60,7 +64,7 @@ const options = {
   providers: [
     Providers.Credentials({
       // The name to display on the sign in form (e.g. 'Sign in with...')
-      name: 'Sign in with Marxan',
+      name: 'Vizzuality',
       // The credentials is used to generate a suitable form on the sign in page.
       // You can specify whatever fields you are expecting to be submitted.
       // e.g. domain, username, password, 2FA token, etc.
@@ -93,15 +97,15 @@ const options = {
   callbacks: {
     // Assigning encoded token from API to token created in the session
     async jwt(token, user) {
-      const newToken = token;
+      const newToken = { ...token };
 
       if (user) {
         const { accessToken } = user;
-        newToken.accessToken = accessToken;
+        newToken.accessToken = accessToken as string;
       }
 
       // Use custom JWT decode, otherwise "exp date" will be increasing beyond the infinite
-      const { exp } = JWT.decode(newToken.accessToken);
+      const { exp } = JWT.decode(newToken.accessToken as string) as { exp: number };
 
       const expDate = new Date(exp * 1000);
 
