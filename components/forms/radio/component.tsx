@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes } from 'react';
+import { FC } from 'react';
 import cx from 'classnames';
 import useStatus from '../utils';
 
@@ -22,12 +22,6 @@ const THEME = {
     },
   },
 };
-
-export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
-  theme?: 'dark' | 'light';
-  input?: Record<string, unknown>;
-  meta?: Record<string, unknown>;
-}
 
 export const Radio: FC<RadioProps> = ({
   theme = 'dark',
