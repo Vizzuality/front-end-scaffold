@@ -1,10 +1,7 @@
 import { FC } from 'react';
 import cx from 'classnames';
 
-export interface TagProps {
-  children: React.ReactNode;
-  className?: string | unknown;
-}
+import { TagProps } from './types';
 
 export const Tag: FC<TagProps> = ({ children, className }: TagProps) => (
   <div
