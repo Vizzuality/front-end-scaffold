@@ -5,7 +5,7 @@ import { useFocusRing } from '@react-aria/focus';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { mergeProps } from '@react-aria/utils';
 
-import { ThumbProps } from './types';
+import type { ThumbProps } from './types';
 
 const THEME = {
   dark: {

@@ -5,7 +5,7 @@ import Icon from 'components/icon';
 
 import FIT_BOUNDS_SVG from 'svgs/map/fit-bounds.svg?sprite';
 
-import { FitBoundsControlProps } from './types';
+import type { FitBoundsControlProps } from './types';
 
 export const FitBoundsControl: FC<FitBoundsControlProps> = ({
   bounds,

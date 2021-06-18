@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import cx from 'classnames';
 
-import { LegendTypeChoroplethProps } from './types';
+import type { LegendTypeChoroplethProps } from './types';
 
 export const LegendTypeChoropleth: FC<LegendTypeChoroplethProps> = ({
   className = '',

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import cx from 'classnames';
 import Icon from 'components/icon';
-import { InputProps } from './types';
+import type { InputProps } from './types';
 
 import useStatus from '../utils';
 import { THEME } from './constants';

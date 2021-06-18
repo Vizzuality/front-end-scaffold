@@ -8,7 +8,7 @@ import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 import { useId } from '@react-aria/utils';
 import SortableList from './sortable/list';
 
-import { LegendProps } from './types';
+import type { LegendProps } from './types';
 
 export const Legend: FC<LegendProps> = ({
   children,

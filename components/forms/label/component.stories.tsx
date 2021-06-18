@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react/types-6-0';
 import Label from './component';
-import { LabelProps } from './types';
+import type { LabelProps } from './types';
 
 export default {
   title: 'Components/Forms/Label',

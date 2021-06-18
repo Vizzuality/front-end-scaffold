@@ -3,7 +3,7 @@ import ERROR_SVG from 'svgs/notifications/error.svg?sprite';
 import WARNING_SVG from 'svgs/notifications/warning.svg?sprite';
 import INFO_SVG from 'svgs/notifications/info.svg?sprite';
 
-import { ToastTheme } from './types';
+import type { ToastTheme } from './types';
 
 // eslint-disable-next-line import/prefer-default-export
 export const THEME: ToastTheme = {

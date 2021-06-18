@@ -7,7 +7,7 @@ import Icon from 'components/icon';
 
 import { motion, useAnimation } from 'framer-motion';
 
-import { ToastProps } from './types';
+import type { ToastProps } from './types';
 import { THEME } from './constants';
 
 export const Toast: FC<ToastProps> = ({

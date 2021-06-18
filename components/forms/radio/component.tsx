@@ -3,7 +3,7 @@ import cx from 'classnames';
 import useStatus from '../utils';
 
 import { THEME } from './constants';
-import { RadioProps } from './types';
+import type { RadioProps } from './types';
 
 export const Radio: FC<RadioProps> = ({
   theme = 'dark',

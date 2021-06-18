@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import cx from 'classnames';
 
-import { LegendTypeBasicProps } from './types';
+import type { LegendTypeBasicProps } from './types';
 
 export const LegendTypeBasic: FC<LegendTypeBasicProps> = ({
   className = '',
