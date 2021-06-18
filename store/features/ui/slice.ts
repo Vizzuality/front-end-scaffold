@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from 'store';
 
 // Define a type for the slice state
 interface UIState {
@@ -23,7 +22,5 @@ export const applicationSlice = createSlice({
 });
 
 export const { setMenuMobileOpen } = applicationSlice.actions;
-
-export const isMenuMobileOpen = (state: RootState) => state.ui.isMenuMobileOpen;
 
 export default applicationSlice.reducer;
