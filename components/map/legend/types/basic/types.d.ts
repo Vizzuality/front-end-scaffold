@@ -1,7 +1,9 @@
+type LegendTypeItem = {
+  value: string;
+  color: string;
+};
+
 export interface LegendTypeBasicProps {
   className?: string;
-  items: Array<{
-    value: string;
-    color: string;
-  }>;
+  items: Array<LegendTypeItem>;
 }
