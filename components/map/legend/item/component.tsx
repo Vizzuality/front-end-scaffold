@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import cx from 'classnames';
 
-import { LegendItemProps } from './types';
+import type { LegendItemProps } from './types';
 
 export const LegendItem: FC<LegendItemProps> = ({
   id,

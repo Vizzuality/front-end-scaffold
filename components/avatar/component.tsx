@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import cx from 'classnames';
 
-import { AvatarProps } from './types';
+import type { AvatarProps } from './types';
 
 export const Avatar: FC<AvatarProps> = ({ children, className, bgImage }: AvatarProps) => (
   <div

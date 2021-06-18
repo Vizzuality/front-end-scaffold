@@ -11,7 +11,7 @@ import { fitBounds } from '@math.gl/web-mercator';
 
 import { easeCubic } from 'd3-ease';
 
-import { MapProps } from './types';
+import type { MapProps } from './types';
 import { DEFAULT_VIEWPORT } from './constants';
 
 export const Map: FC<MapProps> = ({

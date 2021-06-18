@@ -5,7 +5,7 @@ import Icon from 'components/icon';
 import LOADING_SVG from 'svgs/ui/loading.svg?sprite';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import { LoadingProps } from './types';
+import type { LoadingProps } from './types';
 
 export const Loading: FC<LoadingProps> = ({
   visible = false,

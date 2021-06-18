@@ -10,7 +10,7 @@ import Icon from 'components/icon';
 import SEARCH_SVG from 'svgs/ui/search.svg?sprite';
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite'; // eslint-disable-line @typescript-eslint/no-unused-vars
 
-import { SearchProps } from './types';
+import type { SearchProps } from './types';
 import { SIZES, THEME } from './constants';
 
 export const Search: FC<SearchProps> = ({

@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import { THEME, SIZE } from './constants';
 
-import { ButtonProps, AnchorProps, Overload } from './types';
+import type { ButtonProps, AnchorProps, Overload } from './types';
 
 // Guard to check if href exists in props
 const hasHref = (props: ButtonProps | AnchorProps): props is AnchorProps => 'href' in props;

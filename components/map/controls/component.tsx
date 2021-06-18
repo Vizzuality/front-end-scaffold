@@ -1,7 +1,7 @@
 import { Children, FC } from 'react';
 import cx from 'classnames';
 
-import { ControlsProps } from './types';
+import type { ControlsProps } from './types';
 
 export const Controls: FC<ControlsProps> = ({
   className = 'absolute bottom-10 left-2',

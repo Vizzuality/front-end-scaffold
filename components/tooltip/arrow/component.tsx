@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import cx from 'classnames';
 
-import { ArrowProps } from './types';
+import type { ArrowProps } from './types';
 
 export const Arrow: FC<ArrowProps> = (props: ArrowProps) => {
   const { 'data-placement': placement } = props;

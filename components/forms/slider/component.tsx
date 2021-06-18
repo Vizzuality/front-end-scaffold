@@ -7,7 +7,7 @@ import { setInteractionModality } from '@react-aria/interactions';
 
 import Thumb from './thumb';
 import useStatus from '../utils';
-import { SliderProps } from './types';
+import type { SliderProps } from './types';
 
 const THEME = {
   dark: {

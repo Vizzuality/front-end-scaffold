@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
-import { SortableItemProps } from './types';
+import type { SortableItemProps } from './types';
 
 export const SortableItem: FC<SortableItemProps> = ({ id, children }: SortableItemProps) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({

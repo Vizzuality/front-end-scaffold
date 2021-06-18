@@ -6,7 +6,7 @@ import Icon from 'components/icon';
 import ZOOM_IN_SVG from 'svgs/map/zoom-in.svg?sprite';
 import ZOOM_OUT_SVG from 'svgs/map/zoom-out.svg?sprite';
 
-import { ZoomControlProps } from './types';
+import type { ZoomControlProps } from './types';
 
 export const ZoomControl: FC<ZoomControlProps> = ({
   className,

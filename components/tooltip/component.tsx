@@ -4,7 +4,7 @@ import { useSpring, motion } from 'framer-motion';
 import { SpringOptions } from 'popmotion';
 
 import Arrow from './arrow';
-import { TooltipProps } from './types';
+import type { TooltipProps } from './types';
 
 export const Tooltip: FC<TooltipProps> = ({
   children,

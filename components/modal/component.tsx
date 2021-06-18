@@ -11,7 +11,7 @@ import Icon from 'components/icon';
 
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
 
-import { ModalProps } from './types';
+import type { ModalProps } from './types';
 import { CONTENT_CLASSES, OVERLAY_CLASSES } from './constants';
 
 export const Modal: FC<ModalProps> = ({
