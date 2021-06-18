@@ -1,13 +1,7 @@
 import { FC } from 'react';
 import cx from 'classnames';
 
-export interface LegendTypeBasicProps {
-  className?: string;
-  items: Array<{
-    value: string;
-    color: string;
-  }>;
-}
+import { LegendTypeBasicProps } from './types';
 
 export const LegendTypeBasic: FC<LegendTypeBasicProps> = ({
   className = '',
