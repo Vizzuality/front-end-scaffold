@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import cx from 'classnames';
 
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
@@ -10,7 +10,7 @@ import { motion, useAnimation } from 'framer-motion';
 import type { ToastProps } from './types';
 import { THEME } from './constants';
 
-export const Toast: FC<ToastProps> = ({
+export const Toast: React.FC<ToastProps> = ({
   id,
   content,
   level = 'info',
@@ -41,7 +41,9 @@ export const Toast: FC<ToastProps> = ({
   );
 
   const handleDismiss = useCallback(() => {
-    onDismiss(id);
+    if (onDismiss) {
+      onDismiss(id);
+    }
   }, [id, onDismiss]);
 
   return (

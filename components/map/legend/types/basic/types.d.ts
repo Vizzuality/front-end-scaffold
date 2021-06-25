@@ -1,7 +1,4 @@
-type LegendTypeItem = {
-  value: string;
-  color: string;
-};
+import type { LegendTypeItem } from '../../types';
 
 export interface LegendTypeBasicProps {
   className?: string;

@@ -4,3 +4,8 @@ export interface LegendProps {
   maxHeight: string | number;
   onChangeOrder: (id: string[]) => void;
 }
+
+export type LegendTypeItem = {
+  value: string;
+  color: string;
+};
