@@ -4,7 +4,8 @@ import { Story } from '@storybook/react/types-6-0';
 import ZoomControl from 'components/map/controls/zoom';
 import FitBoundsControl from 'components/map/controls/fit-bounds';
 
-import Controls, { ControlsProps } from './component';
+import Controls from './component';
+import { ControlsProps } from './types';
 
 export default {
   title: 'Components/Map/Controls',

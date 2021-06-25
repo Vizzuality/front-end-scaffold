@@ -1,5 +1,6 @@
 import { Story } from '@storybook/react/types-6-0';
-import Radio, { RadioProps } from './component';
+import Radio from './component';
+import { RadioProps } from './types';
 
 export default {
   title: 'Components/Forms/Radio',

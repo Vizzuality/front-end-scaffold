@@ -3,7 +3,8 @@ import Icon from 'components/icon';
 import { ReactNode } from 'react';
 import HELP_SVG from 'svgs/ui/help.svg';
 
-import Avatar, { AvatarProps } from './component';
+import Avatar from './component';
+import { AvatarProps } from './types';
 
 export default {
   title: 'Components/Avatar',
