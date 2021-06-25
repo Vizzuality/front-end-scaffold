@@ -1,14 +1,7 @@
 import cx from 'classnames';
 import { FC } from 'react';
 
-export interface IconProps {
-  icon: {
-    id: string;
-    viewBox: string;
-  };
-  className?: string;
-  style?: unknown;
-}
+import type { IconProps } from './types';
 
 export const Icon: FC<IconProps> = ({ icon, className = 'w-5 h-5', style }: IconProps) => (
   <svg

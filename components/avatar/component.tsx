@@ -1,11 +1,7 @@
-import { ButtonHTMLAttributes, FC } from 'react';
+import { FC } from 'react';
 import cx from 'classnames';
 
-export interface AvatarProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode;
-  className?: string;
-  bgImage?: string;
-}
+import type { AvatarProps } from './types';
 
 export const Avatar: FC<AvatarProps> = ({ children, className, bgImage }: AvatarProps) => (
   <div

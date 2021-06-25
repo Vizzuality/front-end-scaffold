@@ -1,9 +1,10 @@
 import { useCallback, useMemo, useState } from 'react';
 import { Story } from '@storybook/react/types-6-0';
 
-import Legend, { LegendProps } from './component';
+import Legend from './component';
 import LegendItem from './item';
 
+import { LegendProps } from './types';
 import LegendTypeBasic from './types/basic';
 import LegendTypeChoropleth from './types/choropleth';
 import LegendTypeGradient from './types/gradient';

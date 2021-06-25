@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react/types-6-0';
 import Tooltip from './component';
-import { TooltipProps } from './types';
+import type { TooltipProps } from './types';
 
 export default {
   title: 'Components/Tooltip',

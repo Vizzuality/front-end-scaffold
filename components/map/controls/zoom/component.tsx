@@ -3,16 +3,10 @@ import cx from 'classnames';
 
 import Icon from 'components/icon';
 
-import { ViewportProps } from 'react-map-gl';
-
 import ZOOM_IN_SVG from 'svgs/map/zoom-in.svg?sprite';
 import ZOOM_OUT_SVG from 'svgs/map/zoom-out.svg?sprite';
 
-export interface ZoomControlProps {
-  viewport: Partial<ViewportProps>;
-  className?: string;
-  onZoomChange: (zoom: number) => void;
-}
+import type { ZoomControlProps } from './types';
 
 export const ZoomControl: FC<ZoomControlProps> = ({
   className,

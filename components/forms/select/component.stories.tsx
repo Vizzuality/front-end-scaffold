@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react/types-6-0';
 import Select from './component';
-import { SelectProps } from './types';
+import type { SelectProps } from './types';
 
 export default {
   title: 'Components/Forms/Select',

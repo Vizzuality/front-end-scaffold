@@ -1,10 +1,5 @@
-import { FC, useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import cx from 'classnames';
-
-import SUCCESS_SVG from 'svgs/notifications/success.svg?sprite';
-import ERROR_SVG from 'svgs/notifications/error.svg?sprite';
-import WARNING_SVG from 'svgs/notifications/warning.svg?sprite';
-import INFO_SVG from 'svgs/notifications/info.svg?sprite';
 
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
 
@@ -12,32 +7,10 @@ import Icon from 'components/icon';
 
 import { motion, useAnimation } from 'framer-motion';
 
-import { ToastProps, ToastTheme } from './types';
+import type { ToastProps } from './types';
+import { THEME } from './constants';
 
-const THEME: ToastTheme = {
-  info: {
-    icon: INFO_SVG,
-    bg: 'from-blue-400 to-blue-700',
-    hoverBg: 'from-blue-100 to-blue-400',
-  },
-  success: {
-    icon: SUCCESS_SVG,
-    bg: 'from-green-400 to-green-700',
-    hoverBg: 'from-green-100 to-green-400',
-  },
-  warning: {
-    icon: WARNING_SVG,
-    bg: 'from-yellow-400 to-yellow-700',
-    hoverBg: 'from-yellow-100 to-yellow-400',
-  },
-  error: {
-    icon: ERROR_SVG,
-    bg: 'from-red-400 to-red-700',
-    hoverBg: 'from-red-100 to-red-400',
-  },
-};
-
-export const Toast: FC<ToastProps> = ({
+export const Toast: React.FC<ToastProps> = ({
   id,
   content,
   level = 'info',
@@ -68,7 +41,9 @@ export const Toast: FC<ToastProps> = ({
   );
 
   const handleDismiss = useCallback(() => {
-    onDismiss(id);
+    if (onDismiss) {
+      onDismiss(id);
+    }
   }, [id, onDismiss]);
 
   return (

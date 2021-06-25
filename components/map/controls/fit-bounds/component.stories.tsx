@@ -1,5 +1,6 @@
 import { Story } from '@storybook/react/types-6-0';
-import FitBoundsControl, { FitBoundsControlProps } from './component';
+import FitBoundsControl from './component';
+import { FitBoundsControlProps } from './types';
 
 export default {
   title: 'Components/Map/Controls/FitBounds',

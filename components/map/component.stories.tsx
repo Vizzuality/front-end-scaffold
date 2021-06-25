@@ -12,7 +12,8 @@ import ZoomControl from 'components/map/controls/zoom';
 import FitBoundsControl from 'components/map/controls/fit-bounds';
 
 // Map
-import Map, { MapProps } from './component';
+import Map from './component';
+import { MapProps } from './types';
 import LAYERS from './layers';
 
 const cartoProvider = new CartoProvider();
