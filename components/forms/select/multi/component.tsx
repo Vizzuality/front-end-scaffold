@@ -48,23 +48,23 @@ export const MultiSelect: FC<SelectProps> = ({
     () => [
       ...(clearSelectionActive
         ? [
-          {
-            value: 'batch-clear-selection',
-            label: clearSelectionLabel,
-            enabled: false,
-            checkbox: false,
-          },
-        ]
+            {
+              value: 'batch-clear-selection',
+              label: clearSelectionLabel,
+              enabled: false,
+              checkbox: false,
+            },
+          ]
         : []),
       ...(batchSelectionActive
         ? [
-          {
-            value: 'batch-selection',
-            label: batchSelectionLabel,
-            enabled: false,
-            checkbox: false,
-          },
-        ]
+            {
+              value: 'batch-selection',
+              label: batchSelectionLabel,
+              enabled: false,
+              checkbox: false,
+            },
+          ]
         : []),
       ...options.map((o) => ({ ...o, checkbox: true, enabled: true })),
     ],

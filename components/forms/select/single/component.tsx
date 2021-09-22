@@ -44,11 +44,11 @@ export const SingleSelect: FC<SelectProps> = ({
     () => [
       ...(clearSelectionActive
         ? [
-          {
-            value: null,
-            label: clearSelectionLabel,
-          },
-        ]
+            {
+              value: null,
+              label: clearSelectionLabel,
+            },
+          ]
         : []),
       ...options,
     ],
