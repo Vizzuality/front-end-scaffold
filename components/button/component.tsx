@@ -1,9 +1,10 @@
 import { FC } from 'react';
-import Link from 'next/link';
+
 import cx from 'classnames';
 
-import { THEME, SIZE } from './constants';
+import Link from 'next/link';
 
+import { THEME, SIZE } from './constants';
 import type { ButtonProps, AnchorProps, Overload } from './types';
 
 // Guard to check if href exists in props

@@ -1,18 +1,18 @@
 import { Children, FC, cloneElement, isValidElement, useRef } from 'react';
+
 import cx from 'classnames';
 
-import { AnimatePresence, motion } from 'framer-motion';
-
-import { useOverlay, usePreventScroll, useModal, OverlayContainer } from '@react-aria/overlays';
 import { useDialog } from '@react-aria/dialog';
 import { FocusScope } from '@react-aria/focus';
+import { useOverlay, usePreventScroll, useModal, OverlayContainer } from '@react-aria/overlays';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import Icon from 'components/icon';
 
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
 
-import type { ModalProps } from './types';
 import { CONTENT_CLASSES, OVERLAY_CLASSES } from './constants';
+import type { ModalProps } from './types';
 
 export const Modal: FC<ModalProps> = ({
   title,

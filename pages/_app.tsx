@@ -1,9 +1,11 @@
-import type { AppProps } from 'next/app';
-import { Provider as ReduxProvider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider as ReduxProvider } from 'react-redux';
+
+import type { AppProps } from 'next/app';
+
 import { OverlayProvider } from '@react-aria/overlays';
-import { Hydrate } from 'react-query/hydration';
 import { Provider as AuthenticationProvider } from 'next-auth/client';
+import { Hydrate } from 'react-query/hydration';
 
 import store from 'store';
 

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useMemo, FC } from 'react';
+
 import { createPortal } from 'react-dom';
+import { usePopper } from 'react-popper';
+
 import cx from 'classnames';
 
 // Downshift;
 import { useSelect } from 'downshift';
-import Toggle from 'components/forms/select/toggle';
-import Menu from 'components/forms/select/menu';
 
 // Popper
-import { usePopper } from 'react-popper';
 import {
   flipModifier,
   hideModifier,
@@ -16,7 +16,8 @@ import {
   offsetModifier,
 } from 'components/forms/select/constants/popper-modifiers';
 import THEME from 'components/forms/select/constants/theme';
-
+import Menu from 'components/forms/select/menu';
+import Toggle from 'components/forms/select/toggle';
 import { SelectProps, SelectOptionProps } from 'components/forms/select/types';
 
 export const SingleSelect: FC<SelectProps> = ({
@@ -43,11 +44,11 @@ export const SingleSelect: FC<SelectProps> = ({
     () => [
       ...(clearSelectionActive
         ? [
-            {
-              value: null,
-              label: clearSelectionLabel,
-            },
-          ]
+          {
+            value: null,
+            label: clearSelectionLabel,
+          },
+        ]
         : []),
       ...options,
     ],

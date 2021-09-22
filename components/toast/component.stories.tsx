@@ -1,4 +1,5 @@
 import { Story } from '@storybook/react/types-6-0';
+
 import Toast from './component';
 import type { ToastProps } from './types';
 

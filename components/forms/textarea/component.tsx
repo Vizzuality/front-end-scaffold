@@ -1,6 +1,9 @@
 import { FC } from 'react';
+
 import cx from 'classnames';
+
 import useStatus from '../utils';
+
 import type { TextareaProps } from './types';
 
 const THEME = {

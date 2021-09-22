@@ -1,10 +1,13 @@
 import { FC } from 'react';
+
 import cx from 'classnames';
+
 import Icon from 'components/icon';
-import type { InputProps } from './types';
 
 import useStatus from '../utils';
+
 import { THEME } from './constants';
+import type { InputProps } from './types';
 
 export const Input: FC<InputProps> = ({
   theme = 'dark',

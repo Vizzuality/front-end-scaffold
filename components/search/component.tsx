@@ -1,17 +1,19 @@
 import { FC, useRef } from 'react';
+
 import cx from 'classnames';
 
 // react aria
+import { useButton } from '@react-aria/button'; // eslint-disable-line @typescript-eslint/no-unused-vars
 import { useSearchField } from '@react-aria/searchfield';
 import { useSearchFieldState } from '@react-stately/searchfield';
-import { useButton } from '@react-aria/button'; // eslint-disable-line @typescript-eslint/no-unused-vars
 
 import Icon from 'components/icon';
-import SEARCH_SVG from 'svgs/ui/search.svg?sprite';
-import CLOSE_SVG from 'svgs/ui/close.svg?sprite'; // eslint-disable-line @typescript-eslint/no-unused-vars
 
-import type { SearchProps } from './types';
+import CLOSE_SVG from 'svgs/ui/close.svg?sprite'; // eslint-disable-line @typescript-eslint/no-unused-vars
+import SEARCH_SVG from 'svgs/ui/search.svg?sprite';
+
 import { SIZES, THEME } from './constants';
+import type { SearchProps } from './types';
 
 export const Search: FC<SearchProps> = ({
   theme = 'dark',

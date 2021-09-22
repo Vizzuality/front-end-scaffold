@@ -1,18 +1,17 @@
 import { useEffect, useState, useRef, useCallback, FC } from 'react';
-import { useDebouncedCallback } from 'use-debounce';
+
+import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from 'react-map-gl';
 
 import cx from 'classnames';
 
 import isEmpty from 'lodash/isEmpty';
 
-import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from 'react-map-gl';
-
 import { fitBounds } from '@math.gl/web-mercator';
-
 import { easeCubic } from 'd3-ease';
+import { useDebouncedCallback } from 'use-debounce';
 
-import type { MapProps } from './types';
 import { DEFAULT_VIEWPORT } from './constants';
+import type { MapProps } from './types';
 
 export const Map: FC<MapProps> = ({
   mapboxApiAccessToken,

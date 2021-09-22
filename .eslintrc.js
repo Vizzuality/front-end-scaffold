@@ -46,6 +46,91 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    'import/order': [
+      'warn',
+      {
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling'],
+        'newlines-between': 'always',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: 'react**',
+            group: 'builtin',
+          },
+          {
+            pattern: '@react**',
+            group: 'builtin',
+          },
+          {
+            pattern: 'classnames',
+            group: 'builtin',
+            position: 'after',
+          },
+          {
+            pattern: 'lodash/**',
+            group: 'builtin',
+            position: 'after',
+          },
+          {
+            pattern: 'next/**',
+            group: 'builtin',
+            position: 'after',
+          },
+          {
+            pattern: 'node_modules/**',
+            group: 'builtin',
+          },
+          {
+            pattern: 'hoc/**',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'store/**',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: 'hooks/**',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: 'layout/**',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: 'components/**',
+            group: 'internal',
+          },
+          {
+            pattern: 'services/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'images/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: 'svgs/**',
+            group: 'internal',
+            position: 'after',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['react'],
+      },
+    ],
   },
   settings: {
     react: {
