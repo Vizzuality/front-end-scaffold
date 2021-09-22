@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 
 import { useSession } from 'next-auth/client';
 
 import USERS from 'services/users';
+
+import { UseSaveMeProps, SaveMeProps } from './types';
 
 export default function useMe() {
   const [session, loading] = useSession();
@@ -32,4 +34,34 @@ export default function useMe() {
     }),
     [query, data?.data]
   );
+}
+
+export function useSaveMe({
+  requestConfig = {
+    method: 'PATCH',
+  },
+}: UseSaveMeProps) {
+  const queryClient = useQueryClient();
+  const [session] = useSession();
+
+  const saveMe = ({ data }: SaveMeProps) =>
+    USERS.request({
+      url: '/me',
+      data,
+      headers: {
+        Authorization: `Bearer ${session.accessToken}`,
+      },
+      ...requestConfig,
+    });
+
+  return useMutation(saveMe, {
+    onSuccess: (data, variables, context) => {
+      queryClient.invalidateQueries('me');
+      console.info('Succces', data, variables, context);
+    },
+    onError: (error, variables, context) => {
+      // An error happened!
+      console.info('Error', error, variables, context);
+    },
+  });
 }
