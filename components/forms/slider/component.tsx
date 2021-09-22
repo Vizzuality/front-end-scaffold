@@ -1,12 +1,15 @@
 import { FC, useEffect, useRef } from 'react';
+
 import cx from 'classnames';
-import { useSliderState } from '@react-stately/slider';
-import { useSlider } from '@react-aria/slider';
+
 import { useNumberFormatter } from '@react-aria/i18n';
 import { setInteractionModality } from '@react-aria/interactions';
+import { useSlider } from '@react-aria/slider';
+import { useSliderState } from '@react-stately/slider';
+
+import useStatus from '../utils';
 
 import Thumb from './thumb';
-import useStatus from '../utils';
 import type { SliderProps } from './types';
 
 const THEME = {

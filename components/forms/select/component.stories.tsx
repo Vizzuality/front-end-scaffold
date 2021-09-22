@@ -1,4 +1,5 @@
 import { Story } from '@storybook/react/types-6-0';
+
 import Select from './component';
 import type { SelectProps } from './types';
 

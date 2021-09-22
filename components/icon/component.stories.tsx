@@ -1,5 +1,7 @@
 import { Story } from '@storybook/react/types-6-0';
+
 import DOWNLOAD_SVG from 'svgs/ui/download.svg';
+
 import Icon from './component';
 import { IconProps } from './types';
 

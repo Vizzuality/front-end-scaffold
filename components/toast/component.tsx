@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useRef } from 'react';
+
 import cx from 'classnames';
-
-import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
-
-import Icon from 'components/icon';
 
 import { motion, useAnimation } from 'framer-motion';
 
-import type { ToastProps } from './types';
+import Icon from 'components/icon';
+
+import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
+
 import { THEME } from './constants';
+import type { ToastProps } from './types';
 
 export const Toast: React.FC<ToastProps> = ({
   id,

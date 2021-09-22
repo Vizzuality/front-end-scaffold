@@ -1,12 +1,12 @@
 import { FC, useCallback, useMemo } from 'react';
+
 import cx from 'classnames';
 
-import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
+import THEME from 'components/forms/select/constants/theme';
+import { SelectToggleProps } from 'components/forms/select/types';
 import Icon from 'components/icon';
 
-import THEME from 'components/forms/select/constants/theme';
-
-import { SelectToggleProps } from 'components/forms/select/types';
+import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 
 export const SelectToggle: FC<SelectToggleProps> = ({
   options,

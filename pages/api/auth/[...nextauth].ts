@@ -1,9 +1,10 @@
-import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
 import JWT from 'jsonwebtoken';
-import AUTHENTICATION from 'services/authentication';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import NextAuth from 'next-auth';
 import type { NextAuthOptions } from 'next-auth';
+import Providers from 'next-auth/providers';
+
+import AUTHENTICATION from 'services/authentication';
 
 type CustomCredentials = Credential & {
   password: string;

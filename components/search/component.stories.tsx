@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { Story } from '@storybook/react/types-6-0';
 
 import Search from './component';

@@ -1,15 +1,14 @@
 import { useCallback, useMemo, useState } from 'react';
+
 import { Story } from '@storybook/react/types-6-0';
 
 import Legend from './component';
 import LegendItem from './item';
-
+import ITEMS from './mock';
 import { LegendProps } from './types';
 import LegendTypeBasic from './types/basic';
 import LegendTypeChoropleth from './types/choropleth';
 import LegendTypeGradient from './types/gradient';
-
-import ITEMS from './mock';
 
 export default {
   title: 'Components/Map/Legend',

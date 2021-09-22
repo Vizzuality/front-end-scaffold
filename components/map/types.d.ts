@@ -1,5 +1,6 @@
-import { InteractiveMapProps } from 'react-map-gl/src/components/interactive-map';
 import { ViewportProps } from 'react-map-gl';
+
+import { InteractiveMapProps } from 'react-map-gl/src/components/interactive-map';
 
 export interface MapProps extends InteractiveMapProps {
   /** A function that returns the map instance */

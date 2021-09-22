@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import { Story } from '@storybook/react/types-6-0';
+
 import ZoomControl from './component';
 import { ZoomControlProps } from './types';
 

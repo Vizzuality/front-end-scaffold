@@ -1,6 +1,9 @@
-import { Story } from '@storybook/react/types-6-0';
-import Icon from 'components/icon';
 import { ReactNode } from 'react';
+
+import { Story } from '@storybook/react/types-6-0';
+
+import Icon from 'components/icon';
+
 import HELP_SVG from 'svgs/ui/help.svg';
 
 import Avatar from './component';
