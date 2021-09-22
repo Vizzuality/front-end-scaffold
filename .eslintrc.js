@@ -104,7 +104,7 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: 'layout/**',
+            pattern: 'containers/**',
             group: 'internal',
             position: 'before',
           },
