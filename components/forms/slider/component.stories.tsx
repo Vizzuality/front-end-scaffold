@@ -1,9 +1,11 @@
 import { useRef } from 'react';
+
 import { Story } from '@storybook/react/types-6-0';
+
+import Label from '../label';
 
 import Slider from './component';
 import { SliderProps } from './types';
-import Label from '../label';
 
 export default {
   title: 'Components/Forms/Slider',

@@ -1,7 +1,7 @@
-import SUCCESS_SVG from 'svgs/notifications/success.svg?sprite';
 import ERROR_SVG from 'svgs/notifications/error.svg?sprite';
-import WARNING_SVG from 'svgs/notifications/warning.svg?sprite';
 import INFO_SVG from 'svgs/notifications/info.svg?sprite';
+import SUCCESS_SVG from 'svgs/notifications/success.svg?sprite';
+import WARNING_SVG from 'svgs/notifications/warning.svg?sprite';
 
 import type { ToastTheme } from './types';
 

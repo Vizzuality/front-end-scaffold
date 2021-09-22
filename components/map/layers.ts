@@ -1,6 +1,5 @@
-import GL from '@luma.gl/constants';
 import { TileLayer } from '@deck.gl/geo-layers';
-
+import GL from '@luma.gl/constants';
 import DeckLayers from '@vizzuality/layer-manager-layers-deckgl';
 
 export default [

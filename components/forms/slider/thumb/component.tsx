@@ -1,9 +1,11 @@
 import { FC, useRef } from 'react';
+
 import cx from 'classnames';
-import { useSliderThumb } from '@react-aria/slider';
+
 import { useFocusRing } from '@react-aria/focus';
-import { VisuallyHidden } from '@react-aria/visually-hidden';
+import { useSliderThumb } from '@react-aria/slider';
 import { mergeProps } from '@react-aria/utils';
+import { VisuallyHidden } from '@react-aria/visually-hidden';
 
 import type { ThumbProps } from './types';
 

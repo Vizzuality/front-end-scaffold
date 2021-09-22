@@ -1,10 +1,11 @@
 import { FC, useCallback, useMemo } from 'react';
 
-import SingleSelect from 'components/forms/select/single';
 import MultipleSelect from 'components/forms/select/multi';
+import SingleSelect from 'components/forms/select/single';
+
+import useStatus from '../utils';
 
 import type { SelectProps } from './types';
-import useStatus from '../utils';
 
 export const Select: FC<SelectProps> = (props: SelectProps) => {
   const {

@@ -1,9 +1,11 @@
 import { FC } from 'react';
+
 import cx from 'classnames';
+
 import useStatus from '../utils';
 
-import type { CheckboxProps } from './types';
 import { THEME } from './constants';
+import type { CheckboxProps } from './types';
 
 export const Checkbox: FC<CheckboxProps> = ({
   theme = 'dark',

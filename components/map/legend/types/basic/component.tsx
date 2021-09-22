@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import cx from 'classnames';
 
 import type { LegendTypeBasicProps } from './types';

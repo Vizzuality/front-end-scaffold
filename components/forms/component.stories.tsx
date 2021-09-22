@@ -1,13 +1,15 @@
 import { useRef, ReactNode } from 'react';
+
 import { Form as FormRFF, Field as FieldRFF } from 'react-final-form';
-import Label from 'components/forms/label';
-import Input from 'components/forms/input';
-import Textarea from 'components/forms/textarea';
-import Select from 'components/forms/select';
-import Checkbox from 'components/forms/checkbox';
-import Radio from 'components/forms/radio';
-import Slider from 'components/forms/slider';
+
 import Button from 'components/button';
+import Checkbox from 'components/forms/checkbox';
+import Input from 'components/forms/input';
+import Label from 'components/forms/label';
+import Radio from 'components/forms/radio';
+import Select from 'components/forms/select';
+import Slider from 'components/forms/slider';
+import Textarea from 'components/forms/textarea';
 import { composeValidators, booleanValidator, arrayValidator } from 'components/forms/validations';
 
 export default {

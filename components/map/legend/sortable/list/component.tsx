@@ -1,4 +1,5 @@
 import { Children, cloneElement, FC, isValidElement, useCallback, useMemo, useState } from 'react';
+
 import cx from 'classnames';
 
 import {
@@ -10,15 +11,13 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-
+import { restrictToVerticalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers';
 import {
   arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-
-import { restrictToVerticalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers';
 
 import SortableItem from './item';
 

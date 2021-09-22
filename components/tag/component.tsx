@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import cx from 'classnames';
 
 import type { TagProps } from './types';
