@@ -101,7 +101,8 @@ export const Button: FC<ButtonProps> = ({
 export const LinkButton: Overload = (props: ButtonProps | AnchorProps) => {
   // We consider a link button when href attribute exits
   if (hasHref(props)) {
-    if (props.href.startsWith('http')) {
+    const { href } = props;
+    if (href.startsWith('http')) {
       return <Anchor {...props} />;
     }
     return <LinkAnchor {...props} />;
