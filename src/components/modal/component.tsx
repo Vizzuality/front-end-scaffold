@@ -21,6 +21,7 @@ export const Modal: FC<ModalProps> = ({
   dismissable = true,
   size = 'default',
   children,
+  scrollable = true,
   className,
   onDismiss,
 }: ModalProps) => {
@@ -103,6 +104,15 @@ export const Modal: FC<ModalProps> = ({
         },
       };
 
+  const modalContent = Children.map(children, (child) => {
+    if (isValidElement(child)) {
+      return cloneElement(child, {
+        onDismiss,
+      });
+    }
+    return null;
+  });
+
   usePreventScroll({ isDisabled: !open });
 
   return (
@@ -141,15 +151,8 @@ export const Modal: FC<ModalProps> = ({
                     </div>
                   )}
 
-                  {/* Children */}
-                  {Children.map(children, (child) => {
-                    if (isValidElement(child)) {
-                      return cloneElement(child, {
-                        onDismiss,
-                      });
-                    }
-                    return null;
-                  })}
+                  {!scrollable && modalContent}
+                  {scrollable && <div className="overflow-y-auto flex-grow-1">{modalContent}</div>}
                 </motion.div>
               </div>
             </FocusScope>

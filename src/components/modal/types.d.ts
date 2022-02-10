@@ -24,6 +24,10 @@ export interface ModalProps {
    */
   className?: string;
   /**
+   * Whether the modal's content should be scrollable if it overflows. Default to `true`.
+   */
+  scrollable?: boolean;
+  /**
    * Callback executed when the modal is dismissed by clicking on the overlay, the close button or
    * pressing the escape key
    */
