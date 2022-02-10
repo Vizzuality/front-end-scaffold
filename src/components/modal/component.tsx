@@ -6,6 +6,7 @@ import { useDialog } from '@react-aria/dialog';
 import { FocusScope } from '@react-aria/focus';
 import { useOverlay, usePreventScroll, useModal, OverlayContainer } from '@react-aria/overlays';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useMediaMatch } from 'rooks';
 
 import Icon from 'components/icon';
 
@@ -36,6 +37,72 @@ export const Modal: FC<ModalProps> = ({
   const { modalProps } = useModal();
   const { dialogProps } = useDialog({ 'aria-label': title }, containerRef);
 
+  // 640px corresponds to the Tailwind's sm breakpoint
+  const isSmViewport = useMediaMatch('(min-width: 640px)');
+
+  const overlayFramerVariants = {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      transition: {
+        delay: 0,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        delay: 0.125,
+      },
+    },
+  };
+
+  const contentFramerVariants = isSmViewport
+    ? {
+        initial: {
+          opacity: 0,
+          x: '-50%',
+          y: '-60%',
+        },
+        animate: {
+          opacity: 1,
+          x: '-50%',
+          y: '-50%',
+          transition: {
+            delay: 0.125,
+          },
+        },
+        exit: {
+          opacity: 0,
+          x: '-50%',
+          y: '-60%',
+          transition: {
+            delay: 0,
+          },
+        },
+      }
+    : {
+        initial: {
+          opacity: 0,
+          y: '-60%',
+        },
+        animate: {
+          opacity: 1,
+          y: '-50%',
+          transition: {
+            delay: 0.125,
+          },
+        },
+        exit: {
+          opacity: 0,
+          y: '-60%',
+          transition: {
+            delay: 0,
+          },
+        },
+      };
+
   usePreventScroll({ isDisabled: !open });
 
   return (
@@ -43,47 +110,19 @@ export const Modal: FC<ModalProps> = ({
       {open && (
         <OverlayContainer>
           <motion.div
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-              transition: {
-                delay: 0,
-              },
-            }}
-            exit={{
-              opacity: 0,
-              transition: {
-                delay: 0.125,
-              },
-            }}
+            variants={overlayFramerVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
             className={cx({ [OVERLAY_CLASSES]: true })}
           >
             <FocusScope contain restoreFocus autoFocus>
               <div {...overlayProps} {...dialogProps} {...modalProps} ref={containerRef}>
                 <motion.div
-                  initial={{
-                    opacity: 0,
-                    y: '-60%',
-                    x: '-50%',
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: '-50%',
-                    x: '-50%',
-                    transition: {
-                      delay: 0.125,
-                    },
-                  }}
-                  exit={{
-                    opacity: 0,
-                    y: '-60%',
-                    x: '-50%',
-                    transition: {
-                      delay: 0,
-                    },
-                  }}
+                  variants={contentFramerVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
                   className={cx({ [CONTENT_CLASSES[size]]: true, [className]: !!className })}
                   style={{
                     maxHeight: '90%',
