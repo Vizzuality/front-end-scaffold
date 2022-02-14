@@ -1,10 +1,8 @@
 import { useCallback, useState } from 'react';
 
+import { useMap, ViewState, MapProvider } from 'react-map-gl';
+
 import { Story } from '@storybook/react/types-6-0';
-// Layer manager
-import PluginMapboxGl from '@vizzuality/layer-manager-plugin-mapboxgl';
-import CartoProvider from '@vizzuality/layer-manager-provider-carto';
-import { LayerManager, Layer } from '@vizzuality/layer-manager-react';
 
 // Controls
 import Controls from 'components/map/controls';
@@ -13,10 +11,7 @@ import ZoomControl from 'components/map/controls/zoom';
 
 // Map
 import Map from './component';
-import LAYERS from './layers';
-import { MapProps } from './types';
-
-const cartoProvider = new CartoProvider();
+import { Bounds, CustomMapProps } from './types';
 
 export default {
   title: 'Components/Map',
@@ -52,79 +47,44 @@ export default {
       },
     },
   },
+  decorators: [
+    (MapStory: Story) => (
+      <MapProvider>
+        <MapStory />
+      </MapProvider>
+    ),
+  ],
 };
 
-const Template: Story<MapProps> = (args: MapProps) => {
-  const { bounds: aBounds } = args;
-  const minZoom = 2;
-  const maxZoom = 10;
-  const [viewport, setViewport] = useState({});
-  const [bounds, setBounds] = useState(aBounds);
+const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
+  const { id, bounds, maxZoom } = args;
+  const [viewState, setViewState] = useState<Partial<ViewState>>({});
+  const { [id]: mapRef } = useMap();
 
-  const handleViewportChange = useCallback((vw) => {
-    setViewport(vw);
+  const handleViewState = useCallback((vw) => {
+    setViewState(vw);
   }, []);
 
-  const handleZoomChange = useCallback(
-    (zoom) => {
-      setViewport({
-        ...viewport,
-        zoom,
-        transitionDuration: 500,
-      });
+  const handleFitBoundsChange = useCallback(
+    (_bounds: Bounds) => {
+      const { bbox, options } = _bounds;
+      mapRef.fitBounds(
+        [
+          [bbox[0], bbox[1]],
+          [bbox[2], bbox[3]],
+        ],
+        options
+      );
     },
-    [viewport]
+    [mapRef]
   );
 
-  const handleFitBoundsChange = useCallback((b) => {
-    setBounds(b);
-  }, []);
-
   return (
-    <div className="relative w-full h-96">
-      <Map
-        bounds={bounds}
-        minZoom={minZoom}
-        maxZoom={maxZoom}
-        viewport={viewport}
-        mapboxApiAccessToken={process.env.STORYBOOK_MAPBOX_API_TOKEN}
-        // mapStyle="mapbox://styles/marxan/ckn4fr7d71qg817kgd9vuom4s"
-        onMapViewportChange={handleViewportChange}
-      >
-        {(map) => (
-          <LayerManager
-            map={map}
-            plugin={PluginMapboxGl}
-            providers={{
-              [cartoProvider.name]: cartoProvider.handleData,
-            }}
-          >
-            {LAYERS.map((l) => (
-              <Layer key={l.id} {...l} />
-            ))}
-          </LayerManager>
-        )}
-      </Map>
-
+    <div className="relative w-full h-screen">
+      <Map id={id} viewState={viewState} onViewStateChange={handleViewState} maxZoom={maxZoom} />
       <Controls>
-        <ZoomControl
-          viewport={{
-            ...viewport,
-            minZoom,
-            maxZoom,
-          }}
-          onZoomChange={handleZoomChange}
-        />
-
-        <FitBoundsControl
-          bounds={{
-            ...bounds,
-            viewportOptions: {
-              transitionDuration: 1500,
-            },
-          }}
-          onFitBoundsChange={handleFitBoundsChange}
-        />
+        <ZoomControl mapRef={mapRef} />
+        <FitBoundsControl bounds={bounds} onFitBoundsChange={handleFitBoundsChange} />
       </Controls>
     </div>
   );
@@ -132,15 +92,14 @@ const Template: Story<MapProps> = (args: MapProps) => {
 
 export const Default = Template.bind({});
 Default.args = {
+  id: 'map-storybook',
   className: '',
   viewport: {},
   bounds: {
     bbox: [10.5194091796875, 43.6499881760459, 10.9588623046875, 44.01257086123085],
     options: {
-      padding: 50,
-    },
-    viewportOptions: {
-      transitionDuration: 0,
+      padding: 250,
+      duration: 5000,
     },
   },
   onMapViewportChange: (viewport) => {
@@ -152,4 +111,5 @@ Default.args = {
   onMapLoad: ({ map, mapContainer }) => {
     console.info('onMapLoad: ', map, mapContainer);
   },
+  maxZoom: 4,
 };
