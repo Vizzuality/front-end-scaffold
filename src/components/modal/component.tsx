@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useMediaMatch } from 'rooks';
 
 import Icon from 'components/icon';
+import { screens } from 'styles.config';
 
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
 
@@ -38,8 +39,7 @@ export const Modal: FC<ModalProps> = ({
   const { modalProps } = useModal();
   const { dialogProps } = useDialog({ 'aria-label': title }, containerRef);
 
-  // 640px corresponds to the Tailwind's sm breakpoint
-  const isSmViewport = useMediaMatch('(min-width: 640px)');
+  const isSmViewport = useMediaMatch(`(min-width: ${screens.sm})`);
 
   const overlayFramerVariants = {
     initial: {
