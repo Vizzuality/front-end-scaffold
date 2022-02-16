@@ -86,10 +86,12 @@ export const Modal: FC<ModalProps> = ({
     : {
         initial: {
           opacity: 0,
+          x: '0',
           y: '-60%',
         },
         animate: {
           opacity: 1,
+          x: '0',
           y: '-50%',
           transition: {
             delay: 0.125,
@@ -97,6 +99,7 @@ export const Modal: FC<ModalProps> = ({
         },
         exit: {
           opacity: 0,
+          x: '0',
           y: '-60%',
           transition: {
             delay: 0,
