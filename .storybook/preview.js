@@ -3,6 +3,8 @@ import React from 'react';
 import { themes } from '@storybook/theming';
 import { OverlayProvider } from '@react-aria/overlays';
 
+import { MediaContextProvider } from 'components/media-query';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
@@ -24,7 +26,9 @@ export const decorators = [
   (Story) => {
     return (
       <OverlayProvider>
-        <div>{Story()}</div>
+        <MediaContextProvider>
+          <div>{Story()}</div>
+        </MediaContextProvider>
       </OverlayProvider>
     );
   },

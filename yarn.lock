@@ -5,6 +5,15 @@ __metadata:
   version: 5
   cacheKey: 8
 
+"@artsy/fresnel@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "@artsy/fresnel@npm:3.4.0"
+  peerDependencies:
+    react: ">=16.3.0 <18.0.0"
+  checksum: fb215c7466c7dbb1a8217fa789029e2946bdc7aee86352ff90a9f4bfa47de4e6297717ec1af61da8093d71e56a0d34af1c3029fca99470becc36db831f7aa359
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:7.12.11":
   version: 7.12.11
   resolution: "@babel/code-frame@npm:7.12.11"
@@ -10278,6 +10287,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "front-end-scaffold@workspace:."
   dependencies:
+    "@artsy/fresnel": ^3.4.0
     "@babel/core": ^7.14.2
     "@deck.gl/core": 8.4.16
     "@deck.gl/geo-layers": 8.4.16
@@ -10357,7 +10367,6 @@ __metadata:
     react-popper: ^2.2.5
     react-query: ^3.16.0
     react-redux: ^7.2.4
-    rooks: ^5.10.0
     start-server-and-test: ^1.12.1
     svg-sprite-loader: ^6.0.6
     svgo: 1.3.2
@@ -15496,15 +15505,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"raf@npm:^3.4.1":
-  version: 3.4.1
-  resolution: "raf@npm:3.4.1"
-  dependencies:
-    performance-now: ^2.1.0
-  checksum: 50ba284e481c8185dbcf45fc4618ba3aec580bb50c9121385d5698cb6012fe516d2015b1df6dd407a7b7c58d44be8086108236affbce1861edd6b44637c8cd52
-  languageName: node
-  linkType: hard
-
 "ramda@npm:^0.21.0":
   version: 0.21.0
   resolution: "ramda@npm:0.21.0"
@@ -16479,19 +16479,6 @@ __metadata:
     hash-base: ^3.0.0
     inherits: ^2.0.1
   checksum: 006accc40578ee2beae382757c4ce2908a826b27e2b079efdcd2959ee544ddf210b7b5d7d5e80467807604244e7388427330f5c6d4cd61e6edaddc5773ccc393
-  languageName: node
-  linkType: hard
-
-"rooks@npm:^5.10.0":
-  version: 5.10.0
-  resolution: "rooks@npm:5.10.0"
-  dependencies:
-    lodash.debounce: ^4.0.8
-    raf: ^3.4.1
-  peerDependencies:
-    react: ^16.8.0  || ^17.0.0
-    react-dom: ^16.8.0  || ^17.0.0
-  checksum: 67ef3402f0e2f318e02d6426b8c93500fc60d094f9fe0649b048e40c3271e5cdb2ed71806bf38df0f6378314fd8a5fe2760ad234c82a8451017e8b98b34d5d3c
   languageName: node
   linkType: hard
 
