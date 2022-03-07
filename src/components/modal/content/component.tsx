@@ -1,4 +1,4 @@
-import { Children, FC, cloneElement, isValidElement, useRef } from 'react';
+import { FC, useRef } from 'react';
 
 import cx from 'classnames';
 
@@ -80,15 +80,6 @@ export const ModalContent: FC<ModalContentProps> = ({
     },
   };
 
-  const modalContent = Children.map(children, (child) => {
-    if (isValidElement(child)) {
-      return cloneElement(child, {
-        onDismiss,
-      });
-    }
-    return null;
-  });
-
   return (
     <motion.div
       variants={overlayFramerVariants}
@@ -122,8 +113,8 @@ export const ModalContent: FC<ModalContentProps> = ({
               </div>
             )}
 
-            {!scrollable && modalContent}
-            {scrollable && <div className="overflow-y-auto flex-grow-1">{modalContent}</div>}
+            {!scrollable && children}
+            {scrollable && <div className="overflow-y-auto flex-grow-1">{children}</div>}
           </motion.div>
         </div>
       </FocusScope>
