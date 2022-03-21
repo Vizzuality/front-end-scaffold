@@ -19,6 +19,9 @@
     "cypress:unit:run": "cypress run --config-file cypress-unit.json",
     "postinstall": "husky install"
   },
+  "engines": {
+    "node": "~16.14 || ~14.19"
+  },
   "dependencies": {
     "@artsy/fresnel": "^3.4.0",
     "@deck.gl/core": "8.4.16",
