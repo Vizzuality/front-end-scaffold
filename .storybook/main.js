@@ -13,7 +13,7 @@ module.exports = {
     // RESOLVE node_modules
     // If you want to add a directory to search in that takes precedence over node_modules/:
     // https://webpack.js.org/configuration/resolve/#resolvemodules
-    config.resolve.modules = [path.resolve(__dirname, '..'), 'node_modules'];
+    config.resolve.modules = [path.resolve(__dirname, '../src'), 'node_modules'];
 
     // *************************
     // SVGS
