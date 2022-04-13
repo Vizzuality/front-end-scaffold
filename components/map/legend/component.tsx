@@ -40,7 +40,7 @@ export const Legend: FC<LegendProps> = ({
         className="relative flex items-center w-full px-5 py-3 space-x-2 text-xs text-white uppercase font-heading"
         onClick={onToggleActive}
       >
-        <Icon icon={LEGEND_SVG} className="w-4 h-4 text-gray-300" />
+        <Icon icon={LEGEND_SVG} className="w-4 h-4 text-slate-300" />
         <span>Legend</span>
 
         <Icon

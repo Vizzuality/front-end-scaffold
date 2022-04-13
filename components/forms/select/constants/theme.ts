@@ -1,37 +1,37 @@
 export default {
   dark: {
-    container: 'text-white bg-transparent ring-1 ring-gray-400 rounded-3xl',
-    open: 'ring-2 ring-blue-400 bg-gray-700 text-white rounded-2xl',
-    closed: 'border-gray-400 text-gray-400',
+    container: 'text-white bg-transparent ring-1 ring-slate-400 rounded-3xl',
+    open: 'ring-2 ring-blue-400 bg-slate-700 text-white rounded-2xl',
+    closed: 'border-slate-400 text-slate-400',
     prefix: {
       base: 'text-white',
     },
     icon: {
       closed: 'text-white',
       open: 'text-blue-500 transform rotate-180',
-      disabled: 'text-gray-400',
+      disabled: 'text-slate-400',
     },
     item: {
-      base: 'text-sm text-gray-300',
-      highlighted: 'text-sm bg-gray-700 text-white',
+      base: 'text-sm text-slate-300',
+      highlighted: 'text-sm bg-slate-700 text-white',
       disabled: 'text-sm opacity-50 pointer-events-none',
     },
   },
   light: {
-    container: 'text-gray-600 bg-transparent ring-1 ring-gray-400 rounded-3xl',
-    open: 'ring-2 ring-blue-400 bg-white text-gray-600 rounded-2xl',
-    closed: 'text-gray-400',
+    container: 'text-slate-600 bg-transparent ring-1 ring-slate-400 rounded-3xl',
+    open: 'ring-2 ring-blue-400 bg-white text-slate-600 rounded-2xl',
+    closed: 'text-slate-400',
     prefix: {
-      base: 'text-gray-800',
+      base: 'text-slate-800',
     },
     icon: {
-      closed: 'text-gray-600',
+      closed: 'text-slate-600',
       open: 'text-blue-500 transform rotate-180',
-      disabled: 'text-gray-400',
+      disabled: 'text-slate-400',
     },
     item: {
-      base: 'text-sm text-gray-400',
-      highlighted: 'text-sm bg-gray-100 text-gray-800',
+      base: 'text-sm text-slate-400',
+      highlighted: 'text-sm bg-slate-100 text-slate-800',
       disabled: 'text-sm opacity-50 pointer-events-none',
     },
   },

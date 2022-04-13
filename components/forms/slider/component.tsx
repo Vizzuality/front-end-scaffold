@@ -18,14 +18,14 @@ const THEME = {
     output:
       'absolute bottom-1 transform -translate-y-full -translate-x-1/2 text-sm text-white border border-t-0 border-l-0 border-r-0 border-dashed border-white',
     filledTrack: 'absolute left-0 h-1.5 bg-white rounded',
-    track: 'w-full h-1.5 bg-gray-300 rounded opacity-20',
+    track: 'w-full h-1.5 bg-slate-300 rounded opacity-20',
   },
   light: {
     base: 'w-full h-12 pt-8 touch-action-none',
     output:
-      'absolute bottom-1 transform -translate-y-full -translate-x-1/2 text-sm text-gray-800 border border-t-0 border-l-0 border-r-0 border-dashed border-gray-800',
-    filledTrack: 'absolute left-0 h-1.5 bg-gray-800 rounded',
-    track: 'w-full h-1.5 bg-gray-300 rounded opacity-20',
+      'absolute bottom-1 transform -translate-y-full -translate-x-1/2 text-sm text-slate-800 border border-t-0 border-l-0 border-r-0 border-dashed border-slate-800',
+    filledTrack: 'absolute left-0 h-1.5 bg-slate-800 rounded',
+    track: 'w-full h-1.5 bg-slate-300 rounded opacity-20',
   },
 };
 

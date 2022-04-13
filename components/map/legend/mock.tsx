@@ -6,7 +6,7 @@ const ITEMS = [
   {
     id: 'XXX',
     name: 'Included areas',
-    icon: <Icon icon={HEXAGON_SVG} className="w-3.5 h-3.5 mt-1 text-purple-500" />,
+    icon: <Icon icon={HEXAGON_SVG} className="w-3.5 h-3.5 mt-1 text-violet-500" />,
     description:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus minus eligendi doloremque unde, atque maxime dolore officiis quia architecto fugiat, dolorem animi vel! Velit minus facere maxime consequuntur iure. Nisi!',
   },

@@ -10,19 +10,19 @@ const THEME = {
   dark: {
     base: 'leading-tight text-white bg-transparent border rounded',
     status: {
-      none: 'border-gray-500',
+      none: 'border-slate-500',
       valid: 'border-green-500',
       error: 'border-red-500',
-      disabled: 'border-gray-700 opacity-50',
+      disabled: 'border-slate-700 opacity-50',
     },
   },
   light: {
-    base: 'leading-tight text-gray-800 bg-white border rounded',
+    base: 'leading-tight text-slate-800 bg-white border rounded',
     status: {
-      none: 'border-gray-500',
+      none: 'border-slate-500',
       valid: 'border-green-500',
       error: 'border-red-500',
-      disabled: 'border-gray-700 opacity-50',
+      disabled: 'border-slate-700 opacity-50',
     },
   },
 };

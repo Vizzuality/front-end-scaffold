@@ -21,7 +21,7 @@ Default.args = {
 export const Yellow = Template.bind({});
 Yellow.args = {
   children: 'Species',
-  className: 'text-black bg-yellow-300',
+  className: 'text-black bg-amber-300',
 };
 
 export const Blue = Template.bind({});

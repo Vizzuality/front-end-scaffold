@@ -20,10 +20,10 @@ export const ConfirmationPrompt: FC<ConfirmationPromptProps> = ({
 }: ConfirmationPromptProps) => (
   <Modal open={open} title={title} size="narrow" dismissable={dismissible} onDismiss={onDismiss}>
     <div className="px-8 py-4">
-      <div className="mt-8 text-xl font-medium text-gray-800 leading-1 sm:mt-0 sm:pr-32 font-heading">
+      <div className="mt-8 text-xl font-medium text-slate-800 leading-1 sm:mt-0 sm:pr-32 font-heading">
         {title}
       </div>
-      <p className="mt-4 text-sm text-gray-400 sm:pr-32">{description}</p>
+      <p className="mt-4 text-sm text-slate-400 sm:pr-32">{description}</p>
       <div
         className={classnames({
           'flex justify-start items-end': true,

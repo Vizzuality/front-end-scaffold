@@ -24,7 +24,7 @@ export const LegendItem: FC<LegendItemProps> = ({
       </div>
     </div>
 
-    <div className="text-sm text-gray-300">{description}</div>
+    <div className="text-sm text-slate-300">{description}</div>
 
     {children && <div className="mt-2.5">{children}</div>}
   </div>
