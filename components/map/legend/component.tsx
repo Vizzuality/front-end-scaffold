@@ -29,7 +29,7 @@ export const Legend: FC<LegendProps> = ({
   return (
     <div
       className={cx({
-        'bg-black rounded-3xl flex flex-col flex-grow': true,
+        'bg-black rounded-3xl flex flex-col grow': true,
         [className]: !!className,
       })}
     >
@@ -55,7 +55,7 @@ export const Legend: FC<LegendProps> = ({
 
       {active && (
         <div
-          className="relative flex flex-col flex-grow overflow-hidden rounded-3xl"
+          className="relative flex flex-col overflow-hidden grow rounded-3xl"
           style={{
             maxHeight,
           }}
