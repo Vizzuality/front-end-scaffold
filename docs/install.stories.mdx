@@ -4,6 +4,22 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Install
 
+To install Yarn, enable `corepack` first:
+
+```bash
+corepack enable
+```
+
+and install the version indicated in the [package.json](https://github.com/Vizzuality/front-end-scaffold/blob/b1640d4743f5299701e7b8c22bcc332726ec57b4/package.json#L116):
+
+```bash
+yarn
+```
+
+This process will install the Yarn binary and the dependencies of the projects listed in your `package.json`.
+
+*Note: these instructions assume the project uses Node >= 16, for other scenarios check [Yarn documentation](https://yarnpkg.com/getting-started/install)*
+
 ## 1. ENVIRONMENT VARIABLES
 
 create a `.env.local` at the root of the app
