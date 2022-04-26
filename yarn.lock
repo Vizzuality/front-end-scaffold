@@ -5,6 +5,15 @@ __metadata:
   version: 5
   cacheKey: 8
 
+"@artsy/fresnel@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "@artsy/fresnel@npm:3.4.0"
+  peerDependencies:
+    react: ">=16.3.0 <18.0.0"
+  checksum: fb215c7466c7dbb1a8217fa789029e2946bdc7aee86352ff90a9f4bfa47de4e6297717ec1af61da8093d71e56a0d34af1c3029fca99470becc36db831f7aa359
+  languageName: node
+  linkType: hard
+
 "@babel/code-frame@npm:7.12.11":
   version: 7.12.11
   resolution: "@babel/code-frame@npm:7.12.11"
@@ -10278,6 +10287,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "front-end-scaffold@workspace:."
   dependencies:
+    "@artsy/fresnel": ^3.4.0
     "@babel/core": ^7.14.2
     "@deck.gl/core": 8.4.16
     "@deck.gl/geo-layers": 8.4.16

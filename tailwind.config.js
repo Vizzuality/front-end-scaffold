@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const forms = require('@tailwindcss/forms');
 
-const lineClamp = require('./src/lib/tailwind/line-clamp');
+const lineClamp = require('./lib/tailwind/line-clamp');
+const styles = require('./styles.config');
 
 module.exports = {
   purge: {
@@ -10,6 +11,7 @@ module.exports = {
   },
   darkMode: false, // or 'media' or 'class'
   theme: {
+    ...styles,
     extend: {},
   },
   variants: {

@@ -20,6 +20,7 @@
     "postinstall": "husky install"
   },
   "dependencies": {
+    "@artsy/fresnel": "^3.4.0",
     "@deck.gl/core": "8.4.16",
     "@deck.gl/geo-layers": "8.4.16",
     "@deck.gl/layers": "8.4.16",

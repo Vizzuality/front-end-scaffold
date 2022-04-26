@@ -7,6 +7,7 @@ import { OverlayProvider } from '@react-aria/overlays';
 import { Provider as AuthenticationProvider } from 'next-auth/client';
 import { Hydrate } from 'react-query/hydration';
 
+import { MediaContextProvider } from 'components/media-query';
 import store from 'store';
 
 import 'styles/globals.css';
@@ -25,7 +26,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => (
           }}
         >
           <OverlayProvider>
-            <Component {...pageProps} />
+            <MediaContextProvider>
+              <Component {...pageProps} />
+            </MediaContextProvider>
           </OverlayProvider>
         </AuthenticationProvider>
       </Hydrate>
