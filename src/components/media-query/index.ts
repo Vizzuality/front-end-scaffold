@@ -1,5 +1,4 @@
 import { createMedia } from '@artsy/fresnel';
-
 import { screens } from 'styles.config';
 
 const ExampleAppMedia = createMedia<
