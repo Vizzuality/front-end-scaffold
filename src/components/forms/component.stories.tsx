@@ -17,7 +17,7 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } },
 };
 
-export const Form = (): ReactNode => {
+export function Form(): ReactNode {
   const sliderLabelRef = useRef(null);
 
   return (
@@ -253,4 +253,4 @@ export const Form = (): ReactNode => {
       )}
     </FormRFF>
   );
-};
+}

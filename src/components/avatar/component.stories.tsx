@@ -25,24 +25,26 @@ Default.args = {
   bgImage: '/images/avatar.png',
 };
 
-export const Groups = (): ReactNode => (
-  <ul className="flex">
-    <li>
-      <Avatar bgImage="/images/avatar.png" />
-    </li>
-    <li className="-ml-3">
-      <Avatar bgImage="/images/avatar.png" />
-    </li>
-    <li className="-ml-3">
-      <Avatar bgImage="/images/avatar.png" />
-    </li>
-    <li className="-ml-3">
-      <Avatar bgImage="/images/avatar.png" />
-    </li>
-    <li className="ml-3">
-      <Avatar className="bg-white">
-        <Icon icon={HELP_SVG} className="w-5 h-5" />
-      </Avatar>
-    </li>
-  </ul>
-);
+export function Groups(): ReactNode {
+  return (
+    <ul className="flex">
+      <li>
+        <Avatar bgImage="/images/avatar.png" />
+      </li>
+      <li className="-ml-3">
+        <Avatar bgImage="/images/avatar.png" />
+      </li>
+      <li className="-ml-3">
+        <Avatar bgImage="/images/avatar.png" />
+      </li>
+      <li className="-ml-3">
+        <Avatar bgImage="/images/avatar.png" />
+      </li>
+      <li className="ml-3">
+        <Avatar className="bg-white">
+          <Icon icon={HELP_SVG} className="w-5 h-5" />
+        </Avatar>
+      </li>
+    </ul>
+  );
+}

@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-export interface SortableItemProps {
+export type SortableItemProps = {
   id: string;
   children: ReactNode;
-}
+};
