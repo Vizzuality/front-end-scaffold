@@ -1795,16 +1795,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dnd-kit/sortable@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@dnd-kit/sortable@npm:3.0.1"
+"@dnd-kit/sortable@npm:6.0.1":
+  version: 6.0.1
+  resolution: "@dnd-kit/sortable@npm:6.0.1"
   dependencies:
-    "@dnd-kit/core": ^3.0.0
-    "@dnd-kit/utilities": ^2.0.0
+    "@dnd-kit/utilities": ^3.1.0
     tslib: ^2.0.0
   peerDependencies:
+    "@dnd-kit/core": ^5.0.2
     react: ">=16.8.0"
-  checksum: b8831c264167fd7f8a42e4e07b9660132b1699c34554b46406a611d7e6327982763ffe7b33d538e4058356bfdeedb7866608fbb3933f3c8b9028f9ff8baf9b62
+  checksum: beb80a229a50885a654ff15ee98af3b34b02826cadd6bc2f94b79dd103a140f70c35d0a3bf422adf87327573ff15dc3e26e9e5769e0f67b68943d8eaa9560183
   languageName: node
   linkType: hard
 
@@ -1814,6 +1814,17 @@ __metadata:
   dependencies:
     tslib: ^2.0.0
   checksum: 10173fc8d6fa8e46394ac2b739e443a3254e31854cbdbe810782bb7b6f4b4dd948752c3114479827c0da757e6616dd44a70394b6e8524d807514db0be192b18d
+  languageName: node
+  linkType: hard
+
+"@dnd-kit/utilities@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "@dnd-kit/utilities@npm:3.1.0"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: b9cb87dd4a26389aeb667d6b11e3854e00479e4f2842f36d9abc4dfee67fd06e0f75525ab9475462d57b055094a7723169c95362affdd84b0e656b96424c0f8c
   languageName: node
   linkType: hard
 
@@ -3400,27 +3411,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-aria/slider@npm:3.0.2":
-  version: 3.0.2
-  resolution: "@react-aria/slider@npm:3.0.2"
-  dependencies:
-    "@babel/runtime": ^7.6.2
-    "@react-aria/focus": ^3.3.0
-    "@react-aria/i18n": ^3.3.1
-    "@react-aria/interactions": ^3.4.0
-    "@react-aria/label": ^3.1.2
-    "@react-aria/utils": ^3.8.0
-    "@react-stately/radio": ^3.3.1
-    "@react-stately/slider": ^3.0.2
-    "@react-types/radio": ^3.1.1
-    "@react-types/slider": ^3.0.1
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1
-  checksum: df0a3081047cdf9afbd01b5a48e79ddd93d48713480c38daecc591a4e99669ec48d7a864d57472e2adb2816913eede24abaf9045d0805b397b1606108a272779
-  languageName: node
-  linkType: hard
-
-"@react-aria/slider@npm:^3.0.2":
+"@react-aria/slider@npm:3.0.7, @react-aria/slider@npm:^3.0.2":
   version: 3.0.7
   resolution: "@react-aria/slider@npm:3.0.7"
   dependencies:
@@ -3688,7 +3679,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-stately/radio@npm:^3.3.1, @react-stately/radio@npm:^3.3.5":
+"@react-stately/radio@npm:^3.3.5":
   version: 3.3.5
   resolution: "@react-stately/radio@npm:3.3.5"
   dependencies:
@@ -3761,22 +3752,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-stately/slider@npm:3.0.2":
-  version: 3.0.2
-  resolution: "@react-stately/slider@npm:3.0.2"
-  dependencies:
-    "@babel/runtime": ^7.6.2
-    "@react-aria/i18n": ^3.3.1
-    "@react-aria/utils": ^3.8.0
-    "@react-stately/utils": ^3.2.1
-    "@react-types/slider": ^3.0.1
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1
-  checksum: 8b85d6183708b2f36e542f946bbfa1f7bc728617cb3b3886405fed74360747d6158547556b43a3bf05dbea1a29fd7a626e04da3e2dcdd4f5c016161469521d97
-  languageName: node
-  linkType: hard
-
-"@react-stately/slider@npm:^3.0.2, @react-stately/slider@npm:^3.0.7":
+"@react-stately/slider@npm:3.0.7, @react-stately/slider@npm:^3.0.7":
   version: 3.0.7
   resolution: "@react-stately/slider@npm:3.0.7"
   dependencies:
@@ -3981,7 +3957,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/radio@npm:^3.1.1, @react-types/radio@npm:^3.1.5":
+"@react-types/radio@npm:^3.1.5":
   version: 3.1.5
   resolution: "@react-types/radio@npm:3.1.5"
   dependencies:
@@ -4034,7 +4010,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/slider@npm:^3.0.1, @react-types/slider@npm:^3.0.5":
+"@react-types/slider@npm:^3.0.5":
   version: 3.0.5
   resolution: "@react-types/slider@npm:3.0.5"
   dependencies:
@@ -10676,7 +10652,7 @@ __metadata:
     "@deck.gl/mesh-layers": 8.4.16
     "@dnd-kit/core": 3.0.3
     "@dnd-kit/modifiers": 2.0.0
-    "@dnd-kit/sortable": 3.0.1
+    "@dnd-kit/sortable": 6.0.1
     "@dnd-kit/utilities": 2.0.0
     "@luma.gl/constants": 8.4.5
     "@math.gl/web-mercator": 3.4.2
@@ -10688,12 +10664,12 @@ __metadata:
     "@react-aria/interactions": 3.4.0
     "@react-aria/overlays": 3.6.3
     "@react-aria/searchfield": 3.1.3
-    "@react-aria/slider": 3.0.2
+    "@react-aria/slider": 3.0.7
     "@react-aria/utils": 3.8.0
     "@react-aria/visually-hidden": 3.2.2
     "@react-stately/overlays": 3.1.2
     "@react-stately/searchfield": 3.1.2
-    "@react-stately/slider": 3.0.2
+    "@react-stately/slider": 3.0.7
     "@react-types/searchfield": 3.1.1
     "@reduxjs/toolkit": 1.5.1
     "@storybook/addon-actions": 6.4.19
