@@ -20,7 +20,7 @@
     "postinstall": "husky install"
   },
   "engines": {
-    "node": "~16.14 || ~14.19"
+    "node": "~16.14"
   },
   "dependencies": {
     "@artsy/fresnel": "^3.4.0",
