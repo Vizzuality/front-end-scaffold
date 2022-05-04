@@ -3,6 +3,10 @@ const forms = require('@tailwindcss/forms');
 const lineClamp = require('@tailwindcss/line-clamp');
 
 module.exports = {
-  content: ['./**/*.ts', './**/*.tsx'],
+  content: [
+    './src/components/**/*.@(tsx|ts)',
+    './src/containers/**/*.@(tsx|ts)',
+    './src/pages/**/*.tsx',
+  ],
   plugins: [aspectRatio, forms, lineClamp],
 };
