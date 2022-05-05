@@ -5,6 +5,8 @@ import { OverlayProvider } from '@react-aria/overlays';
 
 import { MediaContextProvider } from 'components/media-query';
 
+import '../src/styles/globals.css';
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   options: {

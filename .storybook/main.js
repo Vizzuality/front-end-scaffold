@@ -6,6 +6,7 @@ module.exports = {
     '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
     '../src/containers/**/*.stories.@(js|jsx|ts|tsx)',
   ],
+  staticDirs: ['../public'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
@@ -39,7 +40,7 @@ module.exports = {
      */
     config.resolve.alias = {
       ...config.resolve?.alias,
-      '@': [path.resolve(__dirname, '../')],
+      '@': [path.resolve(__dirname, '../src/'), path.resolve(__dirname, '../')],
     };
 
     /**
