@@ -114,7 +114,7 @@ export const ModalContent: FC<ModalContentProps> = ({
             )}
 
             {!scrollable && children}
-            {scrollable && <div className="overflow-y-auto flex-grow-1">{children}</div>}
+            {scrollable && <div className="overflow-y-auto grow">{children}</div>}
           </motion.div>
         </div>
       </FocusScope>

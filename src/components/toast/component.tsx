@@ -76,10 +76,10 @@ export const Toast: React.FC<ToastProps> = ({
             });
           }}
         >
-          <div className="flex flex-grow">
+          <div className="flex grow">
             <div
               className={cx({
-                'relative w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center shadow-md overflow-hidden z-20':
+                'relative w-10 h-10 rounded-xl shrink-0 flex items-center justify-center shadow-md overflow-hidden z-20':
                   true,
               })}
             >
@@ -103,12 +103,12 @@ export const Toast: React.FC<ToastProps> = ({
               <Icon icon={ICON} className="relative z-20 self-center w-5 h-5" />
             </div>
 
-            <div className="flex-grow ml-2.5">{content}</div>
+            <div className="grow ml-2.5">{content}</div>
           </div>
 
           <button
             type="button"
-            className="flex items-center justify-center flex-shrink-0 w-10 h-10 ml-5"
+            className="flex items-center justify-center shrink-0 w-10 h-10 ml-5"
             onClick={handleDismiss}
           >
             <Icon icon={CLOSE_SVG} className="w-3 h-3" />
