@@ -2,14 +2,15 @@ import { useMemo } from 'react';
 
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 
-import { useSession } from 'next-auth/client';
+import { useSession } from 'next-auth/react';
 
 import USERS from 'services/users';
 
 import { UseSaveMeProps, SaveMeProps } from './types';
 
 export default function useMe() {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
   const query = useQuery(
     'me',
@@ -43,7 +44,7 @@ export function useSaveMe({
   },
 }: UseSaveMeProps) {
   const queryClient = useQueryClient();
-  const [session] = useSession();
+  const { data: session } = useSession();
 
   const saveMe = ({ data }: SaveMeProps) =>
     USERS.request({

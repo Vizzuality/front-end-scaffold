@@ -1,15 +1,9 @@
 import JWT from 'jsonwebtoken';
-import type { NextApiRequest, NextApiResponse } from 'next';
 import NextAuth from 'next-auth';
 import type { NextAuthOptions } from 'next-auth';
-import Providers from 'next-auth/providers';
+import Credentials from 'next-auth/providers/credentials';
 
 import AUTHENTICATION from 'services/authentication';
-
-type CustomCredentials = Credential & {
-  password: string;
-  username: string;
-};
 
 const MAX_AGE = 2 * 60 * 60; // 2 hours
 const SESSION_BUFFER_TIME = 10 * 60; // 10 minutes
@@ -57,13 +51,13 @@ const options: NextAuthOptions = {
   },
 
   session: {
-    jwt: true,
+    strategy: 'jwt',
     maxAge: MAX_AGE,
   },
 
   // Configure one or more authentication providers
   providers: [
-    Providers.Credentials({
+    Credentials({
       // The name to display on the sign in form (e.g. 'Sign in with...')
       name: 'Vizzuality',
       // The credentials is used to generate a suitable form on the sign in page.
@@ -74,7 +68,7 @@ const options: NextAuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const { username, password } = credentials as CustomCredentials;
+        const { username, password } = credentials;
 
         // Request to sign in
         const signInRequest = await AUTHENTICATION.request({
@@ -96,17 +90,18 @@ const options: NextAuthOptions = {
   ],
 
   callbacks: {
+    // ? https://next-auth.js.org/configuration/callbacks#jwt-callback
     // Assigning encoded token from API to token created in the session
-    async jwt(token, user) {
+    async jwt({ token, user }) {
       const newToken = { ...token };
 
       if (user) {
         const { accessToken } = user;
-        newToken.accessToken = accessToken as string;
+        newToken.accessToken = accessToken;
       }
 
       // Use custom JWT decode, otherwise "exp date" will be increasing beyond the infinite
-      const { exp } = JWT.decode(newToken.accessToken as string) as { exp: number };
+      const { exp } = JWT.decode(newToken.accessToken) as { exp: number };
 
       const expDate = new Date(exp * 1000);
 
@@ -120,31 +115,33 @@ const options: NextAuthOptions = {
       return newToken;
     },
 
+    // ? https://next-auth.js.org/configuration/callbacks#session-callback
     // Extending session object
-    async session(session, token) {
+    async session({ session, token }) {
       const newSession = session;
       newSession.accessToken = token.accessToken;
       return newSession;
     },
 
-    async redirect(callbackUrl) {
+    // ? https://next-auth.js.org/configuration/callbacks#redirect-callback
+    async redirect({ url }) {
       // By default it should be redirect to /projects
-      if (callbackUrl.includes('/sign-in') || callbackUrl.includes('/sign-up')) {
+      if (url.includes('/sign-in') || url.includes('/sign-up')) {
         return '/projects';
       }
-      return callbackUrl;
+      return url;
     },
   },
 
   events: {
-    async signOut(session) {
+    async signOut({ token }) {
       // After sign-out expire token in the API
-      if (session) {
+      if (token.accessToken) {
         await AUTHENTICATION.request({
           url: '/sign-out',
           method: 'POST',
           headers: {
-            Authorization: `Bearer ${session.accessToken}`,
+            Authorization: `Bearer ${token.accessToken}`,
             'Content-Type': 'application/json',
           },
         });
@@ -153,4 +150,4 @@ const options: NextAuthOptions = {
   },
 };
 
-export default (req: NextApiRequest, res: NextApiResponse): unknown => NextAuth(req, res, options);
+export default NextAuth(options);

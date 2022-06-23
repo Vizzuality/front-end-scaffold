@@ -1,13 +1,13 @@
 import { QueryClient } from 'react-query';
 
 import type { GetServerSidePropsContext } from 'next';
-import { getSession } from 'next-auth/client';
+import { getSession } from 'next-auth/react';
 import { dehydrate } from 'react-query/hydration';
 
 import USERS from 'services/users';
 
 type AuthProps = {
-  // TO-DO: change to a better type definition using Next types
+  // TODO: change to a better type definition using Next types
   redirect?: {
     destination: string;
     permanent: boolean;
@@ -25,7 +25,7 @@ export function withProtection(getServerSidePropsFunc?: AuthHOC) {
     if (!session) {
       return {
         redirect: {
-          destination: `/auth/sign-in?callbackUrl=${resolvedUrl}`, // referer url, path from node
+          destination: `/auth/sign-in?callbackUrl=${resolvedUrl}`, // ? referer url, path from node
           permanent: false,
         },
       };
