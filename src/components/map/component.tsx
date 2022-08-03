@@ -155,7 +155,11 @@ export const CustomMap: FC<CustomMapProps> = ({
         {...localViewState}
         onMove={handleMapMove}
       >
-        {ready && loaded && !!mapRef && typeof children === 'function' && children(mapRef)}
+        {ready &&
+          loaded &&
+          !!mapRef &&
+          typeof children === 'function' &&
+          children(mapRef?.getMap())}
       </ReactMapGL>
     </div>
   );
