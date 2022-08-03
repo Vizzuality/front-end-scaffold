@@ -1,11 +1,7 @@
-import { ViewportProps } from 'react-map-gl';
+import type { Bounds } from '../../types';
 
 export interface FitBoundsControlProps {
-  bounds?: {
-    bbox?: number[];
-    options?: Record<string, unknown>;
-    viewportOptions?: Partial<ViewportProps>;
-  };
+  bounds?: Bounds;
   className?: string;
-  onFitBoundsChange: (bounds) => void;
+  onFitBoundsChange: (bounds: Bounds) => void;
 }

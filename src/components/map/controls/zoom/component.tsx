@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, useCallback, MouseEvent } from 'react';
 
 import cx from 'classnames';
 
@@ -9,33 +9,33 @@ import ZOOM_OUT_SVG from 'svgs/map/zoom-out.svg?sprite';
 
 import type { ZoomControlProps } from './types';
 
-export const ZoomControl: FC<ZoomControlProps> = ({
-  className,
-  viewport,
-  onZoomChange,
-}: ZoomControlProps) => {
-  const { zoom, maxZoom, minZoom } = viewport;
+export const ZoomControl: FC<ZoomControlProps> = ({ mapRef, className }: ZoomControlProps) => {
+  const zoom = mapRef?.getZoom();
+  const minZoom = mapRef?.getMinZoom();
+  const maxZoom = mapRef?.getMaxZoom();
 
   const increaseZoom = useCallback(
-    (e) => {
+    (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
+      if (!mapRef) return null;
 
       if (zoom + 1 <= maxZoom) {
-        onZoomChange(zoom + 1);
+        mapRef.zoomIn();
       }
     },
-    [zoom, maxZoom, onZoomChange]
+    [mapRef, zoom, maxZoom]
   );
 
   const decreaseZoom = useCallback(
-    (e) => {
+    (e: MouseEvent<HTMLButtonElement>) => {
       e.stopPropagation();
+      if (!mapRef) return null;
 
       if (zoom + 1 >= minZoom) {
-        onZoomChange(zoom - 1);
+        mapRef.zoomOut();
       }
     },
-    [zoom, minZoom, onZoomChange]
+    [mapRef, zoom, minZoom]
   );
 
   return (

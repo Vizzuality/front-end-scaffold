@@ -1,3 +1,4 @@
+import { MapProvider } from 'react-map-gl';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider as ReduxProvider } from 'react-redux';
 
@@ -21,7 +22,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => (
         <SessionProvider session={pageProps.session} refetchInterval={10 * 60} refetchOnWindowFocus>
           <OverlayProvider>
             <MediaContextProvider>
-              <Component {...pageProps} />
+              <MapProvider>
+                <Component {...pageProps} />
+              </MapProvider>
             </MediaContextProvider>
           </OverlayProvider>
         </SessionProvider>
