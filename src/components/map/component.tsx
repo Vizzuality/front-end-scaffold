@@ -1,156 +1,135 @@
 import { useEffect, useState, useRef, useCallback, FC } from 'react';
 
-import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from 'react-map-gl';
+import ReactMapGL, { ViewState, ViewStateChangeEvent, useMap } from 'react-map-gl';
 
 import cx from 'classnames';
 
 import isEmpty from 'lodash/isEmpty';
 
-import { fitBounds } from '@math.gl/web-mercator';
-import { easeCubic } from 'd3-ease';
+import MapLibreGL from 'maplibre-gl';
 import { useDebouncedCallback } from 'use-debounce';
 
-import { DEFAULT_VIEWPORT } from './constants';
-import type { MapProps } from './types';
+// * If you plan to use Mapbox (and not a fork):
+// * 1) remove maplibre-gl,
+// * 2) install Mapbox v1/v2 (v2 requires token)
+// * 3) if you installed v2: provide the token to the map through the `mapboxAccessToken` property
+// * 4) remove `mapLib` property
 
-export const Map: FC<MapProps> = ({
-  mapboxApiAccessToken,
+import { DEFAULT_VIEW_STATE } from './constants';
+import type { CustomMapProps } from './types';
+
+export const CustomMap: FC<CustomMapProps> = ({
+  // * if no id is passed, react-map-gl will store the map reference in a 'default' key:
+  // * https://github.com/visgl/react-map-gl/blob/ecb27c8d02db7dd09d8104e8c2011bda6aed4b6f/src/components/use-map.tsx#L18
+  id = 'default',
+  mapboxAccessToken,
   children,
   className,
-  viewport,
+  viewState = {},
   bounds,
   onMapReady,
   onMapLoad,
-  onMapViewportChange,
+  onViewStateChange,
   dragPan,
   dragRotate,
   scrollZoom,
-  touchZoom,
-  touchRotate,
   doubleClickZoom,
-  width = '100%',
-  height = '100%',
-  getCursor,
   ...mapboxProps
-}: MapProps) => {
+}: CustomMapProps) => {
   /**
    * REFS
    */
-  const mapRef = useRef(null);
+  const { [id]: mapRef } = useMap();
   const mapContainerRef = useRef(null);
 
   /**
    * STATE
    */
-  const [mapViewport, setViewport] = useState({
-    ...DEFAULT_VIEWPORT,
-    ...viewport,
+  const [localViewState, setLocalViewState] = useState<Partial<ViewState>>({
+    ...DEFAULT_VIEW_STATE,
+    ...viewState,
   });
-  const [flying, setFlight] = useState(false);
+  const [isFlying, setFlying] = useState(false);
   const [ready, setReady] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   /**
    * CALLBACKS
    */
-  const handleLoad = useCallback(() => {
-    setLoaded(true);
-    if (onMapLoad) onMapLoad({ map: mapRef.current, mapContainer: mapContainerRef.current });
-  }, [onMapLoad]);
-
-  const debouncedOnMapViewportChange = useDebouncedCallback((v) => {
-    onMapViewportChange(v);
+  const debouncedViewStateChange = useDebouncedCallback((_viewState: ViewState) => {
+    onViewStateChange(_viewState);
   }, 250);
 
-  const handleViewportChange = useCallback(
-    (v) => {
-      setViewport(v);
-      debouncedOnMapViewportChange(v);
-    },
-    [debouncedOnMapViewportChange]
-  );
-
-  const handleResize = useCallback(
-    (v) => {
-      const newViewport = {
-        ...mapViewport,
-        ...v,
-      };
-
-      setViewport(newViewport);
-      debouncedOnMapViewportChange(newViewport);
-    },
-    [mapViewport, debouncedOnMapViewportChange]
-  );
+  const handleLoad = useCallback(() => {
+    setLoaded(true);
+    if (onMapLoad) onMapLoad({ map: mapRef, mapContainer: mapContainerRef.current });
+  }, [onMapLoad, mapRef]);
 
   const handleFitBounds = useCallback(() => {
-    if (!ready) return null;
-    const { bbox, options = {}, viewportOptions = {} } = bounds;
-    const { transitionDuration = 0 } = viewportOptions;
+    if (!bounds) return null;
+    const { bbox, options } = bounds;
 
-    if (mapContainerRef.current.offsetWidth <= 0 || mapContainerRef.current.offsetHeight <= 0) {
-      // eslint-disable-next-line no-console
-      console.error("mapContainerRef doesn't have dimensions");
-      return null;
-    }
+    // enabling fly mode avoids the map to be interrupted during the bounds transition
+    setFlying(true);
 
-    const { longitude, latitude, zoom } = fitBounds({
-      width: mapContainerRef.current.offsetWidth,
-      height: mapContainerRef.current.offsetHeight,
-      bounds: [
+    mapRef.fitBounds(
+      [
         [bbox[0], bbox[1]],
         [bbox[2], bbox[3]],
       ],
-      ...options,
-    });
+      options
+    );
+  }, [bounds, mapRef]);
 
-    const newViewport = {
-      longitude,
-      latitude,
-      zoom,
-      transitionDuration,
-      transitionInterruption: TRANSITION_EVENTS.UPDATE,
-      ...viewportOptions,
-    };
-
-    setFlight(true);
-    setViewport((prevViewport) => ({
-      ...prevViewport,
-      ...newViewport,
-    }));
-    debouncedOnMapViewportChange(newViewport);
-
-    return setTimeout(() => {
-      setFlight(false);
-    }, +transitionDuration);
-  }, [ready, bounds, debouncedOnMapViewportChange]);
-
-  const handleGetCursor = useCallback(({ isHovering, isDragging }) => {
-    if (isHovering) return 'pointer';
-    if (isDragging) return 'grabbing';
-    return 'grab';
-  }, []);
+  const handleMapMove = useCallback(
+    ({ viewState: _viewState }: ViewStateChangeEvent) => {
+      setLocalViewState(_viewState);
+      debouncedViewStateChange(_viewState);
+    },
+    [debouncedViewStateChange]
+  );
 
   /**
    * EFFECTS
    */
   useEffect(() => {
     setReady(true);
-    if (onMapReady) onMapReady({ map: mapRef.current, mapContainer: mapContainerRef.current });
-  }, [onMapReady]);
+    // ? returning the map reference now is less useful as the reference is now accessible everywhere via useMap hook
+    if (onMapReady) onMapReady({ map: mapRef, mapContainer: mapContainerRef.current });
+  }, [onMapReady, mapRef]);
 
   useEffect(() => {
-    if (!isEmpty(bounds) && !!bounds.bbox && bounds.bbox.every((b) => !!b)) {
+    if (loaded && !isEmpty(bounds) && !!bounds.bbox && bounds.bbox.every((b) => !!b)) {
       handleFitBounds();
     }
-  }, [bounds, handleFitBounds]);
+  }, [loaded, bounds, handleFitBounds]);
 
   useEffect(() => {
-    setViewport((prevViewportState) => ({
-      ...prevViewportState,
-      ...viewport,
+    setLocalViewState((prevViewState) => ({
+      ...prevViewState,
+      ...viewState,
     }));
-  }, [viewport]);
+  }, [viewState]);
+
+  useEffect(() => {
+    if (!bounds) return null;
+
+    const { options } = bounds;
+    const animationDuration = (options?.duration as number) || 0;
+    let timeoutId: number = null;
+
+    if (isFlying) {
+      timeoutId = window.setTimeout(() => {
+        setFlying(false);
+      }, animationDuration);
+    }
+
+    return () => {
+      if (timeoutId) {
+        window.clearInterval(timeoutId);
+      }
+    };
+  }, [bounds, isFlying]);
 
   return (
     <div
@@ -161,41 +140,29 @@ export const Map: FC<MapProps> = ({
       })}
     >
       <ReactMapGL
-        ref={(_map) => {
-          if (_map) {
-            mapRef.current = _map.getMap();
-          }
-        }}
-        mapboxApiAccessToken={mapboxApiAccessToken}
-        // CUSTOM PROPS FROM REACT MAPBOX API
-        {...mapboxProps}
-        // VIEWPORT
-        {...mapViewport}
-        width={width}
-        height={height}
-        // INTERACTIVITY
-        dragPan={!flying && dragPan}
-        dragRotate={!flying && dragRotate}
-        scrollZoom={!flying && scrollZoom}
-        touchZoom={!flying && touchZoom}
-        touchRotate={!flying && touchRotate}
-        doubleClickZoom={!flying && doubleClickZoom}
-        // DEFAULT FUNC IMPLEMENTATIONS
-        onViewportChange={handleViewportChange}
-        onResize={handleResize}
+        id={id}
+        // ! if you're using Mapbox (and not a fork), remove the below property
+        // ! and replace with the according map styles
+        mapLib={MapLibreGL}
+        mapStyle="https://demotiles.maplibre.org/style.json"
         onLoad={handleLoad}
-        getCursor={getCursor || handleGetCursor}
-        transitionInterpolator={new FlyToInterpolator()}
-        transitionEasing={easeCubic}
+        dragPan={!isFlying && dragPan}
+        dragRotate={!isFlying && dragRotate}
+        scrollZoom={!isFlying && scrollZoom}
+        doubleClickZoom={!isFlying && doubleClickZoom}
+        {...(process.env.NODE_ENV === 'test' && { testMode: true })}
+        {...mapboxProps}
+        {...localViewState}
+        onMove={handleMapMove}
       >
         {ready &&
           loaded &&
-          !!mapRef.current &&
+          !!mapRef &&
           typeof children === 'function' &&
-          children(mapRef.current)}
+          children(mapRef?.getMap())}
       </ReactMapGL>
     </div>
   );
 };
 
-export default Map;
+export default CustomMap;

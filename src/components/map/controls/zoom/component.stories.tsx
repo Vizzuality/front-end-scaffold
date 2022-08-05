@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { Story } from '@storybook/react/types-6-0';
 
 import ZoomControl from './component';
@@ -10,36 +8,9 @@ export default {
   component: ZoomControl,
 };
 
-const Template: Story<ZoomControlProps> = (args) => {
-  const [viewport, setViewport] = useState({
-    zoom: 3,
-    minZoom: 2,
-    maxZoom: 10,
-  });
-
-  return (
-    <ZoomControl
-      {...args}
-      viewport={viewport}
-      onZoomChange={(zoom) => {
-        setViewport({
-          ...viewport,
-          zoom,
-        });
-      }}
-    />
-  );
-};
+const Template: Story<ZoomControlProps> = (args) => <ZoomControl {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
   className: '',
-  viewport: {
-    zoom: 3,
-    minZoom: 2,
-    maxZoom: 10,
-  },
-  onZoomChange: (zoom) => {
-    console.info(zoom);
-  },
 };
