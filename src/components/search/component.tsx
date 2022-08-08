@@ -59,7 +59,7 @@ export const Search: FC<SearchProps> = ({
       {state.value !== '' && (
         <button
           {...buttonProps}
-          tabIndex="clear"
+          tabIndex={0}
           className="absolute z-10 flex items-center self-center justify-center w-5 h-5 right-3 r-2"
           type="button"
         >
