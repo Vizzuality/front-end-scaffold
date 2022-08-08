@@ -26,6 +26,7 @@ export const CustomMap: FC<CustomMapProps> = ({
   children,
   className,
   viewState = {},
+  initialViewState,
   bounds,
   onMapReady,
   onMapLoad,
@@ -45,10 +46,12 @@ export const CustomMap: FC<CustomMapProps> = ({
   /**
    * STATE
    */
-  const [localViewState, setLocalViewState] = useState<Partial<ViewState>>({
-    ...DEFAULT_VIEW_STATE,
-    ...viewState,
-  });
+  const [localViewState, setLocalViewState] = useState<Partial<ViewState>>(
+    !initialViewState && {
+      ...DEFAULT_VIEW_STATE,
+      ...viewState,
+    }
+  );
   const [isFlying, setFlying] = useState(false);
   const [ready, setReady] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -99,7 +102,12 @@ export const CustomMap: FC<CustomMapProps> = ({
   }, [onMapReady, mapRef]);
 
   useEffect(() => {
-    if (loaded && !isEmpty(bounds) && !!bounds.bbox && bounds.bbox.every((b) => !!b)) {
+    if (
+      loaded &&
+      !isEmpty(bounds) &&
+      !!bounds.bbox &&
+      bounds.bbox.every((b) => typeof b === 'number')
+    ) {
       handleFitBounds();
     }
   }, [loaded, bounds, handleFitBounds]);
@@ -112,7 +120,7 @@ export const CustomMap: FC<CustomMapProps> = ({
   }, [viewState]);
 
   useEffect(() => {
-    if (!bounds) return null;
+    if (!bounds) return undefined;
 
     const { options } = bounds;
     const animationDuration = (options?.duration as number) || 0;
@@ -145,15 +153,16 @@ export const CustomMap: FC<CustomMapProps> = ({
         // ! and replace with the according map styles
         mapLib={MapLibreGL}
         mapStyle="https://demotiles.maplibre.org/style.json"
-        onLoad={handleLoad}
+        initialViewState={initialViewState}
         dragPan={!isFlying && dragPan}
         dragRotate={!isFlying && dragRotate}
         scrollZoom={!isFlying && scrollZoom}
         doubleClickZoom={!isFlying && doubleClickZoom}
+        onLoad={handleLoad}
+        onMove={handleMapMove}
         {...(process.env.NODE_ENV === 'test' && { testMode: true })}
         {...mapboxProps}
         {...localViewState}
-        onMove={handleMapMove}
       >
         {ready &&
           loaded &&
