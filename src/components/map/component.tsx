@@ -30,7 +30,7 @@ export const CustomMap: FC<CustomMapProps> = ({
   bounds,
   onMapReady,
   onMapLoad,
-  onViewStateChange,
+  onMapViewStateChange,
   dragPan,
   dragRotate,
   scrollZoom,
@@ -60,7 +60,7 @@ export const CustomMap: FC<CustomMapProps> = ({
    * CALLBACKS
    */
   const debouncedViewStateChange = useDebouncedCallback((_viewState: ViewState) => {
-    onViewStateChange(_viewState);
+    onMapViewStateChange(_viewState);
   }, 250);
 
   const handleLoad = useCallback(() => {

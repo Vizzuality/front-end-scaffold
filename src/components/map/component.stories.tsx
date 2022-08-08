@@ -93,12 +93,12 @@ const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
     <div className="relative w-full h-screen">
       <Map
         id={id}
-        viewState={viewState}
-        onViewStateChange={handleViewState}
         maxZoom={maxZoom}
-        mapboxAccessToken={process.env.STORYBOOK_MAPBOX_API_TOKEN}
-        initialViewState={initialViewState}
         bounds={bounds}
+        initialViewState={initialViewState}
+        viewState={viewState}
+        mapboxAccessToken={process.env.STORYBOOK_MAPBOX_API_TOKEN}
+        onMapViewStateChange={handleViewState}
       >
         {(map) => (
           <LayerManager
