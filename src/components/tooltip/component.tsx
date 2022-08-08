@@ -1,58 +1,135 @@
-import { FC, useCallback } from 'react';
+import { cloneElement, Fragment, useRef, useState } from 'react';
 
-import Tippy from '@tippyjs/react/headless';
-import { useSpring, motion } from 'framer-motion';
-import { SpringOptions } from 'popmotion';
+import cx from 'classnames';
 
-import Arrow from './arrow';
-import type { TooltipProps } from './types';
+import {
+  arrow,
+  offset,
+  flip,
+  shift,
+  autoUpdate,
+  useFloating,
+  useInteractions,
+  useClick,
+  useHover,
+  useFocus,
+  useRole,
+  useDismiss,
+  FloatingPortal,
+} from '@floating-ui/react-dom-interactions';
+import { motion, AnimatePresence } from 'framer-motion';
 
-export const Tooltip: FC<TooltipProps> = ({
+import { TooltipProps } from './types';
+
+export const Tooltip = ({
   children,
   content,
-  arrow,
-  maxWidth,
-  ...props
+  trigger = 'hover',
+  placement = 'top',
+  arrowProps = {
+    enabled: false,
+    size: 8,
+    className: 'bg-white',
+  },
+  portalProps = {
+    enabled: true,
+  },
 }: TooltipProps) => {
-  const springConfig: SpringOptions = { damping: 15, stiffness: 300 };
-  const opacity = useSpring(0, springConfig);
-  const scale = useSpring(0.95, springConfig);
+  const [open, setOpen] = useState(false);
 
-  const onMount = useCallback(() => {
-    scale.set(1);
-    opacity.set(1);
-  }, []);
+  const arrowRef = useRef<HTMLDivElement>(null);
 
-  const onHide = useCallback(({ unmount }) => {
-    const cleanup = scale.onChange((value) => {
-      if (value <= 0.95) {
-        cleanup();
-        unmount();
-      }
-    });
+  const { x, y, reference, floating, strategy, context, middlewareData } = useFloating({
+    placement,
+    open,
+    onOpenChange: setOpen,
+    middleware: [
+      offset(5),
+      flip(),
+      shift({ padding: 8 }),
+      ...(arrowRef.current && arrowProps.enabled
+        ? [
+            arrow({
+              element: arrowRef.current,
+            }),
+          ]
+        : []),
+    ],
+    whileElementsMounted: autoUpdate,
+  });
 
-    scale.set(0.95);
-    opacity.set(0);
-  }, []);
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    useHover(context, {
+      enabled: trigger === 'hover',
+      restMs: 40,
+    }),
+    useClick(context, {
+      enabled: trigger === 'click',
+    }),
+    useFocus(context),
+    useRole(context, { role: 'tooltip' }),
+    useDismiss(context),
+  ]);
+
+  // Portal
+  const Portal = portalProps.enabled ? FloatingPortal : Fragment;
+
+  // Arrow
+  const { arrow: arrowStyle = {} as any } = middlewareData;
+  const { x: arrowX, y: arrowY } = arrowStyle;
+
+  const staticSide = {
+    top: 'bottom',
+    right: 'left',
+    bottom: 'top',
+    left: 'right',
+  }[placement.split('-')[0]];
 
   return (
-    <Tippy
-      {...props}
-      render={(attrs) => (
-        <motion.div style={{ scale, opacity, maxWidth: maxWidth || 'none' }} {...attrs}>
-          <div className="relative">
-            {content}
+    <>
+      {cloneElement(children, getReferenceProps({ ref: reference, ...children.props }))}
 
-            {arrow && <Arrow data-popper-arrow="" {...attrs} />}
-          </div>
-        </motion.div>
-      )}
-      animation
-      onMount={onMount}
-      onHide={onHide}
-    >
-      {children}
-    </Tippy>
+      <Portal {...portalProps}>
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              {...getFloatingProps({
+                ref: floating,
+                style: {
+                  position: strategy,
+                  top: y ?? '',
+                  left: x ?? '',
+                },
+              })}
+            >
+              {content}
+
+              {arrowProps.enabled && (
+                <div
+                  ref={arrowRef}
+                  className={cx({
+                    'absolute rotate-45 bg-white': true,
+                    [arrowProps.className]: true,
+                  })}
+                  style={{
+                    width: arrowProps.size,
+                    height: arrowProps.size,
+                    left: arrowX != null ? `${arrowX}px` : '',
+                    top: arrowY != null ? `${arrowY}px` : '',
+                    right: '',
+                    bottom: '',
+                    [staticSide]: -arrowProps.size / 2,
+                  }}
+                />
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </Portal>
+    </>
   );
 };
 

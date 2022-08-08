@@ -1,7 +1,18 @@
-import { ReactElement } from 'react';
+import { Placement } from '@floating-ui/react-dom-interactions';
 
-import { TippyProps } from '@tippyjs/react/headless';
-
-export interface TooltipProps extends TippyProps {
-  children: ReactElement;
+export interface TooltipProps {
+  children: JSX.Element;
+  content: JSX.Element;
+  placement?: Placement;
+  trigger?: 'hover' | 'click';
+  arrowProps?: {
+    enabled?: boolean;
+    size: number;
+    className?: string;
+  };
+  portalProps?: {
+    enabled?: boolean;
+    id?: string;
+    root?: HTMLElement;
+  };
 }

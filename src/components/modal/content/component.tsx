@@ -1,66 +1,30 @@
-import { FC, useRef } from 'react';
+import { FC } from 'react';
 
 import cx from 'classnames';
 
-import { useDialog } from '@react-aria/dialog';
-import { FocusScope } from '@react-aria/focus';
-import { useOverlay, useModal } from '@react-aria/overlays';
 import { motion } from 'framer-motion';
 
 import Icon from 'components/icon';
 
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
 
-import { CONTENT_CLASSES, OVERLAY_CLASSES } from './constants';
+import { CONTENT_CLASSES } from './constants';
 import type { ModalContentProps } from './types';
 
 export const ModalContent: FC<ModalContentProps> = ({
-  title,
-  open,
-  dismissable = true,
   size = 'default',
   children,
-  scrollable = true,
   className,
-  onDismiss,
   viewport,
+  floating,
+  getFloatingProps,
+  onOpenChange,
 }: ModalContentProps) => {
-  const containerRef = useRef();
-  const { overlayProps } = useOverlay(
-    {
-      isKeyboardDismissDisabled: !dismissable,
-      isDismissable: dismissable,
-      isOpen: open,
-      onClose: onDismiss,
-    },
-    containerRef
-  );
-  const { modalProps } = useModal();
-  const { dialogProps } = useDialog({ 'aria-label': title }, containerRef);
-
-  const overlayFramerVariants = {
-    initial: {
-      opacity: 0,
-    },
-    animate: {
-      opacity: 1,
-      transition: {
-        delay: 0,
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        delay: 0.125,
-      },
-    },
-  };
-
   const contentFramerVariants = {
     initial: {
       opacity: 0,
       x: viewport === 'sm' ? '-50%' : '0',
-      y: '-60%',
+      y: viewport === 'sm' ? '-60%' : '-52.5%',
     },
     animate: {
       opacity: 1,
@@ -73,7 +37,7 @@ export const ModalContent: FC<ModalContentProps> = ({
     exit: {
       opacity: 0,
       x: viewport === 'sm' ? '-50%' : '0',
-      y: '-60%',
+      y: viewport === 'sm' ? '-60%' : '-52.5%',
       transition: {
         delay: 0,
       },
@@ -82,42 +46,28 @@ export const ModalContent: FC<ModalContentProps> = ({
 
   return (
     <motion.div
-      variants={overlayFramerVariants}
+      variants={contentFramerVariants}
       initial="initial"
       animate="animate"
       exit="exit"
-      className={cx({ [OVERLAY_CLASSES]: true })}
+      className={cx({ [CONTENT_CLASSES[size]]: true, [className]: !!className })}
+      {...getFloatingProps({
+        ref: floating,
+      })}
     >
-      <FocusScope contain restoreFocus autoFocus>
-        <div {...overlayProps} {...dialogProps} {...modalProps} ref={containerRef}>
-          <motion.div
-            variants={contentFramerVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className={cx({ [CONTENT_CLASSES[size]]: true, [className]: !!className })}
-            style={{
-              maxHeight: '90%',
-            }}
-          >
-            {dismissable && (
-              <div className="relative">
-                <button
-                  type="button"
-                  onClick={onDismiss}
-                  className="absolute flex items-center px-4 py-4 text-sm text-gray-300 right-4 -top-4 focus:text-black hover:text-black"
-                >
-                  <span className="text-xs">Close</span>
-                  <Icon icon={CLOSE_SVG} className="inline-block w-3 h-3 ml-2 text-black" />
-                </button>
-              </div>
-            )}
+      <div className="relative flex flex-col overflow-hidden grow">
+        <button
+          type="button"
+          onClick={() => {
+            onOpenChange(false);
+          }}
+          className="absolute flex items-center px-4 py-4 text-sm text-gray-300 top-6 right-6"
+        >
+          <Icon icon={CLOSE_SVG} className="inline-block w-3 h-3 text-black" />
+        </button>
 
-            {!scrollable && children}
-            {scrollable && <div className="overflow-y-auto grow">{children}</div>}
-          </motion.div>
-        </div>
-      </FocusScope>
+        {children}
+      </div>
     </motion.div>
   );
 };

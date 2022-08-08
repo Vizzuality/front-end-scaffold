@@ -2983,7 +2983,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:^2.5.4, @popperjs/core@npm:^2.6.0, @popperjs/core@npm:^2.9.0":
+"@popperjs/core@npm:^2.5.4, @popperjs/core@npm:^2.6.0":
   version: 2.11.5
   resolution: "@popperjs/core@npm:2.11.5"
   checksum: fd7f9dca3fb716d7426332b6ee283f88d2724c0ab342fb678865a640bad403dfb9eeebd8204a406986162f7e2b33394f104320008b74d0e9066d7322f70ea35d
@@ -3081,21 +3081,6 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1
   checksum: fc31adcc913b5377a9dcbafa5494fa1cdec39e2b3c6e32c6351c225a42efdfa750b3ef584b9275eb9a5d3d29bdfefe41e57d8114ab0a8d687328a4dd1ba5db95
-  languageName: node
-  linkType: hard
-
-"@react-aria/dialog@npm:3.1.3":
-  version: 3.1.3
-  resolution: "@react-aria/dialog@npm:3.1.3"
-  dependencies:
-    "@babel/runtime": ^7.6.2
-    "@react-aria/focus": ^3.3.0
-    "@react-aria/utils": ^3.8.0
-    "@react-stately/overlays": ^3.1.2
-    "@react-types/dialog": ^3.3.0
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1
-  checksum: a33c8f5e346abc3831fb32709dd14e977140a740aa7b8566b22a820f0967cd2941beba0ef53135e9b40e2878fb82447fee4475a59000b2d9db1308cc840ee362
   languageName: node
   linkType: hard
 
@@ -3757,19 +3742,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-stately/overlays@npm:3.1.2":
-  version: 3.1.2
-  resolution: "@react-stately/overlays@npm:3.1.2"
-  dependencies:
-    "@babel/runtime": ^7.6.2
-    "@react-stately/utils": ^3.2.1
-    "@react-types/overlays": ^3.2.1
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0-rc.1
-  checksum: 0a04cc1bc9dd32e05d7f344a8f73ff39a7f780580601303a20f0318a5d2488867fd4bb8732c3faae4e08432331061e87301887d163e6df1a54570fb7d8408265
-  languageName: node
-  linkType: hard
-
 "@react-stately/overlays@npm:^3.1.2, @react-stately/overlays@npm:^3.2.0":
   version: 3.2.0
   resolution: "@react-stately/overlays@npm:3.2.0"
@@ -3974,7 +3946,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/dialog@npm:^3.3.0, @react-types/dialog@npm:^3.3.5":
+"@react-types/dialog@npm:^3.3.5":
   version: 3.3.5
   resolution: "@react-types/dialog@npm:3.3.5"
   dependencies:
@@ -4055,7 +4027,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/overlays@npm:^3.2.1, @react-types/overlays@npm:^3.4.0, @react-types/overlays@npm:^3.5.5":
+"@react-types/overlays@npm:^3.4.0, @react-types/overlays@npm:^3.5.5":
   version: 3.5.5
   resolution: "@react-types/overlays@npm:3.5.5"
   dependencies:
@@ -5533,18 +5505,6 @@ __metadata:
   peerDependencies:
     tailwindcss: ">=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1"
   checksum: 71ba25a4a18323496a7af34e55871121b8459530b0e5696c4173fd65a76162675619f1d1158a8a32e1ace2069333949bef6f1061b17f49fef98dc2291a979dcd
-  languageName: node
-  linkType: hard
-
-"@tippyjs/react@npm:4.2.5":
-  version: 4.2.5
-  resolution: "@tippyjs/react@npm:4.2.5"
-  dependencies:
-    tippy.js: ^6.3.1
-  peerDependencies:
-    react: ">=16.8"
-    react-dom: ">=16.8"
-  checksum: 68a6bb8922597df105f601953f14c593a8179328026dc425db0cd5d8521cdd8ad8c6ec7b6d0707708c8ed25e5ad01c488e95a6b3de0b2f404bd71137e2b8fce9
   languageName: node
   linkType: hard
 
@@ -10654,7 +10614,6 @@ __metadata:
     "@math.gl/web-mercator": 3.4.2
     "@popperjs/core": 2.9.2
     "@react-aria/button": 3.3.2
-    "@react-aria/dialog": 3.1.3
     "@react-aria/focus": 3.3.0
     "@react-aria/i18n": 3.3.1
     "@react-aria/interactions": 3.4.0
@@ -10663,7 +10622,6 @@ __metadata:
     "@react-aria/slider": 3.0.7
     "@react-aria/utils": 3.8.0
     "@react-aria/visually-hidden": 3.2.2
-    "@react-stately/overlays": 3.1.2
     "@react-stately/searchfield": 3.1.2
     "@react-stately/slider": 3.0.7
     "@react-types/searchfield": 3.1.1
@@ -10678,7 +10636,6 @@ __metadata:
     "@tailwindcss/aspect-ratio": 0.4.0
     "@tailwindcss/forms": 0.5.1
     "@tailwindcss/line-clamp": 0.4.0
-    "@tippyjs/react": 4.2.5
     "@types/gtag.js": 0.0.5
     "@types/react": 17.0.39
     "@types/react-dom": 17.0.11
@@ -18055,15 +18012,6 @@ __metadata:
   version: 2.0.3
   resolution: "tinyqueue@npm:2.0.3"
   checksum: 0b6bda46b680dca072f84aef1acd22a7085a2ff2aa8e222bb41045c61a056943805056d77d7f976587ed6a0597872beb5c416043f65f0314304432d6c178dd20
-  languageName: node
-  linkType: hard
-
-"tippy.js@npm:^6.3.1":
-  version: 6.3.7
-  resolution: "tippy.js@npm:6.3.7"
-  dependencies:
-    "@popperjs/core": ^2.9.0
-  checksum: cac955318a65288e8d2dca05059878b003c6e66f92c94f7810f5bc5448eb6646abdf7dacc9bd00020e2611592598d0aae3a28ec9a45349a159603c3fdddce5fb
   languageName: node
   linkType: hard
 

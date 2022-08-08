@@ -8,7 +8,7 @@ import MAP_WARNING_SVG from 'svgs/notifications/map-warning.svg';
 
 import ConfirmationPrompt, { ConfirmationPromptProps } from './index';
 
-export default {
+const StoryConfirmationPrompt = {
   title: 'Components/ConfirmationPrompt',
   component: ConfirmationPrompt,
   parameters: { actions: { argTypesRegex: '^on.*' } },
@@ -35,6 +35,8 @@ export default {
     },
   },
 };
+
+export default StoryConfirmationPrompt;
 
 const Template: Story<ConfirmationPromptProps> = ({ ...args }: ConfirmationPromptProps) => {
   const [open, setOpen] = useState(false);
