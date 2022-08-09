@@ -61,7 +61,6 @@ export const Modal = (props: ModalProps) => {
                   >
                     <ModalContent
                       {...props}
-                      viewport=""
                       floating={floating}
                       getFloatingProps={getFloatingProps}
                     />
