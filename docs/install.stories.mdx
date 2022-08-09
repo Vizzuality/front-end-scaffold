@@ -22,10 +22,47 @@ This process will install the Yarn binary and the dependencies of the projects l
 
 ## 1. ENVIRONMENT VARIABLES
 
-create a `.env.local` at the root of the app
+Create a `.env.local` at the root of the app and define the main env variables:
+
+- `NEXT_PUBLIC_FRONTEND_URL`: URL where to locally launch the project, usually localhost. If the port is not defined, it will default point to 3000.
+
+- `NEXTAUTH_SECRET`: Key used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Do not forget to add a secret. NextAuth can handle without it in development mode,  but it won't in production! [https://next-auth.js.org/configuration/options#secret](https://next-auth.js.org/configuration/options#secret).
+
+- `NEXTAUTH_URL`: Needed by the next-auth library for [handling auth requests and callbacks](https://next-auth.js.org/configuration/options#nextauth_url). Set the environment variable to the canonical URL of your site. Not needed in Vercel deploys.
+
+- `NEXT_PUBLIC_API_URL`: URL of the API. Depending on the environment we will
+  probably use different urls.
+
+- `STORYBOOK_API_URL`: URL of the API for storybook.
+
+- `NEXT_PUBLIC_MAPBOX_API_TOKEN`: Mapbox token.
+
+- `STORYBOOK_MAPBOX_API_TOKEN`: Mapbox token for storybook.
+
+- `NEXT_PUBLIC_GA_TRACKING_ID`: Google Analytics tracking ID.
+
+- `STORYBOOK_MAPBOX_API_TOKEN`: If you're working with an Google Analytics 4 property, you have a Measurement ID instead of a Tracking ID.
+
+Then, add the corresponding keys and urls. You can use the following example:
 
 ```
-NEXTAUTH_URL=http://localhost:3000
+HOSTNAME=localhost
+PORT=3000
+
+NEXT_PUBLIC_FRONTEND_URL=http://$HOSTNAME:$PORT
+
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://$HOSTNAME:$PORT
+
+NEXT_PUBLIC_API_URL=https://api-url.com
+STORYBOOK_API_URL=$NEXT_PUBLIC_API_URL
+
+NEXT_PUBLIC_MAPBOX_API_TOKEN=pk.eyJ1IjoibGV0aWNpYWhlY28iLCJhIjoiY2tzeGg3emczMHBzdTJ1cndkdXIxeGxlZyJ9.8yNE1jEYkE6tu-MAUzUfrA
+STORYBOOK_MAPBOX_API_TOKEN=$NEXT_PUBLIC_MAPBOX_API_TOKEN
+
+NEXT_PUBLIC_GA_TRACKING_ID=UA-000000-2
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXX
+
 
 ```
 
