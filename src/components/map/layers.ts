@@ -3,14 +3,13 @@ import { MapboxLayer } from '@deck.gl/mapbox';
 import GL from '@luma.gl/constants';
 import { DecodedLayer } from '@vizzuality/layer-manager-layers-deckgl';
 
-export const DECK_LAYER = [
+export const LAYERS = [
+  // DECODED RASTER LAYER
   {
-    id: 'loss',
+    id: 'loss-layer',
     type: 'deck',
     source: {
       parse: false,
-      tiles:
-        'https://storage.googleapis.com/wri-public/Hansen_16/tiles/hansen_world/v1/tc30/{z}/{x}/{y}.png',
     },
     render: {
       parse: false,
@@ -98,9 +97,6 @@ export const DECK_LAYER = [
       }),
     ],
   },
-];
-
-export const LAYERS = [
   // RASTER LAYER
   {
     id: 'gain',
@@ -108,13 +104,15 @@ export const LAYERS = [
     source: {
       type: 'raster',
       tiles: ['https://earthengine.google.org/static/hansen_2013/gain_alpha/{z}/{x}/{y}.png'],
+      minzoom: 3, // ? https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#minzoom
+      maxzoom: 12, // ? https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#maxzoom
     },
     render: {
       layers: [
         {
           type: 'raster',
-          minzoom: 2, // ? https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#minzoom
-          maxzoom: 8, // ? https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#maxzoom
+          // minzoom: 3, // ? https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#minzoom
+          // maxzoom: 12, // ? https://docs.mapbox.com/mapbox-gl-js/style-spec/layers/#maxzoom
         },
       ],
     },
@@ -225,8 +223,6 @@ export const LAYERS = [
       ],
     },
   },
-  // DECODED RASTER LAYER
-  ...DECK_LAYER,
 ];
 
 export default LAYERS;
