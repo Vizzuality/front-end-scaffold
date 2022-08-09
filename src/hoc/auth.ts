@@ -1,13 +1,11 @@
-import { QueryClient } from 'react-query';
-
+import { QueryClient, dehydrate } from '@tanstack/react-query';
 import type { GetServerSidePropsContext } from 'next';
-import { getSession } from 'next-auth/client';
-import { dehydrate } from 'react-query/hydration';
+import { getSession } from 'next-auth/react';
 
 import USERS from 'services/users';
 
 type AuthProps = {
-  // TO-DO: change to a better type definition using Next types
+  // TODO: change to a better type definition using Next types
   redirect?: {
     destination: string;
     permanent: boolean;
@@ -25,7 +23,7 @@ export function withProtection(getServerSidePropsFunc?: AuthHOC) {
     if (!session) {
       return {
         redirect: {
-          destination: `/auth/sign-in?callbackUrl=${resolvedUrl}`, // referer url, path from node
+          destination: `/auth/sign-in?callbackUrl=${resolvedUrl}`, // ? referer url, path from node
           permanent: false,
         },
       };
@@ -72,7 +70,7 @@ export function withUser(getServerSidePropsFunc?: AuthHOC) {
 
     const queryClient = new QueryClient();
 
-    await queryClient.prefetchQuery('me', () =>
+    await queryClient.prefetchQuery(['me'], () =>
       USERS.request({
         method: 'GET',
         url: '/me',

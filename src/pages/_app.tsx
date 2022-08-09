@@ -1,11 +1,11 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { MapProvider } from 'react-map-gl';
 import { Provider as ReduxProvider } from 'react-redux';
 
 import type { AppProps } from 'next/app';
 
 import { OverlayProvider } from '@react-aria/overlays';
-import { Provider as AuthenticationProvider } from 'next-auth/client';
-import { Hydrate } from 'react-query/hydration';
+import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
+import { SessionProvider } from 'next-auth/react';
 
 import { MediaContextProvider } from 'components/media-query';
 import store from 'store';
@@ -18,19 +18,16 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => (
   <ReduxProvider store={store}>
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <AuthenticationProvider
-          session={pageProps.session}
-          options={{
-            clientMaxAge: 5 * 60, // Re-fetch session if cache is older than 60 seconds
-            keepAlive: 10 * 60, // Send keepAlive message every 10 minutes
-          }}
-        >
+        <SessionProvider session={pageProps.session} refetchInterval={10 * 60} refetchOnWindowFocus>
           <OverlayProvider>
+            {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
             <MediaContextProvider>
-              <Component {...pageProps} />
+              <MapProvider>
+                <Component {...pageProps} />
+              </MapProvider>
             </MediaContextProvider>
           </OverlayProvider>
-        </AuthenticationProvider>
+        </SessionProvider>
       </Hydrate>
     </QueryClientProvider>
   </ReduxProvider>

@@ -1,18 +1,18 @@
 import { useMemo } from 'react';
 
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-
-import { useSession } from 'next-auth/client';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
 
 import USERS from 'services/users';
 
 import { UseSaveMeProps, SaveMeProps } from './types';
 
 export default function useMe() {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
   const query = useQuery(
-    'me',
+    ['me'],
     () =>
       USERS.request({
         method: 'GET',
@@ -43,7 +43,7 @@ export function useSaveMe({
   },
 }: UseSaveMeProps) {
   const queryClient = useQueryClient();
-  const [session] = useSession();
+  const { data: session } = useSession();
 
   const saveMe = ({ data }: SaveMeProps) =>
     USERS.request({
@@ -57,7 +57,7 @@ export function useSaveMe({
 
   return useMutation(saveMe, {
     onSuccess: (data, variables, context) => {
-      queryClient.invalidateQueries('me');
+      queryClient.invalidateQueries(['me']);
       console.info('Succces', data, variables, context);
     },
     onError: (error, variables, context) => {

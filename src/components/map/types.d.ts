@@ -1,25 +1,25 @@
-import { ViewportProps } from 'react-map-gl';
+import type { ViewState, MapProps, FitBoundsOptions, MapboxMap } from 'react-map-gl';
 
-import { InteractiveMapProps } from 'react-map-gl/src/components/interactive-map';
+export type Bounds = {
+  bbox: [number, number, number, number];
+  options?: FitBoundsOptions;
+  viewportOptions?: Partial<ViewState>;
+};
 
-export interface MapProps extends InteractiveMapProps {
+export interface CustomMapProps extends MapProps {
   /** A function that returns the map instance */
-  children?: React.ReactNode;
+  children?: (map: MapboxMap) => React.ReactNode;
 
   /** Custom css class for styling */
   className?: string;
 
   /** An object that defines the viewport
-   * @see https://uber.github.io/react-map-gl/#/Documentation/api-reference/interactive-map?section=initialization
+   * @see https://visgl.github.io/react-map-gl/docs/api-reference/map#initialviewstate
    */
-  viewport?: Partial<ViewportProps>;
+  viewState?: Partial<ViewState>;
 
   /** An object that defines the bounds */
-  bounds?: {
-    bbox: number[];
-    options?: Record<string, unknown>;
-    viewportOptions?: Partial<ViewportProps>;
-  };
+  bounds?: Bounds;
 
   /** A function that exposes when the map is mounted.
    * It receives and object with the `mapRef` and `mapContainerRef` reference. */
@@ -30,5 +30,5 @@ export interface MapProps extends InteractiveMapProps {
   onMapLoad?: ({ map, mapContainer }) => void;
 
   /** A function that exposes the viewport */
-  onMapViewportChange?: (viewport: Partial<ViewportProps>) => void;
+  onMapViewStateChange?: (viewport: Partial<ViewState>) => void;
 }

@@ -1,3 +1,4 @@
+
 const path = require('path');
 
 module.exports = {
@@ -22,6 +23,7 @@ module.exports = {
         },
       },
     },
+    'storybook-addon-swc',
   ],
   core: {
     builder: 'webpack5',

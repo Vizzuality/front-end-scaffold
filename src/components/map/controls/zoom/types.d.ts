@@ -1,7 +1,6 @@
-import { ViewportProps } from 'react-map-gl';
+import type { MapRef } from 'react-map-gl';
 
 export interface ZoomControlProps {
-  viewport: Partial<ViewportProps>;
+  mapRef: MapRef;
   className?: string;
-  onZoomChange: (zoom: number) => void;
 }

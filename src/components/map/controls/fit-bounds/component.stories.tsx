@@ -23,9 +23,6 @@ Default.args = {
   bounds: {
     bbox: [10.5194091796875, 43.6499881760459, 10.9588623046875, 44.01257086123085],
     options: {},
-    viewportOptions: {
-      transitionDuration: 0,
-    },
   },
   onFitBoundsChange: (bounds) => {
     console.info(bounds);

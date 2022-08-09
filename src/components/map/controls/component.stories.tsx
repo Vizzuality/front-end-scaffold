@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { Story } from '@storybook/react/types-6-0';
 
 import FitBoundsControl from 'components/map/controls/fit-bounds';
@@ -14,33 +12,17 @@ export default {
 };
 
 const Template: Story<ControlsProps> = (args) => {
-  const [viewport, setViewport] = useState({
-    zoom: 3,
-    minZoom: 2,
-    maxZoom: 10,
-  });
-
   return (
     <div className="relative h-24">
       <Controls {...args}>
-        <ZoomControl
-          viewport={viewport}
-          onZoomChange={(zoom) => {
-            setViewport({
-              ...viewport,
-              zoom,
-            });
-          }}
-        />
+        <ZoomControl mapRef={null} />
 
         <FitBoundsControl
           bounds={{
             bbox: [10.5194091796875, 43.6499881760459, 10.9588623046875, 44.01257086123085],
             options: {
               padding: 50,
-            },
-            viewportOptions: {
-              transitionDuration: 1500,
+              duration: 1500,
             },
           }}
           onFitBoundsChange={(bounds) => {

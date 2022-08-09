@@ -3,6 +3,7 @@ import React from 'react';
 import { themes } from '@storybook/theming';
 import { OverlayProvider } from '@react-aria/overlays';
 
+
 import { MediaContextProvider } from 'components/media-query';
 
 import '../src/styles/globals.css';
@@ -29,7 +30,7 @@ export const decorators = [
     return (
       <OverlayProvider>
         <MediaContextProvider>
-          <div>{Story()}</div>
+            {Story()}
         </MediaContextProvider>
       </OverlayProvider>
     );
