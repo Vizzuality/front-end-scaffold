@@ -35,15 +35,9 @@ export const Modal = (props: ModalProps) => {
     },
     animate: {
       opacity: 1,
-      transition: {
-        delay: 0,
-      },
     },
     exit: {
       opacity: 0,
-      transition: {
-        delay: 0.125,
-      },
     },
   };
 

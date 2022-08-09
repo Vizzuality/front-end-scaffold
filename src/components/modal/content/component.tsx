@@ -35,11 +35,11 @@ export const ModalContent: FC<ModalContentProps> = ({
       },
     },
     exit: {
-      opacity: 0,
       x: viewport === 'sm' ? '-50%' : '0',
       y: viewport === 'sm' ? '-60%' : '-52.5%',
       transition: {
         delay: 0,
+        duration: 0.25,
       },
     },
   };
