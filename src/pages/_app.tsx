@@ -1,12 +1,11 @@
 import { MapProvider } from 'react-map-gl';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { Provider as ReduxProvider } from 'react-redux';
 
 import type { AppProps } from 'next/app';
 
 import { OverlayProvider } from '@react-aria/overlays';
+import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
 import { SessionProvider } from 'next-auth/react';
-import { Hydrate } from 'react-query/hydration';
 
 import { MediaContextProvider } from 'components/media-query';
 import store from 'store';
@@ -21,6 +20,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => (
       <Hydrate state={pageProps.dehydratedState}>
         <SessionProvider session={pageProps.session} refetchInterval={10 * 60} refetchOnWindowFocus>
           <OverlayProvider>
+            {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
             <MediaContextProvider>
               <MapProvider>
                 <Component {...pageProps} />

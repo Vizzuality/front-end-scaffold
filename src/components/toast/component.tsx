@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 import cx from 'classnames';
 
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, ResolvedValues } from 'framer-motion';
 
 import Icon from 'components/icon';
 
@@ -34,8 +34,8 @@ export const Toast: React.FC<ToastProps> = ({
   }, [controls, autoDismiss]);
 
   const handleProgressUpdate = useCallback(
-    ({ y }) => {
-      const y2 = parseInt(y, 10);
+    (latest: ResolvedValues) => {
+      const y2 = parseInt(latest.y as string, 10);
       progress.current = y2 / 100;
     },
     [progress]
@@ -108,7 +108,7 @@ export const Toast: React.FC<ToastProps> = ({
 
           <button
             type="button"
-            className="flex items-center justify-center shrink-0 w-10 h-10 ml-5"
+            className="flex items-center justify-center w-10 h-10 ml-5 shrink-0"
             onClick={handleDismiss}
           >
             <Icon icon={CLOSE_SVG} className="w-3 h-3" />
