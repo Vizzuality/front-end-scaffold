@@ -1,4 +1,4 @@
-import type { ViewState, MapProps, FitBoundsOptions } from 'react-map-gl';
+import type { ViewState, MapProps, FitBoundsOptions, MapboxMap } from 'react-map-gl';
 
 export type Bounds = {
   bbox: [number, number, number, number];
@@ -8,7 +8,7 @@ export type Bounds = {
 
 export interface CustomMapProps extends MapProps {
   /** A function that returns the map instance */
-  children?: React.ReactNode;
+  children?: (map: MapboxMap) => React.ReactNode;
 
   /** Custom css class for styling */
   className?: string;
@@ -30,5 +30,5 @@ export interface CustomMapProps extends MapProps {
   onMapLoad?: ({ map, mapContainer }) => void;
 
   /** A function that exposes the viewport */
-  onViewStateChange?: (viewport: Partial<ViewState>) => void;
+  onMapViewStateChange?: (viewport: Partial<ViewState>) => void;
 }
