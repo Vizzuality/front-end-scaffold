@@ -77,8 +77,6 @@ Here's a step by step guide on how to address vulnerabilities found in productio
 
 ## Env variables
 
-- `NEXT_PUBLIC_FRONTEND_URL`: URL where to locally launch the project, usually localhost. If the port is not defined, it will default point to 3000.
-
 - `NEXTAUTH_SECRET`: Key used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Do not forget to add a secret. NextAuth can handle without it in development mode,  but it won't in production! [https://next-auth.js.org/configuration/options#secret](https://next-auth.js.org/configuration/options#secret).
 
 - `NEXTAUTH_URL`: Needed by the next-auth library for [handling auth requests and callbacks](https://next-auth.js.org/configuration/options#nextauth_url). Set the environment variable to the canonical URL of your site. Not needed in Vercel deploys.
