@@ -267,99 +267,116 @@ const Template: Story<ModalProps> = ({ ...args }: ModalProps) => {
           >
             <div className="flex flex-col py-10 overflow-hidden grow">
               <h1 className="px-10 text-xl font-medium">Modal content</h1>
-              <div className="relative flex flex-col overflow-hidden grow">
+              <div className="relative flex flex-col py-px overflow-hidden grow">
                 <div className="absolute left-0 z-10 w-full h-5 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
-                <div className="flex flex-col px-10 py-5 overflow-x-hidden overflow-y-auto grow">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est,
-                    eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla
-                    ex. Quisque consectetur diam in massa egestas, vitae posuere magna semper. Sed
-                    ac iaculis purus, at pretium tellus. Duis non commodo lorem, non tincidunt ex.
-                  </p>
+                <div className="relative flex flex-col overflow-hidden grow">
+                  <div className="flex flex-col px-10 py-5 overflow-x-hidden overflow-y-auto grow">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
+                      est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
+                      fringilla ex. Quisque consectetur diam in massa egestas, vitae posuere magna
+                      semper. Sed ac iaculis purus, at pretium tellus. Duis non commodo lorem, non
+                      tincidunt ex.
+                    </p>
+                  </div>
                 </div>
                 <div className="absolute bottom-0 left-0 z-10 w-full h-5 pointer-events-none bg-gradient-to-t from-white via-white" />
               </div>
