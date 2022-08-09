@@ -56,7 +56,7 @@ context('Misc', () => {
     if (Cypress.platform === 'win32') {
       cy.exec('print cypress.json').its('stderr').should('be.empty');
     } else {
-      cy.exec('cat cypress.json').its('stderr').should('be.empty');
+      cy.exec('cat cypress.config.ts').its('stderr').should('be.empty');
 
       cy.exec('pwd').its('code').should('eq', 0);
     }
