@@ -5,10 +5,12 @@ import DOWNLOAD_SVG from 'svgs/ui/download.svg';
 import Icon from './component';
 import { IconProps } from './types';
 
-export default {
+const StoryIcon = {
   title: 'Components/Icon',
   component: Icon,
 };
+
+export default StoryIcon;
 
 const Template: Story<IconProps> = (args) => <Icon {...args} />;
 

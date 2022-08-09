@@ -3,10 +3,12 @@ import { Story } from '@storybook/react/types-6-0';
 import FitBoundsControl from './component';
 import { FitBoundsControlProps } from './types';
 
-export default {
+const StoryFitBoundsControl = {
   title: 'Components/Map/Controls/FitBounds',
   component: FitBoundsControl,
 };
+
+export default StoryFitBoundsControl;
 
 const Template: Story<FitBoundsControlProps> = (args) => (
   <FitBoundsControl

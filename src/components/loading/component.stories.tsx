@@ -3,10 +3,12 @@ import { Story } from '@storybook/react/types-6-0';
 import Loading from './component';
 import type { LoadingProps } from './types';
 
-export default {
+const StoryLoading = {
   title: 'Components/Loading',
   component: Loading,
 };
+
+export default StoryLoading;
 
 const Template: Story<LoadingProps> = (args) => <Loading {...args} />;
 

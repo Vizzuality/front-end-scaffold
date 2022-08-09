@@ -40,7 +40,3 @@ export const arrayValidator = (value: unknown[]): string | unknown => {
 
   return undefined;
 };
-
-export default {
-  composeValidators,
-};

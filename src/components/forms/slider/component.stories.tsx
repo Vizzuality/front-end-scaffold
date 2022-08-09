@@ -7,7 +7,7 @@ import Label from '../label';
 import Slider from './component';
 import { SliderProps } from './types';
 
-export default {
+const StorySlider = {
   title: 'Components/Forms/Slider',
   component: Slider,
   parameters: { actions: { argTypesRegex: '^on.*' } },
@@ -36,6 +36,8 @@ export default {
     },
   },
 };
+
+export default StorySlider;
 
 const Template: Story<SliderProps> = (args: SliderProps) => {
   const labelRef = useRef(null);

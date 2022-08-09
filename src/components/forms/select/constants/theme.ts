@@ -1,4 +1,4 @@
-export default {
+const THEME = {
   dark: {
     container: 'text-white bg-transparent ring-1 ring-gray-400 rounded-3xl',
     open: 'ring-2 ring-blue-400 bg-gray-700 text-white rounded-2xl',
@@ -45,3 +45,5 @@ export default {
     s: 'pl-4 pr-10 py-1.5 text-sm',
   },
 };
+
+export default THEME;

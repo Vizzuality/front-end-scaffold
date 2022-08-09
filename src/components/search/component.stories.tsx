@@ -5,7 +5,7 @@ import { Story } from '@storybook/react/types-6-0';
 import Search from './component';
 import { SearchProps } from './types';
 
-export default {
+const StorySearch = {
   title: 'Components/Search',
   component: Search,
   argTypes: {
@@ -28,6 +28,8 @@ export default {
     },
   },
 };
+
+export default StorySearch;
 
 const Template: Story<SearchProps> = ({ ...args }: SearchProps) => {
   const [value, setValue] = useState('');

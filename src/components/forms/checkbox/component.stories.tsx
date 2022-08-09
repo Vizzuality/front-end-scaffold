@@ -3,7 +3,7 @@ import { Story } from '@storybook/react/types-6-0';
 import Checkbox from './component';
 import { CheckboxProps } from './types';
 
-export default {
+const StoryCheckbox = {
   title: 'Components/Forms/Checkbox',
   component: Checkbox,
   argTypes: {
@@ -34,6 +34,8 @@ export default {
     },
   },
 };
+
+export default StoryCheckbox;
 
 const Template: Story<CheckboxProps> = (args) => <Checkbox {...args} />;
 

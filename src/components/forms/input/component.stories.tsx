@@ -3,7 +3,7 @@ import { Story } from '@storybook/react/types-6-0';
 import Input from './component';
 import type { InputProps } from './types';
 
-export default {
+const StoryInput = {
   title: 'Components/Forms/Input',
   component: Input,
   parameters: { actions: { argTypesRegex: '^on.*' } },
@@ -34,6 +34,8 @@ export default {
     },
   },
 };
+
+export default StoryInput;
 
 const Template: Story<InputProps> = (args) => <Input {...args} />;
 
