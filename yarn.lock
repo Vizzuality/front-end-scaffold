@@ -6075,85 +6075,85 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vizzuality/layer-manager-layers-deckgl@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@vizzuality/layer-manager-layers-deckgl@npm:2.0.1"
+"@vizzuality/layer-manager-layers-deckgl@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@vizzuality/layer-manager-layers-deckgl@npm:2.0.2"
   dependencies:
     "@deck.gl/core": ^8.7.3
     "@luma.gl/constants": ^8.5.10
     "@luma.gl/core": ^8.5.10
     "@math.gl/web-mercator": ^3.4.7
-    "@vizzuality/layer-manager-utils": ^1.1.2
+    "@vizzuality/layer-manager-utils": ^1.1.3
     cancelable-promise: ^3.2.3
     math.gl: ^3.4.2
     react: ^17.0.2
-  checksum: 5992b5d868311f90925f6241c5b89a4749cbfb8bd94774bed7c68e36474b5a7699710e6126fe81ef8ffd36beda8bbaf18c59c9c37e487e5d4168e74965e03c70
+  checksum: 83c0bee966ff64ac458820b8a3f2a8b0ff9e1dd335fc5f8f4202071db10f8d2aaca2ec9f3af30471040f1dec546716aa4d9ebb581aecec2d22078c50ba106122
   languageName: node
   linkType: hard
 
-"@vizzuality/layer-manager-plugin-mapboxgl@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@vizzuality/layer-manager-plugin-mapboxgl@npm:2.0.1"
+"@vizzuality/layer-manager-plugin-mapboxgl@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@vizzuality/layer-manager-plugin-mapboxgl@npm:2.0.2"
   dependencies:
     "@deck.gl/core": ^8.7.11
     "@deck.gl/mapbox": ^8.7.11
-    "@vizzuality/layer-manager-utils": ^1.1.2
+    "@vizzuality/layer-manager-utils": ^1.1.3
     cancelable-promise: ^3.2.3
     react: ^17.0.2
   peerDependencies:
     "@deck.gl/core": ^8.7.3
     "@deck.gl/mapbox": ^8.7.4
-  checksum: 06ef61d711bda6348ec681bef5e72144100c97a90061e181c4138a703118783c754147479d3adf78ba98dab024a1820e377376356e7dfe5eb5b1b80e5607a3c7
+  checksum: ddfa46ccd00276774159a828ebdaba9f85430e3e99f9e0595cd70930b902e0b3b9bf5803df864a8099cf85fa5fae6635db7bd5256277cf89c47865a1b20ab3d4
   languageName: node
   linkType: hard
 
-"@vizzuality/layer-manager-provider-carto@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@vizzuality/layer-manager-provider-carto@npm:2.0.1"
+"@vizzuality/layer-manager-provider-carto@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@vizzuality/layer-manager-provider-carto@npm:2.0.2"
   dependencies:
-    "@vizzuality/layer-manager": ^5.0.1
-    "@vizzuality/layer-manager-utils": ^1.1.2
-  checksum: 9de0d9e57d1eb372cbbdc07882df42d37f268a169f7d23e2868b07ca4ce37978538cb41484c678b23a044ce2d746d9351c8a0dfee162815ea00ed5a9b2562b65
+    "@vizzuality/layer-manager": ^5.0.2
+    "@vizzuality/layer-manager-utils": ^1.1.3
+  checksum: 369fe2eb0af1cb967e169c67e964a53ed8b100a3927991633bb97bab5fa53e604df97047e3b774cdb4b9a7135a8012d48458a02e1ce5e5074468329c73e40bad
   languageName: node
   linkType: hard
 
-"@vizzuality/layer-manager-react@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@vizzuality/layer-manager-react@npm:2.0.1"
+"@vizzuality/layer-manager-react@npm:2.0.2":
+  version: 2.0.2
+  resolution: "@vizzuality/layer-manager-react@npm:2.0.2"
   dependencies:
-    "@vizzuality/layer-manager": ^5.0.1
-    "@vizzuality/layer-manager-utils": ^1.1.2
+    "@vizzuality/layer-manager": ^5.0.2
+    "@vizzuality/layer-manager-utils": ^1.1.3
     cancelable-promise: ^3.2.3
     fast-deep-equal: ^3.1.3
     js-deep-equals: ^2.1.1
   peerDependencies:
     react: ^16.8 || ^17
     react-dom: ^16.8 || ^17
-  checksum: 276c76a23763dfb7e16fed16ba37d4e41675f0685920dbc97fc15f272a8b969c615402e6770ee1f57ffec550151fd607daf7213f8522160cec7ec85e54107f7e
+  checksum: dfa8594d4ad4c7d5f1f39668b4546e6e0f297babac9ebb11a7108e648b5267b47ab2ad4f2af7571d6d7b2dd7232c0b4d2a1b0821596f09a381146ff2c5f239d8
   languageName: node
   linkType: hard
 
-"@vizzuality/layer-manager-utils@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "@vizzuality/layer-manager-utils@npm:1.1.2"
+"@vizzuality/layer-manager-utils@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "@vizzuality/layer-manager-utils@npm:1.1.3"
   dependencies:
     axios: ^0.21.4
     cancelable-promise: ^3.2.3
-  checksum: f2e46d827bc1acbbcb4f9e381b7f5cffdbb928b0d93d963d6f55155624fe6f649a8da2d0ad42f3f729943244b3585130b44773c4c44916d7815d1160760057a0
+  checksum: eac7ae8ba69be3e02558d032b958d6f290a32acf1a16031bb1b85583fef3f6b5a9934e7c9e8e201287fe9f029ade1e2d2fa347fb28a07b27680dfb6994a533c5
   languageName: node
   linkType: hard
 
-"@vizzuality/layer-manager@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "@vizzuality/layer-manager@npm:5.0.1"
+"@vizzuality/layer-manager@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "@vizzuality/layer-manager@npm:5.0.2"
   dependencies:
-    "@vizzuality/layer-manager-utils": ^1.1.2
+    "@vizzuality/layer-manager-utils": ^1.1.3
     axios: ^0.21.4
     cancelable-promise: ^3.2.3
     fast-deep-equal: ^3.1.3
     js-deep-equals: ^2.1.1
     mapbox-gl: ^2.2.0
-  checksum: 46ce126fb8b250a87642f3d7979c65de2bd1a453dff9a866c6c9a7c2dda8d577916a21081e633d0c54bd8444e4118704b22da4a9f55c2c806fcacd3a56cb3173
+  checksum: a6718a8a814cf980dc13ff5c9e2c60e9ed9d9385ea8ea71d92fe0db67ca3ddce3cfcab93c363b770b84cd51d2a58732b452dcd3c43e74adb76226c59a2d48a5e
   languageName: node
   linkType: hard
 
@@ -10504,10 +10504,10 @@ __metadata:
     "@types/react-dom": 18.0.6
     "@typescript-eslint/eslint-plugin": 5.13.0
     "@typescript-eslint/parser": 5.0.0
-    "@vizzuality/layer-manager-layers-deckgl": 2.0.1
-    "@vizzuality/layer-manager-plugin-mapboxgl": 2.0.1
-    "@vizzuality/layer-manager-provider-carto": 2.0.1
-    "@vizzuality/layer-manager-react": 2.0.1
+    "@vizzuality/layer-manager-layers-deckgl": 2.0.2
+    "@vizzuality/layer-manager-plugin-mapboxgl": 2.0.2
+    "@vizzuality/layer-manager-provider-carto": 2.0.2
+    "@vizzuality/layer-manager-react": 2.0.2
     assert: 2.0.0
     autoprefixer: 10.4.7
     axios: 0.21.1
