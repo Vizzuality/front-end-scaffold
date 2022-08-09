@@ -66,7 +66,7 @@ export default story;
 const cartoProvider = new CartoProvider();
 
 const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
-  const { id, bounds, maxZoom } = args;
+  const { id, initialViewState, bounds, maxZoom } = args;
   const [viewState, setViewState] = useState<Partial<ViewState>>({});
   const { [id]: mapRef } = useMap();
 
@@ -77,6 +77,7 @@ const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
   const handleFitBoundsChange = useCallback(
     (_bounds: Bounds) => {
       const { bbox, options } = _bounds;
+
       mapRef.fitBounds(
         [
           [bbox[0], bbox[1]],
@@ -92,10 +93,12 @@ const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
     <div className="relative w-full h-screen">
       <Map
         id={id}
-        viewState={viewState}
-        onViewStateChange={handleViewState}
         maxZoom={maxZoom}
+        bounds={bounds}
+        initialViewState={initialViewState}
+        viewState={viewState}
         mapboxAccessToken={process.env.STORYBOOK_MAPBOX_API_TOKEN}
+        onMapViewStateChange={handleViewState}
       >
         {(map) => (
           <LayerManager
@@ -124,11 +127,17 @@ Default.args = {
   id: 'map-storybook',
   className: '',
   viewport: {},
+  initialViewState: {
+    bounds: [10.5194091796875, 43.6499881760459, 10.9588623046875, 44.01257086123085],
+    fitBoundsOptions: {
+      padding: 250,
+    },
+  },
   bounds: {
     bbox: [10.5194091796875, 43.6499881760459, 10.9588623046875, 44.01257086123085],
     options: {
       padding: 250,
-      duration: 5000,
+      duration: 1000,
     },
   },
   onMapViewportChange: (viewport) => {
@@ -140,5 +149,5 @@ Default.args = {
   onMapLoad: ({ map, mapContainer }) => {
     console.info('onMapLoad: ', map, mapContainer);
   },
-  maxZoom: 4,
+  maxZoom: 20,
 };

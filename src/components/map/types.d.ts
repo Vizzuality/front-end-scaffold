@@ -30,5 +30,5 @@ export interface CustomMapProps extends MapProps {
   onMapLoad?: ({ map, mapContainer }) => void;
 
   /** A function that exposes the viewport */
-  onViewStateChange?: (viewport: Partial<ViewState>) => void;
+  onMapViewStateChange?: (viewport: Partial<ViewState>) => void;
 }
