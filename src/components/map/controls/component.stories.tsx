@@ -6,10 +6,12 @@ import ZoomControl from 'components/map/controls/zoom';
 import Controls from './component';
 import { ControlsProps } from './types';
 
-export default {
+const StoryControls = {
   title: 'Components/Map/Controls',
   component: Controls,
 };
+
+export default StoryControls;
 
 const Template: Story<ControlsProps> = (args) => {
   return (

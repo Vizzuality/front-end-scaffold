@@ -3,7 +3,7 @@ import { Story } from '@storybook/react/types-6-0';
 import Textarea from './component';
 import { TextareaProps } from './types';
 
-export default {
+const StoryTextarea = {
   title: 'Components/Forms/Textarea',
   component: Textarea,
   argTypes: {
@@ -34,6 +34,8 @@ export default {
     },
   },
 };
+
+export default StoryTextarea;
 
 const Template: Story<TextareaProps> = (args) => <Textarea {...args} />;
 

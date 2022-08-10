@@ -3,7 +3,7 @@ import { Story } from '@storybook/react/types-6-0';
 import Radio from './component';
 import { RadioProps } from './types';
 
-export default {
+const StoryRadio = {
   title: 'Components/Forms/Radio',
   component: Radio,
   argTypes: {
@@ -28,6 +28,8 @@ export default {
     },
   },
 };
+
+export default StoryRadio;
 
 const Template: Story<RadioProps> = (args) => <Radio {...args} />;
 

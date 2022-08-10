@@ -3,7 +3,7 @@ import { Story } from '@storybook/react/types-6-0';
 import Select from './component';
 import type { SelectProps } from './types';
 
-export default {
+const StorySelect = {
   title: 'Components/Forms/Select',
   component: Select,
   parameters: { actions: { argTypesRegex: '^on.*' } },
@@ -32,6 +32,8 @@ export default {
     },
   },
 };
+
+export default StorySelect;
 
 const Template: Story<SelectProps> = (args) => (
   <div className="relative">

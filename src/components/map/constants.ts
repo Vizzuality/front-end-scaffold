@@ -5,5 +5,3 @@ export const DEFAULT_VIEW_STATE: Partial<ViewState> = {
   latitude: 0,
   longitude: 0,
 };
-
-export default { DEFAULT_VIEW_STATE };

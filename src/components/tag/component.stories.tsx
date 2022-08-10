@@ -3,11 +3,13 @@ import { Story } from '@storybook/react/types-6-0';
 import Tag from './component';
 import { TagProps } from './types';
 
-export default {
+const StoryTag = {
   title: 'Components/Tag',
   component: Tag,
   argTypes: {},
 };
+
+export default StoryTag;
 
 const Template: Story<TagProps> = ({ children, ...args }: TagProps) => (
   <Tag {...args}>{children}</Tag>

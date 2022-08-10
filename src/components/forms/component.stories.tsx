@@ -12,10 +12,12 @@ import Slider from 'components/forms/slider';
 import Textarea from 'components/forms/textarea';
 import { composeValidators, booleanValidator, arrayValidator } from 'components/forms/validations';
 
-export default {
+const StoryForms = {
   title: 'Components/Forms',
   parameters: { actions: { argTypesRegex: '^on.*' } },
 };
+
+export default StoryForms;
 
 export function Form(): ReactNode {
   const sliderLabelRef = useRef(null);

@@ -18,7 +18,7 @@ import Map from './component';
 import LAYERS from './layers';
 import { Bounds, CustomMapProps } from './types';
 
-const story = {
+const StoryMap = {
   title: 'Components/Map',
   component: Map,
   argTypes: {
@@ -61,7 +61,7 @@ const story = {
   ],
 };
 
-export default story;
+export default StoryMap;
 
 const cartoProvider = new CartoProvider();
 

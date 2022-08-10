@@ -10,10 +10,12 @@ import LegendTypeBasic from './types/basic';
 import LegendTypeChoropleth from './types/choropleth';
 import LegendTypeGradient from './types/gradient';
 
-export default {
+const StoryLegend = {
   title: 'Components/Map/Legend',
   component: Legend,
 };
+
+export default StoryLegend;
 
 const Template: Story<LegendProps> = (args) => {
   const [sortArray, setSortArray] = useState([]);
