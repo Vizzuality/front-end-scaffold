@@ -75,3 +75,19 @@ Here's a step by step guide on how to address vulnerabilities found in productio
 	- The tool might also not be able to fix the vulnerability. If so, continue with the steps below.
 5. If the action fails, then you will have to manually update the dependencies until the vulnerability is solved
 
+## Env variables
+
+
+| Variable name           | Description                                                             |  Default value                      |
+|-------------------------|-------------------------------------------------------------------------|------------------------------------:|
+| NEXTAUTH_SECRET         |  Key used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Do not forget to add a secret. NextAuth can handle without it in development mode,  but it won't in production! [https://next-auth.js.org/configuration/options#secret](https://next-auth.js.org/configuration/options#secret) |  |
+| NEXTAUTH_URL            |  Needed by the next-auth library for [handling auth requests and callbacks](https://next-auth.js.org/configuration/options#nextauth_url). Set the environment variable to the canonical URL of your site. Not needed in Vercel deploys.   |  |
+| NEXT_PUBLIC_API_URL  | URL of the API. | http://localhost:3000   |
+| STORYBOOK_API_URL  | URL of the API for storybook. |    |
+| NEXT_PUBLIC_MAPBOX_API_TOKEN  | Mapbox token. |    |
+| STORYBOOK_MAPBOX_API_TOKEN  | Mapbox token for storybook. |    |
+| NEXT_PUBLIC_GA_TRACKING_ID  | Google Analytics tracking ID. If you're working with an Google Analytics 4 property, you have a Measurement ID instead of a Tracking ID. |    |
+
+
+
+
