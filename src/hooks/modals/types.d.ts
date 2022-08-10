@@ -1,4 +1,4 @@
-export type UseModalProps = {
+export type UseModalReturnProps = {
   /**
    * Whether the modal is open
    * */

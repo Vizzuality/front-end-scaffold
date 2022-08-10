@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
-import type { UseModalProps } from './types';
+import type { UseModalReturnProps } from './types';
 
-export function useModal(defaultIsOpen = false): UseModalProps {
+export function useModal(defaultIsOpen?: boolean): UseModalReturnProps {
   const [isOpen, setIsOpen] = useState(defaultIsOpen);
 
-  const open = (): void => {
+  const open = useCallback((): void => {
     setIsOpen(true);
-  };
+  }, []);
 
-  const close = (): void => {
+  const close = useCallback((): void => {
     setIsOpen(false);
-  };
+  }, []);
 
   return {
     isOpen,

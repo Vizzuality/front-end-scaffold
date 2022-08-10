@@ -33,7 +33,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     return () => {
       router.events.off('routeChangeComplete', handleRouteChangeCompleted);
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [router.events, handleRouteChangeCompleted]);
 
   return (
     <ReduxProvider store={store}>
