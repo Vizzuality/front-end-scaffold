@@ -38,23 +38,18 @@ const ThirdParty: React.FC = () => {
           {/* Third Party Script needing cookies */}
           {/* Global site tag (gtag.js) - Google Analytics */}
           <Script
-            id="ga-script"
-            async
+            id="gtm-script"
+            strategy="afterInteractive"
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           />
-          <Script
-            id="ga-script-id"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_TRACKING_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-            }}
-          />
+          <Script id="gtm-config-script" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}');
+            `}
+          </Script>
         </>
       )}
       <Cookies
