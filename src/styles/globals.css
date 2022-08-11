@@ -36,4 +36,38 @@
 }
 
 /* FLICKING */
-.flicking-viewport{position:relative;overflow:hidden}.flicking-viewport:not(.vertical){width:100%;height:100%}.flicking-camera{width:100%;height:100%;position:relative;z-index:1;white-space:nowrap;will-change:transform}.flicking-camera>*{display:inline-block;white-space:normal;vertical-align:top}.flicking-viewport.vertical,.flicking-viewport.vertical>.flicking-camera{display:inline-block}.flicking-viewport.vertical.middle>.flicking-camera>*{vertical-align:middle}.flicking-viewport.vertical.bottom>.flicking-camera>*{vertical-align:bottom}.flicking-viewport.vertical>.flicking-camera>*{display:block}.flicking-viewport.flicking-hidden>.flicking-camera>*{visibility:hidden}
+.flicking-viewport {
+  @apply relative overflow-hidden;
+}
+
+.flicking-viewport:not(.vertical) {
+  @apply w-full h-full;
+}
+
+.flicking-camera {
+  @apply relative z-10 w-full h-full whitespace-nowrap will-change-transform;
+}
+
+.flicking-camera>* {
+  @apply inline-block whitespace-normal align-top;
+}
+
+.flicking-viewport.vertical,.flicking-viewport.vertical>.flicking-camera {
+  @apply inline-block;
+}
+
+.flicking-viewport.vertical.middle>.flicking-camera>* {
+  @apply align-middle;
+}
+
+.flicking-viewport.vertical.bottom>.flicking-camera>* {
+  @apply align-bottom;
+}
+
+.flicking-viewport.vertical>.flicking-camera>* {
+  @apply block;
+}
+
+.flicking-viewport.flicking-hidden>.flicking-camera>* {
+  @apply invisible;
+}
