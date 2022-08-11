@@ -1581,6 +1581,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cfcs/core@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@cfcs/core@npm:0.0.4"
+  dependencies:
+    "@egjs/component": ^3.0.2
+  checksum: 12f8b330945052802a01a3cf0e54d0452f1d39114a3d05e9dd7123f5e23be30774f760a99ab8991540a1138fe2e858fc3673ccb20c357dd831adc6f5e8f86328
+  languageName: node
+  linkType: hard
+
 "@cnakazawa/watch@npm:^1.0.3":
   version: 1.0.4
   resolution: "@cnakazawa/watch@npm:1.0.4"
@@ -1820,6 +1829,69 @@ __metadata:
   peerDependencies:
     react: ">=16.8.0"
   checksum: 575e554992c5ff26622854b889b6288580f308e1125620a4aae55d0a113d47f05fdb7c6e2023ce51c58d5a206091fc1deac868222dd5f9c35c80c3e2f99db9af
+  languageName: node
+  linkType: hard
+
+"@egjs/agent@npm:^2.2.1":
+  version: 2.4.2
+  resolution: "@egjs/agent@npm:2.4.2"
+  checksum: 6ceff64ebbc07e16fc226aa369286fff8fabd72e65aa95f1690a93cb66234d6fb5ff08ab8297cd2b753bd6e082cbf6766698c95f733596dee299b922556d8b7e
+  languageName: node
+  linkType: hard
+
+"@egjs/axes@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "@egjs/axes@npm:3.6.0"
+  dependencies:
+    "@cfcs/core": ^0.0.4
+    "@egjs/agent": ^2.2.1
+    "@egjs/component": ^3.0.1
+  checksum: f539d0c4597d04f86a8a5df808ffe0188b49634bd137ef49601771ca4b2d2f790b6ee61c2d9e4de2c94042dec84631d9a932e267ccc071a138439a1624254bda
+  languageName: node
+  linkType: hard
+
+"@egjs/component@npm:^3.0.1, @egjs/component@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@egjs/component@npm:3.0.2"
+  checksum: 4fd8854192e52f47b5cec5bad4952448b0df3b36f65bc1adae0f933164877d33fc705e9533af27a02b6faa0a4fddcaf101cce7c8f156de6202ad174b1df61e81
+  languageName: node
+  linkType: hard
+
+"@egjs/flicking@npm:~4.9.2":
+  version: 4.9.2
+  resolution: "@egjs/flicking@npm:4.9.2"
+  dependencies:
+    "@egjs/axes": ^3.6.0
+    "@egjs/component": ^3.0.1
+    "@egjs/imready": ^1.1.3
+    "@egjs/list-differ": ^1.0.0
+  checksum: a80e10734b053b7ad3e549d607e1f41b93927ce39e16a7664550a15560394b7d8dc6c43157008b1435f280a8f7ce4bc7efb9fe53d26a0003b370e769dd53798f
+  languageName: node
+  linkType: hard
+
+"@egjs/imready@npm:^1.1.3":
+  version: 1.3.0
+  resolution: "@egjs/imready@npm:1.3.0"
+  dependencies:
+    "@egjs/component": ^3.0.1
+  checksum: 207736c7586619f736413ac4da0ea3fdb4b8a83cf315d6911f4258b61769738e8ece37c7f661bc6a0f4464618b581af9b94001833ba743d06d9d120e8c3cdaf0
+  languageName: node
+  linkType: hard
+
+"@egjs/list-differ@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@egjs/list-differ@npm:1.0.0"
+  checksum: d1827d134ddab12a024358367cb8a3b70d2ba0f286e5beb6ce2a6bbd021594f26b02c38b2d8b3d1dfd76bd7d1fcda54de3b40decaa9b4fc939230f6e7d531d0c
+  languageName: node
+  linkType: hard
+
+"@egjs/react-flicking@npm:^4.9.2":
+  version: 4.9.2
+  resolution: "@egjs/react-flicking@npm:4.9.2"
+  dependencies:
+    "@egjs/flicking": ~4.9.2
+    "@egjs/list-differ": ^1.0.0
+  checksum: 9dd147a049979612bd7a7025bf1b6c8b69041a9f4b3f4c82b30654c390c00ba492f57674e496a47579d01fbd599b1cca2a0918df68db1e26b5c5154d0512560a
   languageName: node
   linkType: hard
 
@@ -10500,6 +10572,7 @@ __metadata:
     "@dnd-kit/modifiers": 2.0.0
     "@dnd-kit/sortable": 6.0.1
     "@dnd-kit/utilities": 2.0.0
+    "@egjs/react-flicking": ^4.9.2
     "@floating-ui/react-dom-interactions": 0.6.1
     "@luma.gl/constants": 8.4.5
     "@popperjs/core": 2.9.2
