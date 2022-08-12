@@ -28,6 +28,7 @@ import {
   ContextData,
 } from '@floating-ui/react-dom-interactions';
 
+import THEME from 'components/forms/select2/constants';
 import Icon from 'components/icon';
 
 import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
@@ -57,6 +58,7 @@ export function usePrevious<T>(value: T) {
 export const Option: React.FC<{
   value: string;
   index?: number;
+  theme?: 'dark' | 'light';
   children: React.ReactNode;
 }> = ({ children, index = 0, value }) => {
   const {
@@ -87,6 +89,9 @@ export const Option: React.FC<{
 
   return (
     <li
+      // className={cx({
+      //   [THEME[theme].item.base]: true,
+      // })}
       className="flex items-center justify-between px-6 py-3 text-left text-white transition duration-150 ease-out rounded-sm cursor-pointer focus:bg-blue-500 outline-0 min-h-4"
       role="option"
       ref={(node) => (listRef.current[index] = node)}
@@ -100,9 +105,6 @@ export const Option: React.FC<{
       })}
     >
       {children}{' '}
-      {/* {selectedIndex === index && (
-        <Icon icon={CHECK_SVG} className="w-5 h-5 text-white border-none fill-white ring-white" />
-      )} */}
     </li>
   );
 };
@@ -120,14 +122,16 @@ export const OptionGroup: React.FC<{
 };
 
 export const Select2: React.FC<{
+  label: string;
   onChange: (value: string) => void;
   render: (selectedIndex: number) => React.ReactNode;
   value: string;
   children: React.ReactNode;
-}> = ({ children, value, render, onChange = () => {} }) => {
+  theme?: 'light' | 'dark';
+}> = ({ children, label = 'Select', value, theme, render, onChange = () => {} }) => {
   const listItemsRef = useRef<Array<HTMLLIElement | null>>([]);
   const listContentRef = useRef([
-    'Select...',
+    label,
     ...(Children.map(children, (child) =>
       Children.map(
         isValidElement(child) && child.props.children,
@@ -159,7 +163,7 @@ export const Select2: React.FC<{
             maxHeight: `${availableHeight}px`,
           });
         },
-        padding: 8,
+        // padding: 8,
       }),
     ],
   });
@@ -239,7 +243,9 @@ export const Select2: React.FC<{
   let optionIndex = 0;
   const options = [
     <ul key="default">
-      <Option value="default">Select...</Option>
+      <Option value="default" theme={theme}>
+        {label}
+      </Option>
     </ul>,
     ...(Children.map(
       children,
@@ -253,7 +259,9 @@ export const Select2: React.FC<{
             <li
               role="presentation"
               id={`floating-ui-select-${child.props.label}`}
-              className="px-4 my-5 text-white opacity-50"
+              className={cx({
+                [THEME[theme].category]: true,
+              })}
               aria-hidden="true"
             >
               {child.props.label}
@@ -283,8 +291,9 @@ export const Select2: React.FC<{
       <button
         {...getReferenceProps({
           ref: reference,
-          className:
-            'relative flex items-center justify-between text-white bg-transparent ring-1 ring-gray-400 hover:opacity-20 rounded-3xl w-full py-1 px-4',
+          className: cx({
+            [THEME[theme].container]: true,
+          }),
         })}
       >
         {render(selectedIndex - 1)}
@@ -298,17 +307,18 @@ export const Select2: React.FC<{
         />
       </button>
       {open && (
-        <FloatingOverlay lockScroll>
+        <FloatingOverlay>
           <FloatingFocusManager context={context} preventTabbing>
             <div
               {...getFloatingProps({
                 ref: floating,
-                className: 'ring-2 ring-blue-400 bg-gray-700 rounded-2xl',
+                className: cx({
+                  [THEME[theme].menu]: true,
+                }) as string,
                 style: {
                   position: strategy,
                   top: y ?? 0,
                   left: x ?? 0,
-                  overflow: 'auto',
                 },
                 onPointerEnter() {
                   setControlledScrolling(false);

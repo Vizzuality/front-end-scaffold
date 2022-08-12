@@ -137,10 +137,11 @@ const items = [
   },
 ];
 
-const Template: Story<Select2Props> = ({ ...args }) => (
+const Template: Story<Select2Props> = (args) => (
   <Select2
     {...args}
     value=""
+    label="Select"
     render={(selectedIndex) => (
       <div className="flex space-x-3">
         {items[selectedIndex] ? (
@@ -150,7 +151,7 @@ const Template: Story<Select2Props> = ({ ...args }) => (
             src={items[selectedIndex]?.icon}
           />
         ) : null}
-        <p>{items[selectedIndex]?.name ?? 'Select...'} </p>
+        <p>{items[selectedIndex]?.name ?? 'Select'} </p>
       </div>
     )}
     onChange={(e) => console.info(e)}
@@ -180,4 +181,7 @@ const Template: Story<Select2Props> = ({ ...args }) => (
 );
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  label: 'Select...',
+  theme: 'dark',
+};
