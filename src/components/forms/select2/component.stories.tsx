@@ -8,139 +8,132 @@ const StorySelect2 = {
   title: 'Components/Forms/Select2',
   component: Select2,
   parameters: { actions: { argTypesRegex: '^on.*' } },
-  argTypes: {
-    theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
-    },
-  },
+  argTypes: {},
 };
 
 export default StorySelect2;
 
-const decades = ['1990s', '2000s', '2010s', '2020s'];
-const films = [
+const categories = ['1990s', '2000s', '2010s', '2020s'];
+const items = [
   {
     name: 'Toy Story',
     icon: 'https://upload.wikimedia.org/wikipedia/en/1/13/Toy_Story.jpg',
-    decade: '1990s',
+    category: '1990s',
   },
   {
     name: 'A Bugs Life',
     icon: 'https://upload.wikimedia.org/wikipedia/en/c/cc/A_Bug%27s_Life.jpg',
-    decade: '1990s',
+    category: '1990s',
   },
   {
     name: 'Toy Story 2',
     icon: 'https://upload.wikimedia.org/wikipedia/en/c/c0/Toy_Story_2.jpg',
-    decade: '1990s',
+    category: '1990s',
   },
   {
     name: 'Monsters, Inc.',
     icon: 'https://upload.wikimedia.org/wikipedia/en/6/63/Monsters_Inc.JPG',
-    decade: '2000s',
+    category: '2000s',
   },
   {
     name: 'Finding Nemo',
     icon: 'https://upload.wikimedia.org/wikipedia/en/2/29/Finding_Nemo.jpg',
-    decade: '2000s',
+    category: '2000s',
   },
   {
     name: 'The Incredibles',
     icon: 'https://upload.wikimedia.org/wikipedia/en/2/27/The_Incredibles_%282004_animated_feature_film%29.jpg',
-    decade: '2000s',
+    category: '2000s',
   },
   {
     name: 'Cars',
     icon: 'https://upload.wikimedia.org/wikipedia/en/3/34/Cars_2006.jpg',
-    decade: '2000s',
+    category: '2000s',
   },
   {
     name: 'Ratatouille',
     icon: 'https://upload.wikimedia.org/wikipedia/en/5/50/RatatouillePoster.jpg',
-    decade: '2000s',
+    category: '2000s',
   },
   {
     name: 'WALL-E',
     icon: 'https://upload.wikimedia.org/wikipedia/en/c/c2/WALL-Eposter.jpg',
-    decade: '2000s',
+    category: '2000s',
   },
   {
     name: 'Up',
     icon: 'https://upload.wikimedia.org/wikipedia/en/0/05/Up_%282009_film%29.jpg',
-    decade: '2000s',
+    category: '2000s',
   },
   {
     name: 'Cars 2',
     icon: 'https://upload.wikimedia.org/wikipedia/en/7/7f/Cars_2_Poster.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Toy Story 3',
     icon: 'https://upload.wikimedia.org/wikipedia/en/6/69/Toy_Story_3_poster.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Brave',
     icon: 'https://upload.wikimedia.org/wikipedia/en/9/96/Brave_Poster.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Monsters University',
     icon: 'https://upload.wikimedia.org/wikipedia/en/2/2a/Monsters_University_poster_3.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Inside Out',
     icon: 'https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'The Good Dinosaur',
     icon: 'https://upload.wikimedia.org/wikipedia/en/8/80/The_Good_Dinosaur_poster.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Finding Dory',
     icon: 'https://upload.wikimedia.org/wikipedia/en/3/3e/Finding_Dory.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Cars 3',
     icon: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/94/Cars_3_poster.jpg/220px-Cars_3_poster.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Coco',
     icon: 'https://upload.wikimedia.org/wikipedia/en/9/98/Coco_%282017_film%29_poster.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Incredibles 2',
     icon: 'https://upload.wikimedia.org/wikipedia/en/1/1f/Incredibles_2_%282018_animated_film%29.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Toy Story 4',
     icon: 'https://upload.wikimedia.org/wikipedia/en/4/4c/Toy_Story_4_poster.jpg',
-    decade: '2010s',
+    category: '2010s',
   },
   {
     name: 'Onward',
     icon: 'https://upload.wikimedia.org/wikipedia/en/0/03/Onward_poster.jpg',
-    decade: '2020s',
+    category: '2020s',
   },
   {
     name: 'Soul',
     icon: 'https://upload.wikimedia.org/wikipedia/en/3/39/Soul_%282020_film%29_poster.jpg',
-    decade: '2020s',
+    category: '2020s',
   },
   {
     name: 'Luca',
     icon: 'https://upload.wikimedia.org/wikipedia/en/3/33/Luca_%282021_film%29.png',
-    decade: '2020s',
+    category: '2020s',
   },
 ];
 
@@ -149,39 +142,40 @@ const Template: Story<Select2Props> = ({ ...args }) => (
     {...args}
     value=""
     render={(selectedIndex) => (
-      <div>
-        {films[selectedIndex] ? (
+      <div className="flex space-x-3">
+        {items[selectedIndex] ? (
           <img
             className="object-cover w-6 h-6 text-transparent bg-gray-800 rounded-full"
-            alt="Poster"
-            src={films[selectedIndex]?.icon}
+            alt={items[selectedIndex]?.name}
+            src={items[selectedIndex]?.icon}
           />
         ) : null}
-        {films[selectedIndex]?.name ?? 'Select...'}{' '}
+        <p>{items[selectedIndex]?.name ?? 'Select...'} </p>
       </div>
     )}
     onChange={(e) => console.info(e)}
   >
-    {decades.map((decade) => (
-      <OptionGroup key={decade} label={decade}>
-        {films
-          .filter((item) => item.decade === decade)
-          .map(({ name, icon }) => (
-            <Option key={name} value={name}>
-              <div>
-                {icon && (
-                  <img
-                    className="object-cover w-6 h-6 text-transparent bg-gray-800 rounded-full"
-                    alt="Poster"
-                    src={icon}
-                  />
-                )}{' '}
-                <span>{name}</span>
-              </div>
-            </Option>
-          ))}
-      </OptionGroup>
-    ))}
+    {categories &&
+      categories.map((category) => (
+        <OptionGroup key={category} label={category}>
+          {items
+            .filter((item) => item.category === category)
+            .map(({ name, icon }) => (
+              <Option key={name} value={name}>
+                <div className="flex space-x-3">
+                  {icon && (
+                    <img
+                      className="object-cover w-6 h-6 text-transparent bg-gray-800 rounded-full"
+                      alt={name}
+                      src={icon}
+                    />
+                  )}{' '}
+                  <span>{name}</span>
+                </div>
+              </Option>
+            ))}
+        </OptionGroup>
+      ))}
   </Select2>
 );
 

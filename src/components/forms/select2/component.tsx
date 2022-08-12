@@ -9,6 +9,8 @@ import React, {
   useLayoutEffect,
 } from 'react';
 
+import cx from 'classnames';
+
 import {
   useFloating,
   offset,
@@ -25,6 +27,10 @@ import {
   FloatingOverlay,
   ContextData,
 } from '@floating-ui/react-dom-interactions';
+
+import Icon from 'components/icon';
+
+import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 
 interface SelectContextValue {
   selectedIndex: number;
@@ -46,44 +52,6 @@ export function usePrevious<T>(value: T) {
     ref.current = value;
   }, [value]);
   return ref.current;
-}
-
-function Arrow({ dir }: { dir: 'down' | 'up' }) {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        transform: dir === 'up' ? 'rotate(180deg)' : undefined,
-      }}
-    >
-      <svg width={16} height={16} viewBox="0 0 512 512">
-        <g transform={`translate(0,512) scale(0.1,-0.1)`} fill="currentColor" stroke="none">
-          <path
-            d="M783 3543 c-29 -6 -63 -49 -63 -79 0 -15 20 -46 52 -81 29 -32 434
--451 901 -930 834 -858 849 -873 887 -873 38 0 53 15 887 873 467 479 872 898
-901 930 59 65 64 91 28 134 l-24 28 -1774 1 c-975 1 -1783 -1 -1795 -3z"
-          />
-        </g>
-      </svg>
-    </div>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg width={16} height={16} viewBox="0 0 512 512">
-      <g transform="translate(0,512) scale(0.1,-0.1)" fill="currentColor" stroke="none">
-        <path
-          d="M4468 4401 c-36 -10 -88 -31 -115 -46 -32 -18 -446 -425 -1245 -1224
-l-1198 -1196 -532 531 c-293 292 -555 546 -581 563 -163 110 -396 111 -563 3
--174 -113 -264 -327 -221 -529 34 -158 -4 -114 824 -944 509 -510 772 -766
-808 -788 108 -65 264 -87 389 -55 146 38 67 -37 1582 1478 896 896 1411 1418
-1428 1447 52 92 69 156 69 269 0 155 -42 259 -146 363 -127 127 -320 176 -499
-128z"
-        />
-      </g>
-    </svg>
-  );
 }
 
 export const Option: React.FC<{
@@ -119,7 +87,7 @@ export const Option: React.FC<{
 
   return (
     <li
-      className="Option"
+      className="flex items-center justify-between px-6 py-3 text-left text-white transition duration-150 ease-out rounded-sm cursor-pointer focus:bg-blue-500 outline-0 min-h-4"
       role="option"
       ref={(node) => (listRef.current[index] = node)}
       tabIndex={activeIndex === index ? 0 : 1}
@@ -131,7 +99,10 @@ export const Option: React.FC<{
         onKeyDown: handleKeyDown,
       })}
     >
-      {children} {selectedIndex === index && <CheckIcon />}
+      {children}{' '}
+      {/* {selectedIndex === index && (
+        <Icon icon={CHECK_SVG} className="w-5 h-5 text-white border-none fill-white ring-white" />
+      )} */}
     </li>
   );
 };
@@ -141,8 +112,8 @@ export const OptionGroup: React.FC<{
   children: React.ReactNode;
 }> = ({ children, label }) => {
   return (
-    <li className="OptionGroup">
-      <div className="OptionGroupLabel">{label}</div>
+    <li>
+      <div>{label}</div>
       <ul>{children}</ul>
     </li>
   );
@@ -282,7 +253,7 @@ export const Select2: React.FC<{
             <li
               role="presentation"
               id={`floating-ui-select-${child.props.label}`}
-              className="SelectGroupLabel"
+              className="px-4 my-5 text-white opacity-50"
               aria-hidden="true"
             >
               {child.props.label}
@@ -312,11 +283,19 @@ export const Select2: React.FC<{
       <button
         {...getReferenceProps({
           ref: reference,
-          className: 'SelectButton',
+          className:
+            'relative flex items-center justify-between text-white bg-transparent ring-1 ring-gray-400 hover:opacity-20 rounded-3xl w-full py-1 px-4',
         })}
       >
         {render(selectedIndex - 1)}
-        <Arrow dir="down" />
+
+        <Icon
+          icon={ARROW_DOWN_SVG}
+          className={cx({
+            'absolute w-3 h-3 -translate-y-1/2 top-1/2 right-5': true,
+            'transform transition-transform rotate-180 text-blue-500': open,
+          })}
+        />
       </button>
       {open && (
         <FloatingOverlay lockScroll>
@@ -324,7 +303,7 @@ export const Select2: React.FC<{
             <div
               {...getFloatingProps({
                 ref: floating,
-                className: 'Select',
+                className: 'ring-2 ring-blue-400 bg-gray-700 rounded-2xl',
                 style: {
                   position: strategy,
                   top: y ?? 0,
