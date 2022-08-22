@@ -19,4 +19,11 @@ export interface Select2Props {
   children: React.ReactNode;
   onChange: (value: string) => void;
   render: (selectedIndex: number) => React.ReactNode;
+  categories: string[];
+  items: {
+    name?: string;
+    icon?: React.ReactNode;
+    category?: string;
+    filter: any;
+  };
 }
