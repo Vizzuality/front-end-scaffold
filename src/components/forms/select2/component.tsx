@@ -33,6 +33,8 @@ import Icon from 'components/icon';
 
 import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 
+import type { Select2Props } from './types';
+
 interface SelectContextValue {
   selectedIndex: number;
   setSelectedIndex: (index: number) => void;
@@ -60,7 +62,7 @@ export const Option: React.FC<{
   index?: number;
   theme?: 'dark' | 'light';
   children: React.ReactNode;
-}> = ({ children, index = 0, value }) => {
+}> = ({ children, index = 0, theme, value }) => {
   const {
     selectedIndex,
     setSelectedIndex,
@@ -89,10 +91,10 @@ export const Option: React.FC<{
 
   return (
     <li
-      // className={cx({
-      //   [THEME[theme].item.base]: true,
-      // })}
-      className="flex items-center justify-between px-6 py-3 text-left text-white transition duration-150 ease-out rounded-sm cursor-pointer focus:bg-blue-500 outline-0 min-h-4"
+      className={cx({
+        [THEME[theme].item.base]: true,
+      })}
+      // className="flex items-center justify-between px-6 py-3 text-left text-white transition duration-150 ease-out rounded-sm cursor-pointer focus:bg-blue-500 outline-0 min-h-4"
       role="option"
       ref={(node) => (listRef.current[index] = node)}
       tabIndex={activeIndex === index ? 0 : 1}
@@ -121,14 +123,14 @@ export const OptionGroup: React.FC<{
   );
 };
 
-export const Select2: React.FC<{
-  label: string;
-  onChange: (value: string) => void;
-  render: (selectedIndex: number) => React.ReactNode;
-  value: string;
-  children: React.ReactNode;
-  theme?: 'light' | 'dark';
-}> = ({ children, label = 'Select', value, theme, render, onChange = () => {} }) => {
+export const Select2: React.FC<Select2Props> = ({
+  children,
+  label = 'Select',
+  value,
+  theme = 'light',
+  render,
+  onChange = () => {},
+}: Select2Props) => {
   const listItemsRef = useRef<Array<HTMLLIElement | null>>([]);
   const listContentRef = useRef([
     label,

@@ -5,4 +5,6 @@ export interface Select2Props {
   label: string;
   value?: string | number;
   children: React.ReactNode;
+  onChange: (value: string) => void;
+  render: (selectedIndex: number) => React.ReactNode;
 }

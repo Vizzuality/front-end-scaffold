@@ -162,7 +162,7 @@ const Template: Story<Select2Props> = (args) => (
           {items
             .filter((item) => item.category === category)
             .map(({ name, icon }) => (
-              <Option key={name} value={name}>
+              <Option key={name} value={name} theme="dark">
                 <div className="flex space-x-3">
                   {icon && (
                     <img
