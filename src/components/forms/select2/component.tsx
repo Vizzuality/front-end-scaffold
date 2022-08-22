@@ -25,7 +25,6 @@ import {
   autoUpdate,
   size,
   FloatingOverlay,
-  ContextData,
 } from '@floating-ui/react-dom-interactions';
 
 import THEME from 'components/forms/select2/constants';
@@ -33,19 +32,7 @@ import Icon from 'components/icon';
 
 import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 
-import type { OptionProps, OptionGroupProps, Select2Props } from './types';
-
-interface SelectContextValue {
-  selectedIndex: number;
-  setSelectedIndex: (index: number) => void;
-  activeIndex: number | null;
-  setActiveIndex: (index: number | null) => void;
-  listRef: React.MutableRefObject<Array<HTMLLIElement | null>>;
-  setOpen: (open: boolean) => void;
-  onChange: (value: string) => void;
-  getItemProps: (userProps?: React.HTMLProps<HTMLElement>) => any;
-  dataRef: ContextData;
-}
+import type { SelectContextValue, OptionProps, OptionGroupProps, Select2Props } from './types';
 
 const SelectContext = createContext({} as SelectContextValue);
 
@@ -62,6 +49,7 @@ export const Option: React.FC<OptionProps> = ({
   index = 0,
   theme,
   value,
+  multi,
 }: OptionProps) => {
   const {
     selectedIndex,
@@ -75,26 +63,34 @@ export const Option: React.FC<OptionProps> = ({
     dataRef,
   } = useContext(SelectContext);
 
-  function handleSelect() {
+  const handleMultiSelect = () => {
+    console.info('MULTI');
     setSelectedIndex(index);
     onChange(value);
     setOpen(false);
     setActiveIndex(null);
-  }
+  };
 
-  function handleKeyDown(event: React.KeyboardEvent) {
+  const handleSelect = () => {
+    setSelectedIndex(index);
+    onChange(value);
+    setOpen(false);
+    setActiveIndex(null);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter' || (event.key === ' ' && !dataRef.current.typing)) {
       event.preventDefault();
-      handleSelect();
+      if (multi) return handleMultiSelect();
+      if (!multi) return handleSelect();
     }
-  }
+  };
 
   return (
     <li
       className={cx({
         [THEME[theme].item.base]: true,
       })}
-      // className="flex items-center justify-between px-6 py-3 text-left text-white transition duration-150 ease-out rounded-sm cursor-pointer focus:bg-blue-500 outline-0 min-h-4"
       role="option"
       ref={(node) => (listRef.current[index] = node)}
       tabIndex={activeIndex === index ? 0 : 1}
@@ -102,7 +98,7 @@ export const Option: React.FC<OptionProps> = ({
       aria-selected={activeIndex === index && selectedIndex === index}
       data-selected={selectedIndex === index}
       {...getItemProps({
-        onClick: handleSelect,
+        onClick: multi ? handleMultiSelect : handleSelect,
         onKeyDown: handleKeyDown,
       })}
     >
@@ -126,6 +122,7 @@ export const Select2: React.FC<Select2Props> = ({
   label,
   value,
   theme = 'light',
+  multi,
   render,
   onChange = () => {},
 }: Select2Props) => {
@@ -163,7 +160,6 @@ export const Select2: React.FC<Select2Props> = ({
             maxHeight: `${availableHeight}px`,
           });
         },
-        // padding: 8,
       }),
     ],
   });
@@ -296,7 +292,8 @@ export const Select2: React.FC<Select2Props> = ({
           }),
         })}
       >
-        {render(selectedIndex - 1)}
+        {!multi && render(selectedIndex - 1)}
+        {multi && render(selectedIndex)}
 
         <Icon
           icon={ARROW_DOWN_SVG}

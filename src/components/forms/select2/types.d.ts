@@ -1,6 +1,19 @@
+export interface SelectContextValue {
+  selectedIndex: number | number[];
+  setSelectedIndex: (index: number) => void;
+  activeIndex: number | null;
+  setActiveIndex: (index: number | null) => void;
+  listRef: React.MutableRefObject<Array<HTMLLIElement | null>>;
+  setOpen: (open: boolean) => void;
+  onChange: (value: string) => void;
+  getItemProps: (userProps?: React.HTMLProps<HTMLElement>) => any;
+  dataRef: ContextData;
+}
+
 export interface OptionProps {
   value: string;
   index?: number;
+  multi?: boolean;
   theme?: 'dark' | 'light';
   children: React.ReactNode;
 }
@@ -16,6 +29,7 @@ export interface Select2Props {
   className?: string;
   label: string;
   value?: string | number;
+  multi?: boolean;
   children: React.ReactNode;
   onChange: (value: string) => void;
   render: (selectedIndex: number) => React.ReactNode;
