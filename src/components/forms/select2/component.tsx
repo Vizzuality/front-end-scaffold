@@ -106,7 +106,8 @@ export const Option: React.FC<OptionProps> = ({
         onKeyDown: handleKeyDown,
       })}
     >
-      {children}{' '}
+      {children}
+      {selectedIndex === index && <div className="text-3xl text-white">*</div>}
     </li>
   );
 };
@@ -122,7 +123,7 @@ export const OptionGroup: React.FC<OptionGroupProps> = ({ children, label }: Opt
 
 export const Select2: React.FC<Select2Props> = ({
   children,
-  label = 'Select',
+  label,
   value,
   theme = 'light',
   render,
@@ -242,8 +243,8 @@ export const Select2: React.FC<Select2Props> = ({
   let optionIndex = 0;
   const options = [
     <ul key="default">
-      <Option value="default" theme={theme}>
-        {label}
+      <Option value={null} theme={theme}>
+        Clear selection
       </Option>
     </ul>,
     ...(Children.map(

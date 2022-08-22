@@ -17,7 +17,7 @@ const Template: Story<Select2Props> = (args) => (
   <Select2
     {...args}
     value=""
-    label="Select"
+    // label="Select"
     render={(selectedIndex) => (
       <div className="flex space-x-3">
         {args.items[selectedIndex] ? (
@@ -27,7 +27,7 @@ const Template: Story<Select2Props> = (args) => (
             src={args.items[selectedIndex]?.icon}
           />
         ) : null}
-        <p>{args.items[selectedIndex]?.name ?? 'Select'} </p>
+        <p>{args.items[selectedIndex]?.name ?? `${args.label}`} </p>
       </div>
     )}
     onChange={(e) => console.info(e)}
