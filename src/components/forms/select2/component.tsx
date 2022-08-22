@@ -33,7 +33,7 @@ import Icon from 'components/icon';
 
 import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 
-import type { Select2Props } from './types';
+import type { OptionProps, OptionGroupProps, Select2Props } from './types';
 
 interface SelectContextValue {
   selectedIndex: number;
@@ -57,12 +57,12 @@ export function usePrevious<T>(value: T) {
   return ref.current;
 }
 
-export const Option: React.FC<{
-  value: string;
-  index?: number;
-  theme?: 'dark' | 'light';
-  children: React.ReactNode;
-}> = ({ children, index = 0, theme, value }) => {
+export const Option: React.FC<OptionProps> = ({
+  children,
+  index = 0,
+  theme,
+  value,
+}: OptionProps) => {
   const {
     selectedIndex,
     setSelectedIndex,
@@ -111,10 +111,7 @@ export const Option: React.FC<{
   );
 };
 
-export const OptionGroup: React.FC<{
-  label: string;
-  children: React.ReactNode;
-}> = ({ children, label }) => {
+export const OptionGroup: React.FC<OptionGroupProps> = ({ children, label }: OptionGroupProps) => {
   return (
     <li>
       <div>{label}</div>

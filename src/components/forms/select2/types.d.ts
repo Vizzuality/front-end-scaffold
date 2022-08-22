@@ -1,3 +1,15 @@
+export interface OptionProps {
+  value: string;
+  index?: number;
+  theme?: 'dark' | 'light';
+  children: React.ReactNode;
+}
+
+export interface OptionGroupProps {
+  label: string;
+  children: React.ReactNode;
+}
+
 export interface Select2Props {
   htmlFor?: string;
   theme?: 'dark' | 'light';
