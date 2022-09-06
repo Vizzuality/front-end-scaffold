@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { MapProvider } from 'react-map-gl';
 import { Provider as ReduxProvider } from 'react-redux';
@@ -18,10 +18,12 @@ import store from 'store';
 
 import 'styles/globals.css';
 
-const queryClient = new QueryClient();
-
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
+
+  // Never ever instantiate the client outside a component, hook or callback as it can leak data
+  // between users
+  const [queryClient] = useState(() => new QueryClient());
 
   const handleRouteChangeCompleted = useCallback((url: string) => {
     GAPage(url);
