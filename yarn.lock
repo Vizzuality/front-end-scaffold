@@ -1839,14 +1839,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@egjs/axes@npm:^3.6.0":
-  version: 3.6.0
-  resolution: "@egjs/axes@npm:3.6.0"
+"@egjs/axes@npm:^3.8.0":
+  version: 3.8.0
+  resolution: "@egjs/axes@npm:3.8.0"
   dependencies:
     "@cfcs/core": ^0.0.4
     "@egjs/agent": ^2.2.1
     "@egjs/component": ^3.0.1
-  checksum: f539d0c4597d04f86a8a5df808ffe0188b49634bd137ef49601771ca4b2d2f790b6ee61c2d9e4de2c94042dec84631d9a932e267ccc071a138439a1624254bda
+  checksum: 909dd54b64a3206fcf5e8611799a6a174d9966d710fd44316d6a143fa091d286b80491341d5839811d81b3d7b70fdbf6759f88e654f0abbf2d34f37ea3cd3db8
   languageName: node
   linkType: hard
 
@@ -1857,15 +1857,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@egjs/flicking@npm:~4.9.2":
-  version: 4.9.2
-  resolution: "@egjs/flicking@npm:4.9.2"
+"@egjs/flicking@npm:~4.9.3":
+  version: 4.9.3
+  resolution: "@egjs/flicking@npm:4.9.3"
   dependencies:
-    "@egjs/axes": ^3.6.0
+    "@egjs/axes": ^3.8.0
     "@egjs/component": ^3.0.1
     "@egjs/imready": ^1.1.3
     "@egjs/list-differ": ^1.0.0
-  checksum: a80e10734b053b7ad3e549d607e1f41b93927ce39e16a7664550a15560394b7d8dc6c43157008b1435f280a8f7ce4bc7efb9fe53d26a0003b370e769dd53798f
+  checksum: 5cc4d6e3338470ba8317bc6701600ee0bdfa15013c2a753208adc6dac755582e64b450c0095039b522ed09d24ca78e948e539f8cfb74cf896a4dc6238bbdf23a
   languageName: node
   linkType: hard
 
@@ -1885,13 +1885,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@egjs/react-flicking@npm:^4.9.2":
-  version: 4.9.2
-  resolution: "@egjs/react-flicking@npm:4.9.2"
+"@egjs/react-flicking@npm:4.9.4":
+  version: 4.9.4
+  resolution: "@egjs/react-flicking@npm:4.9.4"
   dependencies:
-    "@egjs/flicking": ~4.9.2
+    "@egjs/flicking": ~4.9.3
     "@egjs/list-differ": ^1.0.0
-  checksum: 9dd147a049979612bd7a7025bf1b6c8b69041a9f4b3f4c82b30654c390c00ba492f57674e496a47579d01fbd599b1cca2a0918df68db1e26b5c5154d0512560a
+  checksum: 31bda0b66657a7e4a2fc84e995dcd30818264e1e4f103f52afbc317dc4a8ddef052b5427e5f6bbda1ca384092d2682516bb8a97183b221da8e839320809c5e2e
   languageName: node
   linkType: hard
 
@@ -10572,7 +10572,7 @@ __metadata:
     "@dnd-kit/modifiers": 2.0.0
     "@dnd-kit/sortable": 6.0.1
     "@dnd-kit/utilities": 2.0.0
-    "@egjs/react-flicking": ^4.9.2
+    "@egjs/react-flicking": 4.9.4
     "@floating-ui/react-dom-interactions": 0.6.1
     "@luma.gl/constants": 8.4.5
     "@popperjs/core": 2.9.2

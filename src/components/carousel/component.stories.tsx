@@ -91,4 +91,9 @@ Default.args = {
       ),
     },
   ],
+  options: {
+    duration: 500,
+    circular: true,
+    bound: false,
+  },
 };
