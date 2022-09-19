@@ -1946,6 +1946,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@headlessui/react@npm:1.7.2":
+  version: 1.7.2
+  resolution: "@headlessui/react@npm:1.7.2"
+  peerDependencies:
+    react: ^16 || ^17 || ^18
+    react-dom: ^16 || ^17 || ^18
+  checksum: 8889d7a1984c955c0034d8aed3211a91b90238ddecf116490bd892cae79c2983d8832ab450d387991d3330f5d5f1e4aa8d8e1ceb1ff2227960f76c89c0cc1e0a
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.5.0":
   version: 0.5.0
   resolution: "@humanwhocodes/config-array@npm:0.5.0"
@@ -10479,6 +10489,7 @@ __metadata:
     "@dnd-kit/sortable": 7.0.1
     "@dnd-kit/utilities": 3.2.0
     "@floating-ui/react-dom-interactions": 0.6.1
+    "@headlessui/react": 1.7.2
     "@luma.gl/constants": 8.4.5
     "@popperjs/core": 2.9.2
     "@react-aria/button": 3.6.0
