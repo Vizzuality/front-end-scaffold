@@ -13,13 +13,14 @@ interface SelectStatusProps {
   searchable?: boolean;
 }
 
-export interface SelectOptionProps {
-  label: string;
-  value: string | number;
-  disabled?: boolean;
-  enabled?: boolean;
-  checkbox?: boolean;
-}
+// export interface SelectOptionProps {
+//   label: string;
+//   value: string | number;
+//   disabled?: boolean;
+//   enabled?: boolean;
+//   checkbox?: boolean;
+// }
+
 interface SelectDataProps {
   options?: SelectOptionProps[];
   placeholder?: string;
@@ -36,6 +37,8 @@ interface SelectDataProps {
 
 export interface Select2Props extends SelectStatusProps, SelectDataProps, SelectThemeProps {
   id: string | number;
+  multiple?: boolean;
+  value: string | string[];
   onChange?: (selection: string | string[]) => void;
   onSelect?: (option: SelectOptionProps | SelectOptionProps[]) => void;
   onFocus?: FocusEventHandler;
