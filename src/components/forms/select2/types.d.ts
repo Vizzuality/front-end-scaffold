@@ -12,6 +12,8 @@ export interface Select2Props extends SelectStatusProps, SelectDataProps, Select
   placeholder?: string;
   prefix?: string;
   selected?: string | string[];
+  size: 'base' | 's';
+  theme: 'dark' | 'light';
   values?: string | string[];
   onSelect?: (selection: string | string[]) => void;
 }

@@ -1,11 +1,10 @@
-// import cx from 'classnames';
-
-// import THEME from 'components/forms/select2/constants/theme';
-// import Icon from 'components/icon';
-
 import React, { FC, useEffect, useRef, useState } from 'react';
 
+import cx from 'classnames';
+
 import { Listbox, Transition } from '@headlessui/react';
+
+import THEME from 'components/forms/select2/constants/theme';
 
 import type { Select2Props } from './types';
 
@@ -16,13 +15,11 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     clearSelectionActive = false,
     clearSelectionLabel = 'Clear selection',
     disabled = false,
-    label,
     multiple = false,
     options,
     placeholder = 'Select...',
-    // size = 'base',
-    // theme = 'dark',
-    // meta = {},
+    size = 'base',
+    theme = 'dark',
     onSelect,
   } = props;
   const menuRef = useRef(null);
@@ -65,28 +62,30 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
   };
 
   return (
-    <div className="flex ">
-      <div className="w-full max-w-xs mx-auto">
+    <div className="flex">
+      <div
+        className={cx({
+          'w-full': true,
+          [THEME[theme].container]: true,
+        })}
+      >
         <Listbox
           as="div"
           className="space-y-1"
           disabled={disabled}
           value={selected}
-          onChange={(value) => {
-            handleSelect(value);
-          }}
+          onChange={(value) => handleSelect(value)}
         >
           {() => (
             <>
-              {label && (
-                <Listbox.Label className="block text-sm font-medium leading-5 text-gray-700">
-                  {label}
-                </Listbox.Label>
-              )}
               <div className="relative">
-                <span className="inline-block w-full rounded-md shadow-sm">
+                <span className="inline-block w-full">
                   <Listbox.Button
-                    className="relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md cursor-default focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                    className={cx({
+                      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out border border-gray-300 cursor-pointer rounded-3xl sm:text-sm sm:leading-5':
+                        true,
+                      [THEME.sizes[size]]: true,
+                    })}
                     onClick={() => setIsOpen(!isOpen)}
                   >
                     {multiple && (
@@ -122,7 +121,10 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                   leave="transition ease-in duration-100"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
-                  className="absolute w-full mt-1 bg-white rounded-md"
+                  className={cx({
+                    'absolute w-full rounded-b-3xl': true,
+                    [THEME[theme].button]: true,
+                  })}
                 >
                   <div className="flex flex-col">
                     {batchSelectionActive && multiple && (
@@ -146,7 +148,11 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                   </div>
                   <Listbox.Options
                     static
-                    className="py-1 overflow-auto text-base leading-6 rounded-md shadow-xs max-h-60 focus:outline-none sm:text-sm sm:leading-5"
+                    className={cx({
+                      'py-1 overflow-auto text-base leading-6 max-h-60 focus:outline-none rounded-b-3xl':
+                        true,
+                      [THEME[theme].menu]: true,
+                    })}
                   >
                     {options.map((opt) => {
                       const selectedItem = isSelected(opt);
@@ -155,8 +161,8 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                           {({ active }) => (
                             <div
                               className={`${
-                                active ? 'text-white bg-blue-600' : 'text-gray-900'
-                              } cursor-default select-none relative py-2 pl-8 pr-4`}
+                                active ? 'text-white bg-gray-200' : 'text-gray-900'
+                              } cursor-pointer select-none relative py-2 pl-8 pr-4`}
                             >
                               <span
                                 className={`${
