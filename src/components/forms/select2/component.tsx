@@ -17,22 +17,23 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     clearSelectionLabel = 'Clear selection',
     disabled = false,
     label,
-    // multiple = false,
+    multiple = false,
     options,
-    // placeholder = 'Select...',
+    placeholder = 'Select...',
     // size = 'base',
     // theme = 'dark',
     // selected,
-    // initialSelected,
     // meta = {},
     // onChange,
   } = props;
   const menuRef = useRef(null);
+  const initialValue = multiple ? [] : null;
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState(initialValue);
 
   const isSelected = (value) => {
-    return selected.find((el) => el === value) ? true : false;
+    if (multiple) return selected.find((el) => el === value) ? true : false;
+    return selected === value ? true : false;
   };
 
   useEffect(() => {
@@ -51,9 +52,10 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
   };
 
   const handleSelect = (value) => {
-    if (!isSelected(value)) {
+    if (!multiple) return setSelected(value);
+    if (!isSelected(value) && multiple) {
       const selectedUpdated = [...selected, options.find((el) => el === value)];
-      setSelected(selectedUpdated);
+      return setSelected(selectedUpdated);
     } else {
       handleDeselect(value);
     }
@@ -83,9 +85,14 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                     className="relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md cursor-default focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
                     onClick={() => setIsOpen(!isOpen)}
                   >
-                    <span className="block truncate">
-                      {selected.length < 1 ? 'Select items' : `Selected items (${selected.length})`}
-                    </span>
+                    {multiple && (
+                      <span className="block truncate">
+                        {selected.length < 1
+                          ? 'Select items'
+                          : `Selected items (${selected.length})`}
+                      </span>
+                    )}
+                    {!multiple && <span className="block truncate">{selected || placeholder}</span>}
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <svg
                         className="w-5 h-5 text-gray-400"
@@ -182,7 +189,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                   </Listbox.Options>
                 </Transition>
                 <div className="pt-1 text-sm">
-                  {selected.length > 0 && <>Selected items: {selected.join(', ')}</>}
+                  {multiple && selected.length > 0 && <>Selected items: {selected.join(', ')}</>}
                 </div>
               </div>
             </>
