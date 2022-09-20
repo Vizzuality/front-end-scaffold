@@ -22,27 +22,28 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     theme = 'dark',
     onSelect,
   } = props;
-  const menuRef = useRef(null);
+  const ref = useRef(null);
   const initialValue = multiple ? [] : null;
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(initialValue);
 
-  const isSelected = (value) => {
-    if (multiple) return selected.find((el) => el === value) ? true : false;
-    return selected === value ? true : false;
-  };
   useEffect(() => {
     onSelect(selected);
   }, [selected, onSelect]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!menuRef?.current?.contains(event.target)) {
+      if (!ref?.current?.contains(event.target)) {
         setIsOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-  }, [menuRef]);
+  }, [ref]);
+
+  const isSelected = (value) => {
+    if (multiple) return selected.find((el) => el === value) ? true : false;
+    return selected === value ? true : false;
+  };
 
   const handleDeselect = (value) => {
     const selectedUpdated = selected.filter((el) => el !== value);
@@ -78,12 +79,14 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
         >
           {() => (
             <>
-              <div className="relative">
+              <div className="relative" ref={ref}>
                 <span className="inline-block w-full">
                   <Listbox.Button
                     className={cx({
-                      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out border border-gray-300 cursor-pointer rounded-3xl sm:text-sm sm:leading-5':
+                      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out  cursor-pointer  sm:text-sm sm:leading-5':
                         true,
+                      'border border-gray-300 rounded-3xl': !isOpen,
+                      'border-2 border-blue-500 rounded-t-3xl': isOpen,
                       [THEME.sizes[size]]: true,
                     })}
                     onClick={() => setIsOpen(!isOpen)}
@@ -115,14 +118,13 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                 </span>
 
                 <Transition
-                  ref={menuRef}
                   unmount={false}
                   show={isOpen}
                   leave="transition ease-in duration-100"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                   className={cx({
-                    'absolute w-full rounded-b-3xl': true,
+                    'absolute w-full rounded-b-3xl overflow-auto border border-red-600': true,
                     [THEME[theme].button]: true,
                   })}
                 >
@@ -149,8 +151,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                   <Listbox.Options
                     static
                     className={cx({
-                      'py-1 overflow-auto text-base leading-6 max-h-60 focus:outline-none rounded-b-3xl':
-                        true,
+                      'py-1  text-base leading-6 max-h-60 focus:outline-none rounded-b-3xl': true,
                       [THEME[theme].menu]: true,
                     })}
                   >
@@ -199,7 +200,9 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                   </Listbox.Options>
                 </Transition>
                 <div className="pt-1 text-sm">
-                  {multiple && selected.length > 0 && <>Selected items: {selected.join(', ')}</>}
+                  {!isOpen && multiple && selected.length > 0 && (
+                    <>Selected items: {selected.join(', ')}</>
+                  )}
                 </div>
               </div>
             </>
