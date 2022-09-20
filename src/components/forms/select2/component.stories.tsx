@@ -47,7 +47,7 @@ Light.args = {
   size: 'base',
   maxHeight: 300,
   status: 'none',
-  prefix: 'FILTER BY:',
+  label: 'FILTER BY:',
   options: [
     'Wade Cooper',
     'Arlene Mccoy',
@@ -74,7 +74,7 @@ Dark.args = {
   theme: 'dark',
   size: 'base',
   status: 'none',
-  prefix: 'FILTER BY:',
+  label: 'FILTER BY:',
   options: [
     'Wade Cooper',
     'Arlene Mccoy',
@@ -102,7 +102,7 @@ Multiple.args = {
   size: 'base',
   status: 'none',
   multiple: true,
-  prefix: 'FILTER BY:',
+  label: 'FILTER BY:',
   options: [
     'Wade Cooper',
     'Arlene Mccoy',

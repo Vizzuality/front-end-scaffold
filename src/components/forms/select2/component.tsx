@@ -3,7 +3,7 @@
 // import THEME from 'components/forms/select2/constants/theme';
 // import Icon from 'components/icon';
 
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 
 import { Listbox, Transition } from '@headlessui/react';
 
@@ -16,6 +16,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     clearSelectionActive = false,
     clearSelectionLabel = 'Clear selection',
     disabled = false,
+    label,
     // multiple = false,
     options,
     // placeholder = 'Select...',
@@ -26,12 +27,22 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     // meta = {},
     // onChange,
   } = props;
+  const menuRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState([]);
 
   const isSelected = (value) => {
     return selected.find((el) => el === value) ? true : false;
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!menuRef?.current?.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+  }, [menuRef]);
 
   const handleDeselect = (value) => {
     const selectedUpdated = selected.filter((el) => el !== value);
@@ -50,7 +61,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex ">
       <div className="w-full max-w-xs mx-auto">
         <Listbox
           as="div"
@@ -58,24 +69,22 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
           disabled={disabled}
           value={selected}
           onChange={(value) => handleSelect(value)}
-          // open={isOpen}
         >
           {() => (
             <>
-              <Listbox.Label className="block text-sm font-medium leading-5 text-gray-700">
-                Assigned to
-              </Listbox.Label>
+              {label && (
+                <Listbox.Label className="block text-sm font-medium leading-5 text-gray-700">
+                  {label}
+                </Listbox.Label>
+              )}
               <div className="relative">
                 <span className="inline-block w-full rounded-md shadow-sm">
                   <Listbox.Button
                     className="relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md cursor-default focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
                     onClick={() => setIsOpen(!isOpen)}
-                    // open={isOpen}
                   >
                     <span className="block truncate">
-                      {selected.length < 1
-                        ? 'Select persons'
-                        : `Selected persons (${selected.length})`}
+                      {selected.length < 1 ? 'Select items' : `Selected items (${selected.length})`}
                     </span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <svg
@@ -96,12 +105,13 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                 </span>
 
                 <Transition
+                  ref={menuRef}
                   unmount={false}
                   show={isOpen}
                   leave="transition ease-in duration-100"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
-                  className="absolute w-full mt-1 bg-white rounded-md shadow-lg"
+                  className="absolute w-full mt-1 bg-white rounded-md"
                 >
                   <div className="flex flex-col">
                     {batchSelectionActive && (
