@@ -14,18 +14,24 @@ import type { Select2Props } from './types';
 
 export const Select2: FC<Select2Props> = (props: Select2Props) => {
   const {
-    theme = 'dark',
-    // size = 'base',
-    placeholder = 'Select...',
+    batchSelectionActive = false,
+    batchSelectionLabel = 'Select all',
+    clearSelectionActive = false,
+    clearSelectionLabel = 'Clear selection',
+    disabled,
+    multiple = false,
     options,
+    placeholder = 'Select...',
+    size = 'base',
+    theme = 'dark',
     // selected,
     // initialSelected,
     // meta = {},
-    disabled,
-    multiple,
     value = '',
     // onChange,
   } = props;
+
+  console.log({ multiple });
 
   const [selected, setSelected] = useState(placeholder);
 
@@ -51,7 +57,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
         'opacity-80 pointer-events-none': disabled,
       })}
     >
-      <Listbox value={value} onChange={(s) => handleChange(s)}>
+      <Listbox value={value} onChange={(s) => handleChange(s)} multiple={multiple}>
         {({ open }) => (
           <div className="relative mt-1">
             <Listbox.Button
@@ -59,6 +65,8 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                 'relative w-full py-2 px-4 pr-10 text-left rounded-3xl bg-transparent ring-1 ring-gray-400':
                   true,
                 [THEME[theme].container]: true,
+                [THEME.sizes[size]]: true,
+                [THEME.states[status]]: true,
               })}
             >
               <span className="block truncate">{selected}</span>
@@ -79,13 +87,26 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                <button
-                  className="px-4 py-2"
-                  type="button"
-                  onClick={() => console.log('unselect all')}
-                >
-                  Clear all
-                </button>
+                <div className="flex flex-col">
+                  {batchSelectionActive && (
+                    <button
+                      className="px-4 py-2 text-left"
+                      type="button"
+                      onClick={() => console.log('Select all')}
+                    >
+                      {batchSelectionLabel}
+                    </button>
+                  )}
+                  {clearSelectionActive && (
+                    <button
+                      className="px-4 py-2 text-left"
+                      type="button"
+                      onClick={() => console.log('Clear selection')}
+                    >
+                      {clearSelectionLabel}
+                    </button>
+                  )}
+                </div>
                 {options.map((option, optionIdx) => (
                   <Listbox.Option
                     key={optionIdx}
