@@ -13,5 +13,5 @@ export interface Select2Props extends SelectStatusProps, SelectDataProps, Select
   prefix?: string;
   selected?: string | string[];
   values?: string | string[];
-  onChange?: (selection: string | string[]) => void;
+  onSelect?: (selection: string | string[]) => void;
 }

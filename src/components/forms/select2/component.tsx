@@ -24,7 +24,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     // theme = 'dark',
     // selected,
     // meta = {},
-    // onChange,
+    onSelect,
   } = props;
   const menuRef = useRef(null);
   const initialValue = multiple ? [] : null;
@@ -35,6 +35,9 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     if (multiple) return selected.find((el) => el === value) ? true : false;
     return selected === value ? true : false;
   };
+  useEffect(() => {
+    onSelect(selected);
+  }, [selected, onSelect]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -70,7 +73,9 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
           className="space-y-1"
           disabled={disabled}
           value={selected}
-          onChange={(value) => handleSelect(value)}
+          onChange={(value) => {
+            handleSelect(value);
+          }}
         >
           {() => (
             <>

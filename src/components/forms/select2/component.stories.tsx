@@ -66,7 +66,7 @@ Light.args = {
   clearSelectionLabel: 'Clear Selection',
   batchSelectionActive: true,
   batchSelectionLabel: 'Select all',
-  onChange: (option) => console.info(option),
+  onSelect: (option) => console.info(option),
 };
 
 export const Dark = Template.bind({});
@@ -93,7 +93,7 @@ Dark.args = {
   clearSelectionLabel: 'Clear Selection',
   batchSelectionActive: true,
   batchSelectionLabel: 'Select all',
-  onChange: (option) => console.info(option),
+  onSelect: (option) => console.info(option),
 };
 
 export const Multiple = Template.bind({});
@@ -121,5 +121,5 @@ Multiple.args = {
   clearSelectionLabel: 'Clear Selection',
   batchSelectionActive: true,
   batchSelectionLabel: 'Select all',
-  onChange: (option) => console.info(option),
+  onSelect: (option) => console.info(option),
 };
