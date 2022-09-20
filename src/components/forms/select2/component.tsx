@@ -22,7 +22,6 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     placeholder = 'Select...',
     // size = 'base',
     // theme = 'dark',
-    // selected,
     // meta = {},
     onSelect,
   } = props;
@@ -126,20 +125,20 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                   className="absolute w-full mt-1 bg-white rounded-md"
                 >
                   <div className="flex flex-col">
-                    {batchSelectionActive && (
+                    {batchSelectionActive && multiple && (
                       <button
                         className="px-4 py-2 text-left"
                         type="button"
-                        onClick={() => console.info('Select all')}
+                        onClick={() => setSelected(options)}
                       >
                         {batchSelectionLabel}
                       </button>
                     )}
-                    {clearSelectionActive && (
+                    {clearSelectionActive && multiple && (
                       <button
                         className="px-4 py-2 text-left"
                         type="button"
-                        onClick={() => console.info('Clear selection')}
+                        onClick={() => setSelected(initialValue)}
                       >
                         {clearSelectionLabel}
                       </button>
