@@ -1,14 +1,11 @@
-import { FC, Fragment, useMemo, useState } from 'react';
+// import cx from 'classnames';
 
-import cx from 'classnames';
+// import THEME from 'components/forms/select2/constants/theme';
+// import Icon from 'components/icon';
+
+import React, { FC, useState } from 'react';
 
 import { Listbox, Transition } from '@headlessui/react';
-
-import Checkbox from 'components/forms/checkbox';
-import THEME from 'components/forms/select2/constants/theme';
-import Icon from 'components/icon';
-
-import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 
 import type { Select2Props } from './types';
 
@@ -18,121 +15,170 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
     batchSelectionLabel = 'Select all',
     clearSelectionActive = false,
     clearSelectionLabel = 'Clear selection',
-    disabled,
-    multiple = false,
+    disabled = false,
+    // multiple = false,
     options,
-    placeholder = 'Select...',
-    size = 'base',
-    theme = 'dark',
+    // placeholder = 'Select...',
+    // size = 'base',
+    // theme = 'dark',
     // selected,
     // initialSelected,
     // meta = {},
-    value = '',
     // onChange,
   } = props;
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState([]);
 
-  console.log({ multiple });
-
-  const [selected, setSelected] = useState(placeholder);
-
-  const handleChange = (s) => {
-    setSelected(s);
+  const isSelected = (value) => {
+    return selected.find((el) => el === value) ? true : false;
   };
 
-  const values = useMemo(() => {
-    if (typeof selected !== 'undefined') {
-      if (multiple) {
-        if (Array.isArray(selected)) return selected;
+  const handleDeselect = (value) => {
+    const selectedUpdated = selected.filter((el) => el !== value);
+    setSelected(selectedUpdated);
+    setIsOpen(true);
+  };
 
-        return [selected];
-      }
+  const handleSelect = (value) => {
+    if (!isSelected(value)) {
+      const selectedUpdated = [...selected, options.find((el) => el === value)];
+      setSelected(selectedUpdated);
+    } else {
+      handleDeselect(value);
     }
-    return selected;
-  }, [multiple, selected]);
+    setIsOpen(true);
+  };
 
   return (
-    <div
-      className={cx({
-        'z-50 cursor-pointer': true,
-        'opacity-80 pointer-events-none': disabled,
-      })}
-    >
-      <Listbox value={value} onChange={(s) => handleChange(s)} multiple={multiple}>
-        {({ open }) => (
-          <div className="relative mt-1">
-            <Listbox.Button
-              className={cx({
-                'relative w-full py-2 px-4 pr-10 text-left rounded-3xl bg-transparent ring-1 ring-gray-400':
-                  true,
-                [THEME[theme].container]: true,
-                [THEME.sizes[size]]: true,
-                [THEME.states[status]]: true,
-              })}
-            >
-              <span className="block truncate">{selected}</span>
-              <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <Icon
-                  icon={ARROW_DOWN_SVG}
-                  className={cx({
-                    'absolute w-3 h-3 text-blue-500 -translate-y-1/2 top-1/2 right-5': true,
-                    'rotate-180 transition-transform transform ': open,
-                  })}
-                />
-              </span>
-            </Listbox.Button>
-            <Transition
-              as={Fragment}
-              leave="transition ease-in duration-100"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Listbox.Options className="absolute w-full py-1 mt-1 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                <div className="flex flex-col">
-                  {batchSelectionActive && (
-                    <button
-                      className="px-4 py-2 text-left"
-                      type="button"
-                      onClick={() => console.log('Select all')}
-                    >
-                      {batchSelectionLabel}
-                    </button>
-                  )}
-                  {clearSelectionActive && (
-                    <button
-                      className="px-4 py-2 text-left"
-                      type="button"
-                      onClick={() => console.log('Clear selection')}
-                    >
-                      {clearSelectionLabel}
-                    </button>
-                  )}
-                </div>
-                {options.map((option, optionIdx) => (
-                  <Listbox.Option
-                    key={optionIdx}
-                    className="relative flex items-center px-4 py-2 space-x-4 text-gray-900 cursor-pointer"
-                    value={option}
+    <div className="flex">
+      <div className="w-full max-w-xs mx-auto">
+        <Listbox
+          as="div"
+          className="space-y-1"
+          disabled={disabled}
+          value={selected}
+          onChange={(value) => handleSelect(value)}
+          // open={isOpen}
+        >
+          {() => (
+            <>
+              <Listbox.Label className="block text-sm font-medium leading-5 text-gray-700">
+                Assigned to
+              </Listbox.Label>
+              <div className="relative">
+                <span className="inline-block w-full rounded-md shadow-sm">
+                  <Listbox.Button
+                    className="relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md cursor-default focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5"
+                    onClick={() => setIsOpen(!isOpen)}
+                    // open={isOpen}
                   >
-                    {/* CHECKBOX */}
-                    {/* {value !== 'clear' && value !== 'all' && ( */}
-                    {multiple && (
-                      <Checkbox
-                        className="cursor-pointer"
-                        checked={values.includes(selected)}
-                        readOnly
-                      />
-                    )}
-                    {/* )} */}
-                    <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>
-                      {option}
+                    <span className="block truncate">
+                      {selected.length < 1
+                        ? 'Select persons'
+                        : `Selected persons (${selected.length})`}
                     </span>
-                  </Listbox.Option>
-                ))}
-              </Listbox.Options>
-            </Transition>
-          </div>
-        )}
-      </Listbox>
+                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <svg
+                        className="w-5 h-5 text-gray-400"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        stroke="currentColor"
+                      >
+                        <path
+                          d="M7 7l3-3 3 3m0 6l-3 3-3-3"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </Listbox.Button>
+                </span>
+
+                <Transition
+                  unmount={false}
+                  show={isOpen}
+                  leave="transition ease-in duration-100"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                  className="absolute w-full mt-1 bg-white rounded-md shadow-lg"
+                >
+                  <div className="flex flex-col">
+                    {batchSelectionActive && (
+                      <button
+                        className="px-4 py-2 text-left"
+                        type="button"
+                        onClick={() => console.info('Select all')}
+                      >
+                        {batchSelectionLabel}
+                      </button>
+                    )}
+                    {clearSelectionActive && (
+                      <button
+                        className="px-4 py-2 text-left"
+                        type="button"
+                        onClick={() => console.info('Clear selection')}
+                      >
+                        {clearSelectionLabel}
+                      </button>
+                    )}
+                  </div>
+                  <Listbox.Options
+                    static
+                    className="py-1 overflow-auto text-base leading-6 rounded-md shadow-xs max-h-60 focus:outline-none sm:text-sm sm:leading-5"
+                  >
+                    {options.map((opt) => {
+                      const selectedItem = isSelected(opt);
+                      return (
+                        <Listbox.Option key={opt} value={opt}>
+                          {({ active }) => (
+                            <div
+                              className={`${
+                                active ? 'text-white bg-blue-600' : 'text-gray-900'
+                              } cursor-default select-none relative py-2 pl-8 pr-4`}
+                            >
+                              <span
+                                className={`${
+                                  selectedItem ? 'font-semibold' : 'font-normal'
+                                } block truncate`}
+                              >
+                                {opt}
+                              </span>
+                              {selectedItem && (
+                                <span
+                                  className={`${
+                                    active ? 'text-white' : 'text-blue-600'
+                                  } absolute inset-y-0 left-0 flex items-center pl-1.5`}
+                                >
+                                  <svg
+                                    className="w-5 h-5"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                      clipRule="evenodd"
+                                    />
+                                  </svg>
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </Listbox.Option>
+                      );
+                    })}
+                  </Listbox.Options>
+                </Transition>
+                <div className="pt-1 text-sm">
+                  {selected.length > 0 && <>Selected items: {selected.join(', ')}</>}
+                </div>
+              </div>
+            </>
+          )}
+        </Listbox>
+      </div>
     </div>
   );
 };
