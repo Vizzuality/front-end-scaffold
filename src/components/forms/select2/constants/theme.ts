@@ -5,8 +5,14 @@ const THEME = {
       s: 'bg-white top-[35px]',
     },
     container: 'text-white text-sm',
-    item: 'text-sm text-white',
-    menu: 'bg-transparent bg-white',
+    item: {
+      base: 'text-sm text-white',
+      active: 'opacity-80 text-white',
+    },
+    menu: 'bg-transparent',
+    open: {
+      button: 'bg-transparent',
+    },
   },
   light: {
     button: {
@@ -14,8 +20,14 @@ const THEME = {
       s: 'bg-white top-[35px]',
     },
     container: 'text-gray-600 text-sm',
-    item: 'text-sm',
+    item: {
+      base: 'text-sm',
+      active: 'opacity-70 text-black',
+    },
     menu: 'bg-white',
+    open: {
+      button: 'bg-white',
+    },
   },
   sizes: {
     base: 'pl-4 pr-10 py-3 text-sm',

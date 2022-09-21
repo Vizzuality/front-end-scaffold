@@ -88,6 +88,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                       'border border-gray-300 rounded-3xl': !isOpen,
                       'border-t-2 border-r-2 border-l-2 border-blue-500 rounded-t-3xl': isOpen,
                       [THEME.sizes[size]]: true,
+                      [THEME[theme].open.button]: isOpen,
                     })}
                     onClick={() => setIsOpen(!isOpen)}
                   >
@@ -167,8 +168,8 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                             <div
                               className={cx({
                                 'cursor-pointer select-none relative py-2 pl-8 pr-4': true,
-                                'opacity-80 text-white': active,
-                                [THEME[theme].item]: true,
+                                [THEME[theme].item.base]: true,
+                                [THEME[theme].item.active]: active,
                               })}
                             >
                               <span
@@ -208,7 +209,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                     })}
                   </Listbox.Options>
                 </Transition>
-                <div className="pt-1 text-sm">
+                <div className="pt-1 ml-4 text-sm">
                   {!isOpen && multiple && selected.length > 0 && (
                     <>Selected items: {selected.join(', ')}</>
                   )}
