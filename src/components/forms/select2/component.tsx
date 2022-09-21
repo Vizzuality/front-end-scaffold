@@ -63,7 +63,7 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
   };
 
   return (
-    <div className="flex">
+    <div className="flex -mt-2">
       <div
         className={cx({
           'w-full': true,
@@ -83,22 +83,24 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                 <span className="inline-block w-full">
                   <Listbox.Button
                     className={cx({
-                      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out  cursor-pointer  sm:text-sm sm:leading-5':
+                      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5':
                         true,
                       'border border-gray-300 rounded-3xl': !isOpen,
-                      'border-2 border-blue-500 rounded-t-3xl': isOpen,
+                      'border-t-2 border-r-2 border-l-2 border-blue-500 rounded-t-3xl': isOpen,
                       [THEME.sizes[size]]: true,
                     })}
                     onClick={() => setIsOpen(!isOpen)}
                   >
                     {multiple && (
-                      <span className="block truncate">
+                      <span className="block ml-4 truncate">
                         {selected.length < 1
                           ? 'Select items'
                           : `Selected items (${selected.length})`}
                       </span>
                     )}
-                    {!multiple && <span className="block truncate">{selected || placeholder}</span>}
+                    {!multiple && (
+                      <span className="block ml-4 truncate">{selected || placeholder}</span>
+                    )}
                     <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                       <svg
                         className="w-5 h-5 text-gray-400"
@@ -124,59 +126,66 @@ export const Select2: FC<Select2Props> = (props: Select2Props) => {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                   className={cx({
-                    'absolute w-full rounded-b-3xl overflow-auto border border-red-600': true,
-                    [THEME[theme].button]: true,
+                    'absolute w-full rounded-b-3xl overflow-y-auto border-b-2 border-r-2 border-l-2 border-blue-500':
+                      true,
+                    [THEME[theme].button[size]]: true,
                   })}
                 >
-                  <div className="flex flex-col">
-                    {batchSelectionActive && multiple && (
-                      <button
-                        className="px-4 py-2 text-left"
-                        type="button"
-                        onClick={() => setSelected(options)}
-                      >
-                        {batchSelectionLabel}
-                      </button>
-                    )}
-                    {clearSelectionActive && multiple && (
-                      <button
-                        className="px-4 py-2 text-left"
-                        type="button"
-                        onClick={() => setSelected(initialValue)}
-                      >
-                        {clearSelectionLabel}
-                      </button>
-                    )}
-                  </div>
                   <Listbox.Options
                     static
                     className={cx({
-                      'py-1  text-base leading-6 max-h-60 focus:outline-none rounded-b-3xl': true,
+                      'py-1 overflow-y-auto text-base leading-6 max-h-60 focus:outline-none rounded-b-3xl':
+                        true,
                       [THEME[theme].menu]: true,
                     })}
                   >
+                    <div className="flex flex-col ml-4 text-sm">
+                      {batchSelectionActive && multiple && (
+                        <button
+                          className="px-4 py-2 text-left"
+                          type="button"
+                          onClick={() => setSelected(options)}
+                        >
+                          {batchSelectionLabel}
+                        </button>
+                      )}
+                      {clearSelectionActive && multiple && (
+                        <button
+                          className="px-4 py-2 text-left"
+                          type="button"
+                          onClick={() => setSelected(initialValue)}
+                        >
+                          {clearSelectionLabel}
+                        </button>
+                      )}
+                    </div>
                     {options.map((opt) => {
                       const selectedItem = isSelected(opt);
                       return (
                         <Listbox.Option key={opt} value={opt}>
                           {({ active }) => (
                             <div
-                              className={`${
-                                active ? 'text-white bg-gray-200' : 'text-gray-900'
-                              } cursor-pointer select-none relative py-2 pl-8 pr-4`}
+                              className={cx({
+                                'cursor-pointer select-none relative py-2 pl-8 pr-4': true,
+                                'opacity-80 text-white': active,
+                                [THEME[theme].item]: true,
+                              })}
                             >
                               <span
-                                className={`${
-                                  selectedItem ? 'font-semibold' : 'font-normal'
-                                } block truncate`}
+                                className={cx({
+                                  'font-normal block truncate': true,
+                                  'font-semibold': selectedItem,
+                                })}
                               >
                                 {opt}
                               </span>
                               {selectedItem && (
                                 <span
-                                  className={`${
-                                    active ? 'text-white' : 'text-blue-600'
-                                  } absolute inset-y-0 left-0 flex items-center pl-1.5`}
+                                  className={cx({
+                                    'text-blue-600 absolute inset-y-0 left-0 flex items-center pl-1.5':
+                                      true,
+                                    'text-white': active,
+                                  })}
                                 >
                                   <svg
                                     className="w-5 h-5"

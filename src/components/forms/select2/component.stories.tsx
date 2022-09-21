@@ -45,8 +45,6 @@ export const Light = Template.bind({});
 Light.args = {
   theme: 'light',
   size: 'base',
-  maxHeight: 300,
-  status: 'none',
   options: [
     'Wade Cooper',
     'Arlene Mccoy',
@@ -71,7 +69,6 @@ export const Dark = Template.bind({});
 Dark.args = {
   theme: 'dark',
   size: 'base',
-  status: 'none',
   options: [
     'Wade Cooper',
     'Arlene Mccoy',
@@ -96,9 +93,7 @@ export const Multiple = Template.bind({});
 Multiple.args = {
   theme: 'dark',
   size: 'base',
-  status: 'none',
   multiple: true,
-  label: 'FILTER BY:',
   options: [
     'Wade Cooper',
     'Arlene Mccoy',
