@@ -8,13 +8,27 @@ Looking to work more comfortably, we recommend the use of the following tools:
 
 ## 1. NODE VERSION MANAGEMENT
 
-Using nvm (Node Version Manager) makes it easier to install and manage multiple versions of Node.js on a single local environment. Even if you only need a single version of Node.js right now, we still recommend using nvm because it allows you to switch between different versions of Node (depending on the requirements of your project) with minimal hassle.
+Using [NVM](https://github.com/nvm-sh/nvm) (Node Version Manager) makes it easier to install and manage multiple versions of Node.js on a single local environment. Even if you only need a single version of Node.js right now, we still recommend using nvm because it allows you to switch between different versions of Node (depending on the requirements of your project) with minimal hassle.
 
-[Install NodeJS with nvm tutorial](https://heynode.com/tutorial/install-nodejs-locally-nvm)
+Recommendations using NVM:
 
+- set a default Node.js version (preferably LTS version if you don't have a specific version in mind). This version will be use as fallback when there is no version to use available in the directory:
 
+```bash
+nvm install --lts /* installs LTS version of Node.js available */
+nvm alias default 'lts/*' /* sets the LTS version as your default Node.js version */
+```
+
+- trigger NVM on directory change: this will avoid typing `nvm use` every time someone changes to a different folder (for instance, jumping from a project to another). To achieve this, please follow [the official guide](https://github.com/nvm-sh/nvm#deeper-shell-integration).
+
+Useful links:
+- [Install NodeJS with nvm tutorial](https://heynode.com/tutorial/install-nodejs-locally-nvm)
 
 ## 2. VISUAL CODE EXTENSIONS
+
+Per agreement, the frontend team uses [Visual Studio Code](https://code.visualstudio.com/) as code editor. You are free to use a different one as long as you have working the **mandatory extensions** listed below and the workflow does not compromise the quality of the code/project.
+
+You **must** install the mandatory extensions listed below. Recommended ones improve the experience but you are free to install or ignore them.
 
 ## Mandatory
 
@@ -32,6 +46,10 @@ Using nvm (Node Version Manager) makes it easier to install and manage multiple 
 
 [Marketplace](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
+**CODE SPELL CHECKER**: a basic spell checker that works well with code and documents.
+
+[Marketplace](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+
 
 **LIVE SHARE** enables you to collaboratively edit and debug with others in real time.
 
@@ -41,7 +59,7 @@ Using nvm (Node Version Manager) makes it easier to install and manage multiple 
 
 ## Recommended
 
-**GITHUB COPILOT** suggest code and entire functions in real-time right from your editor
+**GITHUB COPILOT** (**PAID**) suggests code and entire functions in real-time right from your editor.
 
 [Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
 
@@ -65,7 +83,7 @@ Using nvm (Node Version Manager) makes it easier to install and manage multiple 
 [Marketplace](https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense)
 
 
-**AUTO CLOSE TAG** automatically add HTML/XML close tag
+**AUTO CLOSE TAG** automatically add HTML/XML close tag.
 
 [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
 
@@ -88,4 +106,8 @@ Using nvm (Node Version Manager) makes it easier to install and manage multiple 
 **RapidAPI CLIENT** a full-featured HTTP client that lets you test and describes the APIs you build or consume.
 
 [Marketplace](https://marketplace.visualstudio.com/items?itemName=RapidAPI.vscode-rapidapi-client)
+
+**EditorConfig for VS Code** overrides user/workspace settings with settings found in `.editorconfig` files.
+
+[Marketplace](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
