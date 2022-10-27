@@ -110,7 +110,7 @@ export function Form(): ReactNode {
               validate={composeValidators([booleanValidator])}
             >
               {(flprops) => (
-                <div className="flex mt-2">
+                <div className="mt-2 flex">
                   <Checkbox id="form-checkbox" {...flprops} />
                   <Label htmlFor="form-checkbox" className="ml-2">
                     This is a standalone checkbox
@@ -130,7 +130,7 @@ export function Form(): ReactNode {
               validate={composeValidators([arrayValidator])}
             >
               {(flprops) => (
-                <div className="flex mt-2">
+                <div className="mt-2 flex">
                   <Checkbox id="form-checkbox-group-1" {...flprops} />
                   <Label htmlFor="form-checkbox-group-1" className="ml-2">
                     Option 1
@@ -146,7 +146,7 @@ export function Form(): ReactNode {
               validate={composeValidators([arrayValidator])}
             >
               {(flprops) => (
-                <div className="flex mt-2">
+                <div className="mt-2 flex">
                   <Checkbox id="form-checkbox-group-2" {...flprops} />
                   <Label htmlFor="form-checkbox-group-2" className="ml-2">
                     Option 2
@@ -162,7 +162,7 @@ export function Form(): ReactNode {
               validate={composeValidators([arrayValidator])}
             >
               {(flprops) => (
-                <div className="flex mt-2">
+                <div className="mt-2 flex">
                   <Checkbox id="form-checkbox-group-3" {...flprops} />
                   <Label htmlFor="form-checkbox-group-3" className="ml-2">
                     Option 3
@@ -182,7 +182,7 @@ export function Form(): ReactNode {
               validate={composeValidators([{ presence: true }])}
             >
               {(flprops) => (
-                <div className="flex mt-2">
+                <div className="mt-2 flex">
                   <Radio id="radio-group-option-1" {...flprops} />
                   <Label htmlFor="radio-group-option-1" className="ml-2">
                     Option 1
@@ -198,7 +198,7 @@ export function Form(): ReactNode {
               validate={composeValidators([{ presence: true }])}
             >
               {(flprops) => (
-                <div className="flex mt-2">
+                <div className="mt-2 flex">
                   <Radio id="radio-group-option-2" {...flprops} />
                   <Label htmlFor="radio-group-option-2" className="ml-2">
                     Option 2
@@ -214,7 +214,7 @@ export function Form(): ReactNode {
               validate={composeValidators([{ presence: true }])}
             >
               {(flprops) => (
-                <div className="flex mt-2">
+                <div className="mt-2 flex">
                   <Radio id="radio-group-option-3" {...flprops} />
                   <Label htmlFor="radio-group-option-3" className="ml-2">
                     Option 3

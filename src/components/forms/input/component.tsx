@@ -28,7 +28,7 @@ export const Input: FC<InputProps> = ({
         <Icon
           icon={icon}
           className={cx({
-            'absolute w-4 h-4 transform -translate-y-1/2 top-1/2 left-3': true,
+            'absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform': true,
             [THEME[theme].icon]: true,
           })}
         />

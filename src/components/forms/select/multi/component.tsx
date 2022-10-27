@@ -198,7 +198,7 @@ export const MultiSelect: FC<SelectProps> = ({
   return (
     <div
       className={cx({
-        'w-full leading-tight overflow-hidden': true,
+        'w-full overflow-hidden leading-tight': true,
         [THEME[theme].container]: true,
         [THEME[theme].closed]: true,
         [THEME.states[status]]: true,
@@ -261,7 +261,7 @@ export const MultiSelect: FC<SelectProps> = ({
             <ul
               {...getMenuProps({ onFocus, onBlur })}
               className={cx({
-                'py-1 overflow-y-auto overflow-x-hidden': true,
+                'overflow-y-auto overflow-x-hidden py-1': true,
               })}
               style={{
                 maxHeight,
@@ -270,7 +270,7 @@ export const MultiSelect: FC<SelectProps> = ({
               {getOptions.map((option, index) => (
                 <li
                   className={cx({
-                    'px-4 py-1 mt-0.5 cursor-pointer relative': true,
+                    'relative mt-0.5 cursor-pointer px-4 py-1': true,
                     [THEME[theme].item.base]: highlightedIndex !== index,
                     [THEME[theme].item.disabled]: option.disabled,
                     [THEME[theme].item.highlighted]:
@@ -290,7 +290,7 @@ export const MultiSelect: FC<SelectProps> = ({
 
                   {option.checkbox && (
                     <Checkbox
-                      className="absolute bg-opacity-0 left-4 top-1.5"
+                      className="absolute left-4 top-1.5 bg-opacity-0"
                       checked={isSelected(option, selectedItems)}
                       disabled={option.disabled}
                       onChange={() => null}

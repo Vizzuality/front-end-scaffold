@@ -151,7 +151,7 @@ export const SingleSelect: FC<SelectProps> = ({
   return (
     <div
       className={cx({
-        'w-full leading-tight overflow-hidden': true,
+        'w-full overflow-hidden leading-tight': true,
         [THEME[theme].container]: true,
         [THEME[theme].closed]: true,
         [THEME.states[status]]: true,
@@ -209,7 +209,7 @@ export const SingleSelect: FC<SelectProps> = ({
             <ul
               {...getMenuProps({ onFocus, onBlur })}
               className={cx({
-                'py-1 overflow-y-auto overflow-x-hidden': true,
+                'overflow-y-auto overflow-x-hidden py-1': true,
               })}
               style={{
                 maxHeight,
@@ -218,7 +218,7 @@ export const SingleSelect: FC<SelectProps> = ({
               {getOptions.map((option, index) => (
                 <li
                   className={cx({
-                    'px-4 py-1 mt-0.5 cursor-pointer': true,
+                    'mt-0.5 cursor-pointer px-4 py-1': true,
                     [THEME[theme].item.base]: highlightedIndex !== index,
                     [THEME[theme].item.disabled]: option.disabled,
                     [THEME[theme].item.highlighted]:

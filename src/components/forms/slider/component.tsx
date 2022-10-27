@@ -105,7 +105,7 @@ export const Slider: FC<SliderProps> = ({
         'opacity-30': st === 'disabled',
       })}
     >
-      <div {...trackProps} ref={trackRef} className="relative flex items-center w-full h-full">
+      <div {...trackProps} ref={trackRef} className="relative flex h-full w-full items-center">
         <output
           {...outputProps}
           className={THEME[theme].output}

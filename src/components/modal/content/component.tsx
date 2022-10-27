@@ -55,15 +55,15 @@ export const ModalContent: FC<ModalContentProps> = ({
         ref: floating,
       })}
     >
-      <div className="relative flex flex-col overflow-hidden grow">
+      <div className="relative flex grow flex-col overflow-hidden">
         <button
           type="button"
           onClick={() => {
             onOpenChange(false);
           }}
-          className="absolute flex items-center px-4 py-4 text-sm text-gray-300 top-6 right-6"
+          className="absolute top-6 right-6 flex items-center px-4 py-4 text-sm text-gray-300"
         >
-          <Icon icon={CLOSE_SVG} className="inline-block w-3 h-3 text-black" />
+          <Icon icon={CLOSE_SVG} className="inline-block h-3 w-3 text-black" />
         </button>
 
         {children}

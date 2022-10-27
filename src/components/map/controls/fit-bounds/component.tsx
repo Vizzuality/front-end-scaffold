@@ -21,9 +21,9 @@ export const FitBoundsControl: FC<FitBoundsControlProps> = ({
     <button
       aria-label="Fit to bounds"
       className={cx({
-        'mb-0.5 px-0.5 py-1 rounded-3xl text-white bg-black': true,
+        'mb-0.5 rounded-3xl bg-black px-0.5 py-1 text-white': true,
         'hover:bg-gray-700 active:bg-gray-600': !!bounds,
-        'opacity-50 cursor-default': !bounds,
+        'cursor-default opacity-50': !bounds,
         [className]: !!className,
       })}
       type="button"
