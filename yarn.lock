@@ -10546,7 +10546,7 @@ __metadata:
     popmotion: 9.3.6
     postcss: 8.4.13
     prettier: 2.3.0
-    prettier-plugin-tailwindcss: ^0.1.13
+    prettier-plugin-tailwindcss: 0.1.13
     react: 18.2.0
     react-aria: 3.6.0
     react-dom: 18.2.0
@@ -15264,7 +15264,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier-plugin-tailwindcss@npm:^0.1.13":
+"prettier-plugin-tailwindcss@npm:0.1.13":
   version: 0.1.13
   resolution: "prettier-plugin-tailwindcss@npm:0.1.13"
   peerDependencies:
