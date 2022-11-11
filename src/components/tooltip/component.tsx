@@ -25,7 +25,7 @@ export const Tooltip = ({
   children,
   content,
   trigger = 'hover',
-  placement = 'top',
+  placement: initialPlacement = 'top',
   arrowProps = {
     enabled: false,
     size: 8,
@@ -39,8 +39,8 @@ export const Tooltip = ({
 
   const arrowRef = useRef<HTMLDivElement>(null);
 
-  const { x, y, reference, floating, strategy, context, middlewareData } = useFloating({
-    placement,
+  const { x, y, reference, floating, strategy, context, placement, middlewareData } = useFloating({
+    placement: initialPlacement,
     open,
     onOpenChange: setOpen,
     middleware: [
@@ -83,7 +83,7 @@ export const Tooltip = ({
     right: 'left',
     bottom: 'top',
     left: 'right',
-  }[placement.split('-')[0]];
+  }[placement.split('-')[0]]; // Be sure that you use the placement from the useFloating hook
 
   return (
     <>
