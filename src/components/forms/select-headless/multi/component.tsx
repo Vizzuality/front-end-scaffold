@@ -25,7 +25,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
     placeholder = 'Select...',
     loading,
     size = 'base',
-    theme = 'dark',
+    theme,
     values,
     onSelect,
   } = props;
@@ -39,7 +39,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
     if (!selected.length) return placeholder || 'Select items';
 
-    if (selected.length === options.length) return placeholder;
+    // if (selected.length === options.length) return placeholder;
 
     if (selected.length === 1) {
       const option = options.find((o) => o.value === selected[0]);
@@ -200,7 +200,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                           {({ active }) => (
                             <div
                               className={cx({
-                                'flex space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
+                                'flex items-center space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
                                   true,
                                 [THEME[theme].item.base]: true,
                                 [THEME[theme].item.active]: active,

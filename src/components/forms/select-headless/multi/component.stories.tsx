@@ -41,6 +41,60 @@ const Template: Story<MultiSelectProps> = (args) => (
   </div>
 );
 
+export const Light = Template.bind({});
+Light.args = {
+  theme: 'light',
+  size: 'base',
+  placeholder: 'Select...',
+  values: '',
+  options: [
+    {
+      label: 'Wade Cooper',
+      value: 'Wade Cooper',
+    },
+    {
+      label: 'Arlene Mccoy',
+      value: 'Arlene Mccoy',
+    },
+    {
+      label: 'Devon Webb',
+      value: 'Devon Webb',
+    },
+    {
+      label: 'Tom Cook',
+      value: 'Tom Cook',
+    },
+    {
+      label: 'Tanya Fox',
+      value: 'Tanya Fox',
+    },
+    {
+      label: 'Hellen Schmidt',
+      value: 'Hellen Schmidt',
+    },
+
+    {
+      label: 'Caroline Schultz',
+      value: 'Caroline Schultz',
+    },
+    {
+      label: 'Mason Heaney',
+      value: 'Mason Heaney',
+    },
+    {
+      label: 'Claudie Smitham',
+      value: 'Claudie Smitham',
+    },
+    {
+      label: 'Emil Schaefer',
+      value: 'Emil Schaefer',
+    },
+  ],
+  clearSelectionActive: true,
+  batchSelectionActive: true,
+  onSelect: (option) => console.info(option),
+};
+
 export const Dark = Template.bind({});
 Dark.args = {
   theme: 'dark',
