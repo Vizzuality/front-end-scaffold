@@ -5384,15 +5384,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/aspect-ratio@npm:0.4.0":
-  version: 0.4.0
-  resolution: "@tailwindcss/aspect-ratio@npm:0.4.0"
-  peerDependencies:
-    tailwindcss: ">=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1"
-  checksum: 106ee15ce10445006a0b6cfb70bf37fc9b47b4e4e146455e61ed6c0c6b6d18255175d8f6991df9ee686d9b5afe4edc3158a22266f22a6b6e8878fd73212efef5
-  languageName: node
-  linkType: hard
-
 "@tailwindcss/forms@npm:0.5.1":
   version: 0.5.1
   resolution: "@tailwindcss/forms@npm:0.5.1"
@@ -10574,7 +10565,6 @@ __metadata:
     "@storybook/builder-webpack5": 6.5.10
     "@storybook/manager-webpack5": 6.5.10
     "@storybook/react": 6.5.10
-    "@tailwindcss/aspect-ratio": 0.4.0
     "@tailwindcss/forms": 0.5.1
     "@tailwindcss/line-clamp": 0.4.0
     "@tanstack/react-query": 4.0.10
