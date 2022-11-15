@@ -20,7 +20,7 @@ export const LegendItem: FC<LegendItemProps> = ({
         })}
       >
         {icon && <div className="absolute top-0 left-0">{icon}</div>}
-        <div className="text-sm text-white font-heading">{name}</div>
+        <div className="font-heading text-sm text-white">{name}</div>
       </div>
     </div>
 

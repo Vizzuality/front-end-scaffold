@@ -39,7 +39,7 @@ export const SelectToggle: FC<SelectToggleProps> = ({
       aria-label="Select..."
       disabled={disabled}
       className={cx({
-        'relative w-full flex items-center tracking-wide': true,
+        'relative flex w-full items-center tracking-wide': true,
         [THEME.sizes[size]]: true,
       })}
       {...(!multiple && getToggleButtonProps())}
@@ -48,7 +48,7 @@ export const SelectToggle: FC<SelectToggleProps> = ({
       {prefix && (
         <span
           className={cx({
-            'mr-2 text-xs font-heading': true,
+            'font-heading mr-2 text-xs': true,
             [THEME[theme].prefix.base]: true,
           })}
         >
@@ -67,7 +67,7 @@ export const SelectToggle: FC<SelectToggleProps> = ({
 
       <Icon
         className={cx({
-          'absolute w-3 h-3 right-4': true,
+          'absolute right-4 h-3 w-3': true,
           [THEME[theme].icon.closed]: !opened,
           [THEME[theme].icon.open]: opened,
           [THEME[theme].icon.disabled]: disabled,

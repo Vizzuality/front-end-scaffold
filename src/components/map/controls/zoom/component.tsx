@@ -47,9 +47,9 @@ export const ZoomControl: FC<ZoomControlProps> = ({ mapRef, className }: ZoomCon
     >
       <button
         className={cx({
-          'mb-0.5 p-0.5 rounded-t-3xl text-white bg-black': true,
+          'mb-0.5 rounded-t-3xl bg-black p-0.5 text-white': true,
           'hover:bg-gray-700 active:bg-gray-600': zoom !== maxZoom,
-          'opacity-50 cursor-default': zoom === maxZoom,
+          'cursor-default opacity-50': zoom === maxZoom,
         })}
         aria-label="Zoom in"
         type="button"
@@ -60,9 +60,9 @@ export const ZoomControl: FC<ZoomControlProps> = ({ mapRef, className }: ZoomCon
       </button>
       <button
         className={cx({
-          'p-0.5 rounded-b-3xl text-white bg-black': true,
+          'rounded-b-3xl bg-black p-0.5 text-white': true,
           'hover:bg-gray-700 active:bg-gray-600': zoom !== minZoom,
-          'opacity-50 cursor-default': zoom === minZoom,
+          'cursor-default opacity-50': zoom === minZoom,
         })}
         aria-label="Zoom out"
         type="button"

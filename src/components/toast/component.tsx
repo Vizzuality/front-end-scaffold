@@ -61,11 +61,11 @@ export const Toast: React.FC<ToastProps> = ({
       <div
         role="alert"
         className={cx({
-          'w-full pointer-events-auto mb-2': true,
+          'pointer-events-auto mb-2 w-full': true,
         })}
       >
         <div
-          className="flex w-full p-2 text-gray-500 transition bg-white shadow-md rounded-2xl hover:ring-white hover:ring-4 hover:ring-opacity-40"
+          className="flex w-full rounded-2xl bg-white p-2 text-gray-500 shadow-md transition hover:ring-4 hover:ring-white hover:ring-opacity-40"
           onMouseEnter={() => {
             controls.stop();
           }}
@@ -79,19 +79,19 @@ export const Toast: React.FC<ToastProps> = ({
           <div className="flex grow">
             <div
               className={cx({
-                'relative w-10 h-10 rounded-xl shrink-0 flex items-center justify-center shadow-md overflow-hidden z-20':
+                'relative z-20 flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-xl shadow-md':
                   true,
               })}
             >
               <div
                 className={cx({
-                  'absolute top-0 left-0 z-0 w-full h-full bg-gradient-to-b': true,
+                  'absolute top-0 left-0 z-0 h-full w-full bg-gradient-to-b': true,
                   [THEME[level]?.hoverBg]: true,
                 })}
               />
               <motion.div
                 className={cx({
-                  'absolute top-0 left-0 z-10 w-full h-full bg-gradient-to-b': true,
+                  'absolute top-0 left-0 z-10 h-full w-full bg-gradient-to-b': true,
                   [THEME[level]?.bg]: true,
                 })}
                 initial={{ y: '0%' }}
@@ -100,18 +100,18 @@ export const Toast: React.FC<ToastProps> = ({
                 onAnimationComplete={handleDismiss}
               />
 
-              <Icon icon={ICON} className="relative z-20 self-center w-5 h-5" />
+              <Icon icon={ICON} className="relative z-20 h-5 w-5 self-center" />
             </div>
 
-            <div className="grow ml-2.5">{content}</div>
+            <div className="ml-2.5 grow">{content}</div>
           </div>
 
           <button
             type="button"
-            className="flex items-center justify-center w-10 h-10 ml-5 shrink-0"
+            className="ml-5 flex h-10 w-10 shrink-0 items-center justify-center"
             onClick={handleDismiss}
           >
-            <Icon icon={CLOSE_SVG} className="w-3 h-3" />
+            <Icon icon={CLOSE_SVG} className="h-3 w-3" />
           </button>
         </div>
       </div>

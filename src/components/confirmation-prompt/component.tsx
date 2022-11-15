@@ -28,13 +28,13 @@ export const ConfirmationPrompt: FC<ConfirmationPromptProps> = ({
     }}
   >
     <div className="px-8 py-4">
-      <div className="mt-8 text-xl font-medium text-gray-800 leading-1 sm:mt-0 sm:pr-32 font-heading">
+      <div className="leading-1 font-heading mt-8 text-xl font-medium text-gray-800 sm:mt-0 sm:pr-32">
         {title}
       </div>
       <p className="mt-4 text-sm text-gray-400 sm:pr-32">{description}</p>
       <div
         className={classnames({
-          'flex justify-start items-end': true,
+          'flex items-end justify-start': true,
           'mt-10 sm:mt-12': !icon && !description,
           'mt-8': !icon && !!description,
           'mt-10 sm:mt-1': !!icon && !description,
@@ -48,7 +48,7 @@ export const ConfirmationPrompt: FC<ConfirmationPromptProps> = ({
           Yes
         </Button>
 
-        {icon && <Icon icon={icon} className="hidden ml-auto sm:block shrink grow w-36" />}
+        {icon && <Icon icon={icon} className="ml-auto hidden w-36 shrink grow sm:block" />}
       </div>
     </div>
   </Modal>

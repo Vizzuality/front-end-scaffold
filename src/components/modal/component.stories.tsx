@@ -156,9 +156,9 @@ const Template: Story<ModalProps> = ({ ...args }: ModalProps) => {
               setOpenScrollable(o);
             }}
           >
-            <div className="flex flex-col py-10 space-y-5 overflow-auto grow">
+            <div className="flex grow flex-col space-y-5 overflow-auto py-10">
               <h1 className="px-10 text-xl font-medium">Modal content</h1>
-              <div className="px-10 grow">
+              <div className="grow px-10">
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales est, eu
                   imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec, fringilla ex.
@@ -265,12 +265,12 @@ const Template: Story<ModalProps> = ({ ...args }: ModalProps) => {
               setOpenScrollable2(o);
             }}
           >
-            <div className="flex flex-col py-10 overflow-hidden grow">
+            <div className="flex grow flex-col overflow-hidden py-10">
               <h1 className="px-10 text-xl font-medium">Modal content</h1>
-              <div className="relative flex flex-col py-px overflow-hidden grow">
-                <div className="absolute left-0 z-10 w-full h-5 pointer-events-none -top-1 bg-gradient-to-b from-white via-white" />
-                <div className="relative flex flex-col overflow-hidden grow">
-                  <div className="flex flex-col px-10 py-5 overflow-x-hidden overflow-y-auto grow">
+              <div className="relative flex grow flex-col overflow-hidden py-px">
+                <div className="pointer-events-none absolute left-0 -top-1 z-10 h-5 w-full bg-gradient-to-b from-white via-white" />
+                <div className="relative flex grow flex-col overflow-hidden">
+                  <div className="flex grow flex-col overflow-y-auto overflow-x-hidden px-10 py-5">
                     <p>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean at sodales
                       est, eu imperdiet elit. Suspendisse eget diam accumsan, lacinia odio nec,
@@ -378,7 +378,7 @@ const Template: Story<ModalProps> = ({ ...args }: ModalProps) => {
                     </p>
                   </div>
                 </div>
-                <div className="absolute bottom-0 left-0 z-10 w-full h-5 pointer-events-none bg-gradient-to-t from-white via-white" />
+                <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-5 w-full bg-gradient-to-t from-white via-white" />
               </div>
             </div>
           </Modal>
