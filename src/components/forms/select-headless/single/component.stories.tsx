@@ -89,10 +89,9 @@ Light.args = {
     },
   ],
   disabled: false,
-  clearSelectionActive: true,
+  clearable: true,
   clearSelectionLabel: 'Clear selection',
-  batchSelectionActive: true,
-  batchSelectionLabel: 'Select all',
+  loading: false,
   onSelect: (option) => console.info(option),
 };
 
@@ -144,9 +143,8 @@ Dark.args = {
     },
   ],
   disabled: false,
-  clearSelectionActive: true,
+  clearable: true,
   clearSelectionLabel: 'Clear selection',
-  batchSelectionActive: true,
-  batchSelectionLabel: 'Select all',
+  loading: false,
   onSelect: (option) => console.info(option),
 };

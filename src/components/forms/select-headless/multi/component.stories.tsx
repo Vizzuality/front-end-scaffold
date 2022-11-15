@@ -92,6 +92,7 @@ Light.args = {
   ],
   clearSelectionActive: true,
   batchSelectionActive: true,
+  loading: false,
   onSelect: (option) => console.info(option),
 };
 
