@@ -5,7 +5,6 @@ export interface SingleSelectProps extends SelectStatusProps, SelectDataProps, S
   options?: SelectOptionProps[];
   placeholder?: string;
   loading?: boolean;
-  selected?: string;
   clearable?: boolean;
   clearSelectionLabel?: string;
   size: 'base' | 's';

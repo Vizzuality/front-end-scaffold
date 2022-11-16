@@ -46,7 +46,7 @@ Light.args = {
   theme: 'light',
   size: 'base',
   placeholder: 'Select...',
-  values: '',
+  values: [],
   options: [
     {
       label: 'Wade Cooper',
@@ -101,7 +101,7 @@ Dark.args = {
   theme: 'dark',
   size: 'base',
   placeholder: 'Select...',
-  values: '',
+  values: [],
   options: [
     {
       label: 'Wade Cooper',

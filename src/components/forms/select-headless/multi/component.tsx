@@ -30,9 +30,8 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
     onSelect,
   } = props;
   const ref = useRef(null);
-  const initialValue = values || [];
-  const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(initialValue);
+  const initialValues = values || [];
+  const [selected, setSelected] = useState(initialValues);
 
   const SELECTED = useMemo(() => {
     if (loading) return 'Loading...';
@@ -47,40 +46,27 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
       return null;
     }
 
+    if (selected.length === options.length) return `All items selected`;
+
     if (selected.length > 1) return `Selected items (${selected.length})`;
 
     return null;
   }, [loading, options, placeholder, selected]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!ref?.current?.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-  }, [ref]);
-
-  useEffect(() => {
-    setSelected(values);
+    if (values) {
+      setSelected(values);
+    }
   }, [values]);
 
   const handleSelect = useCallback(
-    (option) => {
-      const newSelected = [...selected];
-      const index = selected.indexOf(option.value);
-
-      if (index === -1) {
-        newSelected.push(option.value);
-      } else {
-        newSelected.splice(index, 1);
-      }
-      setSelected(newSelected);
+    (v) => {
+      setSelected(v);
       if (onSelect) {
-        onSelect(newSelected);
+        onSelect(v);
       }
     },
-    [onSelect, selected]
+    [onSelect]
   );
 
   const handleSelectAll = useCallback(() => {
@@ -111,25 +97,20 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
           className="space-y-1"
           disabled={disabled}
           value={selected}
+          multiple
           onChange={handleSelect}
         >
-          {() => (
+          {({ open }) => (
             <>
               <div className="relative space-y-3" ref={ref}>
                 <span className="inline-block w-full">
                   <Listbox.Button
                     className={cx({
-                      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-0 rounded-lg':
-                        true,
+                      [THEME[theme].button]: true,
                       'border border-grey-0/40 text-grey-0/40': disabled,
                       [THEME.sizes[size]]: true,
-                      [THEME[theme].open.button]: isOpen,
+                      [THEME[theme].open.button]: open,
                     })}
-                    onClick={() => {
-                      if (!loading) {
-                        setIsOpen(!isOpen);
-                      }
-                    }}
                   >
                     <span className="block truncate">{SELECTED}</span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -141,7 +122,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
                       {!loading && (
                         <Icon
-                          icon={isOpen ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
+                          icon={open ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
                           className={cx({
                             'w-3 h-3': true,
                           })}
@@ -153,7 +134,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
                 <Transition
                   unmount={false}
-                  show={isOpen}
+                  show={open}
                   leave="transition ease-in duration-100"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
@@ -179,6 +160,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                           {batchSelectionLabel}
                         </button>
                       )}
+
                       {clearSelectionActive && (
                         <button
                           className="py-2 text-left underline"
@@ -186,7 +168,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                           onClick={handleClearAll}
                         >
                           {selected.length < 1 && clearSelectionLabel}
-                          {selected.length > 1 &&
+                          {selected.length >= 1 &&
                             selected.length !== options.length &&
                             `${clearSelectionLabel} (${selected.length} Selected)`}
                           {selected.length === options.length &&
@@ -194,16 +176,18 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                         </button>
                       )}
                     </div>
+
                     {options.map((opt) => {
                       return (
-                        <Listbox.Option key={opt.value} value={opt}>
-                          {({ active }) => (
+                        <Listbox.Option key={opt.value} value={opt.value}>
+                          {({ active: a, disabled: d }) => (
                             <div
                               className={cx({
                                 'flex items-center space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
                                   true,
                                 [THEME[theme].item.base]: true,
-                                [THEME[theme].item.active]: active,
+                                [THEME[theme].item.active]: a,
+                                [THEME[theme].item.disabled]: d,
                               })}
                             >
                               <Checkbox

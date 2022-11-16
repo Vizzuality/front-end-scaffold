@@ -27,8 +27,11 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
     onSelect,
   } = props;
   const ref = useRef(null);
+  const triggerRef = useRef(null);
+  const clearableBtnRef = useRef(null);
+
   const initialValue = value || null;
-  const [isOpen, setIsOpen] = useState(false);
+
   const [selected, setSelected] = useState(initialValue);
 
   const SELECTED = useMemo(() => {
@@ -43,32 +46,14 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
   }, [options, selected, placeholder, loading]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!ref?.current?.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-  }, [ref]);
-
-  useEffect(() => {
     setSelected(value);
   }, [value]);
 
-  const handleSelect = (option) => {
-    setIsOpen(false);
-    setSelected(option.value);
+  const handleSelect = (v) => {
+    setSelected(v);
 
     if (onSelect) {
-      onSelect(option.value);
-    }
-  };
-
-  const handleClear = () => {
-    setIsOpen(false);
-    setSelected(null);
-    if (onSelect) {
-      onSelect(null);
+      onSelect(v);
     }
   };
 
@@ -87,19 +72,18 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
           value={selected}
           onChange={handleSelect}
         >
-          {() => (
+          {({ open }) => (
             <>
               <div className="relative space-y-3" ref={ref}>
                 <span className="inline-block w-full">
                   <Listbox.Button
+                    ref={triggerRef}
                     className={cx({
-                      'relative w-full py-2 pl-3 pr-10 text-left transition duration-150 ease-in-out cursor-pointer sm:text-sm sm:leading-5 border border-grey-0 rounded-lg':
-                        true,
+                      [THEME[theme].button]: true,
                       'border border-grey-0/40 text-grey-0/40': disabled,
                       [THEME.sizes[size]]: true,
-                      [THEME[theme].open.button]: isOpen,
+                      [THEME[theme].open.button]: open,
                     })}
-                    onClick={() => setIsOpen(!isOpen)}
                   >
                     <span className="block truncate">{SELECTED}</span>
                     <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -111,7 +95,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
 
                       {!loading && (
                         <Icon
-                          icon={isOpen ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
+                          icon={open ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
                           className={cx({
                             'w-3 h-3': true,
                           })}
@@ -123,7 +107,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
 
                 <Transition
                   unmount={false}
-                  show={isOpen}
+                  show={open}
                   leave="transition ease-in duration-100"
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
@@ -141,26 +125,30 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                   >
                     <div className="flex px-5 text-sm">
                       {clearable && (
-                        <button
-                          className="py-2 text-left underline"
-                          type="button"
-                          onClick={handleClear}
-                        >
-                          {clearSelectionLabel}
-                        </button>
+                        <Listbox.Option key={null} value={null}>
+                          <button
+                            ref={clearableBtnRef}
+                            type="button"
+                            className="py-2 text-left underline"
+                          >
+                            {clearSelectionLabel}
+                          </button>
+                        </Listbox.Option>
                       )}
                     </div>
 
                     {options.map((opt) => {
                       return (
-                        <Listbox.Option key={opt.value} value={opt}>
-                          {({ active }) => (
+                        <Listbox.Option key={opt.value} value={opt.value}>
+                          {({ active: a, selected: s, disabled: d }) => (
                             <div
                               className={cx({
                                 'flex space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
                                   true,
                                 [THEME[theme].item.base]: true,
-                                [THEME[theme].item.active]: active,
+                                [THEME[theme].item.active]: a,
+                                [THEME[theme].item.selected]: s,
+                                [THEME[theme].item.disabled]: d,
                               })}
                             >
                               <span
