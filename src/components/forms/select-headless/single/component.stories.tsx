@@ -8,12 +8,6 @@ const StorySelect = {
   component: Select,
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: {
-    state: {
-      control: {
-        type: 'select',
-        options: ['valid', 'error', 'none'],
-      },
-    },
     initialValues: {
       table: {
         disable: true,

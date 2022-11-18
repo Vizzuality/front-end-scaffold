@@ -25,7 +25,8 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
     placeholder = 'Select...',
     loading,
     size = 'base',
-    theme,
+    theme = 'dark',
+    state = 'none',
     values,
     onChange,
   } = props;
@@ -105,10 +106,11 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
               <span className="inline-block w-full">
                 <Listbox.Button
                   className={cx({
-                    [THEME[theme].button]: true,
-                    [THEME[theme].states.disabled]: disabled,
+                    [THEME[theme].button.base]: true,
+                    [THEME[theme].button.states.disabled]: disabled,
+                    [THEME[theme].button.states.valid]: state === 'valid',
+                    [THEME[theme].button.states.error]: state === 'error',
                     [THEME.sizes[size]]: true,
-                    [THEME[theme].open.button]: open,
                   })}
                 >
                   <span className="block truncate">{SELECTED}</span>
@@ -139,7 +141,6 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                 leaveTo="opacity-0"
                 className={cx({
                   'z-10 absolute w-full overflow-y-auto rounded-lg shadow-lg min-w-[250px]': true,
-                  [THEME[theme].button[size]]: true,
                 })}
               >
                 <Listbox.Options
@@ -179,7 +180,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                   {options.map((opt) => {
                     return (
                       <Listbox.Option key={opt.value} value={opt.value}>
-                        {({ active: a, disabled: d }) => (
+                        {({ active: a, selected: s, disabled: d }) => (
                           <div
                             className={cx({
                               'flex items-center space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
@@ -191,7 +192,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                           >
                             <Checkbox
                               className="cursor-pointer focus:text-black focus:ring-black checked:bg-black"
-                              checked={selected.includes(opt.value)}
+                              checked={s}
                               readOnly
                             />
 

@@ -20,6 +20,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
     placeholder = 'Select...',
     size = 'base',
     theme = 'dark',
+    state = 'none',
     value,
     clearable,
     clearSelectionLabel = 'Clear',
@@ -78,10 +79,11 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                 <Listbox.Button
                   ref={triggerRef}
                   className={cx({
-                    [THEME[theme].button]: true,
-                    [THEME[theme].states.disabled]: disabled,
+                    [THEME[theme].button.base]: true,
+                    [THEME[theme].button.states.disabled]: disabled,
+                    [THEME[theme].button.states.valid]: state === 'valid',
+                    [THEME[theme].button.states.error]: state === 'error',
                     [THEME.sizes[size]]: true,
-                    [THEME[theme].open.button]: open,
                   })}
                 >
                   <span className="block truncate">{SELECTED}</span>
@@ -112,7 +114,6 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                 leaveTo="opacity-0"
                 className={cx({
                   'z-10 absolute w-full overflow-y-auto rounded-lg shadow-lg min-w-[250px]': true,
-                  [THEME[theme].button[size]]: true,
                 })}
               >
                 <Listbox.Options
