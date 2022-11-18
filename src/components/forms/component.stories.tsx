@@ -7,7 +7,7 @@ import Checkbox from 'components/forms/checkbox';
 import Input from 'components/forms/input';
 import Label from 'components/forms/label';
 import Radio from 'components/forms/radio';
-import Select from 'components/forms/select';
+import Select from 'components/forms/select/single';
 import Slider from 'components/forms/slider';
 import Textarea from 'components/forms/textarea';
 import { composeValidators, booleanValidator, arrayValidator } from 'components/forms/validations';
@@ -78,26 +78,39 @@ export function Form(): ReactNode {
           {/* SELECT */}
           <div className="mt-5">
             <FieldRFF name="category" validate={composeValidators([{ presence: true }])}>
-              {(flprops) => (
-                <>
-                  <Label htmlFor="form-select" className="mb-3 uppercase">
-                    Category
-                  </Label>
-                  <Select
-                    {...flprops.input}
-                    id="form-select"
-                    theme="dark"
-                    size="base"
-                    meta={flprops.meta}
-                    options={[
-                      { label: 'Option 1', value: 'option-1' },
-                      { label: 'Option 2', value: 'option-2' },
-                      { label: 'Option 3', value: 'option-3', disabled: true },
-                      { label: 'Option 4', value: 'option-4' },
-                    ]}
-                  />
-                </>
-              )}
+              {(flprops) => {
+                const state = () => {
+                  if (flprops.meta.error && flprops.meta.touched) {
+                    return 'error';
+                  }
+                  if (flprops.meta.valid && flprops.meta.touched) {
+                    return 'valid';
+                  }
+                  return 'none';
+                };
+
+                return (
+                  <>
+                    <Label htmlFor="form-select" className="mb-3 uppercase">
+                      Category
+                    </Label>
+
+                    <Select
+                      {...flprops.input}
+                      id="form-select"
+                      theme="dark"
+                      size="base"
+                      state={state()}
+                      options={[
+                        { label: 'Option 1', value: 'option-1' },
+                        { label: 'Option 2', value: 'option-2' },
+                        { label: 'Option 3', value: 'option-3', disabled: true },
+                        { label: 'Option 4', value: 'option-4' },
+                      ]}
+                    />
+                  </>
+                );
+              }}
             </FieldRFF>
           </div>
 
