@@ -12,12 +12,12 @@ const StoryTooltip = {
 export default StoryTooltip;
 
 const Template: Story<TooltipProps> = (args: TooltipProps) => (
-  <div className="text-white mt-52">
+  <div className="mt-52 text-white">
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit{' '}
     <Tooltip
       {...args}
       content={
-        <div className="px-2 py-1 text-gray-500 bg-white rounded">
+        <div className="rounded bg-white px-2 py-1 text-gray-500">
           <span>Tooltip</span>
         </div>
       }
@@ -30,7 +30,7 @@ const Template: Story<TooltipProps> = (args: TooltipProps) => (
       placement="bottom-end"
       trigger="click"
       content={
-        <div className="p-5 text-gray-500 bg-white rounded">
+        <div className="rounded bg-white p-5 text-gray-500">
           <h2 className="text-lg text-blue-500">Title</h2>
           <p>This is a content. We could have whateveryouwant</p>
         </div>

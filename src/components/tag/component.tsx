@@ -9,12 +9,12 @@ export const Tag: FC<TagProps> = ({ children, className }: TagProps) => (
     className={cx({
       'relative inline-flex rounded': true,
       [`${className}`]: !!className,
-      'text-black bg-gray-200': !className,
+      'bg-gray-200 text-black': !className,
     })}
   >
     <div
       className={cx({
-        'flex-col leading-none text-sm px-2 py-1': true,
+        'flex-col px-2 py-1 text-sm leading-none': true,
       })}
     >
       <div className="flex-1">{children}</div>

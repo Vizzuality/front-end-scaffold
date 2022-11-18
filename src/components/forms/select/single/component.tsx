@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
 
 import cx from 'classnames';
 
@@ -28,8 +28,6 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
     onChange,
   } = props;
   const ref = useRef(null);
-  const triggerRef = useRef(null);
-  const clearableBtnRef = useRef(null);
 
   const initialValue = value || null;
 
@@ -77,7 +75,6 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
             <div className="relative space-y-3" ref={ref}>
               <span className="inline-block w-full">
                 <Listbox.Button
-                  ref={triggerRef}
                   className={cx({
                     [THEME[theme].button.base]: true,
                     [THEME[theme].button.states.disabled]: disabled,
@@ -87,7 +84,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                   })}
                 >
                   <span className="block truncate">{SELECTED}</span>
-                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                     <Loading
                       visible={loading}
                       className={THEME[theme].loading}
@@ -98,7 +95,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                       <Icon
                         icon={open ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
                         className={cx({
-                          'w-3 h-3': true,
+                          'h-3 w-3': true,
                         })}
                       />
                     )}
@@ -113,24 +110,20 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
                 className={cx({
-                  'z-10 absolute w-full overflow-y-auto rounded-lg shadow-lg min-w-[250px]': true,
+                  'absolute z-10 w-full min-w-[250px] overflow-y-auto rounded-lg shadow-lg': true,
                 })}
               >
                 <Listbox.Options
                   static
                   className={cx({
-                    'overflow-y-auto text-base leading-6 max-h-60 focus:outline-none': true,
+                    'max-h-60 overflow-y-auto text-base leading-6 focus:outline-none': true,
                     [THEME[theme].menu]: true,
                   })}
                 >
                   <div className="flex px-5 text-sm">
                     {clearable && (
                       <Listbox.Option key={null} value={null}>
-                        <button
-                          ref={clearableBtnRef}
-                          type="button"
-                          className="py-2 text-left underline"
-                        >
+                        <button type="button" className="py-2 text-left underline">
                           {clearSelectionLabel}
                         </button>
                       </Listbox.Option>
@@ -143,7 +136,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                         {({ active: a, selected: s, disabled: d }) => (
                           <div
                             className={cx({
-                              'flex space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
+                              'relative flex cursor-pointer select-none space-x-2 py-2 pl-5 pr-4':
                                 true,
                               [THEME[theme].item.base]: true,
                               [THEME[theme].item.active]: a,
@@ -153,7 +146,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                           >
                             <span
                               className={cx({
-                                'font-semibold block line-clamp-2': true,
+                                'block font-semibold line-clamp-2': true,
                               })}
                             >
                               {opt.label}

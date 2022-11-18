@@ -90,7 +90,7 @@ const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
   );
 
   return (
-    <div className="relative w-full h-screen">
+    <div className="relative h-screen w-full">
       <Map
         id={id}
         maxZoom={maxZoom}

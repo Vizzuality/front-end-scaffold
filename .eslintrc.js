@@ -4,7 +4,12 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['next/core-web-vitals', 'airbnb-typescript', 'prettier'],
+  extends: [
+    'next/core-web-vitals',
+    'airbnb-typescript',
+    'plugin:react/jsx-runtime',
+    'plugin:prettier/recommended',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -14,18 +19,9 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.eslint.json',
   },
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint'],
   rules: {
     'no-console': [1, { allow: ['info', 'error'] }],
-    'prettier/prettier': [
-      'error',
-      {},
-      {
-        usePrettierrc: true,
-      },
-    ],
-    // https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#eslint
-    'react/react-in-jsx-scope': 'off',
     // NextJs specific fix: allow jsx syntax in js and ts files
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': [

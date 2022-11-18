@@ -44,7 +44,7 @@ export function Groups(): ReactNode {
       </li>
       <li className="ml-3">
         <Avatar className="bg-white">
-          <Icon icon={HELP_SVG} className="w-5 h-5" />
+          <Icon icon={HELP_SVG} className="h-5 w-5" />
         </Avatar>
       </li>
     </ul>

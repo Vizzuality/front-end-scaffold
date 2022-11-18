@@ -30,9 +30,9 @@ export const Cookies: React.FC<CookiesProps> = ({ open, onAccept, onReject }: Co
                 delay: 0,
               },
             }}
-            className="fixed bottom-0 left-0 z-50 w-full p-6 overflow-hidden transform translate-y-full bg-gray-100 outline-none"
+            className="fixed bottom-0 left-0 z-50 w-full translate-y-full transform overflow-hidden bg-gray-100 p-6 outline-none"
           >
-            <div className="flex flex-col space-y-5 lg:flex-row lg:justify-between lg:items-center lg:space-x-5 lg:space-y-0">
+            <div className="flex flex-col space-y-5 lg:flex-row lg:items-center lg:justify-between lg:space-x-5 lg:space-y-0">
               <p className="text-base">
                 This website uses cookies to ensure you get the best experience on our website. Read
                 our{' '}
