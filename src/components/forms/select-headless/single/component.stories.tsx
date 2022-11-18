@@ -14,11 +14,6 @@ const StorySelect = {
         options: ['valid', 'error', 'none'],
       },
     },
-    onSelect: {
-      table: {
-        disable: true,
-      },
-    },
     initialValues: {
       table: {
         disable: true,

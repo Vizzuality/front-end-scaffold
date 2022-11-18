@@ -8,21 +8,10 @@ const StorySelect = {
   component: Select,
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: {
-    // theme: {
-    //   control: {
-    //     type: 'select',
-    //     options: ['dark', 'light', 'none'],
-    //   },
-    // },
     state: {
       control: {
         type: 'select',
         options: ['valid', 'error'],
-      },
-    },
-    onSelect: {
-      table: {
-        disable: true,
       },
     },
     initialValues: {

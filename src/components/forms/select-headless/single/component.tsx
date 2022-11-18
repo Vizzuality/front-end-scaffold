@@ -24,7 +24,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
     clearable,
     clearSelectionLabel = 'Clear',
     loading,
-    onSelect,
+    onChange,
   } = props;
   const ref = useRef(null);
   const triggerRef = useRef(null);
@@ -52,8 +52,8 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
   const handleSelect = (v) => {
     setSelected(v);
 
-    if (onSelect) {
-      onSelect(v);
+    if (onChange) {
+      onChange(v);
     }
   };
 

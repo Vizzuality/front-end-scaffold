@@ -9,5 +9,5 @@ export interface SingleSelectProps extends SelectStatusProps, SelectDataProps, S
   clearSelectionLabel?: string;
   size: 'base' | 's' | 'none';
   theme: 'dark' | 'light' | 'none';
-  onSelect?: (selection: string) => void;
+  onChange?: (selection: string) => void;
 }

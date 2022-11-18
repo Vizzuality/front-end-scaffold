@@ -27,7 +27,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
     size = 'base',
     theme,
     values,
-    onSelect,
+    onChange,
   } = props;
   const ref = useRef(null);
   const initialValues = values || [];
@@ -62,27 +62,27 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
   const handleSelect = useCallback(
     (v) => {
       setSelected(v);
-      if (onSelect) {
-        onSelect(v);
+      if (onChange) {
+        onChange(v);
       }
     },
-    [onSelect]
+    [onChange]
   );
 
   const handleSelectAll = useCallback(() => {
     const allOptions = options.map((o) => o.value);
     setSelected(allOptions);
-    if (onSelect) {
-      onSelect(allOptions);
+    if (onChange) {
+      onChange(allOptions);
     }
-  }, [onSelect, options]);
+  }, [onChange, options]);
 
   const handleClearAll = useCallback(() => {
     setSelected([]);
-    if (onSelect) {
-      onSelect([]);
+    if (onChange) {
+      onChange([]);
     }
-  }, [onSelect]);
+  }, [onChange]);
 
   return (
     <div
