@@ -26,7 +26,7 @@ Default.args = {
           }}
         >
           <div
-            className="absolute w-full h-full bg-center bg-no-repeat bg-contain rounded-3xl"
+            className="absolute h-full w-full rounded-3xl bg-contain bg-center bg-no-repeat"
             style={{
               backgroundImage: 'url(https://dummyimage.com/866x565/000/fff.png&text=01)',
             }}
@@ -44,7 +44,7 @@ Default.args = {
           }}
         >
           <div
-            className="absolute w-full h-full bg-center bg-no-repeat bg-contain rounded-3xl"
+            className="absolute h-full w-full rounded-3xl bg-contain bg-center bg-no-repeat"
             style={{
               backgroundImage: 'url(https://dummyimage.com/866x565/000/fff.png&text=02)',
             }}
@@ -62,7 +62,7 @@ Default.args = {
           }}
         >
           <div
-            className="absolute w-full h-full bg-center bg-no-repeat bg-contain rounded-3xl"
+            className="absolute h-full w-full rounded-3xl bg-contain bg-center bg-no-repeat"
             style={{
               backgroundImage: 'url(https://dummyimage.com/866x565/000/fff.png&text=03)',
             }}
@@ -80,7 +80,7 @@ Default.args = {
           }}
         >
           <div
-            className="absolute w-full h-full bg-center bg-no-repeat bg-contain rounded-3xl"
+            className="absolute h-full w-full rounded-3xl bg-contain bg-center bg-no-repeat"
             style={{
               backgroundImage: 'url(https://dummyimage.com/866x565/000/fff.png&text=04)',
             }}
