@@ -1,10 +1,10 @@
 import { Story } from '@storybook/react/types-6-0';
 
 import Select from './component';
-import type { MultiSelectProps } from './types';
+import type { SingleSelectProps } from './types';
 
 const StorySelect = {
-  title: 'Components/Forms/Select Headless/Multiple',
+  title: 'Components/Forms/Select/Single',
   component: Select,
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: {
@@ -18,7 +18,7 @@ const StorySelect = {
 
 export default StorySelect;
 
-const Template: Story<MultiSelectProps> = (args) => (
+const Template: Story<SingleSelectProps> = (args) => (
   <div className="relative text-white">
     <Select {...args} />
   </div>
@@ -28,8 +28,6 @@ export const Light = Template.bind({});
 Light.args = {
   theme: 'light',
   size: 'base',
-  placeholder: 'Select...',
-  values: [],
   options: [
     {
       label: 'Wade Cooper',
@@ -73,8 +71,10 @@ Light.args = {
       value: 'Emil Schaefer',
     },
   ],
-  clearSelectionActive: true,
-  batchSelectionActive: true,
+  value: null,
+  disabled: false,
+  clearable: true,
+  clearSelectionLabel: 'Clear selection',
   loading: false,
   onSelect: (option) => console.info(option),
 };
@@ -83,8 +83,6 @@ export const Dark = Template.bind({});
 Dark.args = {
   theme: 'dark',
   size: 'base',
-  placeholder: 'Select...',
-  values: [],
   options: [
     {
       label: 'Wade Cooper',
@@ -128,7 +126,10 @@ Dark.args = {
       value: 'Emil Schaefer',
     },
   ],
-  clearSelectionActive: true,
-  batchSelectionActive: true,
+  value: null,
+  disabled: false,
+  clearable: true,
+  clearSelectionLabel: 'Clear selection',
+  loading: false,
   onSelect: (option) => console.info(option),
 };

@@ -1,6 +1,6 @@
 export interface SingleSelectProps extends SelectStatusProps, SelectDataProps, SelectThemeProps {
   id: string | number;
-  value?: string;
+  value?: unknown | string | number;
   disabled?: boolean;
   options?: SelectOptionProps[];
   placeholder?: string;

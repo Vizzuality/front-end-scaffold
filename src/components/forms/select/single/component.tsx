@@ -1,249 +1,176 @@
-import { useEffect, useRef, useMemo, FC } from 'react';
-
-import { createPortal } from 'react-dom';
-import { usePopper } from 'react-popper';
+import React, { FC, useEffect, useMemo, useRef, useState } from 'react';
 
 import cx from 'classnames';
 
-// Downshift;
-import { useSelect } from 'downshift';
+import { Listbox, Transition } from '@headlessui/react';
 
-// Popper
-import {
-  flipModifier,
-  hideModifier,
-  sameWidthModifier,
-  offsetModifier,
-} from 'components/forms/select/constants/popper-modifiers';
 import THEME from 'components/forms/select/constants/theme';
-import Menu from 'components/forms/select/menu';
-import Toggle from 'components/forms/select/toggle';
-import { SelectProps, SelectOptionProps } from 'components/forms/select/types';
+import Icon from 'components/icon';
+import Loading from 'components/loading';
 
-export const SingleSelect: FC<SelectProps> = ({
-  theme = 'dark',
-  size = 'base',
-  maxHeight = 300,
-  status,
-  prefix,
-  options = [],
-  disabled = false,
-  placeholder,
-  values,
-  initialValues,
-  clearSelectionActive,
-  clearSelectionLabel = 'Clear selection',
-  onSelect,
-  onFocus,
-  onBlur,
-}: SelectProps) => {
-  const triggerRef = useRef();
-  const menuRef = useRef();
+import CHEVRON_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
+import CHEVRON_UP_SVG from 'svgs/ui/arrow-up.svg?sprite';
 
-  const getOptions = useMemo(
-    () => [
-      ...(clearSelectionActive
-        ? [
-            {
-              value: null,
-              label: clearSelectionLabel,
-            },
-          ]
-        : []),
-      ...options,
-    ],
-    [options, clearSelectionActive, clearSelectionLabel]
-  );
+import type { SingleSelectProps } from './types';
 
-  const getInitialSelected = useMemo(() => {
-    const opts = getOptions.find((o) => o.value === initialValues && o.value !== null);
-    return opts;
-  }, [getOptions, initialValues]);
+export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
+  const {
+    disabled = false,
+    options,
+    placeholder = 'Select...',
+    size = 'base',
+    theme = 'dark',
+    state = 'none',
+    value,
+    clearable,
+    clearSelectionLabel = 'Clear',
+    loading,
+    onChange,
+  } = props;
+  const ref = useRef(null);
+  const triggerRef = useRef(null);
+  const clearableBtnRef = useRef(null);
 
-  const getSelected = useMemo(() => {
-    const opts = getOptions.find((o) => o.value === values && o.value !== null) || null;
-    return opts;
-  }, [getOptions, values]);
+  const initialValue = value || null;
 
-  // Events
-  const handleSelectedItems = (selected, reset) => {
-    switch (selected.value) {
-      case null:
-        reset();
-        break;
-      default:
-        break;
+  const [selected, setSelected] = useState(initialValue);
+
+  const SELECTED = useMemo(() => {
+    if (loading) return 'Loading...';
+
+    if (selected) {
+      const option = options.find((o) => o.value === selected);
+      return option?.label;
+    }
+
+    return placeholder;
+  }, [options, selected, placeholder, loading]);
+
+  useEffect(() => {
+    setSelected(value);
+  }, [value]);
+
+  const handleSelect = (v) => {
+    setSelected(v);
+
+    if (onChange) {
+      onChange(v);
     }
   };
-
-  const isSelected = (selected: SelectOptionProps, selectedItms: SelectOptionProps[]) =>
-    selectedItms.some((i) => i.value === selected.value);
-
-  // 'useSelect'
-  const {
-    isOpen,
-    selectedItem,
-    highlightedIndex,
-    getToggleButtonProps,
-    getMenuProps,
-    getItemProps,
-    closeMenu,
-    reset,
-  } = useSelect<SelectOptionProps>({
-    items: getOptions,
-    ...(typeof values !== 'undefined' && {
-      selectedItem: getSelected,
-    }),
-    ...(typeof initialValues !== 'undefined' && {
-      initialSelectedItem: getInitialSelected,
-    }),
-    itemToString: (item) => item.label, // How the selected options is announced to screen readers
-    stateReducer: (st, actionAndChanges) => {
-      const { changes, type } = actionAndChanges;
-
-      if (
-        type === useSelect.stateChangeTypes.MenuKeyDownEnter ||
-        type === useSelect.stateChangeTypes.MenuKeyDownSpaceButton ||
-        type === useSelect.stateChangeTypes.ItemClick
-      ) {
-        onSelect(changes.selectedItem);
-      }
-
-      return changes;
-    },
-    onStateChange: ({ type, selectedItem: selected }) => {
-      switch (type) {
-        case useSelect.stateChangeTypes.MenuKeyDownEnter:
-        case useSelect.stateChangeTypes.ItemClick:
-          if (selected) {
-            handleSelectedItems(selected, reset);
-          }
-          break;
-        default:
-          break;
-      }
-    },
-  });
-
-  // 'usePopper'
-  const { styles, attributes, update } = usePopper(triggerRef.current, menuRef.current, {
-    placement: 'bottom',
-    // strategy: 'fixed',
-    modifiers: [offsetModifier, flipModifier, hideModifier, sameWidthModifier],
-  });
-
-  // Hide menu if reference is outside the boundaries
-  const referenceHidden =
-    attributes?.popper?.['data-popper-reference-hidden'] ||
-    attributes?.popper?.['data-popper-reference-scaped'];
-  useEffect(() => {
-    if (referenceHidden) {
-      closeMenu();
-    }
-  }, [referenceHidden, closeMenu]);
-
-  useEffect(() => {
-    if (update) update();
-  }, [isOpen, update]);
-
-  const selectedItems = selectedItem ? [selectedItem] : [];
 
   return (
     <div
       className={cx({
-        'w-full leading-tight overflow-hidden': true,
+        'w-full': true,
         [THEME[theme].container]: true,
-        [THEME[theme].closed]: true,
-        [THEME.states[status]]: true,
       })}
     >
-      <div className="relative w-full" ref={triggerRef}>
-        <Toggle
-          options={getOptions}
-          theme={theme}
-          size={size}
-          status={status}
-          prefix={prefix}
-          disabled={disabled}
-          opened={isOpen}
-          selectedItems={selectedItems}
-          placeholder={placeholder}
-          getToggleButtonProps={getToggleButtonProps}
-        />
-      </div>
-
-      {/* Menu */}
-      {createPortal(
-        <div
-          className={cx({
-            'z-50': true,
-            // The content of `<Menu />` must always be in the DOM so that Downshift can get the ref
-            // to the `<ul />` element through `getMenuProps`
-            invisible: !isOpen,
-          })}
-          ref={menuRef}
-          style={styles.popper}
-          {...attributes.popper}
-        >
-          <Menu
-            theme={theme}
-            size={size}
-            status={status}
-            disabled={disabled}
-            opened={isOpen}
-            attributes={attributes}
-          >
-            <Toggle
-              options={options}
-              theme={theme}
-              size={size}
-              status={status}
-              prefix={prefix}
-              disabled={disabled}
-              opened={isOpen}
-              selectedItems={selectedItems}
-              placeholder={placeholder}
-              getToggleButtonProps={getToggleButtonProps}
-            />
-
-            <ul
-              {...getMenuProps({ onFocus, onBlur })}
-              className={cx({
-                'py-1 overflow-y-auto overflow-x-hidden': true,
-              })}
-              style={{
-                maxHeight,
-              }}
-            >
-              {getOptions.map((option, index) => (
-                <li
+      <Listbox
+        as="div"
+        className="space-y-1"
+        disabled={disabled}
+        value={selected}
+        onChange={handleSelect}
+      >
+        {({ open }) => (
+          <>
+            <div className="relative space-y-3" ref={ref}>
+              <span className="inline-block w-full">
+                <Listbox.Button
+                  ref={triggerRef}
                   className={cx({
-                    'px-4 py-1 mt-0.5 cursor-pointer': true,
-                    [THEME[theme].item.base]: highlightedIndex !== index,
-                    [THEME[theme].item.disabled]: option.disabled,
-                    [THEME[theme].item.highlighted]:
-                      (highlightedIndex === index && !option.disabled) ||
-                      isSelected(option, selectedItems),
+                    [THEME[theme].button.base]: true,
+                    [THEME[theme].button.states.disabled]: disabled,
+                    [THEME[theme].button.states.valid]: state === 'valid',
+                    [THEME[theme].button.states.error]: state === 'error',
+                    [THEME.sizes[size]]: true,
                   })}
-                  key={`${option.value}`}
-                  {...getItemProps({ item: option, index, disabled: option.disabled })}
                 >
-                  <span
-                    className={cx({
-                      'ml-6': !!option.checkbox,
-                    })}
-                  >
-                    {option.label}
+                  <span className="block truncate">{SELECTED}</span>
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <Loading
+                      visible={loading}
+                      className={THEME[theme].loading}
+                      iconClassName="w-3 h-3"
+                    />
+
+                    {!loading && (
+                      <Icon
+                        icon={open ? CHEVRON_UP_SVG : CHEVRON_DOWN_SVG}
+                        className={cx({
+                          'w-3 h-3': true,
+                        })}
+                      />
+                    )}
                   </span>
-                </li>
-              ))}
-            </ul>
-          </Menu>
-        </div>,
-        document.body
-      )}
+                </Listbox.Button>
+              </span>
+
+              <Transition
+                unmount={false}
+                show={open}
+                leave="transition ease-in duration-100"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+                className={cx({
+                  'z-10 absolute w-full overflow-y-auto rounded-lg shadow-lg min-w-[250px]': true,
+                })}
+              >
+                <Listbox.Options
+                  static
+                  className={cx({
+                    'overflow-y-auto text-base leading-6 max-h-60 focus:outline-none': true,
+                    [THEME[theme].menu]: true,
+                  })}
+                >
+                  <div className="flex px-5 text-sm">
+                    {clearable && (
+                      <Listbox.Option key={null} value={null}>
+                        <button
+                          ref={clearableBtnRef}
+                          type="button"
+                          className="py-2 text-left underline"
+                        >
+                          {clearSelectionLabel}
+                        </button>
+                      </Listbox.Option>
+                    )}
+                  </div>
+
+                  {options.map((opt) => {
+                    return (
+                      <Listbox.Option key={opt.value} value={opt.value}>
+                        {({ active: a, selected: s, disabled: d }) => (
+                          <div
+                            className={cx({
+                              'flex space-x-2 cursor-pointer select-none relative py-2 pl-5 pr-4':
+                                true,
+                              [THEME[theme].item.base]: true,
+                              [THEME[theme].item.active]: a,
+                              [THEME[theme].item.selected]: s,
+                              [THEME[theme].item.disabled]: d,
+                            })}
+                          >
+                            <span
+                              className={cx({
+                                'font-semibold block line-clamp-2': true,
+                              })}
+                            >
+                              {opt.label}
+                            </span>
+                          </div>
+                        )}
+                      </Listbox.Option>
+                    );
+                  })}
+                </Listbox.Options>
+              </Transition>
+            </div>
+          </>
+        )}
+      </Listbox>
     </div>
   );
 };
 
-export default SingleSelect;
+export default Select;
