@@ -106,7 +106,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                 <Listbox.Button
                   className={cx({
                     [THEME[theme].button]: true,
-                    'border border-grey-0/40 text-grey-0/40': disabled,
+                    [THEME[theme].states.disabled]: disabled,
                     [THEME.sizes[size]]: true,
                     [THEME[theme].open.button]: open,
                   })}
@@ -152,7 +152,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
                   <div className="flex px-5 space-x-5 text-sm">
                     {batchSelectionActive && (
                       <button
-                        className="py-2 text-left underline text-grey-20"
+                        className="py-2 text-left underline text-grey-20 whitespace-nowrap"
                         type="button"
                         onClick={handleSelectAll}
                       >
@@ -162,7 +162,7 @@ export const Select: FC<MultiSelectProps> = (props: MultiSelectProps) => {
 
                     {clearSelectionActive && (
                       <button
-                        className="py-2 text-left underline"
+                        className="py-2 text-left underline whitespace-nowrap"
                         type="button"
                         onClick={handleClearAll}
                       >

@@ -8,16 +8,16 @@ const StorySelect = {
   component: Select,
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: {
-    theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
-    },
+    // theme: {
+    //   control: {
+    //     type: 'select',
+    //     options: ['dark', 'light', 'none'],
+    //   },
+    // },
     state: {
       control: {
         type: 'select',
-        options: ['valid', 'error', 'none'],
+        options: ['valid', 'error'],
       },
     },
     onSelect: {
@@ -36,7 +36,7 @@ const StorySelect = {
 export default StorySelect;
 
 const Template: Story<MultiSelectProps> = (args) => (
-  <div className="relative">
+  <div className="relative text-white">
     <Select {...args} />
   </div>
 );

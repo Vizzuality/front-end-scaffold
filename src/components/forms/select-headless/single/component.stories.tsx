@@ -8,12 +8,6 @@ const StorySelect = {
   component: Select,
   parameters: { actions: { argTypesRegex: '^on.*' } },
   argTypes: {
-    theme: {
-      control: {
-        type: 'select',
-        options: ['dark', 'light'],
-      },
-    },
     state: {
       control: {
         type: 'select',
@@ -36,7 +30,7 @@ const StorySelect = {
 export default StorySelect;
 
 const Template: Story<SingleSelectProps> = (args) => (
-  <div className="relative">
+  <div className="relative text-white">
     <Select {...args} />
   </div>
 );

@@ -79,7 +79,7 @@ export const Select: FC<SingleSelectProps> = (props: SingleSelectProps) => {
                   ref={triggerRef}
                   className={cx({
                     [THEME[theme].button]: true,
-                    'border border-grey-0/40 text-grey-0/40': disabled,
+                    [THEME[theme].states.disabled]: disabled,
                     [THEME.sizes[size]]: true,
                     [THEME[theme].open.button]: open,
                   })}
