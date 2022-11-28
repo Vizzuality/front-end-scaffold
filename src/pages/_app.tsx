@@ -7,6 +7,8 @@ import { useRouter } from 'next/router';
 
 import { OverlayProvider } from '@react-aria/overlays';
 import { QueryClient, QueryClientProvider, Hydrate } from '@tanstack/react-query';
+import { Provider as JotaiProvider } from 'jotai';
+import { useAtomsDevtools } from 'jotai/devtools';
 import { SessionProvider } from 'next-auth/react';
 
 import ThirdParty from 'containers/third-party';
@@ -15,6 +17,11 @@ import { MediaContextProvider } from 'components/media-query';
 import { GAPage } from 'lib/analytics/ga';
 
 import 'styles/globals.css';
+
+const AtomsDevtools = ({ children }) => {
+  useAtomsDevtools('dev');
+  return children;
+};
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
@@ -39,15 +46,19 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <SessionProvider session={pageProps.session} refetchInterval={10 * 60} refetchOnWindowFocus>
-          <OverlayProvider>
-            {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
-            <MediaContextProvider>
-              <MapProvider>
-                <ThirdParty />
-                <Component {...pageProps} />
-              </MapProvider>
-            </MediaContextProvider>
-          </OverlayProvider>
+          <JotaiProvider>
+            <AtomsDevtools>
+              <OverlayProvider>
+                {/* @ts-ignore: https://github.com/artsy/fresnel/issues/281 */}
+                <MediaContextProvider>
+                  <MapProvider>
+                    <ThirdParty />
+                    <Component {...pageProps} />
+                  </MapProvider>
+                </MediaContextProvider>
+              </OverlayProvider>
+            </AtomsDevtools>
+          </JotaiProvider>
         </SessionProvider>
       </Hydrate>
     </QueryClientProvider>
