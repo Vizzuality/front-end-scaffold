@@ -72,7 +72,7 @@ module.exports = {
             position: 'after',
           },
           {
-            pattern: 'lodash/**',
+            pattern: 'lodash-es/**',
             group: 'builtin',
             position: 'after',
           },
@@ -126,6 +126,12 @@ module.exports = {
           },
         ],
         pathGroupsExcludedImportTypes: ['react'],
+      },
+    ],
+    'no-restricted-imports': [
+      'error',
+      {
+        patterns: [{ group: ['lodash', '!lodash-es'], message: 'Use lodash-es instead' }],
       },
     ],
   },

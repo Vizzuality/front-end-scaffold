@@ -4,8 +4,7 @@ import ReactMapGL, { ViewState, ViewStateChangeEvent, useMap } from 'react-map-g
 
 import cx from 'classnames';
 
-import isEmpty from 'lodash/isEmpty';
-
+import { isEmpty } from 'lodash-es';
 import MapLibreGL from 'maplibre-gl';
 import { useDebouncedCallback } from 'use-debounce';
 
