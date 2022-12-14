@@ -11111,6 +11111,7 @@ __metadata:
     framer-motion: 7.0.0
     husky: 6.0.0
     jotai: 1.10.0
+    jotai-location: 0.2.0
     jsona: 1.9.2
     jsonwebtoken: 8.5.1
     maplibre-gl: 2.1.9
@@ -13052,6 +13053,15 @@ __metadata:
   version: 4.8.3
   resolution: "jose@npm:4.8.3"
   checksum: a4a03d329d3611696d94a81df06e7fe160cef987da032ecc9e0a9d1e5e751b5101d1657eed16ead5f1905c9c2009d48820538412af4e5257f205a8754dd09d31
+  languageName: node
+  linkType: hard
+
+"jotai-location@npm:0.2.0":
+  version: 0.2.0
+  resolution: "jotai-location@npm:0.2.0"
+  peerDependencies:
+    jotai: "*"
+  checksum: 660d68d2f55bebfdb143ea39ea2a046c1af74a1a6953fe86228b804f3926bf80bd5c058f5b904d18cc975dd4f9f03d140d73710a1eb18180d806652482e5fd39
   languageName: node
   linkType: hard
 

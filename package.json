@@ -64,6 +64,7 @@
     "final-form": "4.20.2",
     "framer-motion": "7.0.0",
     "jotai": "1.10.0",
+    "jotai-location": "0.2.0",
     "jsona": "1.9.2",
     "jsonwebtoken": "8.5.1",
     "maplibre-gl": "2.1.9",
