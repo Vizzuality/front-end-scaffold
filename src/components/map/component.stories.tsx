@@ -16,7 +16,7 @@ import ZoomControl from 'components/map/controls/zoom';
 // Map
 import Map from './component';
 import LAYERS from './layers';
-import { Bounds, CustomMapProps } from './types';
+import { CustomMapProps } from './types';
 
 const StoryMap = {
   title: 'Components/Map',
@@ -70,12 +70,12 @@ const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
   const [viewState, setViewState] = useState<Partial<ViewState>>({});
   const { [id]: mapRef } = useMap();
 
-  const handleViewState = useCallback((vw) => {
+  const handleViewState = useCallback((vw: ViewState) => {
     setViewState(vw);
   }, []);
 
   const handleFitBoundsChange = useCallback(
-    (_bounds: Bounds) => {
+    (_bounds: CustomMapProps['bounds']) => {
       const { bbox, options } = _bounds;
 
       mapRef.fitBounds(
@@ -142,12 +142,6 @@ Default.args = {
   },
   onMapViewportChange: (viewport) => {
     console.info('onMapViewportChange: ', viewport);
-  },
-  onMapReady: ({ map, mapContainer }) => {
-    console.info('onMapReady: ', map, mapContainer);
-  },
-  onMapLoad: ({ map, mapContainer }) => {
-    console.info('onMapLoad: ', map, mapContainer);
   },
   maxZoom: 20,
 };

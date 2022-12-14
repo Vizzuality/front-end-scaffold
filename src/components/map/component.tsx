@@ -1,10 +1,9 @@
-import { useEffect, useState, useRef, useCallback, FC } from 'react';
+import { useEffect, useState, useCallback, FC } from 'react';
 
 import ReactMapGL, { ViewState, ViewStateChangeEvent, useMap } from 'react-map-gl';
 
 import cx from 'classnames';
 
-import { isEmpty } from 'lodash-es';
 import MapLibreGL from 'maplibre-gl';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -27,8 +26,6 @@ export const CustomMap: FC<CustomMapProps> = ({
   viewState = {},
   initialViewState,
   bounds,
-  onMapReady,
-  onMapLoad,
   onMapViewStateChange,
   dragPan,
   dragRotate,
@@ -40,7 +37,6 @@ export const CustomMap: FC<CustomMapProps> = ({
    * REFS
    */
   const { [id]: mapRef } = useMap();
-  const mapContainerRef = useRef(null);
 
   /**
    * STATE
@@ -52,8 +48,6 @@ export const CustomMap: FC<CustomMapProps> = ({
     }
   );
   const [isFlying, setFlying] = useState(false);
-  const [ready, setReady] = useState(false);
-  const [loaded, setLoaded] = useState(false);
 
   /**
    * CALLBACKS
@@ -62,13 +56,7 @@ export const CustomMap: FC<CustomMapProps> = ({
     onMapViewStateChange(_viewState);
   }, 250);
 
-  const handleLoad = useCallback(() => {
-    setLoaded(true);
-    if (onMapLoad) onMapLoad({ map: mapRef, mapContainer: mapContainerRef.current });
-  }, [onMapLoad, mapRef]);
-
   const handleFitBounds = useCallback(() => {
-    if (!bounds) return null;
     const { bbox, options } = bounds;
 
     // enabling fly mode avoids the map to be interrupted during the bounds transition
@@ -91,25 +79,11 @@ export const CustomMap: FC<CustomMapProps> = ({
     [debouncedViewStateChange]
   );
 
-  /**
-   * EFFECTS
-   */
   useEffect(() => {
-    setReady(true);
-    // ? returning the map reference now is less useful as the reference is now accessible everywhere via useMap hook
-    if (onMapReady) onMapReady({ map: mapRef, mapContainer: mapContainerRef.current });
-  }, [onMapReady, mapRef]);
-
-  useEffect(() => {
-    if (
-      loaded &&
-      !isEmpty(bounds) &&
-      !!bounds.bbox &&
-      bounds.bbox.every((b) => typeof b === 'number')
-    ) {
+    if (mapRef && bounds) {
       handleFitBounds();
     }
-  }, [loaded, bounds, handleFitBounds]);
+  }, [mapRef, bounds, handleFitBounds]);
 
   useEffect(() => {
     setLocalViewState((prevViewState) => ({
@@ -122,7 +96,7 @@ export const CustomMap: FC<CustomMapProps> = ({
     if (!bounds) return undefined;
 
     const { options } = bounds;
-    const animationDuration = (options?.duration as number) || 0;
+    const animationDuration = options?.duration || 0;
     let timeoutId: number = null;
 
     if (isFlying) {
@@ -140,7 +114,6 @@ export const CustomMap: FC<CustomMapProps> = ({
 
   return (
     <div
-      ref={mapContainerRef}
       className={cx({
         'relative z-0 h-full w-full': true,
         [className]: !!className,
@@ -157,17 +130,11 @@ export const CustomMap: FC<CustomMapProps> = ({
         dragRotate={!isFlying && dragRotate}
         scrollZoom={!isFlying && scrollZoom}
         doubleClickZoom={!isFlying && doubleClickZoom}
-        onLoad={handleLoad}
         onMove={handleMapMove}
-        {...(process.env.NODE_ENV === 'test' && { testMode: true })}
         {...mapboxProps}
         {...localViewState}
       >
-        {ready &&
-          loaded &&
-          !!mapRef &&
-          typeof children === 'function' &&
-          children(mapRef?.getMap())}
+        {!!mapRef && children(mapRef.getMap())}
       </ReactMapGL>
     </div>
   );
