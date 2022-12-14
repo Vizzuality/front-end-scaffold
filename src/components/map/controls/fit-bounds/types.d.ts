@@ -1,7 +1,7 @@
-import type { Bounds } from '../../types';
+import type { CustomMapProps } from '../../types';
 
 export interface FitBoundsControlProps {
-  bounds?: Bounds;
+  bounds?: CustomMapProps['bounds'];
   className?: string;
-  onFitBoundsChange: (bounds: Bounds) => void;
+  onFitBoundsChange: (bounds: CustomMapProps['bounds']) => void;
 }

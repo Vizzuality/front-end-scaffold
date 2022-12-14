@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { FC, useCallback, useState, PropsWithChildren } from 'react';
 
 import cx from 'classnames';
 
@@ -12,12 +12,14 @@ import ARROW_DOWN_SVG from 'svgs/ui/arrow-down.svg?sprite';
 import SortableList from './sortable/list';
 import type { LegendProps } from './types';
 
-export const Legend: FC<LegendProps> = ({
+type LegendPropsWithChildren = PropsWithChildren<LegendProps>;
+
+export const Legend: FC<LegendPropsWithChildren> = ({
   children,
   className = '',
   maxHeight,
   onChangeOrder,
-}: LegendProps) => {
+}: LegendPropsWithChildren) => {
   const [active, setActive] = useState(true);
 
   const id = useId();
