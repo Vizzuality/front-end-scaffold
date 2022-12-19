@@ -27,6 +27,7 @@ module.exports = {
   ],
   core: {
     builder: 'webpack5',
+    disableTelemetry: true,
   },
   /* nextjs -> no need to import React and can use alias modules */
   webpackFinal: async (config) => {
@@ -95,9 +96,15 @@ module.exports = {
           loader: 'svgo-loader',
           options: {
             plugins: [
-              { removeTitle: true },
-              { convertColors: { shorthex: false } },
-              { convertPathData: false },
+              {
+                name: 'preset-default',
+                params: {
+                  overrides: {
+                    convertColors: { shorthex: false },
+                    convertPathData: false,
+                  },
+                },
+              },
             ],
           },
         },
