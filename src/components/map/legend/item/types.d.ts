@@ -5,5 +5,4 @@ export interface LegendItemProps {
   name: string;
   description?: string;
   icon?: ReactNode;
-  children?: ReactNode;
 }

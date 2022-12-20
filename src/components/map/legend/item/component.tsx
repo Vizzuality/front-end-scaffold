@@ -1,16 +1,18 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import cx from 'classnames';
 
 import type { LegendItemProps } from './types';
 
-export const LegendItem: FC<LegendItemProps> = ({
+type LegendItemPropsWithChildren = PropsWithChildren<LegendItemProps>;
+
+export const LegendItem: FC<LegendItemPropsWithChildren> = ({
   id,
   name,
   description,
   icon,
   children,
-}: LegendItemProps) => (
+}: LegendItemPropsWithChildren) => (
   <div key={id} className="py-2.5 px-5">
     <div className="flex">
       <div

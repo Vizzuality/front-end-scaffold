@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import cx from 'classnames';
 
@@ -7,7 +7,12 @@ import { CSS } from '@dnd-kit/utilities';
 
 import type { SortableItemProps } from './types';
 
-export const SortableItem: FC<SortableItemProps> = ({ id, children }: SortableItemProps) => {
+type SortableItemPropsWithChildren = PropsWithChildren<SortableItemProps>;
+
+export const SortableItem: FC<SortableItemPropsWithChildren> = ({
+  id,
+  children,
+}: SortableItemPropsWithChildren) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id,
   } as UseSortableArguments);
