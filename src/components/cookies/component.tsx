@@ -36,8 +36,8 @@ export const Cookies: React.FC<CookiesProps> = ({ open, onAccept, onReject }: Co
               <p className="text-base">
                 This website uses cookies to ensure you get the best experience on our website. Read
                 our{' '}
-                <Link href="/privacy-policy">
-                  <a className="font-semibold text-black underline">cookie policy</a>
+                <Link href="/privacy-policy" className="font-semibold text-black underline">
+                  cookie policy
                 </Link>{' '}
                 to know more.
               </p>
