@@ -5355,7 +5355,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/react@npm:^6.5.15":
+"@storybook/react@npm:6.5.15":
   version: 6.5.15
   resolution: "@storybook/react@npm:6.5.15"
   dependencies:
@@ -11144,7 +11144,7 @@ __metadata:
     "@storybook/addon-postcss": 2.0.0
     "@storybook/builder-webpack5": 6.5.10
     "@storybook/manager-webpack5": 6.5.10
-    "@storybook/react": ^6.5.15
+    "@storybook/react": 6.5.15
     "@tailwindcss/forms": 0.5.1
     "@tailwindcss/line-clamp": 0.4.0
     "@tanstack/react-query": 4.0.10
