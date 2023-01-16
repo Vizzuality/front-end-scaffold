@@ -115,7 +115,7 @@ const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
         )}
       </Map>
       <Controls>
-        <ZoomControl mapRef={mapRef} />
+        <ZoomControl mapId={id} />
         <FitBoundsControl bounds={bounds} onFitBoundsChange={handleFitBoundsChange} />
       </Controls>
     </div>
@@ -132,6 +132,8 @@ Default.args = {
     fitBoundsOptions: {
       padding: 250,
     },
+    maxZoom: 7,
+    minZoom: 4,
   },
   bounds: {
     bbox: [10.5194091796875, 43.6499881760459, 10.9588623046875, 44.01257086123085],

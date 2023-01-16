@@ -17,7 +17,7 @@ const Template: Story<ControlsProps> = (args) => {
   return (
     <div className="relative h-24">
       <Controls {...args}>
-        <ZoomControl mapRef={null} />
+        <ZoomControl mapId="map-storybook" />
 
         <FitBoundsControl
           bounds={{
