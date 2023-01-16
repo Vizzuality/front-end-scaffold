@@ -49,9 +49,9 @@ export const ZoomControl: FC<ZoomControlProps> = ({
     >
       <button
         className={cx({
-          'mb-0.5 rounded-t-3xl bg-black p-0.5 text-white': true,
+          'mb-0.5 rounded-t-3xl bg-black p-0.5 text-white disabled:cursor-default disabled:opacity-50':
+            true,
           'hover:bg-gray-700 active:bg-gray-600': zoom < maxZoom,
-          'cursor-default opacity-50': zoom >= maxZoom,
         })}
         aria-label="Zoom in"
         type="button"
@@ -62,9 +62,9 @@ export const ZoomControl: FC<ZoomControlProps> = ({
       </button>
       <button
         className={cx({
-          'rounded-b-3xl bg-black p-0.5 text-white': true,
+          'rounded-b-3xl bg-black p-0.5 text-white disabled:cursor-default disabled:opacity-50':
+            true,
           'hover:bg-gray-700 active:bg-gray-600': zoom > minZoom,
-          'cursor-default opacity-50': zoom <= minZoom,
         })}
         aria-label="Zoom out"
         type="button"
