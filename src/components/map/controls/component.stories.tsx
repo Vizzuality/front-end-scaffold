@@ -27,9 +27,6 @@ const Template: Story<ControlsProps> = (args) => {
               duration: 1500,
             },
           }}
-          onFitBoundsChange={(bounds) => {
-            console.info(bounds);
-          }}
         />
       </Controls>
     </div>
