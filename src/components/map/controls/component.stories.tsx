@@ -17,7 +17,7 @@ const Template: Story<ControlsProps> = (args) => {
   return (
     <div className="relative h-24">
       <Controls {...args}>
-        <ZoomControl mapId="map-storybook" />
+        <ZoomControl />
 
         <FitBoundsControl
           bounds={{
@@ -38,5 +38,5 @@ const Template: Story<ControlsProps> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  className: 'w-10 absolute bottom-0 left-0',
+  className: 'absolute bottom-0 left-0',
 };

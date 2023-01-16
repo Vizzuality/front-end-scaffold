@@ -92,7 +92,6 @@ const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
   return (
     <div className="relative h-screen w-full">
       <Map
-        id={id}
         maxZoom={maxZoom}
         bounds={bounds}
         initialViewState={initialViewState}
@@ -101,23 +100,25 @@ const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
         onMapViewStateChange={handleViewState}
       >
         {(map) => (
-          <LayerManager
-            map={map}
-            plugin={PluginMapboxGl}
-            providers={{
-              [cartoProvider.name]: cartoProvider.handleData,
-            }}
-          >
-            {LAYERS.map((l) => (
-              <Layer key={l.id} {...l} />
-            ))}
-          </LayerManager>
+          <>
+            <LayerManager
+              map={map}
+              plugin={PluginMapboxGl}
+              providers={{
+                [cartoProvider.name]: cartoProvider.handleData,
+              }}
+            >
+              {LAYERS.map((l) => (
+                <Layer key={l.id} {...l} />
+              ))}
+            </LayerManager>
+            <Controls>
+              <ZoomControl />
+              <FitBoundsControl bounds={bounds} onFitBoundsChange={handleFitBoundsChange} />
+            </Controls>
+          </>
         )}
       </Map>
-      <Controls>
-        <ZoomControl mapId={id} />
-        <FitBoundsControl bounds={bounds} onFitBoundsChange={handleFitBoundsChange} />
-      </Controls>
     </div>
   );
 };

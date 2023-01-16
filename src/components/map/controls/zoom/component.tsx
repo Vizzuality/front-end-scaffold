@@ -12,7 +12,7 @@ import ZOOM_OUT_SVG from 'svgs/map/zoom-out.svg?sprite';
 import type { ZoomControlProps } from './types';
 
 export const ZoomControl: FC<ZoomControlProps> = ({
-  mapId = 'default',
+  mapId = 'current',
   className,
 }: ZoomControlProps) => {
   const { [mapId]: mapRef } = useMap();
