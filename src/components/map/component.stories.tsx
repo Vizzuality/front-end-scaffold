@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { useMap, ViewState, MapProvider } from 'react-map-gl';
+import { ViewState, MapProvider } from 'react-map-gl';
 
 import { Story } from '@storybook/react/types-6-0';
 // Layer manager
@@ -66,33 +66,16 @@ export default StoryMap;
 const cartoProvider = new CartoProvider();
 
 const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
-  const { id, initialViewState, bounds, maxZoom } = args;
+  const { initialViewState, bounds, maxZoom } = args;
   const [viewState, setViewState] = useState<Partial<ViewState>>({});
-  const { [id]: mapRef } = useMap();
 
   const handleViewState = useCallback((vw: ViewState) => {
     setViewState(vw);
   }, []);
 
-  const handleFitBoundsChange = useCallback(
-    (_bounds: CustomMapProps['bounds']) => {
-      const { bbox, options } = _bounds;
-
-      mapRef.fitBounds(
-        [
-          [bbox[0], bbox[1]],
-          [bbox[2], bbox[3]],
-        ],
-        options
-      );
-    },
-    [mapRef]
-  );
-
   return (
     <div className="relative h-screen w-full">
       <Map
-        id={id}
         maxZoom={maxZoom}
         bounds={bounds}
         initialViewState={initialViewState}
@@ -101,37 +84,39 @@ const Template: Story<CustomMapProps> = (args: CustomMapProps) => {
         onMapViewStateChange={handleViewState}
       >
         {(map) => (
-          <LayerManager
-            map={map}
-            plugin={PluginMapboxGl}
-            providers={{
-              [cartoProvider.name]: cartoProvider.handleData,
-            }}
-          >
-            {LAYERS.map((l) => (
-              <Layer key={l.id} {...l} />
-            ))}
-          </LayerManager>
+          <>
+            <LayerManager
+              map={map}
+              plugin={PluginMapboxGl}
+              providers={{
+                [cartoProvider.name]: cartoProvider.handleData,
+              }}
+            >
+              {LAYERS.map((l) => (
+                <Layer key={l.id} {...l} />
+              ))}
+            </LayerManager>
+            <Controls>
+              <ZoomControl />
+              <FitBoundsControl bounds={bounds} />
+            </Controls>
+          </>
         )}
       </Map>
-      <Controls>
-        <ZoomControl mapRef={mapRef} />
-        <FitBoundsControl bounds={bounds} onFitBoundsChange={handleFitBoundsChange} />
-      </Controls>
     </div>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {
-  id: 'map-storybook',
-  className: '',
   viewport: {},
   initialViewState: {
     bounds: [10.5194091796875, 43.6499881760459, 10.9588623046875, 44.01257086123085],
     fitBoundsOptions: {
       padding: 250,
     },
+    maxZoom: 7,
+    minZoom: 4,
   },
   bounds: {
     bbox: [10.5194091796875, 43.6499881760459, 10.9588623046875, 44.01257086123085],

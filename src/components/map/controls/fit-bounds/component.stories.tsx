@@ -10,14 +10,7 @@ const StoryFitBoundsControl = {
 
 export default StoryFitBoundsControl;
 
-const Template: Story<FitBoundsControlProps> = (args) => (
-  <FitBoundsControl
-    {...args}
-    onFitBoundsChange={(bounds) => {
-      console.info('onFitBoundsChange: ', bounds);
-    }}
-  />
-);
+const Template: Story<FitBoundsControlProps> = (args) => <FitBoundsControl {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -25,8 +18,5 @@ Default.args = {
   bounds: {
     bbox: [10.5194091796875, 43.6499881760459, 10.9588623046875, 44.01257086123085],
     options: {},
-  },
-  onFitBoundsChange: (bounds) => {
-    console.info(bounds);
   },
 };
