@@ -1,8 +1,8 @@
 import { Provider } from 'jotai';
-import { useAtomsDevtools } from 'jotai/devtools';
+import { useAtomsDevtools } from 'jotai-devtools';
 
 const AtomsDevtools = ({ children }) => {
-  useAtomsDevtools('dev');
+  useAtomsDevtools('viz');
   return children;
 };
 

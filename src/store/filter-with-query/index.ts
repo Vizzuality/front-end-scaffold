@@ -1,7 +1,7 @@
 import { atom, useAtom, useAtomValue } from 'jotai';
 import { atomWithLocation } from 'jotai-location';
 import { atomWithReset } from 'jotai/utils';
-import { mapValues } from 'lodash';
+import { mapValues } from 'lodash-es';
 
 import { deserialize, serialize } from './utils';
 

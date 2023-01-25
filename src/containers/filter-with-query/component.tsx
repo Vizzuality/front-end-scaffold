@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { FC, useEffect } from 'react';
 
 import {
@@ -71,7 +70,7 @@ export const FilterWhithQuery: FC<FilterWhithQueryProps> = () => {
     });
 
     setFilterQueryState(queryFiltersOnState);
-  }, []);
+  }, [filterQueryState, searchParams, setFilterQueryState]);
 
   return (
     <div>

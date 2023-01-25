@@ -1,45 +1,50 @@
-/* eslint-disable prettier/prettier */
+import { useCallback } from 'react';
 
-import { useSearchParams, FilterQueryState, filterQueryStateAtoms } from 'store/filter-with-query';
+import Link from 'next/link';
 
 import { Story } from '@storybook/react/types-6-0';
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
 
-import FilterWhithQuery from './component';
+import JotaiProvider from 'components/jotai-provider';
+import atomWithQueryParamStorage from 'lib/query-params';
+
+const scenarioAtom = atomWithQueryParamStorage<number>('scenario', 1);
+
+// import FilterWhithQuery from './component';
 import { FilterWhithQueryProps } from './types';
 
 const StoryFilterWithQuery = {
   title: 'Components/FilterWhithQuery',
-  component: FilterWhithQuery,
+  // component: FilterWhithQuery,
   argTypes: {},
+  decorators: [
+    (StoryFilterWithQueryStory: Story) => (
+      <JotaiProvider>
+        <StoryFilterWithQueryStory />
+      </JotaiProvider>
+    ),
+  ],
 };
 
 export default StoryFilterWithQuery;
 
 const Template: Story<FilterWhithQueryProps> = () => {
-  const filterQueryState = useAtomValue(filterQueryStateAtoms);
-  const { searchParams } = useSearchParams<FilterQueryState>();
+  const [scenario, setScenario] = useAtom(scenarioAtom);
+
+  const handleClick = useCallback(() => {
+    setScenario(scenario + 1);
+  }, [scenario, setScenario]);
 
   return (
-    <div className='max-w-sm '>
+    <>
+      <button type="button" onClick={handleClick}>
+        Increase scenario
+      </button>
       <div>
-        <p>Queries:</p>
-        <ul>
-          {Object.entries(searchParams)?.map(([key, value]) => (
-            <li key={key}>{`${key} = ${value}`}</li>
-          ))}
-        </ul>
+        <span>Scenario: {scenario}</span>
       </div>
-      <div>
-        <p>Filter state:</p>
-        <ul>
-          {Object.entries(filterQueryState)?.map(([key, value]) => (
-            <li key={key}>{`${key} = ${value}`}</li>
-          ))}
-        </ul>
-      </div>
-      <FilterWhithQuery />
-    </div>
+      <Link href="/privacy-policy">Link</Link>
+    </>
   );
 };
 

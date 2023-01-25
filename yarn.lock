@@ -1536,6 +1536,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.20.7":
+  version: 7.20.13
+  resolution: "@babel/runtime@npm:7.20.13"
+  dependencies:
+    regenerator-runtime: ^0.13.11
+  checksum: 09b7a97a05c80540db6c9e4ddf8c5d2ebb06cae5caf3a87e33c33f27f8c4d49d9c67a2d72f1570e796045288fad569f98a26ceba0c4f5fad2af84b6ad855c4fb
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.12.7, @babel/template@npm:^7.18.10, @babel/template@npm:^7.18.6":
   version: 7.18.10
   resolution: "@babel/template@npm:7.18.10"
@@ -3972,6 +3981,18 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
   checksum: ece46714e38df29b9a1e1f4c95469882a05e49ceb8a838f99d77f141411c56b8f3621c556f6733bb2bea23c70e3a69d20ad83832b46fd1c5bec9aeb89f5e714b
+  languageName: node
+  linkType: hard
+
+"@redux-devtools/extension@npm:^3.2.3":
+  version: 3.2.5
+  resolution: "@redux-devtools/extension@npm:3.2.5"
+  dependencies:
+    "@babel/runtime": ^7.20.7
+    immutable: ^4.2.2
+  peerDependencies:
+    redux: ^3.1.0 || ^4.0.0
+  checksum: c89680e1af8bd47a0250478b491a79a55bc0d71206f5ab95a83fd05c7d815bdaef5703defb7b571f07fc8bd2c6d4e8da6fc0cfd09e7fe03e994f9070c15fd08d
   languageName: node
   linkType: hard
 
@@ -9066,6 +9087,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"decode-uri-component@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "decode-uri-component@npm:0.4.1"
+  checksum: 0473924860986fb6ca19ee65a2af13e08801b4f3660475b058500ea8479ed715c919884a026b6bf4296dbb640d3cea74fadf45490b2439152fc548271d0201ec
+  languageName: node
+  linkType: hard
+
 "dedent@npm:^0.7.0":
   version: 0.7.0
   resolution: "dedent@npm:0.7.0"
@@ -10733,6 +10761,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"filter-obj@npm:^5.1.0":
+  version: 5.1.0
+  resolution: "filter-obj@npm:5.1.0"
+  checksum: ba7c24d9b2c0552ee87d268e07eca74483af61fb740545ffa809f7e9e5294de38cf163ecc55af0e8a40020af9a49512c32f4022de2a858b110420fc8bffa7c9c
+  languageName: node
+  linkType: hard
+
 "final-form@npm:4.20.2":
   version: 4.20.2
   resolution: "final-form@npm:4.20.2"
@@ -11110,16 +11145,19 @@ __metadata:
     final-form: 4.20.2
     framer-motion: 7.0.0
     husky: 6.0.0
-    jotai: 1.10.0
+    jotai: 1.13.1
+    jotai-devtools: 0.1.0
     jotai-location: 0.2.0
     jsona: 1.9.2
     jsonwebtoken: 8.5.1
+    lodash-es: 4.17.21
     maplibre-gl: 2.1.9
     next: 13.0.7
     next-auth: 4.3.4
     postcss: 8.4.13
     prettier: 2.3.0
     prettier-plugin-tailwindcss: 0.1.13
+    query-string: 8.1.0
     react: 18.2.0
     react-aria: 3.6.0
     react-dom: 18.2.0
@@ -12168,6 +12206,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"immutable@npm:^4.2.2":
+  version: 4.2.2
+  resolution: "immutable@npm:4.2.2"
+  checksum: 4d6437ea9388fe8ceca7eed5c768cf438cda7fa14d2831b87b90aa00cc60d536964d107c255b8a2e5dbf4f44a0e1295afbb9d1f0a65fb4f57b936e71df601862
+  languageName: node
+  linkType: hard
+
 "import-fresh@npm:^3.0.0, import-fresh@npm:^3.1.0, import-fresh@npm:^3.2.1":
   version: 3.3.0
   resolution: "import-fresh@npm:3.3.0"
@@ -13056,6 +13101,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jotai-devtools@npm:0.1.0":
+  version: 0.1.0
+  resolution: "jotai-devtools@npm:0.1.0"
+  dependencies:
+    "@redux-devtools/extension": ^3.2.3
+  peerDependencies:
+    jotai: ">=1.8.6 <2.x"
+    react: ">=16.8"
+  checksum: e4592b0c28a890177a0707064912b1226b47348cc6e2b460283c203c533b5e82e1d7ca8ee4b87f4e532eecdbb32d66ba0729edf5d113b9473368f4078253ff03
+  languageName: node
+  linkType: hard
+
 "jotai-location@npm:0.2.0":
   version: 0.2.0
   resolution: "jotai-location@npm:0.2.0"
@@ -13065,12 +13122,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jotai@npm:1.10.0":
-  version: 1.10.0
-  resolution: "jotai@npm:1.10.0"
+"jotai@npm:1.13.1":
+  version: 1.13.1
+  resolution: "jotai@npm:1.13.1"
   peerDependencies:
     "@babel/core": "*"
     "@babel/template": "*"
+    jotai-devtools: "*"
     jotai-immer: "*"
     jotai-optics: "*"
     jotai-redux: "*"
@@ -13084,6 +13142,8 @@ __metadata:
     "@babel/core":
       optional: true
     "@babel/template":
+      optional: true
+    jotai-devtools:
       optional: true
     jotai-immer:
       optional: true
@@ -13101,7 +13161,7 @@ __metadata:
       optional: true
     jotai-zustand:
       optional: true
-  checksum: 72047e84fc24916ea3054822cfe85b381102b5eeae61c36e8d52700b7679b8b10d44f2a7aa545b7efc7c15257f9ed410c90769889141ffe9db925424b2a5d79e
+  checksum: bc1f88ec1d52dda7c2aa39d278b15c128a6babc91fe9294862feb1b2d8467e47fc37cd193fd1358107212b9a4e5f5a8ae9a5a5ed1e845b74421d4476ce5d9efd
   languageName: node
   linkType: hard
 
@@ -13568,6 +13628,13 @@ __metadata:
   dependencies:
     p-locate: ^5.0.0
   checksum: 72eb661788a0368c099a184c59d2fee760b3831c9c1c33955e8a19ae4a21b4116e53fa736dc086cdeb9fce9f7cc508f2f92d2d3aae516f133e16a2bb59a39f5a
+  languageName: node
+  linkType: hard
+
+"lodash-es@npm:4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
   languageName: node
   linkType: hard
 
@@ -16167,6 +16234,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"query-string@npm:8.1.0":
+  version: 8.1.0
+  resolution: "query-string@npm:8.1.0"
+  dependencies:
+    decode-uri-component: ^0.4.1
+    filter-obj: ^5.1.0
+    split-on-first: ^3.0.0
+  checksum: 16fe49ab714f2b802bd31bc417876a38a82cd49bea01c0d6c37ca3439604c774752c8c66f9eda5ee33c268de2fc2a65e0e0e27aa97d8d98159af5c1fc838a017
+  languageName: node
+  linkType: hard
+
 "query-string@npm:^4.3.2":
   version: 4.3.4
   resolution: "query-string@npm:4.3.4"
@@ -17516,6 +17594,13 @@ __metadata:
   version: 3.0.11
   resolution: "spdx-license-ids@npm:3.0.11"
   checksum: 1da1acb090257773e60b022094050e810ae9fec874dc1461f65dc0400cd42dd830ab2df6e64fb49c2db3dce386dd0362110780e1b154db7c0bb413488836aaeb
+  languageName: node
+  linkType: hard
+
+"split-on-first@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "split-on-first@npm:3.0.0"
+  checksum: 75dc27ecbac65cfbeab9a3b90cf046307220192d3d7a30e46aa0f19571cc9b4802aac813f3de2cc9b16f2e46aae72f275659b5d2614bb5369c77724d739e5f73
   languageName: node
   linkType: hard
 
