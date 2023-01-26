@@ -1,30 +1,32 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-    node: true,
-  },
   extends: [
     'next/core-web-vitals',
-    'airbnb-typescript',
-    'plugin:react/jsx-runtime',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:prettier/recommended',
   ],
-  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 12,
-    sourceType: 'module',
     tsconfigRootDir: __dirname,
-    project: './tsconfig.eslint.json',
+    project: ['./tsconfig.eslint.json'],
   },
-  plugins: ['@typescript-eslint'],
   rules: {
+    // ! enabling @typescript-eslint/recommended-requiring-type-checking triggers a lot of errors
+    // ! as type-checking is more strict than usual. In order to fix those errors progressively,
+    // ! we have changed the configuration rules from error to warning for now to avoid crashing the deploy.
+    // ! This does not mean the below rules are meant to stay as if, the warning must be fixed until
+    // ! linter does not complain about a specific rule and can be safely removed from below.
+    '@typescript-eslint/no-unsafe-assignment': 'warn',
+    '@typescript-eslint/no-unsafe-member-access': 'warn',
+    '@typescript-eslint/no-unsafe-call': 'warn',
+    '@typescript-eslint/no-unsafe-argument': 'warn',
+    '@typescript-eslint/no-floating-promises': 'warn',
+    '@typescript-eslint/restrict-template-expressions': 'warn',
+    '@typescript-eslint/no-unsafe-return': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'warn',
+    '@typescript-eslint/no-misused-promises': 'warn',
+    '@typescript-eslint/require-await': 'warn',
+    // ---
     'no-console': [1, { allow: ['info', 'error'] }],
-    // NextJs specific fix: allow jsx syntax in js and ts files
-    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-props-no-spreading': [
       'error',
       {
@@ -34,16 +36,6 @@ module.exports = {
       },
     ],
     'import/no-named-as-default': 0,
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
     'import/order': [
       'warn',
       {
@@ -135,16 +127,5 @@ module.exports = {
         patterns: [{ group: ['lodash', '!lodash-es'], message: 'Use lodash-es instead' }],
       },
     ],
-  },
-  settings: {
-    react: {
-      version: 'detect',
-    },
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
-      typescript: {},
-    },
   },
 };
