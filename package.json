@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "check-types": "tsc",
-    "test": "start-server-and-test 'yarn dev' 3000 'yarn cypress:run'",
+    "test": "start-server-and-test 'pnpm dev' 3000 'pnpm cypress:run'",
     "storybook:dev": "start-storybook -p 6006 -c .storybook",
     "storybook:build": "build-storybook -c .storybook",
     "cypress:open": "cypress open",
@@ -18,6 +18,7 @@
   "engines": {
     "node": "~18 || ~16"
   },
+  "packageManager":  "pnpm@7.29.1",
   "dependencies": {
     "@artsy/fresnel": "3.5.0",
     "@deck.gl/core": "8.7.8",
@@ -114,7 +115,6 @@
     "webpack": "^5"
   },
   "husky": {
-    "pre-commit": "yarn lint"
-  },
-  "packageManager": "yarn@3.3.1"
+    "pre-commit": "pnpm lint"
+  }
 }
