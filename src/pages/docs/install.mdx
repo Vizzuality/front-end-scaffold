@@ -1,6 +1,4 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-
-<Meta title="Docs/Install" />
+import DocsLayout from 'layouts/docs'
 
 # Install
 
@@ -69,3 +67,5 @@ These scripts refer to the different stages of developing an application:
 - `dev` - Runs next dev which starts Next.js in development mode
 - `build` - Runs next build which builds the application for production usage
 - `start` - Runs next start which starts a Next.js production server
+
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>

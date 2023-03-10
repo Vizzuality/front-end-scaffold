@@ -11,7 +11,11 @@ import { MediaContextProvider } from 'components/media-query';
 
 import 'styles/globals.css';
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }: AppProps) => {
+type PageProps = {
+  dehydratedState: unknown;
+};
+
+const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
   const router = useRouter();
 
   // Never ever instantiate the client outside a component, hook or callback as it can leak data

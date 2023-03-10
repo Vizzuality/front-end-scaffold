@@ -1,6 +1,4 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-
-<Meta title="Docs/Tools" />
+import DocsLayout from 'layouts/docs'
 
 # Tools
 
@@ -105,3 +103,5 @@ You **must** install the mandatory extensions listed below. Recommended ones imp
 
 [Marketplace](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
+
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>
