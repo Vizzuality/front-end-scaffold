@@ -68,7 +68,7 @@
     "jsonwebtoken": "9.0.0",
     "maplibre-gl": "2.1.9",
     "next": "13.2.3",
-    "next-auth": "4.3.4",
+    "next-auth": "4.10.3",
     "postcss": "8.4.13",
     "react": "18.2.0",
     "react-aria": "3.6.0",
