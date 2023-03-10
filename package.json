@@ -65,7 +65,7 @@
     "final-form": "4.20.2",
     "framer-motion": "7.0.0",
     "jsona": "1.9.2",
-    "jsonwebtoken": "8.5.1",
+    "jsonwebtoken": "9.0.0",
     "maplibre-gl": "2.1.9",
     "next": "13.2.3",
     "next-auth": "4.3.4",
