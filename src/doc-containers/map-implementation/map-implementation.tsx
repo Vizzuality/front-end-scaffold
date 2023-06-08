@@ -1,3 +1,5 @@
+'use client';
+
 import { useCallback, useState } from 'react';
 
 import { ViewState, MapProvider } from 'react-map-gl';
@@ -47,7 +49,7 @@ const MapImplementation = () => {
 
   return (
     <MapProvider>
-      <div className="relative h-screen w-full">
+      <div className="relative h-[400px] w-full">
         <Map
           maxZoom={maxZoom}
           bounds={bounds}
@@ -58,6 +60,8 @@ const MapImplementation = () => {
         >
           {() => (
             <>
+              {/* This custom-layers layer serves as a separator to order
+              all the layers on the layer manager above the default map layers */}
               <Layer
                 id="custom-layers"
                 type="background"

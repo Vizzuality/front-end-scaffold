@@ -17,6 +17,8 @@ This is a project template which could be used to the creation of new projects. 
 
 Run the application and go to [http://localhost:3000/docs](http://localhost:3000/docs) to see the application documentation.
 
+The components documentation files are stored on the docs-containers folder. This containers may be deleted when doing a clean up of the project.
+
 (Online documentation)[front-end-scaffold-docs.vercel.app]
 
 ## Getting Started

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import ExampleLayer from './layers/example-layer/example-geojson-layer';
+import ExampleLayer from './layers/example-layer';
 import type { LayerComponentProps } from './types';
 
 const LAYER_COMPONENTS: {

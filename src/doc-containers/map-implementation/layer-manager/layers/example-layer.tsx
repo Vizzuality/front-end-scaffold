@@ -2,7 +2,7 @@ import { Source, Layer } from 'react-map-gl';
 
 import { GeoJSONSourceRaw, AnyLayer, GeoJSONSourceOptions } from 'mapbox-gl';
 
-import { LayerComponentProps } from '../../types';
+import type { LayerComponentProps } from '../types';
 
 import data from './example.json';
 
