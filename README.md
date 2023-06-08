@@ -13,9 +13,16 @@ This is a project template which could be used to the creation of new projects. 
 - editorconfig and code style based on [Airbnb](https://github.com/airbnb/javascript)
 - [Storybook](https://storybook.js.org/) also available and configured
 
+## Repository Documentation
+
+Run the application and go to [http://localhost:3000/docs](http://localhost:3000/docs) to see the application documentation.
+
+(Online documentation)[front-end-scaffold-docs.vercel.app]
+
 ## Getting Started
 
 ### Installing dependencies
+
 Assuming you already have Node (at least >=16), let's install the package manager: enable `corepack` first and then `corepack` will install the version set in the `packageManager` property of your `package.json`:
 
 ```bash
@@ -28,7 +35,7 @@ By default, the scaffold comes with Yarn as package manager, so now we can insta
 yarn
 ```
 
-*Note: these instructions assume the project uses Node >= 16, for other scenarios check [Yarn documentation](https://yarnpkg.com/getting-started/install)*
+_Note: these instructions assume the project uses Node >= 16, for other scenarios check [Yarn documentation](https://yarnpkg.com/getting-started/install)_
 
 ### Quick start
 
@@ -77,30 +84,24 @@ Here's a step by step guide on how to address vulnerabilities found in productio
 
 1. Go to the Dependabot alerts page and locate the front-end vulnerability to address
 2. Identify if the vulnerability affects production code:
-	- To do so run `yarn npm audit --recursive --environment production`
-	- If the dependency is _not_ listed by this command, then the vulnerability only affects development code. You can dismiss the alert on GitHub as “Vulnerable code is not actually used” in the top right corner of the vulnerability page.
-	- If the dependency _is_ listed, follow the steps below.
+   - To do so run `yarn npm audit --recursive --environment production`
+   - If the dependency is _not_ listed by this command, then the vulnerability only affects development code. You can dismiss the alert on GitHub as “Vulnerable code is not actually used” in the top right corner of the vulnerability page.
+   - If the dependency _is_ listed, follow the steps below.
 3. On the vulnerability page, click the “Create Dependabot security update” button
-	- This will create a Pull Request with a fix for the vulnerability. If GitHub can generate this PR, then you can merge and the security alert will disappear.
-	- If the vulnerability can't be patched automatically, follow the steps below.
+   - This will create a Pull Request with a fix for the vulnerability. If GitHub can generate this PR, then you can merge and the security alert will disappear.
+   - If the vulnerability can't be patched automatically, follow the steps below.
 4. If the action fails, then you can semi-automatically update the vulnerable dependency by running `npm_config_yes=true npx yarn-audit-fix --only prod`
-	- `yarn-audit-fix` (see [repository](https://github.com/antongolub/yarn-audit-fix)) is a tool that applies the fixes from `npm audit fix` to Yarn installations
-	- The tool might also not be able to fix the vulnerability. If so, continue with the steps below.
+   - `yarn-audit-fix` (see [repository](https://github.com/antongolub/yarn-audit-fix)) is a tool that applies the fixes from `npm audit fix` to Yarn installations
+   - The tool might also not be able to fix the vulnerability. If so, continue with the steps below.
 5. If the action fails, then you will have to manually update the dependencies until the vulnerability is solved
 
 ## Env variables
 
-
-| Variable name           | Description                                                             |  Default value                      |
-|-------------------------|-------------------------------------------------------------------------|------------------------------------:|
-| NEXTAUTH_SECRET         |  Key used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Do not forget to add a secret. NextAuth can handle without it in development mode,  but it won't in production! [https://next-auth.js.org/configuration/options#secret](https://next-auth.js.org/configuration/options#secret) |  |
-| NEXTAUTH_URL            |  Needed by the next-auth library for [handling auth requests and callbacks](https://next-auth.js.org/configuration/options#nextauth_url). Set the environment variable to the canonical URL of your site. Not needed in Vercel deploys.   |  |
-| NEXT_PUBLIC_API_URL  | URL of the API. | http://localhost:3000   |
-| STORYBOOK_API_URL  | URL of the API for storybook. |    |
-| NEXT_PUBLIC_MAPBOX_API_TOKEN  | Mapbox token. |    |
-| STORYBOOK_MAPBOX_API_TOKEN  | Mapbox token for storybook. |    |
-| NEXT_PUBLIC_GA_TRACKING_ID  | Google Analytics tracking ID. If you're working with an Google Analytics 4 property, you have a Measurement ID instead of a Tracking ID. |    |
-
-
-
-
+| Variable name                | Description                                                                                                                                                                                                                                                                                                   |         Default value |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------: |
+| NEXTAUTH_SECRET              | Key used to encrypt the NextAuth.js JWT, and to hash email verification tokens. Do not forget to add a secret. NextAuth can handle without it in development mode, but it won't in production! [https://next-auth.js.org/configuration/options#secret](https://next-auth.js.org/configuration/options#secret) |                       |
+| NEXTAUTH_URL                 | Needed by the next-auth library for [handling auth requests and callbacks](https://next-auth.js.org/configuration/options#nextauth_url). Set the environment variable to the canonical URL of your site. Not needed in Vercel deploys.                                                                        |                       |
+| NEXT_PUBLIC_API_URL          | URL of the API.                                                                                                                                                                                                                                                                                               | http://localhost:3000 |
+| STORYBOOK_API_URL            | URL of the API for storybook.                                                                                                                                                                                                                                                                                 |                       |
+| NEXT_PUBLIC_MAPBOX_API_TOKEN | Mapbox token.                                                                                                                                                                                                                                                                                                 |                       |
+| NEXT_PUBLIC_GA_TRACKING_ID   | Google Analytics tracking ID. If you're working with an Google Analytics 4 property, you have a Measurement ID instead of a Tracking ID.                                                                                                                                                                      |                       |

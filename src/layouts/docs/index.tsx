@@ -10,7 +10,7 @@ const Layout: React.FC<LayoutProps> = (props: LayoutProps) => {
 
   return (
     <main className={`flex flex-col font-sans antialiased lg:min-h-screen`}>
-      <div className="prose relative grow">
+      <div className="prose relative grow p-20">
         {/* Content */}
         {children}
       </div>
