@@ -1,5 +1,5 @@
 export interface IconProps {
-  icon: {
+  icon?: {
     id: string;
     viewBox: string;
   };

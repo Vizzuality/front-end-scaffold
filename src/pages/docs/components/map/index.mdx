@@ -1,0 +1,180 @@
+import DocsLayout from 'layouts/docs'
+import MapImplementation from './map-implementation';
+
+# Map component
+
+<MapImplementation />
+
+## Maplibre and Mapbox
+
+This map is created with the map component which is using the maplibre-gl library. If you want to use Mapbox instead just follow this guidelines:
+
+* 1) Remove maplibre-gl
+* 2) Install Mapbox v1/v2 (v2 requires token)
+* 3) If you have installed v2: provide the token to the map through the `mapboxAccessToken` property
+* 4) Remove the `mapLib` property on the map component
+* 5) Replace the mapStyles on the map
+
+## DeckGL layers
+
+To add DeckGL Layers follow this guide:
+
+* 1) Add deckGL dependencies
+  ```bash
+  yarn add @deck.gl/core @deck.gl/extensions @deck.gl/geo-layers @deck.gl/layers @deck.gl/mapbox @deck.gl/mesh-layers
+  ```
+
+* 2) Create a map overlay context provider to be able to add and remove layers `layer-manager/provider.tsx`
+
+```javascript
+import { createContext, PropsWithChildren, useCallback, useContext, useMemo } from 'react';
+
+import { useControl } from 'react-map-gl';
+
+import { MapboxOverlay, MapboxOverlayProps } from '@deck.gl/mapbox/typed';
+
+interface MapboxOverlayContext {
+  addLayer: (layer: any) => void;
+  removeLayer: (id: any) => void;
+}
+
+const Context = createContext<MapboxOverlayContext>({
+  addLayer: () => {},
+  removeLayer: () => {},
+});
+
+function useMapboxOverlay(
+  props: MapboxOverlayProps & {
+    interleaved?: boolean;
+  }
+) {
+  const overlay = useControl<MapboxOverlay>(() => new MapboxOverlay(props));
+  overlay.setProps(props);
+
+  return overlay;
+}
+
+export const MapboxOverlayProvider = ({ children }: PropsWithChildren) => {
+  const OVERLAY = useMapboxOverlay({
+    interleaved: true,
+  });
+
+  const addLayer = useCallback(
+    (layer) => {
+      const layers = OVERLAY._props.layers || [];
+
+      const l1 = new layer.type({
+        ...layer,
+        getPolygonOffset: () => [0, -100000000 + layer.zIndex * 1000],
+      });
+
+      OVERLAY.setProps({
+        layers: [...layers.filter((l) => l.id !== layer.id), l1],
+      });
+    },
+    [OVERLAY]
+  );
+
+  const removeLayer = useCallback(
+    (id) => {
+      const layers = OVERLAY._props.layers || [];
+
+      OVERLAY.setProps({
+        layers: [...layers.filter((l) => l.id !== id)],
+      });
+    },
+    [OVERLAY]
+  );
+
+  const context = useMemo(
+    () => ({
+      addLayer,
+      removeLayer,
+    }),
+    [addLayer, removeLayer]
+  );
+
+  return (
+    <Context.Provider key="scroll-provider" value={context}>
+      {children}
+    </Context.Provider>
+  );
+};
+
+export const useMapboxOverlayContext = () => {
+  const context = useContext(Context);
+
+  if (!context) {
+    throw new Error('useMapboxOverlayContext must be used within a MapboxOverlayProvider');
+  }
+
+  return context;
+};
+
+```
+
+* 2) Create a new deck layer component `layers/deck-layer.tsx`
+
+```javascript
+import { useEffect } from 'react';
+
+import { Layer } from 'react-map-gl';
+
+import { DeckLayerProps } from 'types/layers';
+
+import { useMapboxOverlayContext } from 'containers/explore-map/map/layer-manager/provider';
+
+import { Settings } from 'components/map/legend/types';
+
+const DeckLayer = <T extends unknown>({
+  id,
+  settings,
+  beforeId,
+  ...props
+}: DeckLayerProps<T, Settings>) => {
+  // Render deck layer
+  const i = `${id}-deck`;
+  const { addLayer, removeLayer } = useMapboxOverlayContext();
+
+  useEffect(() => {
+    addLayer({ ...props, id: i, beforeId });
+  }, [i, beforeId, props, addLayer]);
+
+  useEffect(() => {
+    return () => {
+      removeLayer(i);
+    };
+  }, [i, removeLayer]);
+
+  return (
+    <Layer
+      id={id}
+      type="background"
+      paint={{
+        'background-color': '#77CCFF',
+        'background-opacity': 0,
+      }}
+      beforeId={beforeId}
+    />
+  );
+};
+
+export default DeckLayer;
+
+```
+
+* 3) Add typings `types/deck-layer.ts`
+
+
+```javascript
+
+import { Layer } from '@deck.gl/core/typed';
+
+export type DeckLayerProps<T, S> = LayerProps<S> &
+  T & {
+    type: typeof Layer;
+  };
+
+```
+
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>
