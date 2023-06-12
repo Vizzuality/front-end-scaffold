@@ -1,0 +1,18 @@
+import DocsLayout from 'layouts/docs';
+import Cookies from 'components/cookies';
+
+# Cookies component
+
+ <div className="relative h-96">
+  <Cookies
+    open
+    onAccept={() => {
+      console.info('Accepted');
+    }}
+    onReject={() => {
+      console.info('Rejected');
+    }}
+  />
+</div>
+
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>
