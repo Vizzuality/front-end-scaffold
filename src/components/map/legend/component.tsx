@@ -1,8 +1,6 @@
-import { FC, useCallback, useState, PropsWithChildren } from 'react';
+import { FC, useCallback, useState, PropsWithChildren, useId } from 'react';
 
 import cx from 'clsx';
-
-import { useId } from '@react-aria/utils';
 
 import Icon from 'components/icon';
 
