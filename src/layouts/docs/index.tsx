@@ -1,13 +1,12 @@
+import { PropsWithChildren } from 'react';
+
 import { useRouter } from 'next/router';
 
-type LayoutProps = {
-  children: React.ReactNode;
-};
-
-const Layout: React.FC<LayoutProps> = (props: LayoutProps) => {
+const Layout: React.FC<PropsWithChildren> = (props: PropsWithChildren) => {
   const { children } = props;
   const router = useRouter();
   const isMainRoute = router.pathname === '/docs';
+
   return (
     <main className={`flex flex-col font-sans antialiased lg:min-h-screen`}>
       {!isMainRoute && (

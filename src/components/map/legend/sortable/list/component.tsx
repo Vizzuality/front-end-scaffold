@@ -1,4 +1,13 @@
-import { Children, cloneElement, FC, isValidElement, useCallback, useMemo, useState } from 'react';
+import {
+  Children,
+  cloneElement,
+  FC,
+  isValidElement,
+  useCallback,
+  useMemo,
+  useState,
+  PropsWithChildren,
+} from 'react';
 
 import cx from 'clsx';
 
@@ -23,14 +32,13 @@ import SortableItem from './item';
 
 export interface SortableListProps {
   className?: string;
-  children: React.ReactNode;
   onChangeOrder: (id: string[]) => void;
 }
 
-export const SortableList: FC<SortableListProps> = ({
+export const SortableList: FC<PropsWithChildren<SortableListProps>> = ({
   children,
   onChangeOrder,
-}: SortableListProps) => {
+}: PropsWithChildren<SortableListProps>) => {
   const [activeId, setActiveId] = useState(null);
 
   const ActiveItem = useMemo(() => {
