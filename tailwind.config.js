@@ -8,8 +8,7 @@ const typography = require('@tailwindcss/typography');
 module.exports = {
   darkMode: ['class'],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
+    './src/pages/**/*.{ts,tsx}',
     './src/components/**/*.{ts,tsx}',
     './src/layouts/**/*.@(tsx|ts)',
     './src/containers/**/*.@(tsx|ts)',
