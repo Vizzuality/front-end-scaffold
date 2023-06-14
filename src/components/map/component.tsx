@@ -125,7 +125,7 @@ export const CustomMap: FC<CustomMapProps> = ({
         // ! if you're using Mapbox (and not a fork), remove the below property
         // ! and replace the according map styles
         mapLib={MapLibreGL}
-        mapStyle={mapStyle || 'https://demotiles.maplibre.org/style.json'}
+        mapStyle={mapStyle}
         initialViewState={initialViewState}
         dragPan={!isFlying && dragPan}
         dragRotate={!isFlying && dragRotate}

@@ -57,6 +57,7 @@ const MapImplementation = () => {
           viewState={viewState}
           // mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           onMapViewStateChange={handleViewState}
+          mapStyle={'https://demotiles.maplibre.org/style.json'}
         >
           {() => (
             <>
