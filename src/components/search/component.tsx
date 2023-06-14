@@ -73,7 +73,7 @@ export const Search: FC<SearchProps> = ({
               ref.current.focus();
             }
           }}
-          aria-label="Close search"
+          aria-label="Empty search"
         >
           <Icon icon={CLOSE_SVG} className="inline-block h-2 w-2" />
         </Button>
