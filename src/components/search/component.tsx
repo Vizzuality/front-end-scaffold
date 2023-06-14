@@ -1,10 +1,6 @@
-import { FC, useRef, MouseEvent } from 'react';
+import { FC, useRef, ChangeEvent } from 'react';
 
 import cx from 'clsx';
-
-import { useSearchField } from '@react-aria/searchfield';
-import { useSearchFieldState } from '@react-stately/searchfield';
-import type { SearchFieldState } from '@react-stately/searchfield';
 
 import { Button } from 'components/button';
 import Icon from 'components/icon';
@@ -13,25 +9,31 @@ import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
 import SEARCH_SVG from 'svgs/ui/search.svg?sprite';
 
 import { SIZES, THEME } from './constants';
-import type { SearchProps, PressEvent } from './types';
+import type { SearchProps } from './types';
 
 export const Search: FC<SearchProps> = ({
   theme = 'dark',
   size = 'base',
+  value,
+  setValue,
   ...rest
 }: SearchProps) => {
   const { placeholder } = rest;
-  const state: SearchFieldState = useSearchFieldState(rest);
-
-  const ref = useRef();
-  const { inputProps, clearButtonProps } = useSearchField(rest, state, ref);
+  const ref = useRef<HTMLInputElement>();
+  const onInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
 
   return (
-    <div
+    <form
       className={cx('relative flex w-full border-b border-gray-400', {
         [THEME[theme]]: true,
         [SIZES[size]]: true,
       })}
+      role="search"
+      action=""
+      method="get"
+      onSubmit={(e) => e.preventDefault()}
     >
       <Icon
         icon={SEARCH_SVG}
@@ -40,12 +42,17 @@ export const Search: FC<SearchProps> = ({
           [THEME[theme]]: true,
         })}
       />
-
+      <label htmlFor="search">
+        <span className="visually-hidden">Search</span>
+      </label>
       <input
-        {...inputProps}
         ref={ref}
         placeholder={placeholder}
         type="search"
+        id="search"
+        aria-label="Search"
+        onInput={onInput}
+        value={value}
         className={cx(
           'w-full truncate bg-transparent px-10 font-sans leading-4 placeholder-gray-300 placeholder-opacity-50',
           {
@@ -54,22 +61,24 @@ export const Search: FC<SearchProps> = ({
           }
         )}
       />
-      {/* TODO add PressEvent to button or change implementation */}
-      {state.value !== '' && (
+      {value !== '' && (
         <Button
           tabIndex={0}
           className="absolute right-3 z-10 flex h-5 w-5 items-center justify-center self-center p-0"
           type="button"
           variant="ghost"
-          {...clearButtonProps}
-          onClick={(e: MouseEvent<HTMLButtonElement>) =>
-            clearButtonProps.onPress(e as unknown as PressEvent)
-          }
+          onClick={() => {
+            setValue('');
+            if (ref.current) {
+              ref.current.focus();
+            }
+          }}
+          aria-label="Close search"
         >
           <Icon icon={CLOSE_SVG} className="inline-block h-2 w-2" />
         </Button>
       )}
-    </div>
+    </form>
   );
 };
 

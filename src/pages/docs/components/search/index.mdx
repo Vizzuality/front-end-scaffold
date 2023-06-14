@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import DocsLayout from 'layouts/docs';
-import Search from 'components/search';
+import SearchImplementation from 'doc-containers/search-implementation';
 
 # Search component
 
-<Search theme="light" placeholder="Search for something..." size="sm"/>
+<SearchImplementation />
 
 export default ({ children }) => <DocsLayout>{children}</DocsLayout>
