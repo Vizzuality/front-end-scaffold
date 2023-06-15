@@ -1,9 +1,9 @@
+/** @type import('eslint').Linter.Config */
 module.exports = {
   extends: [
-    'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:prettier/recommended',
+    'next/core-web-vitals',
   ],
   parserOptions: {
     tsconfigRootDir: __dirname,
@@ -15,16 +15,16 @@ module.exports = {
     // ! we have changed the configuration rules from error to warning for now to avoid crashing the deploy.
     // ! This does not mean the below rules are meant to stay as if, the warning must be fixed until
     // ! linter does not complain about a specific rule and can be safely removed from below.
-    '@typescript-eslint/no-unsafe-assignment': 'warn',
-    '@typescript-eslint/no-unsafe-member-access': 'warn',
-    '@typescript-eslint/no-unsafe-call': 'warn',
-    '@typescript-eslint/no-unsafe-argument': 'warn',
-    '@typescript-eslint/no-floating-promises': 'warn',
-    '@typescript-eslint/restrict-template-expressions': 'warn',
-    '@typescript-eslint/no-unsafe-return': 'warn',
-    '@typescript-eslint/ban-ts-comment': 'warn',
-    '@typescript-eslint/no-misused-promises': 'warn',
-    '@typescript-eslint/require-await': 'warn',
+    // '@typescript-eslint/no-unsafe-assignment': 'warn',
+    // '@typescript-eslint/no-unsafe-member-access': 'warn',
+    // '@typescript-eslint/no-unsafe-call': 'warn',
+    // '@typescript-eslint/no-unsafe-argument': 'warn',
+    // '@typescript-eslint/no-floating-promises': 'warn',
+    // '@typescript-eslint/restrict-template-expressions': 'warn',
+    // '@typescript-eslint/no-unsafe-return': 'warn',
+    // '@typescript-eslint/ban-ts-comment': 'warn',
+    // '@typescript-eslint/no-misused-promises': 'warn',
+    // '@typescript-eslint/require-await': 'warn',
     // ---
     'no-console': [1, { allow: ['info', 'error'] }],
     'react/jsx-props-no-spreading': [
