@@ -11,22 +11,22 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
-          cache: 'yarn'
-          cache-dependency-path: yarn.lock
+          cache: 'pnpm'
+          cache-dependency-path: pnpm-lock.yaml
       - run: corepack enable && corepack prepare
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - name: Get pnpm cache directory path
+        id: pnpm-cache-dir-path
+        run: echo "::set-output name=dir::$(pnpm store path)"
 
-      - name: Yarn cache
+      - name: pnpm cache
         uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        id: pnpm-cache # use this to check for `cache-hit` (`steps.pnpm-cache.outputs.cache-hit != 'true'`)
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ steps.pnpm-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-pnpm-
 
-      - run: yarn install --immutable
-      - run: yarn test
+      - run: pnpm install --immutable
+      - run: pnpm test

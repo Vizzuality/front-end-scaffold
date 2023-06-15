@@ -1,9 +1,9 @@
 # Install dependencies only when needed
 FROM node:18.12.1-bullseye AS deps
 WORKDIR /app
-COPY .yarn ./.yarn
-COPY package.json yarn.lock .yarnrc.yml ./
-RUN yarn install --immutable
+COPY package.json pnpm-lock.yaml ./
+RUN corepack enable && corepack prepare
+RUN pnpm install --frozen-lockfile --prod --ignore-scripts
 
 # If using npm with a `package-lock.json` comment out above and use below instead
 # COPY package.json package-lock.json ./
@@ -14,13 +14,14 @@ FROM node:18.12.1-bullseye AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
+RUN corepack enable && corepack prepare
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN yarn build
+RUN pnpm build
 
 # Production image, copy all the files and run next
 FROM node:18.12.1-bullseye AS runner
