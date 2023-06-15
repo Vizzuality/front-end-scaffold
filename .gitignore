@@ -35,10 +35,6 @@ yarn-error.log*
 # vercel
 .vercel
 
-# Test with Cypress
-/cypress/screenshots
-/cypress/videos
-
 # Yarn
 .yarn/*
 .pnp.*
@@ -48,3 +44,8 @@ tsconfig.tsbuildinfo
 
 # storybook
 /storybook-static/
+
+# e2e testing
+/e2e/test-results/
+/playwright-report/
+/playwright/.cache/
