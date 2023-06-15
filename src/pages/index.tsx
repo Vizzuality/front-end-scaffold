@@ -11,7 +11,7 @@ const Home: React.FC = () => (
       <p>Remember to edit:</p>
       <ul>
         <li>package.json</li>
-        <li>pages/app.js</li>
+        <li>pages/_app.js</li>
       </ul>
       <p>
         Also, we strongly recommend to read and follow our{' '}
