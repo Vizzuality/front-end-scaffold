@@ -14,33 +14,26 @@ import { Bbox } from 'components/map/types';
 
 // Map
 import LayerManager from './layer-manager';
-const DEFAULT_BBOX: Bbox = [8.086023, 42.030424, 14.249353, 45.311115];
+const DEFAULT_BBOX: Bbox = [7.295523, 41.102768, 15.425406, 44.885675];
+const MAX_ZOOM = 20;
+const DEFAULT_BOUNDS = {
+  bbox: DEFAULT_BBOX,
+  options: {
+    padding: 100,
+    duration: 1000,
+  },
+};
+
+const INITIAL_VIEW_STATE = {
+  bounds: DEFAULT_BBOX,
+  fitBoundsOptions: {
+    padding: 100,
+  },
+  maxZoom: 9,
+  minZoom: 2,
+};
 
 const MapImplementation = () => {
-  const args = {
-    viewport: {},
-    initialViewState: {
-      bounds: DEFAULT_BBOX,
-      fitBoundsOptions: {
-        padding: 250,
-      },
-      maxZoom: 7,
-      minZoom: 3,
-    },
-    bounds: {
-      bbox: DEFAULT_BBOX,
-      options: {
-        padding: 250,
-        duration: 1000,
-      },
-    },
-    onMapViewportChange: (viewport) => {
-      console.info('onMapViewportChange: ', viewport);
-    },
-    maxZoom: 20,
-  };
-
-  const { initialViewState, bounds, maxZoom } = args;
   const [viewState, setViewState] = useState<Partial<ViewState>>({});
 
   const handleViewState = useCallback((vw: ViewState) => {
@@ -51,9 +44,9 @@ const MapImplementation = () => {
     <MapProvider>
       <div className="relative h-[400px] w-full">
         <Map
-          maxZoom={maxZoom}
-          bounds={bounds}
-          initialViewState={initialViewState}
+          maxZoom={MAX_ZOOM}
+          bounds={DEFAULT_BOUNDS}
+          initialViewState={INITIAL_VIEW_STATE}
           viewState={viewState}
           // mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           onMapViewStateChange={handleViewState}
@@ -74,7 +67,7 @@ const MapImplementation = () => {
               <LayerManager layers={['example']} />
               <Controls>
                 <ZoomControl />
-                <FitBoundsControl bounds={bounds} />
+                <FitBoundsControl bounds={DEFAULT_BOUNDS} />
               </Controls>
             </>
           )}

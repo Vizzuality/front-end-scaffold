@@ -1,5 +1,6 @@
 import DocsLayout from 'layouts/docs'
 import MapImplementation from 'doc-containers/map-implementation';
+import 'maplibre-gl/dist/maplibre-gl.css';
 
 # Map component
 
@@ -10,10 +11,11 @@ import MapImplementation from 'doc-containers/map-implementation';
 This map is created with the map component which is using the maplibre-gl library. If you want to use Mapbox instead just follow this guidelines:
 
 * 1) Remove maplibre-gl
-* 2) Install Mapbox v1/v2 (v2 requires token)
-* 3) If you have installed v2: provide the token to the map through the `mapboxAccessToken` property
-* 4) Remove the `mapLib` property on the map component
-* 5) Replace the mapStyles on the map
+* 2) Remove maplibre-gl.css import
+* 3) Install Mapbox v1/v2 (v2 requires token)
+* 4) If you have installed v2: provide the token to the map through the `mapboxAccessToken` property
+* 5) Remove the `mapLib` property on the map component
+* 6) Replace the mapStyles on the map
 
 ## DeckGL layers
 

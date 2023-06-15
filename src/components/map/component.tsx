@@ -8,10 +8,12 @@ import MapLibreGL from 'maplibre-gl';
 import { useDebouncedCallback } from 'use-debounce';
 
 // * If you plan to use Mapbox (and not a fork):
-// * 1) remove maplibre-gl,
-// * 2) install Mapbox v1/v2 (v2 requires token)
-// * 3) if you installed v2: provide the token to the map through the `mapboxAccessToken` property
-// * 4) remove `mapLib` property
+// * 1) Remove maplibre-gl
+// * 2) Remove maplibre-gl.css import
+// * 3) Install Mapbox v1/v2 (v2 requires token)
+// * 4) If you have installed v2: provide the token to the map through the `mapboxAccessToken` property
+// * 5) Remove the `mapLib` property on the map component
+// * 6) Replace the mapStyles on the map
 
 import { DEFAULT_VIEW_STATE } from './constants';
 import type { CustomMapProps } from './types';
