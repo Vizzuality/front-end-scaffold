@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "check-types": "tsc",
-    "test": "start-server-and-test 'yarn dev' 3000 'yarn cypress:run'",
+    "test": "start-server-and-test 'pnpm dev' 3000 'pnpm cypress:run'",
+    "test:e2e": "./node_modules/.bin/cypress run --headless --browser chrome",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "postinstall": "husky install"
@@ -16,12 +17,13 @@
   "engines": {
     "node": "~18"
   },
-  "packageManager": "yarn@3.5.0",
+  "packageManager": "pnpm@8.6.2",
   "dependencies": {
     "@artsy/fresnel": "6.1.0",
     "@dnd-kit/core": "6.0.8",
     "@dnd-kit/modifiers": "6.0.1",
     "@dnd-kit/sortable": "7.0.2",
+    "@dnd-kit/utilities": "3.2.1",
     "@egjs/react-flicking": "4.10.9",
     "@mdx-js/loader": "2.3.0",
     "@mdx-js/react": "2.3.0",
@@ -70,6 +72,6 @@
     "typescript": "4.9.4"
   },
   "husky": {
-    "pre-commit": "yarn lint"
+    "pre-commit": "pnpm lint"
   }
 }
