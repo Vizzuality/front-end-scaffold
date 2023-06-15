@@ -4,29 +4,27 @@ on: [pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
       - name: Setup node
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-          cache-dependency-path: pnpm-lock.yaml
-      - run: corepack enable && corepack prepare
+      - name: Install dependencies
+        run: corepack enable && corepack prepare && pnpm install --frozen-lockfile
 
-      - name: Get pnpm cache directory path
-        id: pnpm-cache-dir-path
-        run: echo "::set-output name=dir::$(pnpm store path)"
-
-      - name: pnpm cache
-        uses: actions/cache@v3
-        id: pnpm-cache # use this to check for `cache-hit` (`steps.pnpm-cache.outputs.cache-hit != 'true'`)
+      - name: Run e2e with Cypress
+        uses: cypress-io/github-action@v5
         with:
-          path: ${{ steps.pnpm-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-
-
-      - run: pnpm install --immutable
-      - run: pnpm test
+          record: true
+          install: false
+          build: pnpm build
+          start: pnpm start
+          browser: chrome
+          wait-on: http://localhost:3000
+          config-file: cypress.config.ts
+          command-prefix: pnpm dlx
+          command: "pnpm test:e2e"

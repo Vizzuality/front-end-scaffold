@@ -9,6 +9,7 @@
     "start": "next start",
     "check-types": "tsc",
     "test": "start-server-and-test 'pnpm dev' 3000 'pnpm cypress:run'",
+    "test:e2e": "./node_modules/.bin/cypress run --headless --browser chrome",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "postinstall": "husky install"
