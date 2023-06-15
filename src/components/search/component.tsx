@@ -16,6 +16,7 @@ export const Search: FC<SearchProps> = ({
   size = 'base',
   value,
   setValue,
+  label = 'Search',
   ...rest
 }: SearchProps) => {
   const { placeholder } = rest;
@@ -43,14 +44,14 @@ export const Search: FC<SearchProps> = ({
         })}
       />
       <label htmlFor="search">
-        <span className="visually-hidden">Search</span>
+        <span className="visually-hidden">{label}</span>
       </label>
       <input
         ref={ref}
         placeholder={placeholder}
         type="search"
         id="search"
-        aria-label="Search"
+        aria-label={label}
         onInput={onInput}
         value={value}
         className={cx(
