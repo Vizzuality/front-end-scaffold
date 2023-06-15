@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
@@ -12,7 +13,7 @@ const withMDX = require('@next/mdx')({
 });
 
 /**
- * @type {import('next').NextConfig}
+ * @type { import('next').NextConfig }
  */
 const nextConfig = {
   // Configure pageExtensions to include md and mdx
@@ -20,9 +21,8 @@ const nextConfig = {
   // ? https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files
   output: 'standalone',
   poweredByHeader: false,
-  /** @param {import('webpack').Configuration} config */
   webpack(config) {
-    config?.module?.rules?.push({
+    config.module.rules.push({
       test: /\.svg$/,
       use: [
         {
