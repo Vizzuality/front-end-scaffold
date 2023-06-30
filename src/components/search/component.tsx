@@ -2,7 +2,7 @@ import { FC, useRef, ChangeEvent } from 'react';
 
 import cx from 'clsx';
 
-import { Button } from 'components/button';
+import { Button } from '@/components/ui/button';
 import Icon from 'components/icon';
 
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
