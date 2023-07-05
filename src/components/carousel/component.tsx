@@ -15,8 +15,9 @@ export const Carousel: React.FC<CarouselProps> = ({
   },
   ...rest
 }: CarouselProps) => {
-  const slider = useRef(null);
-  const timer = useRef(null);
+  const slider = useRef<Flicking>(null);
+
+  const timer = useRef<ReturnType<typeof setInterval>>();
   const [pause, setPause] = useState(false);
 
   useEffect(() => {
