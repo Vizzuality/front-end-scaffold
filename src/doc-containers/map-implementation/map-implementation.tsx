@@ -5,6 +5,8 @@ import { useCallback, useState } from 'react';
 import { ViewState, MapProvider } from 'react-map-gl';
 import { Layer } from 'react-map-gl';
 
+import { useDebounce } from 'usehooks-ts';
+
 // Controls
 import Map from 'components/map';
 import Controls from 'components/map/controls';
@@ -36,6 +38,8 @@ const INITIAL_VIEW_STATE = {
 const MapImplementation = () => {
   const [viewState, setViewState] = useState<Partial<ViewState>>({});
 
+  const debouncedViewStateValue = useDebounce<Partial<ViewState>>(viewState, 250);
+
   const handleViewState = useCallback((vw: ViewState) => {
     setViewState(vw);
   }, []);
@@ -47,7 +51,7 @@ const MapImplementation = () => {
           maxZoom={MAX_ZOOM}
           bounds={DEFAULT_BOUNDS}
           initialViewState={INITIAL_VIEW_STATE}
-          viewState={viewState}
+          viewState={debouncedViewStateValue}
           // mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           onMapViewStateChange={handleViewState}
           mapStyle={'https://demotiles.maplibre.org/style.json'}

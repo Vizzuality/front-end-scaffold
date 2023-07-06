@@ -5,7 +5,6 @@ import ReactMapGL, { ViewState, ViewStateChangeEvent, useMap } from 'react-map-g
 import cx from 'clsx';
 
 import MapLibreGL from 'maplibre-gl';
-import { useDebounce } from 'usehooks-ts';
 
 // * If you plan to use Mapbox (and not a fork):
 // * 1) Remove maplibre-gl
@@ -56,10 +55,6 @@ export const CustomMap: FC<CustomMapProps> = ({
    * CALLBACKS
    */
 
-  const debouncedViewStateChange = useDebounce((_viewState: ViewState) => {
-    onMapViewStateChange(_viewState);
-  }, 250);
-
   const handleFitBounds = useCallback(() => {
     const { bbox, options } = bounds;
 
@@ -78,9 +73,9 @@ export const CustomMap: FC<CustomMapProps> = ({
   const handleMapMove = useCallback(
     ({ viewState: _viewState }: ViewStateChangeEvent) => {
       setLocalViewState(_viewState);
-      debouncedViewStateChange(_viewState);
+      onMapViewStateChange(_viewState);
     },
-    [debouncedViewStateChange]
+    [onMapViewStateChange]
   );
 
   useEffect(() => {
