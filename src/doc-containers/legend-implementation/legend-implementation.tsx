@@ -18,7 +18,7 @@ const LegendImplementation = ({ args }) => {
   );
 
   // Callbacks
-  const onChangeOrder = useCallback((ids) => {
+  const onChangeOrder = useCallback((ids: string[]) => {
     setSortArray(ids);
   }, []);
 
