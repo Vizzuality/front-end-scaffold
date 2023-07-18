@@ -30,6 +30,9 @@ const buttonVariants = cva(
   }
 );
 
+// asChild: "When asChild is set to true, Radix will not render a default DOM element,
+// instead cloning the part's child and passing it the props and behavior required to make it functional."
+// https://www.radix-ui.com/docs/primitives/guides/composition#composing-multiple-primitives
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
@@ -40,7 +43,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : 'button';
     return (
-      <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} {...props} />
+      <Comp
+        type="button"
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
     );
   }
 );
