@@ -20,7 +20,7 @@ export const LegendTypeGradient: FC<LegendTypeGradientProps> = ({
       }}
     />
 
-    <ul className="mt-1 flex w-full justify-between">
+    <ul className="mt-1 flex w-full list-none justify-between">
       {items
         .filter(({ value }) => !!value)
         .map(({ value }) => (

@@ -13,7 +13,7 @@ export const LegendTypeChoropleth: FC<LegendTypeChoroplethProps> = ({
       [className]: !!className,
     })}
   >
-    <ul className="flex w-full">
+    <ul className="flex w-full list-none">
       {items.map(({ color }) => (
         <li
           key={`${color}`}
@@ -26,7 +26,7 @@ export const LegendTypeChoropleth: FC<LegendTypeChoroplethProps> = ({
       ))}
     </ul>
 
-    <ul className="mt-1 flex w-full">
+    <ul className="mt-1 flex w-full list-none">
       {items.map(({ value }) => (
         <li
           key={`${value}`}
