@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
-import Button from 'components/button';
+import { Button } from '@/components/ui/button';
 
 import type { CookiesProps } from './types';
 
@@ -42,12 +42,10 @@ export const Cookies: React.FC<CookiesProps> = ({ open, onAccept, onReject }: Co
                 to know more.
               </p>
               <div className="flex justify-end gap-3">
-                <Button theme="secondary" size="base" onClick={onReject}>
+                <Button variant="secondary" onClick={onReject}>
                   Deny
                 </Button>
-                <Button theme="primary" size="base" onClick={onAccept}>
-                  Accept
-                </Button>
+                <Button onClick={onAccept}>Accept</Button>
               </div>
             </div>
           </motion.div>

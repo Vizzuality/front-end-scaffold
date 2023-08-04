@@ -2,16 +2,17 @@ import { useEffect, useState, useCallback, FC } from 'react';
 
 import ReactMapGL, { ViewState, ViewStateChangeEvent, useMap } from 'react-map-gl';
 
-import cx from 'classnames';
+import cx from 'clsx';
 
 import MapLibreGL from 'maplibre-gl';
-import { useDebouncedCallback } from 'use-debounce';
 
 // * If you plan to use Mapbox (and not a fork):
-// * 1) remove maplibre-gl,
-// * 2) install Mapbox v1/v2 (v2 requires token)
-// * 3) if you installed v2: provide the token to the map through the `mapboxAccessToken` property
-// * 4) remove `mapLib` property
+// * 1) Remove maplibre-gl
+// * 2) Remove maplibre-gl.css import
+// * 3) Install Mapbox v1/v2 (v2 requires token)
+// * 4) If you have installed v2: provide the token to the map through the `mapboxAccessToken` property
+// * 5) Remove the `mapLib` property on the map component
+// * 6) Replace the mapStyles on the map
 
 import { DEFAULT_VIEW_STATE } from './constants';
 import type { CustomMapProps } from './types';
@@ -20,7 +21,7 @@ export const CustomMap: FC<CustomMapProps> = ({
   // * if no id is passed, react-map-gl will store the map reference in a 'default' key:
   // * https://github.com/visgl/react-map-gl/blob/ecb27c8d02db7dd09d8104e8c2011bda6aed4b6f/src/components/use-map.tsx#L18
   id = 'default',
-  mapboxAccessToken,
+  // mapboxAccessToken,
   children,
   className,
   viewState = {},
@@ -31,6 +32,7 @@ export const CustomMap: FC<CustomMapProps> = ({
   dragRotate,
   scrollZoom,
   doubleClickZoom,
+  mapStyle,
   ...mapboxProps
 }: CustomMapProps) => {
   /**
@@ -52,9 +54,6 @@ export const CustomMap: FC<CustomMapProps> = ({
   /**
    * CALLBACKS
    */
-  const debouncedViewStateChange = useDebouncedCallback((_viewState: ViewState) => {
-    onMapViewStateChange(_viewState);
-  }, 250);
 
   const handleFitBounds = useCallback(() => {
     const { bbox, options } = bounds;
@@ -74,9 +73,9 @@ export const CustomMap: FC<CustomMapProps> = ({
   const handleMapMove = useCallback(
     ({ viewState: _viewState }: ViewStateChangeEvent) => {
       setLocalViewState(_viewState);
-      debouncedViewStateChange(_viewState);
+      onMapViewStateChange(_viewState);
     },
-    [debouncedViewStateChange]
+    [onMapViewStateChange]
   );
 
   useEffect(() => {
@@ -122,9 +121,9 @@ export const CustomMap: FC<CustomMapProps> = ({
       <ReactMapGL
         id={id}
         // ! if you're using Mapbox (and not a fork), remove the below property
-        // ! and replace with the according map styles
+        // ! and replace the according map styles
         mapLib={MapLibreGL}
-        mapStyle="https://demotiles.maplibre.org/style.json"
+        mapStyle={mapStyle}
         initialViewState={initialViewState}
         dragPan={!isFlying && dragPan}
         dragRotate={!isFlying && dragRotate}

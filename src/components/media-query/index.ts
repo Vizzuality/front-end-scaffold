@@ -1,6 +1,7 @@
 import { createMedia } from '@artsy/fresnel';
 
 import { screens } from 'styles/styles.config';
+const typedScreens = screens as Record<string, string>;
 
 const ExampleAppMedia = createMedia<
   { breakpoints: Record<string, number> },
@@ -11,7 +12,7 @@ const ExampleAppMedia = createMedia<
     (res, key) => ({
       ...res,
       // We extract the pixel value of the breakpoint (e.g. `'1024px'` => `1024`)
-      [key]: parseInt(screens[key].match(/(\d+)px/)?.[1] ?? '0', 10),
+      [key]: parseInt(typedScreens[key].match(/(\d+)px/)?.[1] ?? '0', 10),
     }),
     {
       // We need a breakpoint starting at 0 to target screens smaller than sm

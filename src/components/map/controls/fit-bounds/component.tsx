@@ -2,7 +2,7 @@ import { FC, useCallback, MouseEvent } from 'react';
 
 import { useMap } from 'react-map-gl';
 
-import cx from 'classnames';
+import cx from 'clsx';
 
 import Icon from 'components/icon';
 

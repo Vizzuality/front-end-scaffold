@@ -1,12 +1,8 @@
-import { FC, useRef } from 'react';
+import { FC, useRef, ChangeEvent } from 'react';
 
-import cx from 'classnames';
+import cx from 'clsx';
 
-// react aria
-import { useButton } from '@react-aria/button';
-import { useSearchField } from '@react-aria/searchfield';
-import { useSearchFieldState } from '@react-stately/searchfield';
-
+import { Button } from '@/components/ui/button';
 import Icon from 'components/icon';
 
 import CLOSE_SVG from 'svgs/ui/close.svg?sprite';
@@ -18,21 +14,27 @@ import type { SearchProps } from './types';
 export const Search: FC<SearchProps> = ({
   theme = 'dark',
   size = 'base',
+  value,
+  setValue,
+  label = 'Search',
   ...rest
 }: SearchProps) => {
   const { placeholder } = rest;
-  const state = useSearchFieldState(rest);
-
-  const ref = useRef();
-  const { inputProps, clearButtonProps } = useSearchField(rest, state, ref);
-  const { buttonProps } = useButton(clearButtonProps, null);
+  const ref = useRef<HTMLInputElement>();
+  const onInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
 
   return (
-    <div
+    <form
       className={cx('relative flex w-full border-b border-gray-400', {
         [THEME[theme]]: true,
         [SIZES[size]]: true,
       })}
+      role="search"
+      action=""
+      method="get"
+      onSubmit={(e) => e.preventDefault()}
     >
       <Icon
         icon={SEARCH_SVG}
@@ -41,12 +43,17 @@ export const Search: FC<SearchProps> = ({
           [THEME[theme]]: true,
         })}
       />
-
+      <label htmlFor="search">
+        <span className="visually-hidden">{label}</span>
+      </label>
       <input
-        {...inputProps}
         ref={ref}
         placeholder={placeholder}
         type="search"
+        id="search"
+        aria-label={label}
+        onInput={onInput}
+        value={value}
         className={cx(
           'w-full truncate bg-transparent px-10 font-sans leading-4 placeholder-gray-300 placeholder-opacity-50',
           {
@@ -55,18 +62,24 @@ export const Search: FC<SearchProps> = ({
           }
         )}
       />
-
-      {state.value !== '' && (
-        <button
-          {...buttonProps}
+      {value !== '' && (
+        <Button
           tabIndex={0}
-          className="r-2 absolute right-3 z-10 flex h-5 w-5 items-center justify-center self-center"
+          className="absolute right-3 z-10 flex h-5 w-5 items-center justify-center self-center p-0"
           type="button"
+          variant="ghost"
+          onClick={() => {
+            setValue('');
+            if (ref.current) {
+              ref.current.focus();
+            }
+          }}
+          aria-label="Empty search"
         >
           <Icon icon={CLOSE_SVG} className="inline-block h-2 w-2" />
-        </button>
+        </Button>
       )}
-    </div>
+    </form>
   );
 };
 

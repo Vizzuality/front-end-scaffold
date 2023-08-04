@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 
-import cx from 'classnames';
+import cx from 'clsx';
 
 import type { LegendItemProps } from './types';
 

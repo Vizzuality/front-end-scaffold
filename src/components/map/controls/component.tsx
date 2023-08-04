@@ -1,6 +1,6 @@
 import { Children, FC, PropsWithChildren } from 'react';
 
-import cx from 'classnames';
+import cx from 'clsx';
 
 import type { ControlsProps } from './types';
 

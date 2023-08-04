@@ -1,6 +1,15 @@
-import { Children, cloneElement, FC, isValidElement, useCallback, useMemo, useState } from 'react';
+import {
+  Children,
+  cloneElement,
+  FC,
+  isValidElement,
+  useCallback,
+  useMemo,
+  useState,
+  PropsWithChildren,
+} from 'react';
 
-import cx from 'classnames';
+import cx from 'clsx';
 
 import {
   DndContext,
@@ -11,6 +20,7 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
+import type { DragStartEvent, DragEndEvent, Active } from '@dnd-kit/core';
 import { restrictToVerticalAxis, restrictToWindowEdges } from '@dnd-kit/modifiers';
 import {
   arrayMove,
@@ -23,20 +33,19 @@ import SortableItem from './item';
 
 export interface SortableListProps {
   className?: string;
-  children: React.ReactNode;
   onChangeOrder: (id: string[]) => void;
 }
 
-export const SortableList: FC<SortableListProps> = ({
+export const SortableList: FC<PropsWithChildren<SortableListProps>> = ({
   children,
   onChangeOrder,
-}: SortableListProps) => {
-  const [activeId, setActiveId] = useState(null);
+}: PropsWithChildren<SortableListProps>) => {
+  const [activeId, setActiveId] = useState<Active['id']>(null);
 
   const ActiveItem = useMemo(() => {
     const activeChildArray = Children.map(children, (Child) => {
       if (isValidElement(Child)) {
-        const { props } = Child;
+        const { props } = Child as { props: { id: string } };
         const { id } = props;
 
         if (id === activeId) {
@@ -50,12 +59,12 @@ export const SortableList: FC<SortableListProps> = ({
     return activeChildArray[0] || null;
   }, [children, activeId]);
 
-  const itemsIds = useMemo(
+  const itemsIds = useMemo<string[] | null>(
     () =>
       Children.map(children, (Child) => {
         if (isValidElement(Child)) {
-          const { props } = Child;
-          const { id } = props;
+          const { props } = Child as { props: { id: string } };
+          const { id }: { id: string } = props;
           return id;
         }
 
@@ -71,20 +80,20 @@ export const SortableList: FC<SortableListProps> = ({
     })
   );
 
-  const handleDragStart = useCallback((event) => {
+  const handleDragStart = useCallback((event: DragStartEvent) => {
     const { active } = event;
     if (!active) return;
     setActiveId(active.id);
   }, []);
 
   const handleDragEnd = useCallback(
-    (event) => {
+    (event: DragEndEvent) => {
       const { active, over } = event;
       setActiveId(null);
 
       if (active.id !== over.id) {
-        const oldIndex = itemsIds.indexOf(active.id);
-        const newIndex = itemsIds.indexOf(over.id);
+        const oldIndex: number = itemsIds.indexOf(String(active.id));
+        const newIndex: number = itemsIds.indexOf(String(over.id));
 
         if (onChangeOrder) onChangeOrder(arrayMove(itemsIds, oldIndex, newIndex));
       }
@@ -111,7 +120,7 @@ export const SortableList: FC<SortableListProps> = ({
             if (isValidElement(Child)) {
               const {
                 props: { id },
-              } = Child;
+              } = Child as { props: { id: string } };
               return <SortableItem id={id}>{cloneElement(Child)}</SortableItem>;
             }
             return null;

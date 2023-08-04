@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 
-import cx from 'classnames';
+import cx from 'clsx';
 
 import { useSortable, UseSortableArguments } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';

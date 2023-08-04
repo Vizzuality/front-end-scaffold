@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import cx from 'classnames';
+import cx from 'clsx';
 
 import { motion, AnimatePresence } from 'framer-motion';
 

@@ -1,0 +1,15 @@
+import DocsLayout from 'layouts/docs'
+
+# Media
+
+- SVG: We are using SVGs as icons. We are using [svg-sprite-loader](https://github.com/JetBrains/svg-sprite-loader) and [svgo-loader](https://github.com/svg/svgo-loader)
+
+
+  E.g.
+
+  ```javascript
+  import ZOOM_OUT_SVG from 'svgs/map/zoom-out.svg?sprite';
+
+  <Icon icon={ZOOM_OUT_SVG} />
+  ```
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>

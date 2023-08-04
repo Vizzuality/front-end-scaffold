@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import cx from 'classnames';
+import cx from 'clsx';
 
 import type { LegendTypeGradientProps } from './types';
 
@@ -20,7 +20,7 @@ export const LegendTypeGradient: FC<LegendTypeGradientProps> = ({
       }}
     />
 
-    <ul className="mt-1 flex w-full justify-between">
+    <ul className="mt-1 flex w-full list-none justify-between">
       {items
         .filter(({ value }) => !!value)
         .map(({ value }) => (
