@@ -1,5 +1,5 @@
 # Install dependencies only when needed
-FROM node:18.12.1-bullseye AS deps
+FROM node:18.15-bullseye AS deps
 WORKDIR /app
 COPY .yarn ./.yarn
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -10,7 +10,7 @@ RUN yarn install --immutable
 # RUN npm ci
 
 # Rebuild the source code only when needed
-FROM node:18.12.1-bullseye AS builder
+FROM node:18.15-bullseye AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
@@ -23,7 +23,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN yarn build
 
 # Production image, copy all the files and run next
-FROM node:18.12.1-bullseye AS runner
+FROM node:18.15-bullseye AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
