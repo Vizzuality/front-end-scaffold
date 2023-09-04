@@ -1,0 +1,175 @@
+import DocsLayout from 'layouts/docs'
+
+# GDPR and analytics
+
+When adding analytics or third-party services to a project, we need to make sure these are GDPR-compliant. One simple rule to follow is that if the service sets cookies or gathers data about the user, then the user must consent to its use *beforehand*.
+
+Services such as [Google Analytics](https://analytics.withgoogle.com/), [Crazy Egg](https://www.crazyegg.com/) and [UserReport](https://www.userreport.com/) are not (or not always) GDPR-compliant. Whenever possible, we like to use GDPR-compliant and open source alternatives such as [Plausible](https://plausible.io/).
+
+When we integrate non-compliant services, then we need to make sure that the user gave their consent **before** any third-party script is loaded in the browser.
+
+It is also very important that it is **as easy for the user to consent as to reject** cookies/third-party services. Both options must be accessible with the same number of clicks.
+
+This recipe demonstrates how the consent can be retrieved, taking Google Analytics 4 as an example.
+
+---
+
+## Setting up @use-cookie-consent/react
+
+`@use-cookie-consent/react` is a package that takes care of storing and handling the user's consent.
+
+To install, run:
+```bash
+yarn add -E @use-cookie-consent/react
+```
+
+
+Then, to get access to the user's consent from several components, we need to add a provider in `src/pages/_app.tsx`:
+
+```typescript
+import type { AppProps } from 'next/app';
+import { CookieConsentProvider } from '@use-cookie-consent/react'
+
+type PageProps = {
+  dehydratedState: unknown;
+};
+
+const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
+  return (
+    <CookieConsentProvider>
+      <Component {...pageProps} />
+    </CookieConsentProvider>
+  );
+};
+
+export default MyApp;
+```
+
+## Getting the user's consent and loading third-party services
+
+In a new component, `src/containers/third-party/index.tsx`, we add the logic that:
+
+- asks the user to consent
+- loads the third-party services if and when the user has consented
+
+```typescript
+import React from 'react';
+import Script from 'next/script';
+import { useCookieConsentContext } from '@use-cookie-consent/react';
+
+import Cookies from 'components/cookies';
+
+const GA_TRACKING_ID = 'GOOGLE-TRACKING-ID';
+
+const ThirdParty: React.FC = () => {
+  const { consent, acceptCookies, declineAllCookies } = useCookieConsentContext();
+
+  return (
+    <>
+      {consent.thirdParty === true && (
+        <>
+          <Script
+            id="gtm-script"
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <Script id="gtm-config-script" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_TRACKING_ID}');
+            `}
+          </Script>
+        </>
+      )}
+      <Cookies
+        open={consent.thirdParty === undefined}
+        onAccept={() => acceptCookies({ thirdParty: true })}
+        onReject={() => declineAllCookies()}
+      />
+    </>
+  );
+};
+
+export default ThirdParty;
+```
+
+## Tracking events
+
+To start tracking events with Google Analytics, we define some helpers in `src/lib/analytics/ga.ts`:
+
+```typescript
+const GA_TRACKING_ID = 'GOOGLE-TRACKING-ID';
+
+/**
+ * Log a page view
+ */
+export const GAPage = (url: string): void => {
+  if (window.gtag) {
+    window.gtag('config', GA_TRACKING_ID, {
+      page_path: url,
+    });
+  }
+};
+
+/**
+ * Log an event
+ */
+export const GAEvent = ({ action, params }): void => {
+  if (window.gtag) {
+    window.gtag('event', action, params);
+  }
+};
+```
+
+We can then update `src/pages/_app.tsx` again to:
+
+- load our `ThirdParty` component
+- track the page views
+
+```typescript
+import { useCallback, useEffect } from 'react';
+import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+import { CookieConsentProvider } from '@use-cookie-consent/react'
+
+import { GAPage } from 'lib/analytics/ga';
+
+type PageProps = {
+  dehydratedState: unknown;
+};
+
+const MyApp = ({ Component, pageProps }: AppProps<PageProps>) => {
+  const router = useRouter();
+
+  const handleRouteChangeCompleted = useCallback((url: string) => {
+    GAPage(url);
+  }, []);
+
+  useEffect(() => {
+    router.events.on('routeChangeComplete', handleRouteChangeCompleted);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChangeCompleted);
+    };
+  }, [router.events, handleRouteChangeCompleted]);
+
+  return (
+    <CookieConsentProvider
+      useCookieConsentHooksOptions={{
+        consentCookieAttributes: { expires: 180 }, // Store the consent for 180 days
+      }}
+    >
+      <ThirdParty />
+      <Component {...pageProps} />
+    </CookieConsentProvider>
+  );
+};
+
+export default MyApp;
+```
+
+… and we're done!
+
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>
