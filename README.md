@@ -17,13 +17,21 @@ This is a project template which could be used to the creation of new projects. 
 
 **This scaffold is only an example of how to develop an application following some of the standards we set in the Front-end team. Please adapt your project needs to this scaffold, or use it as a reference.**
 
+**WE STRONGLY RECOMMEND** most of the cases use this scaffold as a reference and not as a starting point. This scaffold is a good starting point for projects that will be developed by a single person, or when the project is a small one. For bigger projects, we recommend to create a new project from scratch and follow the standards and guidelines we have in the Front-end team. To facilitate this process, we recommend follow this [CLI from NextJs](https://nextjs.org/docs/getting-started/installation).
+
+```bash
+npx create-next-app@latest
+```
+
+_Note: we are preparing an alternative documentation still in progress. We'll communicate the progress in the Front-end channels._
+
 ## Repository Documentation
 
 Run the application and go to [http://localhost:3000/docs](http://localhost:3000/docs) to see the application documentation.
 
 The components documentation files are stored on the docs-containers folder. This containers may be deleted when doing a clean up of the project.
 
-(Online documentation)[front-end-scaffold-docs.vercel.app]
+[Online documentation](https://front-end-scaffold-docs.vercel.app/)
 
 ## Getting Started
 
