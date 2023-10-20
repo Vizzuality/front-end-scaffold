@@ -1,5 +1,7 @@
 # Front end scaffold
 
+![Vercel](https://vercelbadge.vercel.app/api/vizzuality1/front-end-scaffold-docs)
+
 This is a project template which could be used to the creation of new projects. Some of the features included are:
 
 - Based on [Next.js](https://nextjs.org/)
@@ -12,6 +14,8 @@ This is a project template which could be used to the creation of new projects. 
 - git workflow and hooks
 - editorconfig and code style based on [Airbnb](https://github.com/airbnb/javascript)
 - [Storybook](https://storybook.js.org/) also available and configured
+
+**This scaffold is only an example of how to develop an application following some of the standards we set in the Front-end team. Please adapt your project needs to this scaffold, or use it as a reference.**
 
 ## Repository Documentation
 
