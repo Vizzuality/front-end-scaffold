@@ -29,19 +29,13 @@ The components documentation files are stored on the docs-containers folder. Thi
 
 ### Installing dependencies
 
-Assuming you already have Node (at least >=16), let's install the package manager: enable `corepack` first and then `corepack` will install the version set in the `packageManager` property of your `package.json`:
-
-```bash
-corepack enable && corepack prepare
-```
-
 By default, the scaffold comes with Yarn as package manager, so now we can install the dependencies by running:
 
 ```bash
-yarn
+yarn install
 ```
 
-_Note: these instructions assume the project uses Node >= 16, for other scenarios check [Yarn documentation](https://yarnpkg.com/getting-started/install)_
+_Note: these instructions assume the project uses Node >= 18, for other scenarios check [Yarn documentation](https://yarnpkg.com/getting-started/install)_
 
 ### Quick start
 
