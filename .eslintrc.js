@@ -1,10 +1,10 @@
 /** @type import('eslint').Linter.Config */
 module.exports = {
   extends: [
+    'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:prettier/recommended',
-    'next/core-web-vitals',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
