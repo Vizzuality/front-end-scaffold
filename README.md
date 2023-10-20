@@ -1,6 +1,6 @@
 # Front end scaffold
 
-![Vercel](https://vercelbadge.vercel.app/api/vizzuality1/front-end-scaffold-docs)
+![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=front-end-scaffold-docs)
 
 This is a project template which could be used to the creation of new projects. Some of the features included are:
 
